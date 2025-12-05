@@ -1,0 +1,19 @@
+[INCOMING_NURSE]: Good Morning, George. I’m the day nurse coming on. Do you mind if we do your bedside handover with Sam who’s just finishing up?
+[OUTGOING_NURSE]: Hi George. We’ll keep it brief. Can you tell us your full name and date of birth, please?
+[PATIENT]: George Belgin, 14-02-82.
+[INCOMING_NURSE]: Thanks, George. Any medication allergies?
+[PATIENT]: No, no allergies that I know of.
+[OUTGOING_NURSE]: Great. So, this is bed 6, George Belgin, 43 years old, under Dr McDonald. He was admitted for and has had a lung transplant, and he’s now suspected to have aspergillosis.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: He had a chest X-ray today. He’s stable. No other changes to report for him.
+[INCOMING_NURSE]: Vitals have been within normal limits?
+[OUTGOING_NURSE]: Yes, observations stable. No acute issues during my shift. His QAADS is 2 for Respiration rate. 
+[INCOMING_NURSE]: Any new symptoms, George? Shortness of breath, fever, or chest pain?
+[PATIENT]: A bit of a cough, but I feel okay. No chest pain.
+[OUTGOING_NURSE]: Has there been no new issues overnight.
+[INCOMING_NURSE]: So The Plan is to continue routine observations and await the medical team review with Dr McDonald?
+[OUTGOING_NURSE]:  No.No other changes or pending tasks from nights.
+[INCOMING_NURSE]: Alright, George, if anything changes—breathlessness, pain, or you feel unwell—press the call bell. I’ll come back shortly to check your obs again.
+[PATIENT]: Will do. Thanks.
+[OUTGOING_NURSE]: Thanks, George. I’m heading off. You’re in good hands.
+[INCOMING_NURSE]: Thanks, Sam. I’ll take it from here.

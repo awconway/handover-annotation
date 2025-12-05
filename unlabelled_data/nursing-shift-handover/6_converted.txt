@@ -1,0 +1,15 @@
+[INCOMING_NURSE]: Morning, Stephen. I’m Priya, the day nurse. I’m just going to get handover from Alex, who’s been looking after you overnight.
+[OUTGOING_NURSE]: Hi Priya. This is Stephen Jonathan Spencer in bed 6, under Dr. Liu.
+[PATIENT]: Hi.
+[INCOMING_NURSE]: Hi Stephen. We’ll chat through the plan and make sure you’re comfortable.
+[OUTGOING_NURSE]: Stephen is 72 years old. He came in with fevers and tiredness. He’s visiting from Melbourne and is here to see his daughter and grandchildren—and became unwell.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: His past history includes a coronary artery bypass graft about three months ago. His observations have been stable overnight. He’s still for investigation at this stage.
+[INCOMING_NURSE]: So there's been no acute issues overnight?
+[OUTGOING_NURSE]: No, all stable.
+[INCOMING_NURSE]: Thanks. Stephen, how are you feeling now?
+[PATIENT]: A bit tired, but okay. I Just want to know what’s going on.
+[INCOMING_NURSE]: We’ll keep your observations going and wait for Dr. Liu’s team to review and plan the next tests. If you feel more feverish or unwell, press the call bell and let me know.
+[PATIENT]: Will do.
+[OUTGOING_NURSE]: That’s everything from me.
+[INCOMING_NURSE]: Thanks, Alex. Stephen, I’ll be back shortly to check you over again.

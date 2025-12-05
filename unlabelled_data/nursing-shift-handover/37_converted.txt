@@ -1,0 +1,18 @@
+[OUTGOING_NURSE]: Good Morning. This is Bed 3, Alistair Edwards, who is 43 years old, under Dr Jamie.
+[INCOMING_NURSE]: Hi Alistair, I’m the incoming nurse for the day, my name is Dan. We’ll do a quick bedside handover with you, if that’s okay.
+[PATIENT]: Sure.
+[INCOMING_NURSE]: Could you confirm your full name, please?
+[PATIENT]: Alistair Edwards.
+[INCOMING_NURSE]: Thank you. And any allergies?
+[PATIENT]: Peanuts.
+[OUTGOING_NURSE]: Yes, a known peanut allergy. He came in with an allergic reaction. He’s improving slowly; His throat is still a little bit swollen. He reports an itchy mouth and occasional difficulty breathing, but it’s been manageable. Otherwise he’s been okay.
+[INCOMING_NURSE]: Thanks. Alistair, how’s your breathing right now—any tightness or wheeze?
+[PATIENT]: It feels okay at the moment—just a bit of itch in my mouth.
+[INCOMING_NURSE]: All right. If anything changes—more swelling, wheeze, or trouble breathing—please press the call bell straight away.
+[OUTGOING_NURSE]: His Vitals have been stable while I’ve been with him. and there are no new issues overnight.
+[INCOMING_NURSE]:  We will continue to monitor your airway and level of comfort, Alistair.
+[PATIENT]: Thanks.
+[INCOMING_NURSE]: Is there anything you need before we finish handover?
+[PATIENT]: No, I’m good.
+[OUTGOING_NURSE]: Great. I’ll hand over to you now.
+[INCOMING_NURSE]: Thanks. I’ll be back shortly to recheck you, Alistair.

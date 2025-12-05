@@ -1,0 +1,18 @@
+[INCOMING_NURSE]: Good Morning, Benjamin. I'm taking over your care from the night nurse my name is Greg. Is it okay if we do your handover here at the bedside?
+[PATIENT]: Sure, that’s fine.
+[OUTGOING_NURSE]: Thanks, Benjamin. So, this is Benjamin Lincoln in bed 3, 51 years old, under Dr T. Lenny. He was admitted with a query acute kidney injury.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: His Past history includes diabetes and heartburn.
+[INCOMING_NURSE]: Thank you.
+[OUTGOING_NURSE]: He’s for a renal ultrasound later this afternoon, and a renal biopsy on Thursday.
+[INCOMING_NURSE]: Okay, I’ll keep an eye out for the ultrasound time and make sure you’re ready to go, Benjamin.
+[PATIENT]: Sounds good.
+[OUTGOING_NURSE]: He was febrile last night, up to 37.6 but he’s been afebrile on my shift. Observations have been stable.
+[INCOMING_NURSE]: Great. And you’ve been up and about?
+[OUTGOING_NURSE]: Yes—he’s self-caring and ambulant.
+[PATIENT]: I’ve been walking around a bit, yes.
+[INCOMING_NURSE]: Excellent. Any concerns right now—pain, nausea, anything you want us to know about?
+[PATIENT]: No, I feel okay at the moment.
+[OUTGOING_NURSE]: That’s everything from me.
+[INCOMING_NURSE]: Thanks. Benjamin, I’ll check your obs shortly and keep you updated about the ultrasound time. If you need anything, just press the call bell.
+[PATIENT]: Will do, thanks.

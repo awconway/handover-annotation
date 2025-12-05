@@ -1,0 +1,24 @@
+[INCOMING_NURSE]: Good Morning, Matt. I’m the day nurse coming on my name is Logan. I’ll just get handover from my colleague at your bedside, if that’s okay.
+[OUTGOING_NURSE]: Hi Logan. This is Matt Owen, he is 43 years old, under Dr Kenzie. He’s one week post–lung transplant.
+[INCOMING_NURSE]:  Matt, how are you feeling right now? Have you got any pain?
+[PATIENT]: No I'm okay just A bit tired.
+[OUTGOING_NURSE]: The main issue at the moment is an infection which is slowing his recovery. He’s MRSA positive and on contact precautions.
+[INCOMING_NURSE]: I see the contact signage is up and we’ll use gowns and gloves.
+[OUTGOING_NURSE]: He was on IV antibiotics; these have been changed to oral antibiotics now. He’s on his anti‑rejection medications as prescribed.
+[INCOMING_NURSE]: Are the oral antibiotics and immunosuppression all charted?
+[OUTGOING_NURSE]: Yes, all charted and given as scheduled.
+[OUTGOING_NURSE]: Functionally, he’s self‑caring and ambulant. He showered independently this morning.
+[INCOMING_NURSE]  Any issues with the shower?
+[PATIENT]: No, all fine.
+[OUTGOING_NURSE]: The surgical wound is healing slowly. The wound nurse is coming this afternoon to assess his wound and do the dressing.
+[INCOMING_NURSE]: Do we have a time for the wound nurse?
+[OUTGOING_NURSE]: No, they will just turn up. He’s on regular Endone and PRN morphine for his pain. 
+[INCOMING_NURSE]: Matt, how’s your pain at the moment?
+[PATIENT]: Manageable right now.
+[INCOMING_NURSE]: Okay, just buzz if you need the PRN.
+[OUTGOING_NURSE]: All observations have been stable, and he hasn’t raised any other complaints.
+[INCOMING_NURSE]: Perfect. So plan the plan today is to continue oral antibiotics and anti‑rejection meds. The wound nurse review and do his dressing this afternoon, continue with regular obs, and give PRNs medication as needed.
+[OUTGOING_NURSE]: That’s it from me.
+[INCOMING_NURSE]: Thanks. Matt, anything else you need before I go check your meds?
+[PATIENT]: I’m good, thanks.
+[INCOMING_NURSE]: Great—I’ll be back shortly.

@@ -1,0 +1,21 @@
+[INCOMING_NURSE]: Good Morning. Hi Jane, I’m Sam, the day nurse. I’ll just get handover from Alex, then check in with you.
+[OUTGOING_NURSE]: Hi Sam. This is Jane Morgan in bed 4. Jane, could you confirm your full name for us?
+[PATIENT]: Jane Morgan.
+[INCOMING_NURSE]: Thanks, Jane.
+
+[OUTGOING_NURSE]: Jane is 24, under Dr Tilney, admitted with acute renal failure. There have been No changes overnight. All observations have remained stable.
+[INCOMING_NURSE]: Okay, Any concerns with pain or nausea?
+[OUTGOING_NURSE]: No, she’s comfortable and denies nausea.
+
+[OUTGOING_NURSE]: She’s on the last dose of her IV antibiotics today. The Plan is discharge her home tomorrow, and switching to oral antibiotics.
+[INCOMING_NURSE]: Great. And follow-up arranged?
+[OUTGOING_NURSE]: Yes there's an outpatient appointment with Dr Diani, which has been organized.
+[INCOMING_NURSE]: Perfect.
+
+[INCOMING_NURSE]: Jane, how are you feeling this morning?
+[PATIENT]: I’m okay, just keen to go home.
+[INCOMING_NURSE]: Hopefully tomorrow, once we switch you to tablets. I’ll keep an eye on your obs and your last IV antibiotics.
+
+[OUTGOING_NURSE]: That’s everything for Jane from me.
+[INCOMING_NURSE]: Thanks, Alex. Jane, press your call bell if you need anything. I’ll be back shortly to check your observations and your IV.
+[PATIENT]: Thank you.

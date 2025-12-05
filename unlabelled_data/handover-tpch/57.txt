@@ -1,0 +1,14 @@
+[INCOMING_NURSE]: Good morning, Mr. Wong. I’m Jack, and I’ll be your nurse for today. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Mr. Wong. This is the nurse taking over for the day. Could you please confirm your full name?
+[PATIENT]: Lumin Wong.
+[OUTGOING_NURSE]: Thank you. This is Mr. Lumin Wong in Bed 3, Room 12, aged 75, under Dr. Liu.
+[OUTGOING_NURSE]: Mr. Wong is awaiting CABG surgery. He’s currently on a heparin infusion for anticoagulation and a GTN infusion for chest pain. Both infusions are running as per protocol. His vitals have remained stable overnight.
+[OUTGOING_NURSE]: He’s nil by mouth and aware of the pending surgery. No new symptoms or concerns reported during this shift.
+[INCOMING_NURSE]: Mr. Wong, have you had any chest pain or other symptoms overnight?
+[PATIENT]: No, I’ve been okay. Just waiting for the surgery.
+[OUTGOING_NURSE]: No complaints noted. The surgical team hasn’t provided an update yet on the timing, but we’ll continue to follow up.
+[INCOMING_NURSE]: I’ll check in with Dr. Liu’s team and let you know as soon as we hear anything. Is there anything you need before we finish handover?
+[PATIENT]: No, thank you.
+[OUTGOING_NURSE]: Please use the call bell if you need anything. I’ll leave you in good hands.
+[INCOMING_NURSE]: I’ll be back shortly to check your observations and review your chart, Mr. Wong.
+

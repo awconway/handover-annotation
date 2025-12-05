@@ -1,0 +1,16 @@
+
+[NURSE]: Hi Dr. Nguyen, I need you to review Ms. Lara Bennett in bed 5. She’s a 56-year-old patient with a known history of epilepsy. She had a tonic-clonic seizure about 20 minutes ago on the ward. It lasted approximately 90 seconds and she’s now post-ictal—drowsy but rousable.
+[DOCTOR]: Thanks. Is she stable now?
+[NURSE]:Yes, she’s breathing spontaneously and maintaining her airway. No signs of trauma or tongue injury. She’s currently on 4-hourly neuro obs. Her latest vitals are:BP: 138/84, HR: 92 bpm, RR: 16, Temp: 36.9°C, SpO?: 98% on room air, GCS: 13,Q-ADDS score: 4 (GCS + seizure)
+[DOCTOR]: Any IV access?
+[NURSE]: Yes, she has a patent IV cannula in her left forearm. No IV fluids running currently—she’s tolerating oral intake. No signs of dehydration.
+[DOCTOR]: Any allergies?
+[NURSE]: Yes, she has a documented allergy to phenytoin—rash and dizziness previously.
+[DOCTOR]: Is she catheterised?
+[NURSE]: Yes, she has an indwelling catheter (IDC) in place for monitoring. Output has been normal—clear urine, ~300 mL over the last 4 hours.
+[DOCTOR]: Any recent bloods?
+[NURSE]: Yes, FBC and electrolytes were taken this morning: Hb: 128, WCC: 7.4, Platelets: 240, Na: 136, K: 4.2, Creatinine: 76, No major abnormalities.
+[DOCTOR]: Has the family been informed?
+[NURSE]: Yes, I’ve spoken to her daughter. She’s on her way in and aware of the situation. I’ve reassured her that Lara is stable but still recovering.
+[DOCTOR]: Thanks. Let’s continue neuro obs, monitor for any further seizures, and review her antiepileptic regimen. If she has another seizure or her GCS drops, please escalate immediately.
+[NURSE]: I’ll keep monitoring and update you if anything changes.

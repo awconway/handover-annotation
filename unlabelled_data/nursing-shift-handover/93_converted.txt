@@ -1,0 +1,20 @@
+[INCOMING_NURSE]: Good Morning, Samuel. I’m Mia, I’ll be looking after you today. I’m just getting handover from Dan, the night nurse—okay?
+[OUTGOING_NURSE]: Hi, Samuel. We’ll be quick. This is Samuel Edmond in room 4, bed 3.
+[INCOMING_NURSE]: Samuel, can you confirm your name for me?
+[PATIENT]: Samuel Edmond.
+[INCOMING_NURSE]: Thanks—I’ll just check your wristband for your details. All good.
+
+[OUTGOING_NURSE]: Samuel is 19 years old, admitted with acute renal failure. He’s been with us a while and is currently awaiting the results of his renal biopsy.
+[INCOMING_NURSE]: hopefully they will be back soon.
+[OUTGOING_NURSE]: His Observations have been stable. He’s self-caring and ambulant.
+[INCOMING_NURSE]: Great. Any restrictions?
+[OUTGOING_NURSE]: No—he can have a leave pass as per Dr. Ross.
+[INCOMING_NURSE]: Any issues overnight?
+[OUTGOING_NURSE]: No issues reported. He’s been comfortable.
+[INCOMING_NURSE]: Samuel, how are you feeling this morning?
+[PATIENT]: I’m fine, thanks.
+[INCOMING_NURSE]: Good to hear. I’ll keep checking your obs and keep an eye out for those biopsy results. If you plan to head out on leave, just let me know so I can note it.
+[PATIENT]: Sure.
+[OUTGOING_NURSE]: That’s everything from me.
+[INCOMING_NURSE]: Thanks, Dan. Samuel, buzz if you need anything.
+[PATIENT]: Will do.

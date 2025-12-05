@@ -1,0 +1,19 @@
+[RECOVERY_NURSE]: Hi, I’m handing over Mr. Thomas Nguyen, 74 years old, just returned from theatre after a urethral dilation and bladder washout. He’s stable post-procedure and ready for transfer to the ward.
+[WARD_NURSE]: Thanks. Can you give me a quick summary?
+[RECOVERY_NURSE]: Sure. He was admitted with acute urinary retention and a history of benign prostatic hyperplasia. He had some clinical deterioration pre-op—low BP, reduced urine output, and confusion—but he’s responded well to treatment. He’s now passing urine via IDC, and output is improving.
+[WARD_NURSE]: Vitals?
+[RECOVERY_NURSE]: His BP: 112/70, HR: 88 bpm, RR: 18, SpO?: 97% on room air, Temp: 37.4°C, Urine output: 120 mL in the last hour
+[WARD_NURSE]: Any lines or attachments?
+[RECOVERY_NURSE]: Yes he has an IDC draining clear urine, an IV cannula in left forearm, No infusions running currently and Oxygen via nasal prongs earlier, now weaned off
+[WARD_NURSE]:
+Any medications charted?
+[RECOVERY_NURSE]: He’s on Paracetamol 1g QID, Gentamicin IV stat dose given in theatre, PRN oxycodone and IV fluids were running intra-op, now ceased
+[WARD_NURSE]: Any communication needs?
+[RECOVERY_NURSE]: No, he’s English-speaking, fully alert and orientated. He’s a bit tired but understands what’s happening.
+[RECOVERY_NURSE]: Hi Mr. Nguyen, this is your ward nurse, she’ll be looking after you now. You’re doing well after your procedure.
+[PATIENT]: Thanks. I feel a bit groggy but better than before. Am I going back to my room now?
+[WARD_NURSE]: Yes, we’ll get you settled in shortly. I’ll keep checking your blood pressure and make sure everything’s comfortable. If you need anything, just press the call bell.
+[PATIENT]: Okay, thank you.
+[RECOVERY_NURSE]:He’s due for post-op obs in 30 minutes, and the IDC needs to be monitored closely. Urology team will review later today.
+[WARD_NURSE]: Perfect. I’ll take it from here.
+

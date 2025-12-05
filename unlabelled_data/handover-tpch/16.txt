@@ -1,0 +1,15 @@
+[DOCTOR]: Hi, I’m handing over Mr. Amir Rahman, 63 years old, admitted with a large anterior MI yesterday. He’s currently in ICU and has been started on an intra-aortic balloon pump as a bridge to CABG, which is scheduled in two days.
+[ICU_NURSE]: Thanks. Can you give me a quick overview?
+[DOCTOR]: Sure. He’s haemodynamically unstable post-MI, with ongoing low cardiac output. The IABP was inserted this morning via the femoral artery, and it’s currently set to 1:1 augmentation. He’s responding well so far—BP has improved, and lactates are trending down.
+[ICU_NURSE]: Any other lines or support?
+[DOCTOR]: He has an Arterial line in the right radial for continuous BP monitoring, a Central line in the right internal jugular an IDC in place he has Telemetry monitoring active
+He’s on low-dose noradrenaline at 2 mcg/min and IV heparin infusion for IABP patency.
+[ICU_NURSE]: Any communication needs?
+[DOCTOR]: Yes, he’s from a non-English speaking background—Arabic is his first language. He understands basic English but struggles with complex instructions. We’ve requested an interpreter for family discussions and consent. His son is bilingual and has been helping.
+[ICU_NURSE]: Any pain or sedation?
+[DOCTOR]: He’s alert and orientated. No sedation required. Pain is managed with paracetamol and PRN oxycodone. He’s anxious but cooperative.
+[ICU_NURSE]: Any allergies or medications?
+[DOCTOR]: No known drug allergies. Current meds include Aspirin 100 mg daily, Atorvastatin 80 mg nocte, IV heparin infusion, Noradrenaline, Paracetamol PRN, Oxycodone PRN
+[ICU_NURSE]: Thanks. I’ll continue monitoring IABP function and haemodynamics closely.
+[DOCTOR]: Perfect. Let me know if there’s any change in rhythm, perfusion, or balloon timing. Surgical team will review again tomorrow.
+

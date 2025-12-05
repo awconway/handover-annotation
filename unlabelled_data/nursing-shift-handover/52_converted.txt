@@ -1,0 +1,21 @@
+[OUTGOING_NURSE]: In bed 7 we have Linda Donald, 83 years old, under Dr Harrod.
+[INCOMING_NURSE]: Hi Linda, I’m the incoming nurse my name is Brett. We’ll just do a quick bedside handover together, is that okay?
+[PATIENT]: Okay.
+[OUTGOING_NURSE]: Linda came in for investigation due to memory problems and increasing confusion.
+[INCOMING_NURSE]: Have her observations been checked?
+[OUTGOING_NURSE]: Yes, obs are done and all stable, nothing remarkable.
+[INCOMING_NURSE]: Has the medical team seen her yet?
+[OUTGOING_NURSE]: Not yet.
+[INCOMING_NURSE]: How is she getting around?
+[OUTGOING_NURSE]: She’s ambulant with a wheely walker, with 1 to standby assist.
+[INCOMING_NURSE]: We’ll make sure it’s within reach and help you as needed, don't get up on your own
+[PATIENT]: Thank you.
+[INCOMING_NURSE]: Any diet orders?
+[OUTGOING_NURSE]: She's on a soft diet which she is tolerating well, but needs help with setting up the tray table, and taking the lids off the cups. 
+[INCOMING_NURSE]: Okay is there anything else that I need to know?
+[OUTGOING_NURSE]: No, shes stable.
+[INCOMING_NURSE]: So, the plan is to continue regular observations, assist with mobility using the walker, help her with her meals and wait for the team to review her.
+[OUTGOING_NURSE]: I think I have covered everything.
+[INCOMING_NURSE]: Linda, do you need anything before we go?
+[PATIENT]: No, I’m fine.
+[INCOMING_NURSE]: We’ll be back shortly. Please use the call bell if you need help.

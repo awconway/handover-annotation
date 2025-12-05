@@ -1,0 +1,19 @@
+[INCOMING_NURSE]: Hi Roger, I’m Sam, the day nurse. Is it okay if we do your bedside handover with Alex here?
+[PATIENT]: Sure.
+[OUTGOING_NURSE]: Thanks, Roger. So, Bed 6 is Roger Thompson, he is 49 years old, under Dr Gordon. He arrived on the ward not long ago; I’ve completed his admission paperwork.
+[INCOMING_NURSE]: Thanks. What brought you in today, Roger?
+[OUTGOING_NURSE]: He presented with nausea and dizziness. His Observations have been within normal limits since arrival.
+[PATIENT]: I Still feel a little light-headed, but better than before.
+[OUTGOING_NURSE]: He reported nausea on arrival; I gave ondansetron 4 mg sublingual with good effect.
+[INCOMING_NURSE]: Has that settled your stomach a bit?
+[PATIENT]: Yeah, it helped.
+[OUTGOING_NURSE]: He’s on a general diet. He hasn’t eaten much yet due to the nausea.
+[INCOMING_NURSE]: Okay, we’ll keep it light and see how you go. Any IVs or special equipment?
+[OUTGOING_NURSE]: No IV access required at present. He’s independent and self-caring; usually ambulant. He’s resting in bed now.
+[INCOMING_NURSE]: Great. I’ll recheck your obs shortly and see if you’re up to some fluids or toast.
+[OUTGOING_NURSE]: There's no other concerns at this stage.
+[INCOMING_NURSE]: Roger, anything you want to add or anything you need right now?
+[PATIENT]: No, I’m okay. Just a bit tired.
+[INCOMING_NURSE]: All right. So we will monitor your nausea and dizziness and give you your ondansetron which is due at 1630. We’ll let Dr Gordon’s team know if anything changes.
+[OUTGOING_NURSE]: Perfect, I'm heading off, see you tomorrow. 
+[INCOMING_NURSE]: I’ll be back shortly, Roger.

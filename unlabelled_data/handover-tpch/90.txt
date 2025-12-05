@@ -1,0 +1,14 @@
+[OUTGOING_NURSE]: Hi, I’m handing over bed 3, Mr. David Lee, 79 years old. He had a permanent pacemaker inserted this morning for complete heart block. Post-procedure, he developed a right-sided pneumothorax—a chest drain was inserted about an hour ago.
+[INCOMING_NURSE]: Okay—how is he now?
+[OUTGOING_NURSE]: He’s more short of breath and becoming increasingly agitated. His oxygen requirement has gone up—now on 4 L via nasal prongs to maintain sats around 92%. BP is 98/60, HR is 62 (paced), RR 26, Temp 37.2. I’ve escalated to the medical registrar—awaiting review.
+[INCOMING_NURSE]: How’s the drain functioning?
+[OUTGOING_NURSE]: Swinging but minimal drainage so far. No signs of tension, but I’m concerned about his increased work of breathing and agitation. ECG shows paced rhythm, no acute changes.
+[INCOMING_NURSE]: Any other issues?
+[OUTGOING_NURSE]: Yes—he’s acutely incontinent of urine and hasn’t voided since the procedure. Abdomen is mildly distended. I’ve requested an IDC insertion—awaiting medical clearance due to the recent pacing procedure.
+[INCOMING_NURSE]: IV access?
+[OUTGOING_NURSE]: One 18G in the left forearm—patent. He’s on maintenance fluids and has had IV paracetamol for discomfort. No antibiotics charted yet. NKDA.
+[INCOMING_NURSE]: Any support needs?
+[OUTGOING_NURSE]: English is his first language. He’s usually independent but is now confused and distressed. Family has been notified and are on their way in.
+[INCOMING_NURSE]: Got it. I’ll keep monitoring his respiratory status and follow up on the IDC and medical review.
+[OUTGOING_NURSE]: Thanks. Please escalate if his condition worsens—especially if his sats drop further or he becomes more confused. All documentation is up to date, including drain chart, fluid balance, and neuro obs.
+

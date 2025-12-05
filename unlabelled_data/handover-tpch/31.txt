@@ -1,0 +1,9 @@
+[Outgoing Nurse]: Hi, I’m handing over Mrs. Elaine Morris in bed 6. She’s an 84-year-old patient with reduced mobility following pneumonia. She has a stage 2 pressure injury on her left hip.
+[Incoming Nurse]: Thanks. What’s the current condition of the wound?
+[Outgoing Nurse]: It’s a shallow ulcer with partial thickness skin loss. The wound bed is moist but clean, with mild erythema around the edges. No signs of infection. The wound care nurse reviewed it this morning and recommended Allevyn Gentle Border dressing. It’s due for redressing tomorrow unless it becomes soiled or lifts.
+[Incoming Nurse]: What’s her Waterlow score?
+[Outgoing Nurse]: Waterlow score is 18, so she’s at high risk. She’s currently on a standard mattress, but we need to contact QuEST to arrange a pressure-relieving mattress as soon as possible.
+[Incoming Nurse]: Any other care needs?
+[Outgoing Nurse]: Yes: She needs a full wash this morning, including peri-care. Repositioning every 2 hours is in place. No IV access currently. Oral intake is adequate. No IDC – continent of urine and bowels. Pain score is 1/10 at rest, no analgesia required. Skin checks are ongoing, and no other areas of concern noted.
+[Incoming Nurse]: Thanks. I’ll do her wash, redress the wound if needed, and follow up with QuEST for the mattress.
+

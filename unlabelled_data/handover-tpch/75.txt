@@ -1,0 +1,8 @@
+[PARAMEDIC]: Hi, this is John, paramedic with Metro Ambulance. We’ve brought in Ms. Helen Morris, aged 72, from home. She’s currently in Bed 6, Isolation Bay 2.
+[PARAMEDIC]: Ms. Morris was referred by her GP due to increasing shortness of breath, productive cough, and low-grade fever over the past 3 days. Her GP suspected RSV due to recent community cases and her history of COPD. She lives with her husband, who is currently well.
+[PARAMEDIC]: On arrival, she was SpO? 91% on room air, now on 2L nasal prongs, saturating at 95%. RR 22, HR 88, BP 138/82, Temp 37.8°C. She’s alert and oriented but fatigued.
+[PARAMEDIC]: We’ve placed her in isolation as a precaution. Full PPE is being used. She’s been cooperative and understands the need for precautions. No known allergies. Regular medications include tiotropium, salbutamol, and amlodipine.
+[PARAMEDIC]: No recent hospital admissions. She’s had two doses of COVID vaccine and annual flu shot. No RSV test done yet—GP advised swab on arrival.
+[PARAMEDIC]: She’s stable for now. No chest pain or confusion. Handover complete—do you have any questions?
+[ED NURSE]: Thanks, John. I’ll get her settled and notify the medical team for review and swabbing. I’ll continue isolation precautions and monitor her respiratory status.
+

@@ -1,0 +1,28 @@
+[INCOMING_NURSE]: Good Morning, Matthew. I’m taking over your care now. Is it okay if we do your bedside handover with Jack?
+[OUTGOING_NURSE]: Hi Matthew, I’m just handing over to Evie for day shift.
+[OUTGOING_NURSE]: Could you please confirm your full name and date of birth?
+[PATIENT]: Matthew David Dung. Date of birth is 28 September 1967
+[INCOMING_NURSE]: Thanks, Matthew. Any medication allergies?
+[PATIENT]: Not that I’m aware of.
+[INCOMING_NURSE]: We’ll double-check your chart as well.
+
+[OUTGOING_NURSE]: This is Bed 4, Matthew David Dung, 63 years old, under Dr. McDonald.
+[OUTGOING_NURSE]: He presented with headache, nausea, and pain on inhalation following a gas leakage exposure at home.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: He’s on regular paracetamol for pain and has PRN anti‑emetics charted.
+[OUTGOING_NURSE]: All observations have remained stable, and there have been no other changes since admission so a QAADS of Zero.
+[INCOMING_NURSE]: Matthew, are you still feeling the headache and nausea this morning?
+[PATIENT]: Yes, about the same. The breathing in still hurts a bit.
+[INCOMING_NURSE]: Thanks for letting me know. I’ll make sure you’re due for your paracetamol and offer an anti‑emetic if you need it.
+
+[INCOMING_NURSE]: Any IV lines or special equipment in use? 
+[OUTGOING_NURSE]: No, none. Routine monitoring only. He’s stable.
+[INCOMING_NURSE]: Great. So the plan is continue regular paracetamol, anti‑emetics PRN, and ongoing obs?
+[OUTGOING_NURSE]: Yes, but we need to escalate to the doctors if the symptoms worsen, otherwise no new orders from Dr. McDonald.
+[INCOMING_NURSE]: Perfect.
+
+[INCOMING_NURSE]: Matthew, is there anything you need right now—water, comfort measures, a cool cloth?
+[PATIENT]: Maybe an anti‑emetic soon, please.
+[INCOMING_NURSE]: Sure, I’ll bring that in shortly and recheck your obs.
+[OUTGOING_NURSE]: Thanks, Matthew. I’ll leave you with Evie now.
+[PATIENT]: Thank you.

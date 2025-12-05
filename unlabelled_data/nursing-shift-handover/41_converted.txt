@@ -1,0 +1,13 @@
+[OUTGOING_NURSE]: Good Morning. This is Mr. Helder Mendez, in bed 2. Hi Helder, we’re just doing your handover.
+[INCOMING_NURSE]: Hi Mr. Mendez, I’m taking over your care this shift.
+[OUTGOING_NURSE]: Helder is 76 years old, under Dr. Hutchins. He’s been admitted with recurrent lung cancer. He has a smoking history and COPD. He has had surgery, chemotherapy, and radiotherapy previously.
+[INCOMING_NURSE]: Gosh that's a lot of treatments.
+[OUTGOING_NURSE]: He’s now on palliative care—comfort measures only. So no routine observations. We’re focusing on keeping him comfortable.
+[INCOMING_NURSE]: Thanks. Mr. Mendez, can you confirm your name for me?
+[PATIENT]: Helder Mendez.
+[INCOMING_NURSE]: Thank you. I’ll try and keep you pain free and comfortable.
+[OUTGOING_NURSE]: He’s settled in bed, no other active interventions are planned. If anything changes symptom-wise in relation to pain, breathlessness, or anxiety we can give him the medications as charted, we are notify the team if we need anything more. 
+[INCOMING_NURSE]:  I’ll check in regularly, to offer mouth care and reposition as you prefer as to keep you comfortable, Helder. Is there anything you need right now?
+[PATIENT]: I’m okay, thank you.
+[OUTGOING_NURSE]: Bye helder.
+[INCOMING_NURSE]: Thanks. I’ll be nearby, Helder—use the call bell if you need anything.

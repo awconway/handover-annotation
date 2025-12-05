@@ -1,0 +1,29 @@
+[OUTGOING_NURSE]: Hi there, Bill. This is Sam, the day nurse taking over from me.
+[INCOMING_NURSE]: Hi Bill, I’m Sam. We’ll do a quick bedside handover. Please jump in if we miss anything.
+[OUTGOING_NURSE]: Could you confirm your name for us, please?
+[PATIENT]: Bill Jefferies.
+[INCOMING_NURSE]: Thanks, Bill.
+
+[OUTGOING_NURSE]: Bed three, Bill Jefferies, 63 years old, under Dr Lane. Admitted today with known cancer and a recent brain injury. I’ve completed his initial observations; he’s on hourly obs for another four hours, then four‑hourly observations after that.
+[INCOMING_NURSE]: So hourly for four hours, then Q4H afterwards?
+[OUTGOING_NURSE]: That’s right.
+
+[OUTGOING_NURSE]: He’s now allowed to eat and drink. He’s wide awake and is less drowsy than he was earlier. The Main issue is pain — he’s currently complaining of pain and is due for analgesia now.
+[INCOMING_NURSE]: I’ll give some pain relief as soon as we finish handover. Bill, where is it most sore?
+[PATIENT]: My head, mostly.
+[INCOMING_NURSE]: Okay, I’ll bring something for that right away.
+
+[OUTGOING_NURSE]: He’s on ongoing IV fluids at 125 mL/hour. He’s started on oral antibiotics — next dose can be given after his lunch.
+[INCOMING_NURSE]: IV at 125 mL/hr running, and oral antibiotics after lunch at 1330.
+
+[OUTGOING_NURSE]: He remains under close monitoring. No bleeding noted from the head; dressing is clean, dry, and intact.
+[INCOMING_NURSE]: Great. I’ll keep an eye on the site and continue the neuro and vital sign observations as ordered.
+
+[INCOMING_NURSE]: Bill, you’re okay to have something to eat and drink now. Are you feeling up to some lunch and a sip of water?
+[PATIENT]: I could try a little.
+[INCOMING_NURSE]: Perfect — I’ll sort your pain relief first, then we’ll get you comfortable with some food and fluids.
+
+[INCOMING_NURSE]: So the plan is to continue Hourly obs for four hours then change them to Q4H, give analgesia now, maintain IV fluids at 125 mL/hr, 
+[OUTGOING_NURSE]: That’s everything from me, see you tommorrow
+[PATIENT]: Thanks.
+[INCOMING_NURSE]: Thanks, Bill. I’ll be right back with your pain medication.

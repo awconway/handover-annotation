@@ -1,0 +1,17 @@
+[INCOMING_NURSE]: Good morning, Anita. I’m the incoming nurse. I’ll get handover from my colleague now, is that okay?
+[PATIENT]: Yes, that’s fine.
+[OUTGOING_NURSE]: Thanks. This is bed 7, Anita Muleta, 51 years old, under Dr. Garcia.
+[OUTGOING_NURSE]: She came in with heartburn, currently under investigation. Observations have been stable, nil other issues to report.
+[INCOMING_NURSE]:  Hi Anita, can you tell us your full name to confirm your ID?
+[PATIENT]: Anita Muleta.
+[INCOMING_NURSE]: Thank you. I’ll also check your wristband. Great, that matches.
+[INCOMING_NURSE]: Are you having any discomfort right now?
+[PATIENT]: A little heartburn, but it’s okay.
+[OUTGOING_NURSE]: No interventions overnight. Vital signs remained within normal limits.
+[INCOMING_NURSE]: Any allergies we should know about? I’ll double-check your chart as well.
+[PATIENT]: Please check the chart.
+[INCOMING_NURSE]: So the plan for now is ongoing observations and await further direction from Dr. Garcia regarding investigations for the heartburn.
+[OUTGOING_NURSE]: There are no outstanding tasks.
+[INCOMING_NURSE]: Thanks. Anita, is there anything you need before we finish handover?
+[PATIENT]: No, thank you.
+[INCOMING_NURSE]: Okay, I’ll be back shortly to check on you again.

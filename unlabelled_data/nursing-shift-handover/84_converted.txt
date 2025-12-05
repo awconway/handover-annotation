@@ -1,0 +1,17 @@
+[INCOMING_NURSE]: Good morning, Edwin. I’m taking over your care from the night nurse. Is it okay if we do your bedside handover now?
+[PATIENT]: Sure.
+[OUTGOING_NURSE]: Thanks, Edwin. So, room 1 bed 3, this is Edwin Palma, 54, under Dr. Willow. Can I just confirm your identity?
+[INCOMING_NURSE]: Thanks, Edwin.
+[OUTGOING_NURSE]: He has prostate cancer so He has come in for an assessment. He’s had a CT abdomen and an x-ray; both results are still pending.
+[INCOMING_NURSE]: When were they done.
+[OUTGOING_NURSE]: 1000 am this morning. The plan is that he will be discharged if results are negative; otherwise he’ll be treated as an outpatient. We’re still awaiting the team’s review and the go-ahead. Otherwise, he’s stable.
+[INCOMING_NURSE]: Thanks. I’ll keep an eye out for the results and page the team for review once they’re available.
+[INCOMING_NURSE]: Edwin, how are you feeling right now—any pain or new concerns?
+[PATIENT]: I’m okay. No new issues.
+[OUTGOING_NURSE]: Great. There are no immediate nursing issues to flag. His Vitals and status stable.
+[INCOMING_NURSE]: All right. Edwin, once the doctors review your scans, we’ll let you know the outcome and next steps. If you’re cleared, we’ll arrange your discharge; if not, we’ll organise the outpatient plan.
+[PATIENT]: Sounds good. Thank you.
+[INCOMING_NURSE]: Do you need anything before we go?
+[PATIENT]: I’m fine, thanks.
+[OUTGOING_NURSE]: Perfect. I’ll hand over the pager to you. Thanks, Edwin.
+[INCOMING_NURSE]: Thanks. I’ll be back shortly to update you when we hear from the team.

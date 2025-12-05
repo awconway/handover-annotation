@@ -1,0 +1,27 @@
+[INCOMING_NURSE]: Good Morning, Lars. I’m Mia, I’ll be looking after you now. I’m just going to get handover from Sam, the night nurse, at the bedside.
+[OUTGOING_NURSE]: Hi, Mia. This is Lars Wohler, 42 years old, Room 4, under Dr. Geller.
+[INCOMING_NURSE]: Lars, we’ll speak about you, and please jump in if you feel up to it.
+[PATIENT]: (nods).
+[OUTGOING_NURSE]: He came in with sepsis with a decreasing level of consciousness, on a background of chronic renal failure stage 4 on peritoneal dialysis. He’s had a full septic workup; results are pending.
+[INCOMING_NURSE]: Okay. Blood cultures sent?
+[OUTGOING_NURSE]: Yes, blood cultures were taken—awaiting results.
+[OUTGOING_NURSE]: He’s febrile—38.6—and we’ve started IV antibiotics. He’s also on IV fluids at 83 mL per hour.
+[INCOMING_NURSE]: The antibiotics are running and fluids 83 mL/hr. Any allergies documented?
+[OUTGOING_NURSE]: None documented so far; unable to confirm with him given the reduced consciousness.
+[INCOMING_NURSE]: Is he nil by mouth?
+[OUTGOING_NURSE]: Yes—NBM due to decreased level of consciousness.
+[INCOMING_NURSE]: Analgesia/antipyretics?
+[OUTGOING_NURSE]: He’s written up for IV paracetamol.
+[INCOMING_NURSE]: And code status?
+[OUTGOING_NURSE]: He’s for full resuscitation.
+[INCOMING_NURSE]: PD?
+[OUTGOING_NURSE]: His peritoneal dialysis regimen needs review—Dr. Geller will come later to review and advise.
+[INCOMING_NURSE]: Perfect. Any other results back yet?
+[OUTGOING_NURSE]: Nothing definitive yet; septic workup pending.
+[INCOMING_NURSE]: Thanks. Lars, I’m going to keep you comfortable, we’ll keep your fluids and antibiotics going, and the doctor will be in to see you shortly. If you’re in pain, can you squeeze my hand?
+[PATIENT]: (weak hand squeeze)
+[INCOMING_NURSE]: Thank you. We’ll also keep you NBM until it’s safe.
+[OUTGOING_NURSE]: That’s everything from me.
+[INCOMING_NURSE]: Great. I’ll check the line site, confirm the antibiotic timing, and chart the IV paracetamol. I’ll also keep an eye on temps and neuro checks, and wait for Dr. Geller’s review and culture results.
+[PATIENT]: (nods)
+[INCOMING_NURSE]: Thanks, Sam. I’ve got it from here.

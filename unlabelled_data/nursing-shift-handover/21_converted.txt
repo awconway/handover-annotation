@@ -1,0 +1,22 @@
+[INCOMING_NURSE]: Good Morning, Martin. I’m Priya, I’ll be looking after you today. I’m just getting handover from Alex who’s been on nights, is that okay?
+[OUTGOING_NURSE]: Hi, Martin. We’ll keep this brief. This is Bed 4, Martin Cavedon, 73, under Dr. Sanchez.
+[INCOMING_NURSE]: Martin, could you tell us your full name and age, please?
+[PATIENT]: Martin Cavedon, I’m 73.
+[INCOMING_NURSE]: Do you have any medication allergies?
+[OUTGOING_NURSE]: There is nothing documented in the chart.
+[PATIENT]: No, none that I know of.
+[OUTGOING_NURSE]: Martin came in with chest pain. He has a long history of heart problems, asthma, and GORD.
+[INCOMING_NURSE]: Okay. Any chest pain at the moment, Martin?
+[PATIENT]: No, it’s settled now.
+[OUTGOING_NURSE]: Earlier he reported chest pain; he was given two Anginine with good effect, then a dose of morphine. He’s stable now and was monitored accordingly. [INCOMING_NURSE]:  Are observations up to date?
+[OUTGOING_NURSE]: Yes, all obs are charted with a QADDS of zero. ECG was taken as well no new changes.
+[INCOMING_NURSE]: Was there any Blood taken to check the troponin level?
+[OUTGOING_NURSE]: Yes, Blood results have just arrived in the system and are pending medical review. Please call the doctor to review them.
+[INCOMING_NURSE]: I’ll page Dr. Sanchez’s team after we finish here.
+[OUTGOING_NURSE]: The plans it that he’s for a carotid ultrasound, this needs to be arranged, and an echocardiogram at some stage.
+[INCOMING_NURSE]: Martin, if the chest pain comes back, please press your call bell straight away.
+[PATIENT]: I will, thanks.
+[INCOMING_NURSE]: Anything you need before we go, water or to adjust the bed?
+[PATIENT]: I’m fine, thank you.
+[OUTGOING_NURSE]: That’s everything from me.
+[INCOMING_NURSE]: Thanks, Alex. I’ll get onto the doctors about the bloods and start organising the scans.

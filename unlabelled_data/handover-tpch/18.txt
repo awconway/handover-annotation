@@ -1,0 +1,15 @@
+[OUTGOING_NURSE]: Hi, I’m handing over bed 3, Ms. Elena Petrova, 47 years old. She’s been admitted for major depressive disorder and has been on amitriptyline, a tricyclic antidepressant, for the past two weeks.
+[INCOMING_NURSE]: Thanks. What’s happening currently?
+[OUTGOING_NURSE]: She’s developed an oculogyric crisis—her eyes are rolling upward involuntarily, and she’s visibly distressed. It started about an hour ago. She’s aware of it and frightened, but still orientated and able to speak.
+[INCOMING_NURSE]: Has medical been notified?
+[OUTGOING_NURSE]: Yes, the on-call doctor has reviewed her. They suspect it’s a dystonic reaction to the tricyclics. IM benztropine 2 mg has been charted and given about 20 minutes ago. We’re monitoring for response.
+[INCOMING_NURSE]: Any other symptoms?
+[OUTGOING_NURSE]: No limb dystonia or airway involvement. Her Vitals are stable, She’s anxious but cooperative.
+[INCOMING_NURSE]: Any communication needs?
+[OUTGOING_NURSE]: Yes, she’s from a non-English speaking background—Russian is her first language. She understands basic English but struggles with medical terms. Interpreter has been requested for tomorrow’s review. Her daughter is bilingual and has been helping.
+[INCOMING_NURSE]: Any other medications?
+[OUTGOING_NURSE]: She’s on: Amitriptyline 75 mg nocte, Diazepam 5 mg PRN, Paracetamol PRN. There is No known allergies.
+[INCOMING_NURSE]: Thanks. I’ll continue monitoring her response to benztropine and keep her calm.
+[OUTGOING_NURSE]: Perfect. Let me know if the symptoms persist or worsen. All documentation is up to date.
+
+

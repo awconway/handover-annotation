@@ -1,0 +1,29 @@
+[INCOMING_NURSE]: Good Morning, Mr Meyer. I’m the day nurse, Priya. I’ll just get handover from Tom who’s been looking after you overnight, if that’s okay.
+[OUTGOING_NURSE]: Hi Priya. This is a new admission in Room 5, Bed 3: Mr Steve Richard Meyer, 71, under Dr Dalianis.
+[INCOMING_NURSE]: Thanks. Mr Meyer, can I quickly confirm your identity on the wristband? And what name do you prefer to be called?
+[PATIENT]: Richard is fine, thanks.
+[INCOMING_NURSE]: Perfect, thank you.
+
+[OUTGOING_NURSE]: Richard was admitted with multiple cardiac issues. He’s not for surgery yet the team want some weight lost first before considering an operation. Observations have been stable on my shift.
+[INCOMING_NURSE]: Okay, Any chest pain, shortness of breath, or dizziness overnight?
+[OUTGOING_NURSE]: None reported. Comfortable at rest, and seems settled.
+
+[OUTGOING_NURSE]: He’s on a food chart and I have made a referral to the dietitian. 
+[INCOMING_NURSE]: Great—I’ll follow up dietetics for a time today.
+
+[OUTGOING_NURSE]: He needs prompting with ADLs and benefits from reminders and some assistance with personal cares and meal setup.
+[INCOMING_NURSE]: let us know when you want a shower and when you meal has arrived ring the buzzer. 
+
+[OUTGOING_NURSE]: Richard’s wife passed two months ago. He’s understandably low in mood. I recommend a pastoral care referral for grief support.
+[INCOMING_NURSE]: Richard, would you be okay for us to arrange someone from pastoral care or someone to talk with about support?
+[PATIENT]: Yes, I’d appreciate that.
+[INCOMING_NURSE]:I’ll place that referral this morning.
+
+[INCOMING_NURSE]: Any lines or drains, special precautions, or allergies we should note?
+[OUTGOING_NURSE]: No special lines or drains noted, and no new issues flagged on admission paperwork. Primary team is Cardiology under Dr Dalianis.
+
+[INCOMING_NURSE]: So the  Plan for today is to continue routine obs, maintain food chart, follow up dietitian review, prompt and assist with ADLs, and place pastoral care referral. I’ll also update the team if there are any changes.
+[OUTGOING_NURSE]: That’s all I can tell you for now.
+[INCOMING_NURSE]: Richard, is there anything you need right now before Tom heads off?
+[PATIENT]: Maybe some help getting washed later and a cup of tea when I’m allowed.
+[INCOMING_NURSE]: Absolutely—we’ll help you freshen up after breakfast and I’ll check what drinks are okay with your diet plan. I’ll be back shortly.

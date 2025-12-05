@@ -1,0 +1,17 @@
+[OUTGOING_NURSE]: Good morning Vera. This is Samantha who’ll be looking after you now. We’ll do a quick bedside handover if that’s okay.
+[INCOMING_NURSE]: Hi Vera, I’m Samantha taking over from Madeline. We’ll talk through your care with you here.
+[OUTGOING_NURSE]: This is Vera Abbott, 93 years old, under Dr Liu. She presented with chest pain.
+[INCOMING_NURSE]: Thanks. Hi Vera, can you tell me your name, please?
+[PATIENT]: Vera Abbott.
+[INCOMING_NURSE]: Thank you, Vera. I’ll keep the call bell by your hand so you can reach it easily.
+[OUTGOING_NURSE]: She has a history of stroke, prior chest pain episodes, cataracts, asthma, and glaucoma. She’s almost blind and needs assistance with ADLs.
+[INCOMING_NURSE]: We’ll make sure you have help with moving around, meals, and personal care, Vera.
+[OUTGOING_NURSE]: Today she’s had three nitro-glycerine sprays with no effect. I have done an ECG and given some Morphine, so she is now pain free. She’s on continuous monitoring.
+[INCOMING_NURSE]: Vera, are you comfortable at the moment?
+[PATIENT]: I’m okay sitting here.
+[OUTGOING_NURSE]: All observations have been within normal range for her.
+[INCOMING_NURSE]: Okay. I’ll keep reassessing your pain and monitoring closely. If the pain changes, please press the bell and we’ll let Dr Liu know as needed.
+[OUTGOING_NURSE]: That’s everything I needed to tell you.
+[INCOMING_NURSE]: Thanks. Vera, is there anything you need right now before we finish?
+[PATIENT]: No. Thank you.
+[INCOMING_NURSE]: Great. I’ll be back to check on you shortly.

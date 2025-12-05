@@ -1,0 +1,27 @@
+[INCOMING_NURSE]: Good Morning, Gus. I’m Alex, the day nurse. I’ll just get handover from Mia and then we’ll check in with you.
+[OUTGOING_NURSE]: Hi Gus, I’m Mia from night shift. Is it okay if we do bedside handover with you?
+[PATIENT]: Yes, that’s fine.
+[OUTGOING_NURSE]: Great, thank you. Could you please confirm your full name and date of birth?
+[PATIENT]: Gus Milano, and 12 May 1951.
+[INCOMING_NURSE]: Thanks, Gus. And you’re in bed two under Dr. Lee. 
+
+[OUTGOING_NURSE]: So, this is Gus, who is 73 years old, admitted today with depression on the background of cancer. He’s just arrived and is still waiting for a psychiatry review, pastoral care, and for Dr. Lee’s team to come by.
+[INCOMING_NURSE]: Okay, so still needs a nursing admission and psych review. How have his observations been?
+[OUTGOING_NURSE]: All stable since arrival QADDS of 1 for HR. He’s tolerating diet and fluids without any issues.
+[INCOMING_NURSE]: Any IV lines or special precautions?
+[OUTGOING_NURSE]: No special supports needed at present. 4 Houry observations.
+[INCOMING_NURSE]: Medications all up to date on the chart?
+[OUTGOING_NURSE]: Yes the Chart’s in the file; the team will write it up when they see him.
+
+[INCOMING_NURSE]: Gus, how are you feeling right now—any nausea, pain, or dizziness?
+[PATIENT]: No, I’m okay physically.
+[INCOMING_NURSE]: Thanks for letting us know. Are you feeling safe here? If you have any thoughts of harming yourself or feel very distressed, please tell us straight away so we can help.
+[PATIENT]: I will, thank you.
+
+[OUTGOING_NURSE]: So the Plan for the morning is to continue routine obs, assist with meals as needed, and we’re awaiting psych, pastoral care, and the medical team review.
+[INCOMING_NURSE]: I’ll keep an eye out for those teams and check back after rounds. Anything else outstanding?
+[OUTGOING_NURSE]: That’s everything from me.
+[INCOMING_NURSE]: Thanks, Mia.
+
+[INCOMING_NURSE]: Gus, your observations look good. I’ll be back shortly—use the call bell if you need anything or if your mood dips and you want to talk.
+[PATIENT]: Okay, thanks.

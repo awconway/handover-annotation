@@ -1,0 +1,31 @@
+[OUTGOING_NURSE]: Good Morning, Maria. We’re just going to do your bedside handover with the day nurse now.
+[INCOMING_NURSE]: Hi Maria, I’ll be looking after you today. Could you confirm your full name for me?
+[PATIENT]: Maria Clemens.
+[INCOMING_NURSE]: Thank you.
+
+[OUTGOING_NURSE]: This is Maria, 79 years old, under Dr. Chanson. She came in with shortness of breath on exertion.
+[OUTGOING_NURSE]: Goals of care: NFR not for resus and not for MET, as per the chart.
+[INCOMING_NURSE]: Okay is that filed in her chart?
+
+[OUTGOING_NURSE]: Yes. She has multiple allergies (documented on the chart and band). She’s on regular inhaler puffers and a high dose of prednisolone.
+[OUTGOING_NURSE]: She’s having daily random capillary BGLs.
+[INCOMING_NURSE]: Okay, I’ll make sure the BGL is checked today and meds given per chart.
+
+[OUTGOING_NURSE]: Mobility-wise, she walks independently with a wheely walker.
+[PATIENT]: Yes, I manage fine with it.
+[OUTGOING_NURSE]: She’s awaiting team review and an OT review; physio is ongoing.
+
+[OUTGOING_NURSE]: Observations have been stable. Noted nail changes on assessment. 
+[INCOMING_NURSE]: Okay.
+
+[INCOMING_NURSE]: Maria, how’s your breathing right now — any shortness of breath at rest?
+[PATIENT]: It’s okay while I’m sitting. Worse when I walk.
+[INCOMING_NURSE]: I’ll keep an eye on that and pace activities.
+
+[OUTGOING_NURSE]: The plan is to continue regular puffers and prednisolone, daily random BGLs, await medical team and OT reviews, continue physio, mobilise with the wheely walker as tolerated.
+[INCOMING_NURSE]: I’ll ensure allergy precautions are in place and the call bell is within reach.
+[PATIENT]: Thank you.
+
+[INCOMING_NURSE]: Anything else you need before we finish, Maria?
+[PATIENT]: No, I’m fine.
+[OUTGOING_NURSE]: That’s everything from me. Thanks.

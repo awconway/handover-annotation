@@ -1,0 +1,16 @@
+[NURSE]: Hi Dr. Patel, I need you to review Mr. Raymond Ellis in bed 6. He’s a 68-year-old patient with severe systolic heart failure; EF is 20% on echo. He’s currently being monitored for ventricular arrhythmias and has an irregular heart rate. Cardiology has flagged him for ICD placement pending further assessment.
+[DOCTOR]: Thanks. What’s his current clinical status?
+[NURSE]: He’s on dobutamine at 5 mcg/kg/min and dopamine at 3 mcg/kg/min for inotropic support. He’s on continuous cardiac monitoring—rhythm is irregular, mostly junctional with occasional ectopics. He’s alert but fatigued.
+[DOCTOR]: What are his latest observations?
+[NURSE]: BP: 94/58, HR: 108 bpm, irregular, RR: 22, Temp: 36.6°C, SpO?: 94% on 2 L O?, and a Q-ADDS score: 7 (HR, BP, RR, cardiac rhythm).
+[DOCTOR]: Any fluid balance concerns?
+[NURSE]: Yes, he’s fluid overloaded. His Input (last 24h): ~2200 mL (IV + oral) the Output: ~1200 mL (IDC), the total balance:  plus 1000 mL
+He’s on a fluid restriction chart and daily weights. Legs are oedematous and he’s on 2-hourly pressure area care with a pressure-relieving mattress.
+[DOCTOR]: Any other monitoring?
+[NURSE]: Yes, we’re doing neurovascular obs and cardiac telemetry. He has a 22G cannula in the left forearm, patent. IDC is draining clear urine. No bowel movement today—on a bowel chart.
+[DOCTOR]: Medications?
+[NURSE]: IV Dobutamine & Dopamine as mentioned, Frusemide 40 mg IV BD, Bisoprolol 2.5 mg daily, Spironolactone 25 mg daily, Paracetamol 1g QID PRN
+No known drug allergies.
+[DOCTOR]: Thanks. I’ll review him now and speak with cardiology regarding ICD timing and ongoing inotropic support.
+[NURSE]: Great. I’ll continue monitoring and update fluid and Q-ADDS charts.
+

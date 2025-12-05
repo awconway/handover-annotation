@@ -1,0 +1,17 @@
+[INCOMING_NURSE]: Good Morning, Miranda. I’m taking over your care. Do you mind if we do handover at the bedside with Jack?
+[OUTGOING_NURSE]: Hi, Miranda. This is the day nurse who’ll be looking after you now his name is Ben.
+[INCOMING_NURSE]: We’re in Room 2, Bed 8—can I just check your ID band? Could you confirm your full name for me?
+[PATIENT]: Miranda Mahe.
+[INCOMING_NURSE]: Thank you. That matches your band.I'll just check your IV cannula and Mediation chart. 
+
+[OUTGOING_NURSE]: So, Miranda Mahe, Is 66 years old, under Dr. Fleming. Admitted with epilepsy. She has had no seizure activity on my shift.
+[INCOMING_NURSE]: Any changes overnight?
+[OUTGOING_NURSE]: No changes noted. She’s the same as previously; comfortable and awaiting medical review by Dr. Fleming’s team today.
+[INCOMING_NURSE]: Miranda, have you had any seizures, auras, or warnings this morning?
+[PATIENT]: No, nothing today.
+[INCOMING_NURSE]: Okay, good to hear.
+
+[OUTGOING_NURSE]: The plan is to continue usual observations and wait for the doctors to come by. No other updates from me.
+[INCOMING_NURSE]: Great. I’ll make sure you’ve got your call bell within reach, and we’ll keep everything ready while we wait for Dr. Fleming’s review. Is there anything you need right now, Miranda?
+[PATIENT]: I’m fine, thanks.
+[INCOMING_NURSE]: Thanks, Jack. I’ve got it from here. I’ll be back shortly to check in again, Miranda.

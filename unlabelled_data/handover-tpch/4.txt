@@ -1,0 +1,17 @@
+[INCOMING_NURSE]: Good morning, I’m the incoming nurse for bed 4 my name is Peter. I’ll get handover from you now, is that okay?
+[OUTGOING_NURSE]: This is bed 4, Mr. Daniel Reid, mid-50s, admitted yesterday under Dr. Kumar with a Non-ST Elevation MI, confirmed as a posterior infarct on ECG and troponins.
+[OUTGOING_NURSE]: He’s currently tachycardic—HR around 108—and hypotensive, BP sitting around 92/58. He’s being monitored closely. Oxygen saturations are stable at 96% on room air. His Q-ADDS score is 7, mainly due to HR, BP, and altered behaviour.
+[INCOMING_NURSE]: Okay. Is he scheduled for any procedures?
+[OUTGOING_NURSE]: Yes, he’s booked for an angiogram later today. He’s NBM and awaiting transfer to cath lab. No IV access at present—needs a cannula inserted pre-procedure.
+[INCOMING_NURSE]: Any allergies?
+[OUTGOING_NURSE]: Yes, he has a documented allergy to penicillin—rash and swelling reported previously.
+[INCOMING_NURSE]: What’s his current medication chart?
+[OUTGOING_NURSE]: He’s on: Aspirin 300 mg stat, then 100 mg daily, Ticagrelor 90 mg BD, Atorvastatin 80 mg nocte, IV fluids: Normal saline at 80 mL/hr, PRN paracetamol, No opioids charted due to substance use history.
+[INCOMING_NURSE]: Any relevant medical history?
+[OUTGOING_NURSE]: Yes, Chronic back pain, Hypertension, No diabetes, No prior cardiac events, Regular cannabis use for pain, now withdrawing—he’s been restless, loud, and disruptive overnight. Behavioural charting is in place. He’s aware of the situation but fluctuates in his engagement with us. 
+[INCOMING_NURSE]: Has Drug and Alcohol been consulted?
+[OUTGOING_NURSE]: A Referral was sent this morning—awaiting review. He may need transfer to a higher acuity ward if behaviour escalates or vitals worsen.
+[INCOMING_NURSE]: Thanks. I’ll insert the cannula and keep a close eye on his vitals and behaviour. I’ll follow up with the Drug and Alcohol team as well.
+[OUTGOING_NURSE]: Perfect. Let me know if you need anything. He’s currently resting but may become noisy again.
+
+

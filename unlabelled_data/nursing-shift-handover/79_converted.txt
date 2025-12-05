@@ -1,0 +1,18 @@
+[INCOMING_NURSE]: Good Morning, Ian. I’m taking over your care from Sam. We’ll do a quick bedside handover if that’s okay.
+[OUTGOING_NURSE]: Hi both. This is room 1,the patient is Ian Ramsey, 40, under Dr. Morris.
+[OUTGOING_NURSE]: Ian, could you confirm your full name for us? do you have any Allergies?
+[PATIENT]: Ian Ramsey, only to bees.
+[INCOMING_NURSE]: Thanks, 
+
+[OUTGOING_NURSE]: Ian came in yesterday with severe lower back pain secondary to a urinary obstruction, he has  a long history of kidney problems. He’s still under investigation. The CT showed an obstruction of the ureters and the team are planning to put a stent in. He’s booked for a renal ultrasound on Friday at 2 p.m.
+[INCOMING_NURSE]: Okay, so the plan is for a ureteric stent, and ultrasound Friday  at 1400. 
+
+[OUTGOING_NURSE]: For pain he’s had Endone as needed and regular Panadol. Observations have been stable and remain unchanged .QADDS of zero.
+[INCOMING_NURSE]: Ian, how’s your pain right now?
+[PATIENT]: Still there, but the tablets take the edge off.
+[INCOMING_NURSE]: Okay. I’ll keep on top of your regulars and let the team know if it ramps up.
+
+[INCOMING_NURSE]: Anything else outstanding?
+[OUTGOING_NURSE]: We will wait for a time for the stent and the ultrasound on Friday.
+[INCOMING_NURSE]: Thanks. Ian, your call bell is within reach—press if you need anything. I’ll be back shortly to check your obs and pain.
+[PATIENT]: Thanks.

@@ -1,0 +1,24 @@
+[OUTGOING_NURSE]: Bedside handover for Room 2, Bed 2. This is Shane Barnes, 48, under Dr. Wu.
+[INCOMING_NURSE]: Hi Shane, I’m taking over your care now. Is it okay if we do your handover here?
+[PATIENT]: Sure, that’s fine.
+[INCOMING_NURSE]: Can you confirm your full name and date of birth for me?
+[PATIENT]: Shane Barnes.23rd November 1978 
+[INCOMING_NURSE]: Thank you.
+
+[OUTGOING_NURSE]: Shane, came in with severe headaches and nausea.
+[OUTGOING_NURSE]: He's ordered regular paracetamol and Endone for pain, and metoclopramide for nausea, he has vomited 1x.
+[OUTGOING_NURSE]: He reported pain once this shift; I gave Endone with good effect.
+[PATIENT]: Yeah, that helped the headache, but made me vomit.
+[INCOMING_NURSE]: Any nausea right now, Shane?
+[PATIENT]: A little queasy, but manageable.
+
+[OUTGOING_NURSE]: He’s self-caring and his obs have been stable throughout my shift. BP 110/56 and HR 74.
+[INCOMING_NURSE]: Great. Any other concerns overnight?
+[OUTGOING_NURSE]: No other issues reported.
+
+[INCOMING_NURSE]: We’ll continue regular analgesia, metoclopramide as needed, monitor pain and nausea, and keep observations going. Shane, please ring if your headache worsens or you feel more nauseous.
+[PATIENT]: Will do, thanks.
+
+[INCOMING_NURSE]: Thanks for the handover.
+[OUTGOING_NURSE]: No worries. I’ll head off now. Shane, take care.
+[PATIENT]: Thanks.

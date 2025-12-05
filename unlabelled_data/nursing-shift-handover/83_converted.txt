@@ -1,0 +1,57 @@
+[INCOMING_NURSE]:Good Morning. I’m taking over now, shall we do bedside handover?
+[OUTGOING_NURSE]: Hi Paulos, this is Maria. She’ll be your nurse today.
+[INCOMING_NURSE]: Hello, Mr Gomez Castillo. I’m Maria, your nurse. We’ll talk about your care now—okay?
+[PATIENT]: Okay.
+
+[OUTGOING_NURSE]: Bed 2, This is Paulos Gomez Castillo, 74, under Dr Willow. He came in recently with renal colic—kidney stones—and has a long cardiac history noted in the file.
+[INCOMING_NURSE]: He's got a complex cardiac history, I’ll review the notes after handover.
+
+[OUTGOING_NURSE]: He has multiple allergies—documented in the chart—and he’s wearing an allergy band.
+[INCOMING_NURSE]: I can see the red allergy band—thank you. 
+[PATIENT]: Yes.
+
+[OUTGOING_NURSE]: He’s on a soft, cut-up diet. Obs have been stable QADDS of zero.
+[INCOMING_NURSE]: BP looks good at 110/80.
+
+[OUTGOING_NURSE]: He’s VRE positive so he is on contact precautions.
+[INCOMING_NURSE]: I’ll make sure the family know how to put on PPE. 
+
+[OUTGOING_NURSE]: He’s waiting for  a chest X-ray and there is no confirmed time yet.
+[INCOMING_NURSE]: I’ll keep him ready for when they call for him.
+
+[OUTGOING_NURSE]: He’s on prophylactic Clexane, BD.
+[INCOMING_NURSE]: Is today’s doses charted?
+[OUTGOING_NURSE]: Yes, they’re charted.
+
+[OUTGOING_NURSE]: He is NFR, but still for all regular meds and therapies.
+[INCOMING_NURSE]: Not for resuscitation is the paperwork completed and in the chart?
+
+[OUTGOING_NURSE]: Yes, it is, He becomes intermittently confused and can be quite agitated at times.
+[INCOMING_NURSE]: Is there anything that triggers him overnight?
+[OUTGOING_NURSE]: No its Mostly in the evening; he needs reorientation and a calm approach helped.
+
+[OUTGOING_NURSE]: he’s from a non‑English background but he understands some English. An Interpreter can be arranged if needed.
+[INCOMING_NURSE]: Okay. Paulos, if you need toilet or water, press the bell—okay?
+[PATIENT]: Bell—okay.
+
+[OUTGOING_NURSE]: The staff assist when walking, with a forearm support frame.
+[INCOMING_NURSE]: Okay We’ll use a gait belt as needed.
+
+[OUTGOING_NURSE]: He has an IDC in situ. Urine is being recorded on the fluid balance chart. His output has been low overnight so will need to be checked hourly. 
+[INCOMING_NURSE]: I’ll check the catheter and continue fluid balance documentation.
+
+[INCOMING_NURSE]: Any IV access?
+[OUTGOING_NURSE]: No IVs currently.
+
+[INCOMING_NURSE]: Any pain right now, Paulos?
+[PATIENT]: Little… okay.
+[INCOMING_NURSE]: Small pain—okay, I’ll check your charted analgesia.
+
+[OUTGOING_NURSE]: That’s everything from me.
+[INCOMING_NURSE]: So the plan for today is to maintain contact precautions; monitor obs; give Clexane BD; soft cut-up diet; staff‑assist mobilising with forearm frame; monitor confusion/agitation and reorient; keep ready for chest X‑ray; continue IDC care and fluid balance.
+[PATIENT]: Okay.
+
+[INCOMING_NURSE]: Anything you need now, Paulos?
+[PATIENT]: Water… small.
+[INCOMING_NURSE]: I’ll bring some water and sit you up. Thanks for the handover.
+[OUTGOING_NURSE]: Thanks. Call me if you need anything else before I head off.

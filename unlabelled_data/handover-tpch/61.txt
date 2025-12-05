@@ -1,0 +1,14 @@
+[INCOMING_NURSE]: Good morning, Ms. Carter. I’m Jack, and I’ll be your nurse for today. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Ms. Carter. This is the nurse taking over for the day. Could you please confirm your full name?
+[PATIENT]: Emily Carter.
+[OUTGOING_NURSE]: Thank you. This is Ms. Emily Carter in Bed 6, Room 14, aged 29, under Dr. Thompson, General Surgeon.
+[OUTGOING_NURSE]: Ms. Carter is Day 1 post-op from a laparoscopic appendectomy. She returned from theatre yesterday afternoon. Her vital signs have remained stable overnight. She’s currently tolerating oral fluids and has transitioned to a light diet this morning.
+[OUTGOING_NURSE]: Pain is being managed with regular oral analgesia. No nausea or vomiting reported. Her wound sites are clean and dry, with dressings intact. She’s mobilised to the bathroom with assistance and tolerated it well.
+[INCOMING_NURSE]: Ms. Carter, how are you feeling this morning? Any pain or discomfort?
+[PATIENT]: Just a bit sore around the belly, but otherwise okay.
+[OUTGOING_NURSE]: Pain score was 3/10 on movement earlier. Dr. Thompson reviewed her this morning and is happy with her progress. Discharge planning will depend on how she tolerates diet and mobilises today.
+[INCOMING_NURSE]: I’ll keep monitoring your pain and mobility and check in with Dr. Thompson’s team later today. Is there anything you need before we finish handover?
+[PATIENT]: No, I’m fine for now.
+[OUTGOING_NURSE]: Please use the call bell if you need anything. I’ll leave you in good hands.
+[INCOMING_NURSE]: I’ll be back shortly to check your observations and review your chart, Ms. Carter.
+

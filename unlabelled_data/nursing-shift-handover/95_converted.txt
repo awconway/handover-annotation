@@ -1,0 +1,24 @@
+[INCOMING_NURSE]: Good Morning, Natalie. I’m Sam, I’ll be looking after you today. I’m just going to get bedside handover from Alex, is that okay?
+[PATIENT]: That’s fine.
+[OUTGOING_NURSE]: Thanks, Natalie. So, this is room 4, bed 5. Patient is Natalie Caricas, 79 years old, under Dr Ross.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: She came in with stomach pain and jaundice. She has a Past history  which includes diabetes and obesity. She’s reporting feeling tired, a bit dizzy, and low in mood.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: Her urine has been very dark; I’ve sent a urine MCS. She arrived on the ward about three hours ago. Admission obs and paperwork are done, and her observations have been stable since arrival.
+[INCOMING_NURSE]: Great. Any mobility concerns?
+[OUTGOING_NURSE]: Yes, she needs assistance with walking. I’ve flagged that she should be referred to physio.
+[INCOMING_NURSE]: Okay so shes an assist with all mobilising and falls precautions in place.
+[OUTGOING_NURSE]: yes. Diet-wise she’s on a diabetic diet. We’re doing QID BGL monitoring, and she’s on oral hypoglycemics.
+[INCOMING_NURSE]: QID BGLs and oral hypos—no insulin charted?
+[OUTGOING_NURSE]: No insulin charted at present.
+[INCOMING_NURSE]: Pain management?
+[OUTGOING_NURSE]: She’s charted for Endone and morphine PRN for pain. She’s been uncomfortable, so please assess and medicate as needed.
+[INCOMING_NURSE]: Will do.
+[OUTGOING_NURSE]: She hasn’t been seen by the medical team yet; she’s here for further investigation. We’re awaiting the team review under Dr Ross.
+[INCOMING_NURSE]: Thanks. Natalie, how are you feeling right now—any pain, dizziness, or nausea?
+[PATIENT]: My belly still hurts, and I feel a bit light-headed. I’m also just… a bit down.
+[INCOMING_NURSE]: Thank you for telling us. I’ll check your observations now, get you some pain relief if it’s due, and make sure you’re safe when you get up. We’ll also let the doctors know how you’re feeling when they come.
+[OUTGOING_NURSE]: That’s everything from me: her obs are stable a urine MCS was sent, she's an assist with mobility, and is on adiabetic diet with QID BGLs, oral hypoglycemics, PRN Endone/morphine charted, awaiting team review and physio referral.
+[INCOMING_NURSE]: Perfect. Natalie, your call bell is within reach—please ring before you get out of bed and we’ll come and help.
+[PATIENT]: Okay, thank you.
+[INCOMING_NURSE]: Thanks, Alex. I’ll take it from here.

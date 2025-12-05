@@ -1,0 +1,25 @@
+[INCOMING_NURSE]: Good morning, Mr. Jackson. I’m Sarah, and I’ll be your nurse for today. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Mr. Jackson. This is the nurse taking over for the day. Could you please confirm your full name?
+[PATIENT]: David Jackson.
+[OUTGOING_NURSE]: Thank you. This is Mr. David Jackson in Bed 4, Room 6, aged 64, under Dr. Patel, Orthopaedic Consultant.
+[OUTGOING_NURSE]: Mr. Jackson is awaiting ORIF surgery for a left femoral neck fracture, scheduled for tomorrow. He’s been stable overnight, but this morning he reported lower abdominal discomfort and has not passed urine since yesterday evening.
+[OUTGOING_NURSE]: Bladder scan showed retention of 650 mL. Medical team reviewed and requested an IDC insertion. He’s alert, cooperative, and understands the procedure. No known allergies. Pain is currently 3/10 on movement.
+[INCOMING_NURSE]: Mr. Jackson, I’ll be inserting a catheter shortly to help relieve the pressure in your bladder. I’ll explain everything before we begin.
+[PATIENT]: Okay, thank you. It’s really uncomfortable.
+[INCOMING_NURSE]: I understand. I’ll get everything ready now.
+[SARAH]: Hey, Jess—sorry to interrupt. I’ve got a patient in Room 6 with urinary retention and needs an IDC. I haven’t done one before—would you mind assisting or supervising?
+[JESS]: Of course, happy to help. Let’s grab the trolley and go through it together. I’ll walk you through the steps.
+[SARAH]: Thanks so much. I’ve read the protocol, just haven’t had the chance to do one hands-on yet.
+[JESS]: No worries—we’ll take it slow and make sure Mr. Jackson is comfortable throughout.
+[NURSE SARAH]: Hi Mr. Jackson, I just wanted to check in. I understand you’re still feeling quite uncomfortable.
+[PATIENT]: Yes, I still haven’t been able to pass urine. It’s getting worse.
+[NURSE SARAH]: I’m sorry to hear that. We’ve done a bladder scan and it shows you’re retaining quite a bit—over 700 mL. The doctor will be coming shortly to insert a catheter to relieve the pressure.
+[PATIENT]: Okay, thank you.
+[NURSE SARAH]: Hi Dr. Patel, sorry to interrupt. Mr. Jackson in Room 6 has urinary retention—bladder scan shows 740 mL. I attempted an IDC but met resistance and he was quite uncomfortable. Would you be able to insert it?
+[DR. PATEL]: Yes, I can do that. Can you get the trolley set up and let me know when it’s ready?
+[NURSE SARAH]: Absolutely. I’ll prepare the sterile field now.
+[NURSE SARAH]: Dr. Patel, the trolley is set up and Mr. Jackson has been informed. He’s ready when you are.
+[DR. PATEL]: Great, let’s go ahead. Can you assist with maintaining the sterile field?
+[NURSE SARAH]: Of course.
+
+

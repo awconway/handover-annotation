@@ -1,0 +1,25 @@
+[INCOMING_NURSE]: Good Morning, Hildy. I'm just here with my colleague to do bedside handover, is that okay?
+[OUTGOING_NURSE]: Hi there. This is Hildy Hutter in room 4, bed 6, under Dr. Forbes.
+[INCOMING_NURSE]: Hildy, could you tell us your full name and date of birth?
+[PATIENT]: Oh… I’m waiting for the bus, dear.
+[OUTGOING_NURSE]: That’s alright, Hildy. We’ll just check your ID band and IV medications.
+
+[OUTGOING_NURSE]: Hildy is a lovely 91-year-old lady admitted with a urinary tract infection.
+[OUTGOING_NURSE]: She’s currently on IV antibiotics. The doctors have also charted oral antibiotics to commence tomorrow.
+[INCOMING_NURSE]: Okay, so the IV ABs running now at 100ml per hour.
+[OUTGOING_NURSE]: Yes they are Running as charted; the next dose due as per the medication times. I’ve signed the last dose.
+[OUTGOING_NURSE]: She’s very confused today. Observations have been stable, but she is febrile.
+[INCOMING_NURSE]: otherwise she has stable obs but with a temperature. I’ll keep monitoring and encourage fluids as appropriate.
+[OUTGOING_NURSE]: Thank you. No other acute issues to flag at the moment.
+
+[INCOMING_NURSE]: Hildy, you might feel a bit warm—we’re keeping a close eye on you. Are you in any pain right now?
+[PATIENT]: I think I should be going home soon… where’s my coat?
+[INCOMING_NURSE]: We’ll help you with that later. For now you’re safe here. The call bell is right by your hand, and we’ll be popping in regularly.
+
+[INCOMING_NURSE]: Plan for the shift: continue IV antibiotics as charted, monitor temperature and observations, and oral antibiotics to start tomorrow. We’ll also keep reorienting and maintain falls precautions given the confusion.
+[OUTGOING_NURSE]: Perfect. Anything else you need before I head off, Hildy?
+[PATIENT]: A cup of tea… maybe.
+[INCOMING_NURSE]: I’ll check what you can have and come right back.
+
+[INCOMING_NURSE]: Thanks for the handover.
+[OUTGOING_NURSE]: No worries. I’m off. See you both later.

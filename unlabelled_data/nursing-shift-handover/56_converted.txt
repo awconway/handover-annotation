@@ -1,0 +1,25 @@
+[INCOMING_NURSE]: Hi Dave, I’m Jess, I’ll be looking after you today. I’m just getting handover from Sam who’s finishing the night shift. Is it okay if we talk through things at the bedside?
+[PATIENT]: Yeah… okay.
+[OUTGOING_NURSE]: Thanks, Dave. So, this is Room 2, Bed 3: Dave McKenzie, 72 years old. He’s a new admission, arrived a few hours ago under Dr George De Silva with a background of dementia.
+[INCOMING_NURSE]: Hi Dave, can you tell me your name?
+[PATIENT]: Dave… McKenzie.
+[INCOMING_NURSE]: Thank you, Dave. I’ll just check your ID band… all good.
+
+[OUTGOING_NURSE]: The Presenting issue is increasing confusion. They’re querying a UTI. He’s still for bloods and a urine MCS—I haven’t had a chance to do those yet. They’ve started him on oral antibiotics.
+[INCOMING_NURSE]: Okay, so I need to do bloods and a urine MCS. I’ll get onto those this morning.
+[OUTGOING_NURSE]: His medical history includes CCF, hypertension, type 2 diabetes on oral hypoglycemics, and he has chronic back pain, in addition to the dementia.
+[INCOMING_NURSE]: Okay.
+
+[OUTGOING_NURSE]: He’s resting in bed at the moment. I haven’t seen him mobilise yet, so I’d suggest a physio referral. He’s also been refusing his meals, so a dietitian referral would be helpful.
+[INCOMING_NURSE]: I’ll place referrals to physio and dietetics and reassess his intake.
+[OUTGOING_NURSE]: His observations have been stable since arrival. No other acute concerns noted.I have been watching him to make sure he doesn't go wandering off the ward.
+[INCOMING_NURSE]: Okay. Any family updates?
+[OUTGOING_NURSE]: He’s for nursing home placement; his wife has been informed about the admission.
+
+[INCOMING_NURSE]: Dave, we’re going to take some blood tests and a urine sample a bit later, and I’ll check in about food and how you’re feeling. Is there any pain right now?
+[PATIENT]: My back’s okay… just tired.
+[INCOMING_NURSE]: We’ll keep you comfortable.
+
+[OUTGOING_NURSE]: That’s everything from me don't forget the bloods and urine sample, the antibiotics are due now. 
+[INCOMING_NURSE]: Perfect. I’ll get started on those now. Dave, press your call bell if you need anything.
+[PATIENT]: Okay.

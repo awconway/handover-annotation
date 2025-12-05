@@ -1,0 +1,19 @@
+[OUTGOING_NURSE]: Hi, I’m handing over Ms. Lily Harper, 24 years old. Lily, this is Nurse Tessa, who’ll be looking after you this afternoon.
+[INCOMING_NURSE]: Hi Lily, nice to meet you. I’ll be checking in on you regularly and helping with your care today.
+[PATIENT]: Hi. Okay.
+[OUTGOING_NURSE]: Lily was admitted yesterday with bradycardia secondary to an eating disorder—her HR dropped to 38 bpm overnight. She’s now in CCU for cardiac monitoring. She’s alert and oriented but fatigued and intermittently dizzy.
+[INCOMING_NURSE]: What’s her current status?
+[OUTGOING_NURSE]: HR is sitting around 42–45 bpm, sinus bradycardia on telemetry. BP is 92/58, RR 16, SpO? 98% on room air, Temp 36.2. She’s on Q-ADDS—scoring 5 due to HR and low-normal BP, so we’re doing hourly observations.
+[INCOMING_NURSE]: Any IV access?
+[OUTGOING_NURSE]: Yes—20G in the left forearm, patent. No IV fluids running currently, but we’ve kept the line in for access if needed.
+[INCOMING_NURSE]: Medications?
+[OUTGOING_NURSE]: She’s on thiamine and multivitamins orally, and PRN lorazepam for anxiety. No cardiac meds charted at this stage. No known allergies.
+[INCOMING_NURSE]: How’s her intake?
+[OUTGOING_NURSE]: We’ve started a strict food and fluid chart. Dietitian has reviewed and started a re-feeding plan—small, frequent meals. She’s eating slowly but has managed about 50% of her breakfast and lunch today. We’re monitoring for refeeding syndrome—daily bloods are being done.
+[PATIENT]: I’m trying to eat, but it’s hard.
+[INCOMING_NURSE]: That’s okay, Lily. We’ll support you through it. Just let me know if you feel unwell or overwhelmed.
+[OUTGOING_NURSE]: She’s also on daily ECGs and electrolyte monitoring. Psych team has been consulted and will review again tomorrow. She’s been cooperative but very anxious.
+[DOCTOR]: (enters briefly) Just confirming—Lily is for continued cardiac monitoring and nutritional support. Please escalate if HR drops below 35 or if she becomes symptomatic.
+[INCOMING_NURSE]: Got it. I’ll continue Q-ADDS, monitor intake, and keep an eye on her cardiac rhythm and electrolytes.
+[OUTGOING_NURSE]: Thanks. All documentation is up to date—Q-ADDS, food chart, and med chart.
+

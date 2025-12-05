@@ -1,0 +1,14 @@
+[AMBULANCE OFFICER]: Hi there, I’m bringing in Mr. Jason Taylor, 34 years old. He’s been picked up from home following a welfare check requested by his GP. He’s known to have schizophrenia and is currently experiencing an acute psychotic episode.
+[ED NURSE]: What’s been happening?
+[AMBULANCE OFFICER]: He’s been verbally aggressive, paranoid, and disorganised in speech. He believes people are trying to harm him and has been refusing food and medication for the past few days. No physical aggression during transport, but he’s restless and pacing.
+[ED NURSE]: Any injuries or medical concerns?
+[AMBULANCE OFFICER]: No injuries. Vitals are within acceptable range: BP: 118/76 , HR: 92, RR: 20, Temp: 36.9°C, SpO?: 97% on room air.
+[ED NURSE]: Any known medications or allergies?
+[AMBULANCE OFFICER]: He’s prescribed olanzapine and risperidone but hasn’t been taking them. He has a documented allergy to penicillin—rash and swelling reported previously.
+[ED NURSE]: Any substance use?
+[AMBULANCE OFFICER]: Yes, he’s a regular cannabis user for anxiety and sleep, but he’s currently withdrawing—reports irritability and insomnia. GP flagged this as contributing to his current state. A Drug and Alcohol Team review is recommended.
+[ED NURSE]: Is he medically cleared?
+[AMBULANCE OFFICER]: He’s stable but needs a mental health assessment. No IV access yet—may need a cannula inserted if sedation or fluids are required. He’s not cooperative with physical exams.
+[ED NURSE]: Thanks. We’ll get him triaged and notify the Mental Health Liaison Team. If needed, we’ll escalate for admission to the Mental Health Unit.
+[AMBULANCE OFFICER]: Perfect. He’s currently in the waiting area with security nearby. Let me know if you need anything else.
+

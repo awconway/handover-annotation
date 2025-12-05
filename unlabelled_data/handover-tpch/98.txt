@@ -1,0 +1,34 @@
+[ED NURSE]: Hi, I’m handing over Mrs. Anna Lewis, 35 years old, being transferred to the surgical ward. Anna, this is Nurse Claire, who’ll be looking after you now. Mark, you’re welcome to stay with her as long as you need.
+[WARD NURSE]: Hi Anna, hi Mark. I’m really sorry you’re going through this. I’ll do everything I can to make you comfortable and supported.
+[PATIENT]: Thank you. I’m still trying to process everything.
+[ED NURSE]: Anna presented to ED overnight with vaginal bleeding and cramping at 10 weeks gestation. An ultrasound confirmed no fetal heartbeat. She’s been reviewed by O&G and is for a D&C later today.
+[WARD NURSE]: I’m so sorry, Anna. We’ll make sure you’re cared for gently. Have you had anything to eat or drink?
+[PATIENT]: No, I haven’t eaten since yesterday evening.
+[ED NURSE]: She’s been kept Nil by mouth since 2:00 AM. Vitals are stable—BP 110/70, HR 84, afebrile. She’s had paracetamol and a single dose of IV fluids. No allergies. She has a 20G IV in the left forearm, patent and flushed.
+[WARD NURSE]: Any medications charted?
+[ED NURSE]: Just analgesia and PRNs. No antibiotics yet. She’s on a fluid balance chart, and we’ve started Q-ADDS—currently scoring 1. She’s understandably tearful but oriented and engaging.
+[DOCTOR]: (enters) Anna, I’m Dr. Nguyen from the surgical team. I’m very sorry for your loss. We’ll be performing a D&C this afternoon to help manage the bleeding and support your recovery. We’ll talk you through everything and answer any questions.
+[PATIENT]: Will I be asleep for it?
+[DOCTOR]: Yes, you’ll be under a light general anaesthetic. It’s a short procedure, and we’ll monitor you closely afterward.
+[HUSBAND]: Can I stay with her until she goes to theatre?
+[WARD NURSE]: Absolutely. We’ll make sure you’re both supported. I’ll also check in with the social worker and pastoral care team if you’d like someone to talk to.
+[ED NURSE]: All documentation is up to date—fluid chart, Q-ADDS, and consent form. Please let the team know if her bleeding increases or if she becomes more distressed.
+[ED NURSE]: Hi, I’m handing over Mrs. Anna Lewis, 35 years old, being transferred to the surgical ward. Anna, this is Nurse Claire, who’ll be looking after you now. Mark, you’re welcome to stay with her as long as you need.
+[WARD NURSE]: Hi Anna, hi Mark. I’m really sorry you’re going through this. I’ll do everything I can to make you comfortable and supported.
+[PATIENT]: Thank you. I’m still trying to process everything.
+[ED NURSE]: Anna presented to ED overnight with vaginal bleeding and cramping at 10 weeks gestation. An ultrasound confirmed no fetal heartbeat. She’s been reviewed by O&G and is for a D&C later today.
+
+
+[WARD NURSE]: I’m so sorry, Anna. We’ll make sure you’re cared for gently. Have you had anything to eat or drink?
+[PATIENT]: No, I haven’t eaten since yesterday evening.
+[ED NURSE]: She’s been kept NPO since 2:00 AM. Vitals are stable—BP 110/70, HR 84, afebrile. She’s had paracetamol and a single dose of IV fluids. No allergies. She has a 20G IV in the left forearm, patent and flushed.
+[WARD NURSE]: Any medications charted?
+[ED NURSE]: Just analgesia and PRNs. No antibiotics yet. She’s on a fluid balance chart, and we’ve started Q-ADDS—currently scoring 1. She’s understandably tearful but oriented and engaging.
+[DOCTOR]: (enters) Anna, I’m Dr. Nguyen from the surgical team. I’m very sorry for your loss. We’ll be performing a D&C this afternoon to help manage the bleeding and support your recovery. We’ll talk you through everything and answer any questions.
+[PATIENT]: Will I be asleep for it?
+[DOCTOR]: Yes, you’ll be under a light general anaesthetic. It’s a short procedure, and we’ll monitor you closely afterward.
+[HUSBAND]: Can I stay with her until she goes to theatre?
+[WARD NURSE]: Absolutely. We’ll make sure you’re both supported. I’ll also check in with the social worker and pastoral care team if you’d like someone to talk to.
+[ED NURSE]: All documentation is up to date—fluid chart, Q-ADDS, and consent form. Please let the team know if her bleeding increases or if she becomes more distressed.
+
+

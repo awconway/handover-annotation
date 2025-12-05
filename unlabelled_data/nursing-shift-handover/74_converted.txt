@@ -1,0 +1,17 @@
+[INCOMING_NURSE]: Hi Aaron, I’m Evie, I’ll be looking after you today. I’m just going to get bedside handover from Jack, if that’s okay.
+[OUTGOING_NURSE]: Morning Aaron. This is Evie, she’s taking over from me now.
+[INCOMING_NURSE]: Can I quickly confirm your details? Could you tell me your full name, and I’ll check your ID band for your date of birth.
+[PATIENT]: Aaron Kuipers.
+[INCOMING_NURSE]: Thanks, Aaron. ID band matches the chart and date of birth is 15 July 1999
+
+[OUTGOING_NURSE]: So, bed 5 is Aaron Kuipers, who is 37 years old, under Dr Ling. He’s just arrived with depression. He’s had multiple admissions this year for the same reason.
+[OUTGOING_NURSE]: He’s here for a psychiatry review referral and for the doctors to review his medications. The psych referral’s requested but not done yet, and the medical team will review his meds on their round.
+[OUTGOING_NURSE]: Observations are stable. That’s all from my side.
+[INCOMING_NURSE]: Okay, thanks. No acute medical issues flagged, vitals stable, awaiting psych and medication review. 
+[INCOMING_NURSE]: Aaron, I’ll be checking in with you regularly. If you need anything or start to feel worse, please press the call bell.
+[PATIENT]: Okay, thanks.
+[INCOMING_NURSE]: Is there anything you need right now—food, water, or a blanket?
+[PATIENT]: I’m okay for now.
+[INCOMING_NURSE]: All right. I’ll make sure your obs are done as scheduled and keep you updated about the psych team and Dr Ling’s review.
+[OUTGOING_NURSE]: Great. I’ll head off then. Thanks, Aaron.
+[PATIENT]: Thanks.

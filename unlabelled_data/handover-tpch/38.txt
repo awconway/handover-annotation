@@ -1,0 +1,15 @@
+[Transferring Hospital Nurse]: Hi Dr. Patel, I’m handing over Mr. Anthony Reid, a 64-year-old patient who was admitted earlier today with a ST-elevation myocardial infarction (STEMI). He’s being transferred to your unit for ongoing cardiac management and potential intervention.
+[Receiving Doctor]: Thanks. What’s his current status?
+[Transferring Hospital Nurse]: He’s currently on: IV Heparin infusion – weight-based protocol, currently running at 1000 units/hr, IV GTN infusion – titrated to chest pain, currently at 10 mcg/min, Oxygen therapy – 4 L/min via nasal prongs, saturations are sitting around 89–91% on oxygen. He’s still reporting mild chest tightness but is hemodynamically stable.
+[Receiving Doctor]: Any recent observations?
+[Transferring Hospital Nurse]: Yes, latest obs: BP: 104/68, HR: 96 bpm, RR: 20, Temp: 36.8°C , SpO?: 91% on 4 L O?, Q-ADDS score: 6 (due to low SpO?, chest pain, and IV therapy)
+[Receiving Doctor]: Any IV access?
+[Transferring Hospital Nurse]: Yes, he has a 16G cannula in the left antecubital fossa and a 20G in the right forearm. Both are patent and flushed. GTN and heparin are running through separate lines.
+[Receiving Doctor]: Any other medications?
+[Transferring Hospital Nurse]:
+He’s also had: Aspirin 300 mg stat, Ticagrelor 180 mg stat, Atorvastatin 80 mg stat, Morphine 2.5 mg IV PRN – last dose was 2 hours age. No known drug allergies.
+[Receiving Doctor]: Any investigations done?
+[Transferring Hospital Nurse]: Yes, ECG confirmed anterior STEMI. Troponin is elevated. Chest X-ray shows mild pulmonary congestion. Bloods including FBC, U&E, and coagulation profile have been sent—awaiting results.
+[Receiving Doctor]: Thanks. We’ll prepare for his arrival and continue cardiac monitoring. Please send through the medication chart and infusion protocols.
+[Transferring Hospital Nurse]: Will do. I’ll also include his fluid balance chart and latest obs summary.
+

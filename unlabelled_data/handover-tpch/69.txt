@@ -1,0 +1,14 @@
+[INCOMING_NURSE]: Good morning, Mr. Fraser. I’m Jack, and I’ll be your nurse for today. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Mr. Fraser. This is the nurse taking over for the day. Could you please confirm your full name?
+[PATIENT]: Andrew Fraser.
+[OUTGOING_NURSE]: Thank you. This is Mr. Andrew Fraser in Bed 2, Room 6, aged 67, under Dr. Lim, Cardiothoracic Surgeon.
+[OUTGOING_NURSE]: Mr. Fraser has been admitted for a planned aortic valve replacement due to severe aortic stenosis. He’s currently stable, nil by mouth, and awaiting theatre. Pre-op bloods and ECG have been completed. Consent has been signed and documented.
+[OUTGOING_NURSE]: He’s on regular cardiac medications, which were reviewed by the anaesthetics team this morning. No chest pain or shortness of breath overnight. Vitals are within normal limits. He’s aware of the procedure and has expressed some anxiety, which has been acknowledged and supported.
+[INCOMING_NURSE]: Mr. Fraser, how are you feeling this morning? Any discomfort or concerns?
+[PATIENT]: Just a bit nervous, but no pain.
+[OUTGOING_NURSE]: Understandably. He’s been reassured and has family contact details listed in the chart. Theatre team will confirm timing shortly. No visitors at the moment, but his wife is planning to come in later today.
+[INCOMING_NURSE]: I’ll follow up with the surgical team and keep you updated. Is there anything you need before we finish handover?
+[PATIENT]: No, I’m okay.
+[OUTGOING_NURSE]: Please use the call bell if you need anything. I’ll leave you in good hands.
+[INCOMING_NURSE]: I’ll be back shortly to check your observations and review your chart, Mr. Fraser.
+

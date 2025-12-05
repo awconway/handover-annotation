@@ -1,0 +1,15 @@
+[INCOMING_NURSE]: Good Morning, Harry. I’m Mia, I’ll be looking after you today. I’m just getting handover from Sam.
+[OUTGOING_NURSE]: Hi. This is Harry Lewis in bed 2, 36 years old, under Dr. Gaylor. He was admitted with pyelonephritis.
+[INCOMING_NURSE]: Hi Harry, could you confirm your name for me while I check your wristband?
+[PATIENT]: Harry Lewis.
+[INCOMING_NURSE]: Great, thank you.
+[OUTGOING_NURSE]:  Bloods were taken this morning; the results are still pending.
+[INCOMING_NURSE]: Any other changes noted overnight? Pain, fever, new symptoms?
+[OUTGOING_NURSE]: No other changes noted.
+[INCOMING_NURSE]: Harry, how are you feeling right now—any pain or discomfort?
+[PATIENT]: About the same as before.
+[INCOMING_NURSE]: Okay, we’ll keep an eye on you and follow up those blood results with Dr. Gaylor’s team as soon as they’re back.
+[OUTGOING_NURSE]: Call bell is within reach. No other updates from me.
+[INCOMING_NURSE]: Harry, is there anything you need before we head off?
+[PATIENT]: No, I’m fine. Thanks.
+[INCOMING_NURSE]: Alright, I’ll be back shortly to check in again.

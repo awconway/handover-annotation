@@ -1,0 +1,13 @@
+[Outgoing Nurse]: Hi, I’m handing over Mr. Kyle Jensen in bed 3. He’s a 29-year-old male admitted through ED last night following a stab wound to the left lower abdomen. He’s currently stable but requires ongoing wound care and IV medications.
+[Incoming Nurse]: Thanks. What’s the current status of the wound?
+[Outgoing Nurse]: The wound is approximately 4 cm in length, deep but not penetrating any major organs. It was cleaned and sutured in ED. There’s mild swelling and bruising around the site, but no signs of active bleeding or infection. Dressing is intact and due for review this afternoon.
+[Incoming Nurse]: Any neurovascular concerns?
+[Outgoing Nurse]: Neurovascular obs are normal his Sensation and movement in lower limbs are intact, the Capillary refill less than 2 seconds, and there are No signs of vascular compromise.
+[Incoming Nurse]: What medications is he on?
+[Outgoing Nurse]: He’s currently on: IV Ceftriaxone 1g daily, IV Paracetamol 1g QID, PRN Morphine 2.5–5 mg SC for pain he has No known drug allergies.
+[Incoming Nurse]: Any other monitoring?
+[Outgoing Nurse]: Yes: a Fluid Balance Chart: Input ~1200 mL, Output ~900 mL (urine via voiding), he has a Q-ADDS score: Currently 3 (due to pain and elevated HR) His vitals are stable. 
+[Incoming Nurse]: Any psychosocial concerns?
+[Outgoing Nurse]: He’s cooperative but anxious. Police have been notified due to the nature of the injury. No visitors currently. Social work referral has been made.
+[Incoming Nurse]: Thanks. I’ll continue wound care, monitor his IV therapy, and update his charts.
+

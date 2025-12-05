@@ -1,0 +1,19 @@
+[ED_NURSE]:
+Hi, thanks for coming. I’m handing over Mr. Leo Martinez, 56 years old, admitted through ED earlier today with chest pain and a history of Type 2 diabetes. He also consumed a large amount of alcohol last night and presented confused and groggy.
+[WARD_NURSE]: What’s his current status?
+[ED_NURSE]: He’s still a bit drowsy, but responsive. Chest pain has eased slightly with initial treatment. Vitals are stable BP: 108/72, HR: 96 bpm, RR: 20, SpO?: 95% on room air, Temp: 36.7°C, BGL: 14.2 mmol/L on arrival, now 11.6 mmol/L
+[DOCTOR]: We’re admitting him for cardiac monitoring and further investigation. ECG showed non-specific changes, and we’re awaiting troponin results. He’s also at risk of alcohol withdrawal, so we’ve started a CIWA protocol and charted thiamine and diazepam PRN.
+[WARD_NURSE]: Any IV access?
+[ED_NURSE]: Yes, he has a 20G cannula in the left forearm, patent and flushed. Fluids are running at maintenance rate.
+[WARD_NURSE]: Any allergies or regular meds?
+[ED_NURSE]: No known drug allergies. Regular meds include, Metformin 500 mg BD, Atorvastatin 20 mg nocte, PRN insulin sliding scale (not charted today due to alcohol intake)
+[DOCTOR]: We’ll need to involve the Drug and Alcohol Team tomorrow for support. He’s also been referred to Cardiology for review.
+[WARD_NURSE]: Is he safe to mobilise?
+[ED_NURSE]:
+He’s unsteady on his feet. Needs assistance with transfers. Fall risk precautions in place.
+[PATIENT]: Where am I now?
+[WARD_NURSE]: Hi Mr. Martinez, you’re being moved to the ward now so we can keep a close eye on your heart and help you feel better. I’ll be looking after you.
+[PATIENT]: Okay… my chest still feels tight.
+[DOCTOR]: We’ll keep monitoring that. Let us know if it gets worse.
+[WARD_NURSE]: Thanks. I’ll get him settled and continue obs and withdrawal monitoring.
+[ED_NURSE]: Perfect. All documentation is up to date. Let me know if you need anything

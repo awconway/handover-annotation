@@ -1,0 +1,16 @@
+[WARD NURSE]: Hi, I’m handing over Mr. Peter Samuels, 69 years old. He’s being transferred to CCU with acute decompensated heart failure. Peter, this is Nurse Jess from the coronary care unit, and Dr. Patel, who’s overseeing your care.
+[CCU NURSE]: Hi Peter, I’ll be looking after you in CCU. We’ll get you settled in and keep a close eye on your breathing and heart.
+[PATIENT]: Thank you. I’m still feeling short of breath.
+[WARD NURSE]: He came in yesterday with worsening dyspnoea, orthopnoea, and peripheral oedema. Chest X-ray showed pulmonary congestion. He’s been started on IV frusemide 40 mg BD, and a GTN infusion was commenced this morning for ongoing hypertension and chest tightness.
+[DOCTOR]: We’re titrating the GTN to manage his preload and afterload. He’s also on oxygen via nasal prongs at 4 L/min, aiming for sats above 92%. We’ll review the need for non-invasive ventilation if he doesn’t improve.
+[CCU NURSE]: What’s his current status?
+[WARD NURSE]: He’s still dyspnoeic at rest. Q-ADDS score is 6—due to increased RR (28), borderline BP (98/60), and oxygen requirement. He’s on hourly observations. HR is 104, Temp 36.8, SpO? 93% on 4 L.
+[CCU NURSE]: IV access?
+[WARD NURSE]: Two good IVs—18G in the right AC and 20G in the left forearm. GTN is running via pump on the right side. He’s also on a strict fluid balance chart—he’s positive 1.2 L over the last 24 hours. Daily weights are being recorded.
+[CCU NURSE]: Any other meds or comorbidities?
+[WARD NURSE]: He’s on carvedilol, spironolactone, and atorvastatin. No known allergies. History of ischaemic cardiomyopathy, EF 25%, and CKD stage 3.
+[PATIENT]: I’ve been feeling more tired and dizzy today.
+[DOCTOR]: That’s why we’re moving you to CCU, Peter—to monitor you more closely and adjust your treatment as needed.
+[CCU NURSE]: Thanks. I’ll continue hourly Q-ADDS, monitor the GTN infusion, and keep a close eye on his fluid status and oxygen needs.
+[WARD NURSE]: Perfect. All documentation is up to date—Q-ADDS, fluid balance, and medication chart. Let me know if you need anything else.
+

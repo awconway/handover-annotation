@@ -1,0 +1,18 @@
+[INCOMING_NURSE]: Good Morning, Ross. I’m just here to get bedside handover from the night nurse, is that okay?
+[OUTGOING_NURSE]: Hi Mark. This is Bed 3, Ross Garden, is 24 years old, and is under Dr. Fleming.
+[INCOMING_NURSE]: Ross, could you confirm your full name and date of birth? 
+[PATIENT]: Ross Garden. 12 December 2002
+[INCOMING_NURSE]: Great, thank you. We’ll keep this brief.
+
+[OUTGOING_NURSE]: Ross came in with a minor head injury after a car racing accident. He’s the same as yesterday with no new issues, we’re waiting for the doctors to do their rounds today. They can't be far away.
+[INCOMING_NURSE]: Any changes overnight—vomiting, worse headache, confusion, or anything like that?
+[OUTGOING_NURSE]: No, nothing new reported. He’s been stable and comfortable.
+[INCOMING_NURSE]: Okay. Ross, how are you feeling right now?
+[PATIENT]: I’m okay. No changes.
+[INCOMING_NURSE]: Good to hear. Do you need anything before we finish handover?
+[PATIENT]: No, I’m fine.
+
+[OUTGOING_NURSE]: The Plan is to continue as we are and wait for the medical review on the morning round.
+[INCOMING_NURSE]: Got it. let us know if anything changes and you get a headache, feel nauseated or dizzy press the call bell straight away, Ross.
+[PATIENT]: Will do.
+[INCOMING_NURSE]: Thanks. I’ll be back shortly to do your routine checks.

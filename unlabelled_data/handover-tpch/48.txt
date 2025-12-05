@@ -1,0 +1,15 @@
+
+[NURSE 1]: Hi, I’m handing over Mr. David Lee, 64 years old. He’s on the ward post-lobectomy and currently has a left-sided ICC in situ. It’s due to come out today.
+[NURSE 2]: Okay, thanks. What’s the current status of the ICC?
+[NURSE 1]: ICC has been on free drainage. Output over the last 24 hours is minimal — around 20 mL serous fluid. No air leak noted. Chest X-ray this morning shows good lung expansion. Surgical team reviewed and gave the okay for removal.
+[NURSE 2]: Got it. Any pain or discomfort?
+[NURSE 1]: He’s had some mild discomfort around the insertion site, but it’s well managed with regular paracetamol. No signs of infection — site is clean and dry.
+[NURSE 2]: Any IV access?
+[NURSE 1]: Yes, 20G cannula in the right forearm — patent and due for review tomorrow. He’s currently on oral meds only.
+[NURSE 2]: I’ll check the med chart. Anything due?
+[NURSE 1]: No meds due right now. He’s on regular analgesia and a stool softener. No known allergies.
+[NURSE 2]: Any behavioural or cognitive concerns?
+[NURSE 1]: No concerns. He’s alert, oriented, and understands the plan. He’s a bit anxious about the ICC removal, so just reassure him and let him know we’ll use local anaesthetic.
+[NURSE 2]: Will do. I’ll prep the trolley and notify the team once it’s out.
+
+

@@ -1,0 +1,14 @@
+[INCOMING_NURSE]: Good Morning, Alan. I’m taking over your care for the day my name is Chad. I’ll just get a quick handover from Sam, the night nurse, if that’s okay.
+[OUTGOING_NURSE]: Hi. This is Alan Clark in Room 2, Bed 6,He is 73 years old, under Dr. George De Silva. Alan, could you confirm your full name and date of birth for us?
+[PATIENT]: Alan Clark, and my date of birth is correct on the band.
+[INCOMING_NURSE]: Thanks, Alan. ID band matches the chart.
+[OUTGOING_NURSE]: Alan came in yesterday with an episode consistent with epilepsy. He’s had a CT brain and we’re awaiting the result. The plan from the team is if the CT is negative, he can go home today.
+[INCOMING_NURSE]: Okay. Have there been any seizures or concerning symptoms since admission?
+[OUTGOING_NURSE]: No further episodes since arrival. All observations have been stable.
+[INCOMING_NURSE]: Alan, any headaches, visual changes, or auras?
+[PATIENT]: No, I feel fine today.
+[INCOMING_NURSE]: Good to hear. We’ll keep seizure precautions in place while we wait for the CT report. I’ll follow up radiology and the medical team about results and potential discharge.
+[OUTGOING_NURSE]: That’s all from me, have a good shift.
+[INCOMING_NURSE]: Thanks, Sam. Alan, is there anything you need right now?
+[PATIENT]: No, I’m okay. Thank you.
+[INCOMING_NURSE]: The Call bell is within reach—press if you need us. I’ll be back after I check on the CT result and the doctor’s plan.

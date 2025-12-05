@@ -1,0 +1,24 @@
+[INCOMING_DOCTOR]: Good morning, Mr. Carter. I’m Dr. Chen from City Thoracic Unit. I’ll get handover from my colleague now, is that okay?
+[PATIENT]: Yes, that’s fine.
+[OUTGOING_DOCTOR]: This is Bed 5, James Carter, 62 years old, under Dr. Singh, Thoracic Surgeon.
+Mr. Carter was admitted yesterday following referral from oncology for surgical review of a left upper lobe non-small cell lung carcinoma. He’s had increasing shortness of breath and fatigue over the past month. CT chest shows a 3.8 cm lesion with no clear evidence of mediastinal involvement. PET scan completed last week shows localized uptake.
+[OUTGOING_DOCTOR]: He’s hemodynamically stable. No haemoptysis or chest pain overnight. Oxygen saturations are 96% on room air. Pain is controlled with regular paracetamol. No changes in condition overnight.
+[INCOMING_DOCTOR]: Hi Mr. Carter, can you confirm your full name for me?
+[PATIENT]: James Carter.
+[INCOMING_DOCTOR]: Thank you. I’ll also check your wristband. That matches.
+Are you experiencing any pain or discomfort right now?
+[PATIENT]: Just a bit of tightness in my chest, but it’s not too bad.
+[OUTGOING_DOCTOR]: Vital signs this morning: BP: 132/78, HR: 76 bpm, RR: 18, Temp: 36.9°C and SpO?: 96% on room air
+[INCOMING_DOCTOR]: Any allergies?
+[PATIENT]: No known allergies.
+[INCOMING_DOCTOR]: I’ll confirm that in the chart.
+What’s his current medication chart?
+[OUTGOING_DOCTOR]: Paracetamol 1g QID orally, Salbutamol inhaler PRN, Pantoprazole 40mg daily, No antibiotics currently, IV fluids: None required overnight, Nil by mouth pending surgical review.
+[INCOMING_DOCTOR]: Any relevant past medical history?
+[OUTGOING_DOCTOR]: Yes, Hypertension (on amlodipine 5mg daily), Former smoker, 30 pack-year history, No diabetes, No previous thoracic surgery
+[INCOMING_DOCTOR]: So, the plan is to review for possible lobectomy or segmentectomy, pending MDT discussion. No outstanding investigations?
+[OUTGOING_DOCTOR]: Bloods from yesterday: WCC: 7.8, CRP: 12, Renal and liver function: within normal limits, ECG: Normal sinus rhythm, Pulmonary function tests pending this morning
+[INCOMING_DOCTOR]: Mr. Carter, is there anything you need before we finish handover?
+[PATIENT]: No, I’m okay. Just waiting to hear what the plan is.
+[INCOMING_DOCTOR]: Alright, I’ll see you again shortly once you’re settled in and we’ve reviewed your scans.
+

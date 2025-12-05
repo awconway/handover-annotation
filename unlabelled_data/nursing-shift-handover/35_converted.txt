@@ -1,0 +1,26 @@
+[OUTGOING_NURSE]: Good Morning, Nina. This is the day nurse who’ll be looking after you now. Is it okay if we do your bedside handover together?
+[PATIENT]: Yes, that’s fine.
+[INCOMING_NURSE]: Thanks, Nina. Good morning. I’m the incoming nurse for the day my name is Hannah
+
+[OUTGOING_NURSE]: This is Bed 1, Nina Maria Carey, who is67 years old, under Dr Jamie. She came in with bronchitis, fever, and cough. She’s also just been diagnosed with cancer, and we’ve been told it has already spread to the lungs. 
+[INCOMING_NURSE]: I’m sorry you’re going through that, Nina. We’ll make sure you have the support you need.
+
+[OUTGOING_NURSE]: Her observations are stable and she’s afebrile. She’s self-caring and on a general diet. No other concerns raised overnight.
+[INCOMING_NURSE]: Okay, No IV lines at present?
+
+[OUTGOING_NURSE]: No she hasn't the need for one at the moment.
+
+[OUTGOING_NURSE]: Nina, part of today’s plan is communication and support. The notes say your husband and your four children should be informed.
+[INCOMING_NURSE]: With your permission, who would you like us to update them on your progress, how can we reach them?
+[PATIENT]: Please contact my husband first, then we can decide about the kids together.
+[INCOMING_NURSE]: Of course. We’ll follow your preferences and only share information with your consent.
+
+[OUTGOING_NURSE]: We can also arrange counselling if you’d like, and set up a meeting with the doctors to go through your treatment plan and answer questions.
+[INCOMING_NURSE]: Would you like me to organize counselling and a family meeting with Dr Jamie’s team today?
+[PATIENT]: Yes, I’d appreciate that.
+
+[INCOMING_NURSE]: The plan for today is to continue routine observations, have a normal diet, stay independent cares as you feel able. We need to confirm and document your preferred contacts; arrange counselling and a family meeting with Dr Jamie. Anything else you need right now, Nina?
+[PATIENT]: No, thank you.
+
+[OUTGOING_NURSE]: That’s all I need to tell you.
+[INCOMING_NURSE]: Thanks. I’ll get started on those referrals and be back shortly to check on you again, Nina.

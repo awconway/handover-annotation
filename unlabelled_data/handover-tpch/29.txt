@@ -1,0 +1,11 @@
+[Outgoing Nurse]: Hi, I’m handing over Mr. Thomas Reid in bed 3. He’s a 79-year-old patient with limited mobility due to a recent stroke. He has a stage 2 pressure injury on his sacrum that requires dressing today.
+[Incoming Nurse]: Thanks. What’s the current status of the wound?
+[Outgoing Nurse]: It’s a shallow ulcer with partial thickness skin loss. No slough or necrosis, but the area is red and moist. No signs of infection at this stage. The wound was last dressed yesterday with Mepilex Border, and it’s due for review and redressing this morning.
+[Incoming Nurse]: What’s his Waterlow score?
+[Outgoing Nurse]: His Waterlow score is 20, so he’s at very high risk. He’s on a pressure-relieving mattress and we’ve been repositioning him every 2 hours.
+[Incoming Nurse]: Any other monitoring or interventions?
+[Outgoing Nurse]: Yes, he has: IDC in place – draining clear urine, last emptied 2 hours ago, an IV cannula in right forearm – patent, no fluids running currently, Regular skin checks and documentation in the wound chart, his Pain score this morning was 2/10, no analgesia required
+[Incoming Nurse]: Any allergies?
+[Outgoing Nurse]: No known drug allergies.
+[Incoming Nurse]: Thanks. I’ll check the wound, redress with Mepilex Border, and continue pressure care and monitoring.
+

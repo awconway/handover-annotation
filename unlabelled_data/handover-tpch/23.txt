@@ -1,0 +1,16 @@
+[NURSE]: Hi, thanks for coming. I wanted to hand over Mrs. Joan Wallace, 69 years old, currently Day 5 post-abdominal surgery for bowel obstruction. She’s still nil by mouth, and the surgical team has recommended a PEG insertion for long-term nutrition support.
+[DIETITIAN]: Thanks. Has she been receiving any nutrition support so far?
+[NURSE]: Yes, she’s been on IV fluids only. No TPN was started due to concerns about central access and infection risk. She’s starting to show signs of nutritional depletion—fatigue, muscle wasting, and low energy.
+[DIETITIAN]: Has the PEG been scheduled?
+[NURSE]: Not yet. Gastroenterology has been consulted and will assess her today. Once inserted, she’ll need a feeding plan—likely starting with low-volume, isotonic formula, then gradually increasing.
+[DIETITIAN]: Any relevant medical history?
+[NURSE]: Yes she has Type 2 diabetes, Hypertension, History of diverticulitis and
+No known drug allergies.
+[DIETITIAN]: How is she tolerating nil by mouth?
+[NURSE]: She’s coping but frustrated. She’s alert and understands the need for PEG feeding. I’ve explained the basics, but she’d benefit from a more detailed discussion with you.
+[DIETITIAN]: Hi Mrs. Wallace, I’m the dietitian. I’ll be helping with your nutrition once the feeding tube is in place. We’ll start slowly and make sure you’re comfortable.
+[PATIENT]: Thank you. I just want to feel stronger again.
+[DIETITIAN]: We’ll work on that together.
+[NURSE]: She’s due for bloods tomorrow—please check electrolytes, glucose, and nutritional markers. Let me know if you need anything else.
+[DIETITIAN]: Will do. I’ll draft a feeding plan and follow up after the PEG is inserted.
+

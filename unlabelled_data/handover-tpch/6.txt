@@ -1,0 +1,19 @@
+[INCOMING_NURSE]: Hi, I’m the incoming nurse for bed 6, my name is Cath. Can I get handover now?
+[OUTGOING_NURSE]: Sure. This is bed 6, Sarah Thompson, 24 years old. She was admitted last night under Dr. Malik following a mental health assessment in ED. She’s presenting with severe depressive symptoms and suicidal ideation.
+[OUTGOING_NURSE]: Her symptoms have worsened since the death of her mother from breast cancer about six weeks ago. She’s been socially withdrawn, tearful, and expressing feelings of hopelessness. She disclosed thoughts of ending her life but no current plan or attempt.
+[INCOMING_NURSE]: Any dependents?
+[OUTGOING_NURSE]: Yes, she has a 3-year-old daughter who is currently staying with extended family. She’s expressed guilt and distress about not being able to care for her child.
+[INCOMING_NURSE]: Any substance use?
+[OUTGOING_NURSE]: She’s a daily smoker, no other substances reported. No alcohol or drug use disclosed.
+[INCOMING_NURSE]: Any medical history?
+[OUTGOING_NURSE]: No chronic physical health conditions. No previous psychiatric admissions, but she has a history of low mood and anxiety since adolescence. No known allergies.
+[INCOMING_NURSE]: How has she been overnight?
+[OUTGOING_NURSE]: Settled but emotionally fragile. She’s been quiet, cooperative with care, but tearful during interactions. No behavioural incidents. She’s on 15-minute observations due to suicide risk.
+[INCOMING_NURSE]: Any medications charted?
+[OUTGOING_NURSE]:
+She’s started on: Sertraline 50 mg daily, Temazepam 10 mg PRN for sleep, Paracetamol PRN, No antipsychotics or mood stabilisers at this stage
+[INCOMING_NURSE]: Any referrals?
+[OUTGOING_NURSE]: Yes, she’s been referred to the psychologist and social worker for grief counselling and parenting support. Child Safety has been notified due to her current mental state and care arrangements.
+[INCOMING_NURSE]: Thanks. I’ll continue close monitoring and follow up with the allied health team.
+[OUTGOING_NURSE]: Perfect. Let me know if anything escalates. She’s currently resting in her room.
+

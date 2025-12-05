@@ -1,0 +1,14 @@
+[INCOMING_NURSE]: Good morning, Mr. Lee. I’m Jack, and I’ll be your nurse for today. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Mr. Lee. This is the nurse taking over for the day. Could you please confirm your full name?
+[PATIENT]: Jonathan Lee.
+[OUTGOING_NURSE]: Thank you. This is Mr. Jonathan Lee in Bed 4, Room 10, aged 62, under Dr. Patel.
+[OUTGOING_NURSE]: Mr. Lee is Day 2 post-op from a Whipple’s procedure. He returned from theatre 2 days ago and has been stable overnight. He’s currently on IV fluids and PCA for pain management. His drain output has been recorded and remains within expected range. He’s tolerating sips of water and has been reviewed by the surgical team this morning.
+[OUTGOING_NURSE]: No nausea or vomiting reported. Pain is currently well controlled. He’s been assisted with sitting out of bed with the physiotherapist earlier this morning.
+[INCOMING_NURSE]: Mr. Lee, how are you feeling this morning? Any pain or discomfort?
+[PATIENT]: A little sore, but manageable. I was able to sit out with the physio earlier.
+[OUTGOING_NURSE]: That’s great. He mobilised to the chair with assistance and tolerated it well. Physio will return later today to continue with breathing exercises and early mobilisation.
+[INCOMING_NURSE]: I’ll follow up with the physio team and check your pain relief before their next visit. Is there anything you need before we finish handover?
+[PATIENT]: No, I’m okay for now.
+[OUTGOING_NURSE]: Please use the call bell if you need anything. I’ll leave you in good hands.
+[INCOMING_NURSE]: I’ll be back shortly to check your observations and review your chart, Mr. Lee.
+

@@ -1,0 +1,17 @@
+[NURSE AMY]: Good morning, Ms. Carter. I’m Amy, and I’ll be your nurse for today. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Ms. Carter. This is the nurse taking over for the day. Could you please confirm your full name?
+[PATIENT]: Jessica Carter.
+[OUTGOING_NURSE]: Thank you. This is Ms. Jessica Carter in Bed 5, Room 11, aged 35, under Dr. Nguyen, Orthopaedic Consultant.
+[OUTGOING_NURSE]: Ms. Carter was admitted yesterday following a fall at home. She has a displaced fracture of the right humerus and is scheduled for ORIF surgery tomorrow morning. She’s currently in a sling and on regular analgesia. Pain score was 6/10 earlier, now 3/10 after medication.
+[OUTGOING_NURSE]: Neurovascular obs are intact: her Capillary refill <2 seconds, Sensation present, her Movement limited due to pain but preserved, there is No swelling or discoloration noted
+[OUTGOING_NURSE]: She’s a single mother of two young children and has expressed concern about managing at home post-op. A social worker referral has been made to explore home support and childcare options.
+[PHYSIOTHERAPIST]: Hi Jessica, I’m Priya from physio. I’ve reviewed your chart and will work with you post-op to help regain movement and strength in your arm. For now, just rest and keep the arm supported. After surgery, we’ll start gentle exercises and discuss strategies for managing daily tasks one-handed.
+[PATIENT]: Okay, I’m worried about how I’ll manage with the kids.
+[PHYSIOTHERAPIST]: That’s understandable. We’ll work closely with the social worker and nursing team to make sure you have the right support in place.
+[SOCIAL WORKER]: Hi Jessica, I’m Mark from social work. I understand you’re concerned about managing at home after surgery. Can you tell me a bit about your current support system?
+[PATIENT]: It’s just me and the kids. My mum lives interstate and I don’t have anyone nearby.
+[SOCIAL WORKER]: Thanks for sharing. I’ll look into short-term home care options and community support services. We can also explore childcare assistance while you recover. I’ll keep you updated and help with any paperwork.
+[NURSE AMY]: I’ll continue monitoring your pain and neurovascular status, and coordinate with the surgical team. Let me know if you need anything, Jessica.
+[PATIENT]: Thank you. I really appreciate it.
+
+

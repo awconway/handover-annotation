@@ -1,0 +1,14 @@
+[OUTGOING ED NURSE]: Hi, I'm handing over bed 9, Mr. Jamal Khan, 28 years old. He’s presented to ED with diabetic ketoacidosis. He has type 1 diabetes, diagnosed at age 14.
+[INCOMING WARD NURSE]: Thanks. What brought him in?
+[OUTGOING ED NURSE]: He’s had three days of nausea, vomiting, and abdominal pain. He stopped taking insulin due to poor oral intake. He was tachypnoeic and dehydrated on arrival. Capillary ketones were 6.8, BGL was 28.4, and venous pH was 7.12.
+[INCOMING WARD NURSE]: What’s been done so far?
+[OUTGOING ED NURSE]: He’s been managed as per the DKA protocol—IV fluids, fixed-rate insulin infusion, and hourly BGL and ketone monitoring. Electrolytes are being replaced as needed. He’s improving—ketones are now 2.4, and pH is 7.28. Still on insulin infusion.
+[INCOMING WARD NURSE]: Any complications?
+[OUTGOING ED NURSE]: No cerebral oedema or arrhythmias. He’s alert and oriented, tolerating sips of water. No vomiting since arrival. Vitals are stable—HR 92, BP 118/72, RR 20, SpO? 98% on room air.
+[INCOMING WARD NURSE]: Any comorbidities or allergies?
+[OUTGOING ED NURSE]: No other medical history. No known drug allergies. He’s usually on basal-bolus insulin at home—Lantus and Novorapid.
+[INCOMING WARD NURSE]: Any social or communication needs?
+[OUTGOING ED NURSE]: English is his first language. Lives alone, works full-time. He’s anxious about being admitted but cooperative. Diabetes educator has been flagged for review tomorrow.
+[INCOMING WARD NURSE]: Got it. I’ll continue monitoring his BGLs, ketones, and electrolytes, and keep him on protocol.
+[OUTGOING ED NURSE]: Perfect. Let me know if he deteriorates or if there are any concerns with fluid balance. All documentation is up to date, including fluid balance chart and DKA pathway.
+

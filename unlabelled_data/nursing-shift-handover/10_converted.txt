@@ -1,0 +1,24 @@
+[INCOMING_NURSE]: Hi Cindy. I’m Alex, I’ll be looking after you today. Is it okay if we do your bedside handover with Sam before he finishes?
+[PATIENT]: Yes, that’s fine.
+[OUTGOING_NURSE]: This is Bed 1, Cindy Benedictos, under Dr. Smith. She came in for management of diabetes and high cholesterol.
+[INCOMING_NURSE]: How high did her blood sugars Go? what was her cholesterol level?
+[OUTGOING_NURSE]: The blood sugars were running at 14-16mmol and her cholesterol level is 7.4 so both high. She was seen by the team today and they adjusted her insulin doses again—details are in the chart, and she has been started on a statin. 
+[INCOMING_NURSE]: Okay, I’ll review the med chart after handover.
+[OUTGOING_NURSE]: Because Her BGLs have been fluctuating. We’re doing QID plus PRN levels.
+[INCOMING_NURSE]: Are there any significant highs or lows noted?
+[OUTGOING_NURSE]: Variable but the insulin is helping to bring the level down it has been documented on the BGL sheet.
+[OUTGOING_NURSE]: She’s on daily bloods. The diabetes educator is booked for tomorrow at 2:30 p.m.
+[INCOMING_NURSE]: Have today’s bloods been sent?
+[OUTGOING_NURSE]: Yes, taken and sent this morning we are still waiting for the results.
+[OUTGOING_NURSE]: Cindy is self-caring—she self-administers her insulin with a little supervision.
+[INCOMING_NURSE]: Perfect. Cindy, are you comfortable continuing to do your insulin with me double-checking?
+[PATIENT]: Yes, that’s what I’ve been doing.
+[INCOMING_NURSE]: Great. Any allergies we should be aware of?
+[PATIENT]: I'm allergic to penicillin.
+[OUTGOING_NURSE]: The team is planning to discharge her early next week.
+[INCOMING_NURSE]: I’ll keep an eye on the plan and diabetes educator's notes.
+[OUTGOING_NURSE]: Otherwise, all her observations have been within normal limits.
+[INCOMING_NURSE]: okay great. Anything else outstanding?
+[OUTGOING_NURSE]: We still need to send a urine test off, the form is in her chart.
+[INCOMING_NURSE]: Thanks, Sam. Cindy, I’ll come back shortly to check your next BGL and see if you need anything before breakfast.
+[PATIENT]: Thanks.

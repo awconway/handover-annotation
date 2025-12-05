@@ -1,0 +1,14 @@
+[Outgoing Nurse]: Hi, I’m handing over Mrs. Dorothy Lane in bed 5. She’s an 83-year-old patient admitted with a left neck of femur fracture following a fall at home. She’s post-op day 1 following internal fixation. She’s currently confused, intermittently orientated, and requires full assistance with care.
+[Incoming Nurse]: Thanks. What’s her current Q-ADDS score?
+[Outgoing Nurse]: Her Q-ADDS score is 5—due to confusion, elevated respiratory rate, and low urine output. Latest observations: BP: 118/72, HR: 96 bpm, RR: 22, Temp: 36.9°C, SpO?: 95% on room air, she’s Alert but confused.
+[Incoming Nurse]: Any pressure area concerns?
+[Outgoing Nurse]: Yes, she has a chronic venous leg ulcer on her right lower leg. It’s being dressed with Iodosorb and a foam dressing, reviewed by wound care yesterday. No sacral or heel breakdown noted. She’s on a pressure-relieving mattress and being repositioned every 2 hours.
+[Incoming Nurse]: Is she continent?
+[Outgoing Nurse]: No, she’s incontinent of urine and has an IDC in place—draining clear urine, ~400 mL over the last 6 hours. She’s also on a bowel chart—no bowel movement today, last opened bowels yesterday.
+[Incoming Nurse]: Any vascular obs?
+[Outgoing Nurse]: Yes, we’re doing neurovascular obs on the affected limb: Sensation: Intact, Movement: Limited due to pain, Cap refill: less than 2 seconds, Pedal pulses: Present, Skin temp: Warm.
+[Incoming Nurse]: Any IV access or medications?
+[Outgoing Nurse]: She has a 20G cannula in her right forearm, patent.
+Medications include: IV Cefazolin 1g TDS, Paracetamol 1g QID, PRN Endone 2.5–5 mg Enoxaparin 40 mg SC daily, No known drug allergies.
+[Incoming Nurse]: Thanks. I’ll continue pressure care, monitor her Q-ADDS, and update wound and fluid charts.
+

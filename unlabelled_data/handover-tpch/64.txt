@@ -1,0 +1,15 @@
+[INCOMING_NURSE]: Good morning, Ms. Bennett. I’m Jack, and I’ll be your nurse for today. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Ms. Bennett. This is the nurse taking over for the day. Could you please confirm your full name?
+[PATIENT]: Rachel Bennett.
+[OUTGOING_NURSE]: Thank you. This is Ms. Rachel Bennett in Bed 2, Room 9, aged 52, under Dr. Wallace, Oncology Consultant.
+[OUTGOING_NURSE]: Ms. Bennett is currently receiving cycle 3 of chemotherapy for breast cancer. She’s had mild nausea overnight, managed with antiemetics. Her vitals are stable, and she’s tolerating oral fluids. Bloods were taken this morning for routine monitoring.
+[OUTGOING_NURSE]: She’s expressed feeling emotionally overwhelmed and worried about managing work and home responsibilities during treatment. A social worker referral was made, and they’re scheduled to visit later this morning.
+[SOCIAL WORKER]: Hi Rachel, I’m Priya, one of the hospital social workers. I understand you’re going through a lot right now, and I’m here to support you. Is it okay if we talk for a few minutes?
+[PATIENT]: Yes, please. I’ve been struggling a bit.
+[SOCIAL WORKER]: Thank you. I know chemotherapy can be physically and emotionally exhausting. You mentioned concerns about work and home—can you tell me a bit more about what’s been difficult?
+[PATIENT]: I’m a single mum, and I’ve had to take time off work. I’m worried about bills and keeping things stable for my daughter.
+[SOCIAL WORKER]: That’s completely understandable. We can explore options for financial support, community services, and counselling. I can also help connect you with support groups for women going through similar experiences. Would that be helpful?
+[PATIENT]: Yes, I think so. I just don’t know where to start.
+[SOCIAL WORKER]: That’s okay—I'll walk you through it. You’re not alone in this, and we’ll make sure you have the support you need.
+[INCOMING_NURSE]: I’ll check back in shortly, Ms. Bennett, and coordinate with Priya and Dr. Wallace’s team. Please use the call bell if you need anything.
+

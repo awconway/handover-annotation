@@ -1,0 +1,15 @@
+[INCOMING_NURSE]: Good morning, Mr. Davies. I’m Jack, and I’ll be your nurse for today. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Mr. Davies. This is the nurse taking over for the day. Could you please confirm your full name?
+[PATIENT]: Michael Davies.
+[OUTGOING_NURSE]: Thank you. This is Mr. Michael Davies in Bed 1, Isolation Room 3, aged 40, under Dr. Kumar, Infectious Diseases Consultant.
+[OUTGOING_NURSE]: Mr. Davies was admitted yesterday with acute gastroenteritis secondary to rotavirus infection. He’s currently being barrier nursed in isolation. Full PPE is required before entering the room. He’s on contact precautions due to high risk of transmission.
+[OUTGOING_NURSE]: He’s had multiple episodes of diarrhoea overnight, documented and managed with oral rehydration and IV fluids. No vomiting reported. Stool sample has been sent and confirmed rotavirus. He remains afebrile and vitals are stable.
+[OUTGOING_NURSE]: He’s tolerating sips of water and dry toast this morning. No abdominal pain reported. Continence aids and cleaning protocols are in place. Environmental services have been notified for enhanced cleaning.
+[INCOMING_NURSE]: Mr. Davies, how are you feeling this morning? Any nausea or cramping?
+[PATIENT]: A bit tired, but no pain. Just still needing the bathroom a lot.
+[OUTGOING_NURSE]: Understood. He’s aware of the need to stay in isolation and has been cooperative with infection control measures. No visitors allowed at this stage. Dr. Kumar will review later today.
+[INCOMING_NURSE]: I’ll continue monitoring your fluid balance and symptoms and check in after the doctor’s review. Is there anything you need before we finish handover?
+[PATIENT]: No, I’m okay.
+[OUTGOING_NURSE]: Please use the call bell if you need anything. I’ll leave you in good hands.
+[INCOMING_NURSE]: I’ll be back shortly to check your observations and review your chart, Mr. Davies.
+

@@ -1,0 +1,16 @@
+[OUTGOING_NURSE]: Hi, I'm John, handing over bed 2, Ms. Leila Haddad, 59 years old. She’s been admitted with a large pericardial effusion—likely secondary to metastatic breast cancer. She’s for pericardiocentesis this afternoon.
+[INCOMING_NURSE]: Okay. How is she currently?
+[OUTGOING_NURSE]: She’s haemodynamically stable but symptomatic—short of breath at rest, mild chest tightness, and fatigue. No syncope or hypotension. She’s on 2 L nasal prongs to maintain sats around 94%.
+[INCOMING_NURSE]: What’s been done so far?
+[OUTGOING_NURSE]: She’s had an urgent echo showing a large effusion with early signs of tamponade. Cardiology has reviewed and booked her for ultrasound-guided pericardiocentesis this afternoon. Consent is done.
+[INCOMING_NURSE]: IV access?
+[OUTGOING_NURSE]: Two good IVs—one 18G in the left AC and a 20G in the right forearm. Both patent. She’s on maintenance IV fluids—normal saline at 75 mL/hr.
+[INCOMING_NURSE]: Medications?
+[OUTGOING_NURSE]: She’s had IV dexamethasone 8 mg this morning and regular paracetamol for discomfort. PRN midazolam is charted for the procedure. No anticoagulants on board. NKDA.
+[INCOMING_NURSE]: Observations?
+[OUTGOING_NURSE]: BP 102/68, HR 98, RR 22, SpO? 94% on 2 L, Temp 36.8. She’s alert and oriented but anxious. ECG shows low voltage QRS, no arrhythmias.
+[INCOMING_NURSE]: Any support needs?
+[OUTGOING_NURSE]: English is her second language—Arabic is her first. She understands most things but prefers slow explanations. Her daughter is bilingual and has been helping. Interpreter has been requested for post-procedure education.
+[INCOMING_NURSE]: Got it. I’ll keep monitoring her obs closely and prep her for the drain.
+[OUTGOING_NURSE]: Perfect. Let me know if she deteriorates—especially signs of tamponade like hypotension or muffled heart sounds. All documentation is up to date, including consent, obs, and fluid balance.
+

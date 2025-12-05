@@ -1,0 +1,14 @@
+[Outgoing Nurse]: Hi, I’m handing over Mr. Daniel Brooks in bed 8. He’s a 70-year-old patient who had an angiogram and ICD placement earlier today following recurrent ventricular arrhythmias. He’s now in recovery and being monitored closely.
+[Incoming Nurse]: Thanks. How did the procedure go?
+[Outgoing Nurse]: The procedure was uneventful. ICD was successfully implanted. Post-procedure ECG shows a junctional rhythm, rate around 50–60 bpm. He’s asymptomatic but under continuous cardiac monitoring.
+[Incoming Nurse]: Any IV access?
+[Outgoing Nurse]: Yes, he has a 20G cannula in his left forearm, patent and flushed. No IV fluids running currently—he’s tolerating oral intake.
+[Incoming Nurse]: What medications is he on?
+[Outgoing Nurse]:
+He’s charted for: Aspirin 100 mg daily, Bisoprolol 5 mg daily, Atorvastatin 40 mg nocte, Paracetamol 1g QID PRN he has No known drug allergies.
+[Incoming Nurse]: Any post-op care instructions?
+[Outgoing Nurse]: Yes: Keep the ICD site dry and intact—dressing checked and clean, monitor for signs of infection or bleeding, Observe cardiac rhythm closely—junctional rhythm noted, notify cardiology if symptomatic or rate drops further, 4-hourly obs unless otherwise directed his Pain score is currently 2/10, settled with Paracetamol, and Encourage gentle mobilisation with supervision.
+[Incoming Nurse]: Any other concerns?
+[Outgoing Nurse]: He’s alert and orientated. No nausea or dizziness. Bowels not yet open post-procedure. Fluid balance is being monitored—input ~800 mL, output ~500 mL so far.
+[Incoming Nurse]: Thanks. I’ll continue monitoring and escalate if rhythm changes or symptoms develop.
+

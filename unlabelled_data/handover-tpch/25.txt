@@ -1,0 +1,18 @@
+[NURSE]: Hi Dr. Patel, thanks for coming. I’d like you to review Ms. Evelyn Grant in bed 9. She’s a 68-year-old admitted with a urinary tract infection, now deteriorating—likely urosepsis.
+[DOCTOR]: What’s happening?
+[NURSE]: Over the past few hours, she’s become increasingly tachycardic and febrile. Her Q-ADDS score is 6, which triggered escalation. She’s also more confused than her baseline—normally oriented but now disoriented to time and place.
+[DOCTOR]: Can you give me her latest observations?
+[NURSE]: BP: 98/62, HR: 112 bpm, RR: 22, Temp: 38.6°C, SpO?: 95% on room air, Conscious state: Alert but confused, Q-ADDS score: 6 (HR + Temp + RR + confusion)
+[DOCTOR]: Has she had any recent bloods or cultures?
+[NURSE]: Yes. Bloods were taken this morning: WCC: 14.2, CRP: 98, Creatinine: 102 (baseline ~85) Urine sample: Sent, we are waiting results Lactate: Not yet done—would you like it ordered?
+[DOCTOR]: Any IV access?
+[NURSE]: No current vascular access. She had a cannula yesterday, but it was removed due to tissuing. I can insert a new one now.
+[DOCTOR]: What’s her fluid balance?
+[NURSE]: Input (last 24h): ~1200 mL (oral + IV), Output: ~600 mL urine, no vomiting or diarrhoea, Net balance: +600 mL, Urine output: Reduced over last 6 hours—only 100 mL
+[DOCTOR]: Allergy status?
+[NURSE]: Documented penicillin allergy—rash and swelling previously.
+[DOCTOR]: Current medications?
+[NURSE]: Paracetamol 1g QID, IV fluids: Normal saline at 100 mL/hr, No antibiotics yet—awaiting review due to allergy
+[DOCTOR]: Okay. I’ll assess her now. Let’s insert a cannula, take a lactate, and start IV ceftriaxone and gentamicin. We’ll monitor closely and consider AMU transfer if she worsens.
+[NURSE]: I’ll insert the cannula, draw the lactate, and prep the antibiotics. I’ll also notify AMU if her Q-ADDS increases or confusion worsens.
+

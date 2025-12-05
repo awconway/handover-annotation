@@ -1,0 +1,19 @@
+[INCOMING_NURSE]: Good morning, Ms. Taylor. I’m Jack, and I’ll be your nurse for today. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Ms. Taylor. This is the nurse taking over for the day. Could you please confirm your full name?
+[PATIENT]: Olivia Taylor.
+[OUTGOING_NURSE]: Thank you. This is Ms. Olivia Taylor in Bed 7, Room 15, aged 38, under Dr. Chen, Emergency Consultant.
+[OUTGOING_NURSE]: Ms. Taylor presented to ED last night following an assault at home by her intoxicated husband. She has bruising to her left eye and forearm, and a minor laceration to her scalp, which has been cleaned and dressed. CT head was clear. Vitals stable overnight. She’s alert and oriented.
+[OUTGOING_NURSE]: Ms. Taylor disclosed that her children are currently at school and she is concerned for their safety. She has not returned home and is unsure of her next steps.
+[INCOMING_NURSE]: Ms. Taylor, how are you feeling this morning? Any pain or dizziness?
+[PATIENT]: Just sore and tired. I’m worried about my kids.
+[OUTGOING_NURSE]: Understandably. Pain score was 5/10 earlier. She’s had oral analgesia and is tolerating fluids. No nausea or vomiting. A social worker was contacted and will be attending shortly to support safety planning and discuss options.
+[SOCIAL WORKER]: Hi Olivia, I’m Sarah, one of the hospital social workers. I understand you’ve had a very difficult night. I’m here to support you. Would it be okay if we talked for a few minutes?
+[PATIENT]: Yes, that’s okay.
+[SOCIAL WORKER]: Thank you. First, I want to check—are you feeling safe right now? Is your husband aware you’re here?
+[PATIENT]: No, he was drunk and passed out when I left. I don’t think he knows.
+[SOCIAL WORKER]: Okay. We can help ensure your safety while you're here and support you with options for accommodation, legal advice, and child protection if needed. Would you like us to contact someone on your behalf—family, a friend, or a support service?
+[PATIENT]: Maybe my sister. She’s in Brisbane.
+[SOCIAL WORKER]: Absolutely. I’ll help you with that. We’ll also work with the team to make sure your children are safe and supported. You're not alone in this.
+
+
+

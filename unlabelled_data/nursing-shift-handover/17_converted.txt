@@ -1,0 +1,18 @@
+[OUTGOING_NURSE]: Good Morning, Eric. This is Sam, the day nurse taking over from me.
+[INCOMING_NURSE]: Hi, Eric. We’ll do your handover together at the bedside.
+[OUTGOING_NURSE]: Bed eight is Eric Wong, he is 69 years old, under Dr Johnson.
+[OUTGOING_NURSE]: He’s come in for management of high cholesterol. The Plan is for daily bloods and a carotid Doppler ultrasound tomorrow.
+[OUTGOING_NURSE]: He’s also booked for an arterial/vascular study so they can start his medication.
+[INCOMING_NURSE]: Okay. Do we have times yet?
+[OUTGOING_NURSE]: No they are not confirmed yet. He’s quite anxious about the tests.
+[OUTGOING_NURSE]: Could we get the medical team to come and explain the procedure to him today?
+[INCOMING_NURSE]: Absolutely—I’ll page Dr Johnson’s team to talk you through everything, Eric.
+[PATIENT]: Thanks, I’m just a bit worried about what it involves.
+[INCOMING_NURSE]: Totally understandable. We’ll make sure someone explains it clearly and answers your questions before anything happens.
+[OUTGOING_NURSE]: He’s on a general diet, ambulant, and self-caring.
+[OUTGOING_NURSE]: History of high blood pressure; otherwise observations have been stable. The team is aware.
+[INCOMING_NURSE]: Great. I’ll keep monitoring your BP and we’ll get today’s bloods done as ordered.
+[INCOMING_NURSE]: Eric, is there anything you need right now?
+[PATIENT]: No, I’m okay. Thank you.
+[INCOMING_NURSE]: All right, I’ll follow up with the doctors and come back with an update.
+[OUTGOING_NURSE]: That’s everything from me. Thanks, Eric.

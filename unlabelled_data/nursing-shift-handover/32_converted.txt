@@ -1,0 +1,23 @@
+[INCOMING_NURSE]: Good Morning, Amanda. I’m Dorothy the day nurse. I’ll just get handover from Oliver, then we’ll check in with you.
+[OUTGOING_NURSE]: Hi Dorothy. In Bed 3 is Amanda Agatha Phillips, who is 76 years old.
+[INCOMING_NURSE]: Amanda, can you tell us your full name and date of birth?
+[PATIENT]: I… I’m not sure… sorry.
+[INCOMING_NURSE]: That’s okay, I’ll check your wristband. Amanda Agatha Phillips, 76. Thanks.
+[OUTGOING_NURSE]:She has a history of sleep apnoea; she uses home oxygen at night only.
+[INCOMING_NURSE] Does she use nasal prongs or a mask?
+[OUTGOING_NURSE]: A Mask. She has come in for further investigation. Her family are quite worried about her living alone, so she needs a referral to Social Work.
+[INCOMING_NURSE]: okay, I’ll put the referral to the Social Worker this morning.
+[OUTGOING_NURSE]: She’s been very confused. Yesterday she couldn’t remember her relatives when they visited and She’s still confused today, so there is no change in her level of confusion.
+[INCOMING_NURSE]: Okay, so this is her base line.
+[OUTGOING_NURSE]: Yes, There’s also a query for a … “cut” assessment and a mini-mental assessment for Tim to review.
+[INCOMING_NURSE]: Do you mean an ACAT assessment plus a Mini-Mental (MMSE) for Tim?
+[OUTGOING_NURSE]: Yes, that’s the request—ACAT and MMSE for Tim to review.
+[INCOMING_NURSE]: Got it. I’ll organise the MMSE and flag ACAT with Social Work, and I’ll message Tim.
+[OUTGOING_NURSE]: Otherwise, no other changes. She is still confused.
+[INCOMING_NURSE]: Amanda, we’re going to keep you safe and comfortable. If you need anything, press the call bell here.
+[PATIENT]: I… where am I?
+[INCOMING_NURSE]: You’re in hospital, Amanda. We’re looking after you. We’ll stay close by. Don't get up and walk on your own as I don't want you to fall.
+[OUTGOING_NURSE]: Anything else you’d like me to cover?
+[INCOMING_NURSE]: I’ll set up the referrals now and keep an eye on her orientation and night oxygen needs.
+[OUTGOING_NURSE]: Great. Thanks.
+[INCOMING_NURSE]: Thanks, Amanda. I’ll be back shortly.

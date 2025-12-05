@@ -1,0 +1,35 @@
+[INCOMING_NURSE]: Morning, Pierre. I’m John the oncoming nurse for the day. I’ll just grab a quick bedside handover from Susan if that’s okay?
+[OUTGOING_NURSE]: This is bed 2, Pierre Cox, who is 77 years old, under Dr Greger.
+[INCOMING_NURSE]: Hi, Pierre. Could you confirm your full name for me?
+[PATIENT]: Pierre Cox.
+[INCOMING_NURSE]: Thank you.
+
+[OUTGOING_NURSE]: Pierre came in with pain and swelling of the right leg, query an embolism. He’s for a leg ultrasound today at 2 p.m. He’s on therapeutic Clexane.
+[INCOMING_NURSE]: How is his pain now?
+
+[OUTGOING_NURSE]: He’s still been quite sore—scored 9/10 earlier; Endone was given with good effect. He’s charted for regular OxyContin and Panadol, and he can have PRN analgesia as needed.
+[INCOMING_NURSE]: Pierre, how’s your pain right now—still high, or a bit better since the Endone?
+[PATIENT]: A bit better, but still there.
+[INCOMING_NURSE]: Okay, we’ll stay on top of it and use the PRN if you need it.
+
+[OUTGOING_NURSE]: He needs assistance with transfers with 2 people. He’s using a commode chair to get to the toilet and is unable to walk at the moment due to the leg pain.
+[INCOMING_NURSE]: We need to assist with all his transfers, Pierre—just press your call bell when you need to go to the toilet.
+
+[OUTGOING_NURSE]: His obs have been normal overall with a slightly raised blood pressure—likely pain-related. The doctors are aware that it is high.
+[INCOMING_NURSE]: Okay ill keep an eye on it. 
+
+[OUTGOING_NURSE]: He’s on a low‑fat diet.
+[INCOMING_NURSE]: Has his meal been ordered today?
+
+[OUTGOING_NURSE]: Yes. He’s still for review by the team; the consultant hasn’t seen him yet.
+[INCOMING_NURSE]: I’ll keep an eye out for the team and update you after they come, Pierre.
+
+[OUTGOING_NURSE]: He has Coronary artery disease; and is a heavy smoker. We’ve started a nicotine patch, but he really doesn’t like it. He’s asked to go outside to smoke—he’s been advised not to.
+[INCOMING_NURSE]: Pierre, hospital policy is no smoking on site. Let’s talk about managing the cravings—if the patch isn’t suiting you, we can discuss alternatives with the team.
+
+[OUTGOING_NURSE]: Any thing I've missed? 
+[INCOMING_NURSE]: No Thanks. I'll keep up with pain management meds and give PRN meds if needed.
+[PATIENT]: Okay, thank you.
+[INCOMING_NURSE]: Anything you need before we go, Pierre?
+[PATIENT]: I’m all right for now.
+[INCOMING_NURSE]: Great—I’ll be back shortly to check your pain and get you set for the ultrasound.

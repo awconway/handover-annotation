@@ -1,0 +1,30 @@
+[INCOMING_NURSE]: Good Morning. I’ll take over from here—shall we do bedside handover for Bed 3?
+[OUTGOING_NURSE]: Sure. Hi Evan, this is Mia, she’ll be looking after you today.
+[INCOMING_NURSE]: Hi Evan. Can you tell me your name and age?
+[PATIENT]: Evan Stephenson, 22.
+[INCOMING_NURSE]: Thanks, Evan. We’ll chat while we check a few things.
+
+[OUTGOING_NURSE]: So, Bed 3: Evan Stephenson, 22 years old. He came in after a fall and has rhabdomyolysis with acute kidney failure. He had very low blood pressure in ED and received a Gelofusine infusion stat. He’s more stable now, which is why he’s been transferred to the ward.
+[INCOMING_NURSE]: Okay.
+
+[OUTGOING_NURSE]: He’s got an IDC in situ, and for strict fluid balance charting. IV fluids are running at 803 mL per hour as charted.
+[INCOMING_NURSE]: Just confirming—eight-zero-three per hour? I’ll double-check the order and the pump after handover.
+[OUTGOING_NURSE]: Yes, that’s correct per the current order.
+
+[OUTGOING_NURSE]: He’s on lying and standing blood pressures, daily weights, and daily bloods.
+[INCOMING_NURSE]: Okay.
+
+[OUTGOING_NURSE]: He appears swollen and bruised on the left side of his body. He’s for a review regarding his mobility. At the moment he’s resting in bed and currently stable.
+[INCOMING_NURSE]: Evan, any pain right now, or dizziness?
+[PATIENT]: Bit sore on the left side, but I’m okay lying still.
+[INCOMING_NURSE]: Thanks. I’ll get your pain score shortly and make sure you’re comfortable.
+
+[INCOMING_NURSE]: Urine output’s being tracked on the fluid balance?
+[OUTGOING_NURSE]: Yes—IDC is patent and draining, the FBC is up to date.
+
+[INCOMING_NURSE]: Great. I’ll check your IV fluids, review the orthostatic BP plan, and keep up with the daily weights and bloods. I’ll also follow up on the mobility review.
+[OUTGOING_NURSE]: Perfect. That’s everything from me.
+
+[INCOMING_NURSE]: Evan, is there anything you need right now before I check your pumps and observations?
+[PATIENT]: Some water if I’m allowed?
+[INCOMING_NURSE]: I’ll confirm your fluid orders and be right back. Use your call bell if you need anything.

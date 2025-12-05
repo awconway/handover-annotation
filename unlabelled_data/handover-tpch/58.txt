@@ -1,0 +1,14 @@
+
+[ED NURSE]: Hi, I’m handing over Maria Santos, 58 years old, coming up to the ward with cellulitis on her left lower leg. She’s been started on IV antibiotics and is stable for transfer.
+[WARD NURSE]: Thanks. What’s her current status?
+[ED NURSE]: Vitals are stable — temp 37.6°C, HR 84, BP 122/78, RR 18, SpO? 98% on room air. The affected leg is red, warm, and swollen from mid-calf to ankle. No signs of abscess or necrosis.
+[WARD NURSE]: Okay. What’s the antibiotic plan?
+[ED NURSE]: She’s on IV cefazolin, 1g every 8 hours. First dose was given in ED about an hour ago. Next dose is due at 10 PM. No known drug allergies.
+[WARD NURSE]: Got it. Any IV access?
+[ED NURSE]: Yes, 20G cannula in the right forearm — site is clean, dry, and patent. Charted for daily review. She’s also had IV fluids earlier, but now tolerating oral intake.
+[WARD NURSE]: Any pain management?
+[ED NURSE]: She’s had paracetamol 1g orally — pain is currently 4/10. PRN analgesia is charted.
+[WARD NURSE]: Any behavioural or cognitive concerns?
+[ED NURSE]: No concerns. She’s alert, oriented, and understands the treatment plan. Mobilising with assistance due to leg discomfort.
+[WARD NURSE]: Thanks. I’ll check the IV site and meds when she arrives. Let me know if anything changes before transfer.
+

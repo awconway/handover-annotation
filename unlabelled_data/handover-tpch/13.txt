@@ -1,0 +1,14 @@
+[ED_NURSE]: Hi, I’m handing over Mrs. Lien Tran, 82 years old, transferring to your ward for further investigation of renal impairment. She’s here for a renal ultrasound to help diagnose the issue.
+[WARD_NURSE]: Thanks. Can you tell me a bit about her background?
+[ED_NURSE]: Sure. She’s from a Vietnamese-speaking background, does not speak English, and is deaf. She also has significant vision impairment. Communication is a challenge—she uses Vietnamese sign language and gestures, but we’ve requested a Vietnamese interpreter. Her daughter is on the way and usually helps with communication.
+[WARD_NURSE]: How is she medically?
+[ED_NURSE]: Her Vitals are stable, She’s alert but anxious due to the unfamiliar environment and communication barriers.
+[WARD_NURSE]: Any mobility concerns?
+[ED_NURSE]: She’s ambulant with assistance and uses a walking frame. Needs help with transfers and getting on/off the bed.
+[WARD_NURSE]: Any medications or allergies?
+[ED_NURSE]: No known drug allergies. She’s on, Amlodipine 5 mg daily, Furosemide 40 mg daily, Calcium carbonate, she’s nil by mouth for the scan and fluids have been withheld this morning.
+[WARD_NURSE]:  Anything else I should be aware of?
+[ED_NURSE]: Just be mindful of her communication needs and vision impairment. I’ve left a large print Vietnamese instruction sheet at the bedside, but she may still need support. Her daughter should arrive shortly and can assist.
+[WARD_NURSE]: I’ll get her settled and follow up with the interpreter service.
+[ED_NURSE]: Let me know if anything changes.
+

@@ -1,0 +1,12 @@
+[PHARMACIST]: Hi Dr. Lee, I wanted to speak with you about Mr. James Carter, who’s being discharged today. He’s being started on warfarin for atrial fibrillation post-op, and I’m organising his discharge medications and follow-up.
+[DOCTOR]: Thanks. What’s the current plan?
+[PHARMACIST]: He’s had two doses of warfarin so far—5 mg on Day 1 and 3 mg yesterday. His INR this morning was 1.6, so still subtherapeutic. I’ve charted 3 mg again today, and we’ll need to arrange ongoing INR monitoring through his GP or local pathology service.
+[DOCTOR]: Okay. Has the GP been contacted?
+[PHARMACIST]: Not yet. I was going to ask if you’d like to send a discharge summary with a note to the GP to monitor INR every 2–3 days initially, and adjust dosing as needed. I’ll also include a warfarin education leaflet and a yellow book for tracking.
+[DOCTOR]: Yes, please include that in the discharge paperwork. Has he been counselled?
+[PHARMACIST]: Yes, I’ve spoken with him about, Dietary interactions (especially vitamin K), Bleeding risks, Signs to report (e.g. bruising, blood in urine/stool), Avoiding NSAIDs and alcohol, He’s aware and has agreed to follow up with his GP.
+[DOCTOR]: Great. Any other meds to note?
+[PHARMACIST]: He’s also on, Metoprolol 25 mg BD, Atorvastatin 40 mg nocte, Paracetamol PRN, No known drug allergies.
+[DOCTOR]: Perfect. I’ll finalise the discharge summary and include the INR plan. Thanks for organising everything.
+[PHARMACIST]: No problem. I’ll send the warfarin pack with him and notify the GP clinic once he’s discharged.
+

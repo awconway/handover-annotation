@@ -1,0 +1,14 @@
+[OUTGOING_NURSE]: Hi, I’m handing over bed 7, Mr. David Tran, 62 years old. He’s been admitted with non-small cell lung cancer affecting the left upper lobe. He’s scheduled for a left pneumonectomy tomorrow morning.
+[INCOMING_NURSE]: Thanks. What’s happening currently?
+[OUTGOING_NURSE]: He’s stable at present. Pre-op workup is complete—he’s had a CT chest, PET scan, and pulmonary function tests. Anaesthetics and thoracics have reviewed him. He’s fasting from midnight and has been consented for surgery.
+[INCOMING_NURSE]: Any symptoms or concerns?
+[OUTGOING_NURSE]: He’s mildly anxious, understandably. No respiratory distress, oxygen saturations are 96% on room air. He’s been coughing occasionally but no haemoptysis. Pain is well controlled with regular paracetamol.
+[INCOMING_NURSE]: Any comorbidities?
+[OUTGOING_NURSE]: Yes—hypertension and type 2 diabetes, both well-managed. He’s on metformin and amlodipine. No known allergies.
+[INCOMING_NURSE]: Any communication or support needs?
+[OUTGOING_NURSE]: English is his second language—Vietnamese is his first. He understands most conversations but prefers simple explanations. Interpreter has been booked for the surgical consent and post-op education. His wife is his next of kin and has been very involved.
+[INCOMING_NURSE]: Any other prep needed?
+[OUTGOING_NURSE]: He’s had pre-op bloods, ECG, and group and hold done. TEDs are on, and he’s been educated on incentive spirometry. Surgical checklist is complete. Just needs pre-op IV fluids started at 6 am.
+[INCOMING_NURSE]: Got it. I’ll keep an eye on his anxiety and ensure he’s ready for theatre.
+[OUTGOING_NURSE]: Perfect. Let me know if anything changes overnight. All documentation is up to date.
+

@@ -1,0 +1,29 @@
+[INCOMING_NURSE]: Good Morning, Ellie. I’m the day nurse coming on my name is Rupert. I’ll just get handover from Sam, who’s finishing night shift. Is that okay?
+[PATIENT]: Sure.
+
+[OUTGOING_NURSE]: Thanks, Ellie. This is bed 4, The Patient is Ellie Aline, 23, under Dr. Willow.
+[INCOMING_NURSE]: Hi Ellie—could you tell us your full name, please? 
+[PATIENT]: Ellie Aline.
+[INCOMING_NURSE]: Your name is spelt wrong and I'll confirm your date of birth in the chart.
+
+[OUTGOING_NURSE]: Ellie was admitted for an infection of unknown origin—still under investigation. She has a Background of chronic kidney disease.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: She’s been reporting severe pain; she’s on ongoing pain management. She’s ambulant and self-caring on the ward.
+[INCOMING_NURSE]: Ellie, how’s your pain feeling right now?
+[PATIENT]: Still pretty sore, especially when I move.
+[INCOMING_NURSE]: Okay, we’ll review what you’ve had and top up as appropriate.
+
+[OUTGOING_NURSE]: She hasn’t been seen by the medical team yet today. Ellie is asking about a weekend leave pass if the team agrees.
+[PATIENT]: Yes, if it’s safe, I’d like to go out for a few hours over the weekend.
+[INCOMING_NURSE]: I’ll raise that with Dr. Willow’s team once they review you.
+
+[OUTGOING_NURSE]: Obs-wise, she’s been afebrile on my shift and otherwise stable.
+[INCOMING_NURSE]: Great. I’ll recheck your vitals after handover and monitor while we’re investigating the source of infection.
+
+[OUTGOING_NURSE]: I think that everything is up to date.
+[INCOMING_NURSE]: So the plan is to continue pain management, encourage safe mobilisation, chase the team for review and investigation plan, and discuss the leave pass request with them.
+[PATIENT]: Sounds good. Thank you.
+
+[OUTGOING_NURSE]: Anything you need before I head off, Ellie?
+[PATIENT]: I’m okay for now.
+[INCOMING_NURSE]: I’ll be back shortly to check your observations and pain meds.

@@ -1,0 +1,20 @@
+[INCOMING_NURSE]: Good Morning. I’ll take over from here—shall we do a bedside handover?
+[OUTGOING_NURSE]: Yes, thanks. Hi, Mr Mendes—Ranjiv—this is Priya, she’ll be looking after you now.
+[INCOMING_NURSE]: Hi, Ranjiv. Can you confirm your full name for me?
+[PATIENT]: Ranjiv Mendes.
+[INCOMING_NURSE]: Thank you. Your IV cannula was put in today And I’ve checked your ID band—details match. We’ll talk through your care now.
+
+[OUTGOING_NURSE]: Bed 8, Ranjiv Mendes, 77 years old. He’s a new admission—arrived about an hour ago with arrhythmia and chest pain. He also reported nausea and extreme tiredness on arrival.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: He was given an antiemetic with good effect—the nausea has settled. We’ve taken bloods and he’s had an echocardiogram; we’re awaiting results for the team to review. Otherwise, his observations are stable.
+[INCOMING_NURSE]: Great. Ranjiv, how are you feeling right now?
+[PATIENT]: Tired, but the nausea’s much better.
+[INCOMING_NURSE]: Good to hear. Any new symptoms, please let me know straight away.
+[INCOMING_NURSE]: Anything else outstanding?
+[OUTGOING_NURSE]: That’s all for him at the moment—just monitoring and waiting on results.
+[INCOMING_NURSE]: Perfect. I’ll continue regular obs, keep you comfortable, and I’ll update you once the results are back. If your chest pain or palpitations return, please press the call bell.
+[PATIENT]: Okay.
+[INCOMING_NURSE]: Do you need anything before we go?
+[PATIENT]: No, I’m fine, thanks.
+[OUTGOING_NURSE]: Thanks, Ranjiv. I’ll head off. Priya’s got you now.
+[INCOMING_NURSE]: I’ll be back shortly to re-check your observations.

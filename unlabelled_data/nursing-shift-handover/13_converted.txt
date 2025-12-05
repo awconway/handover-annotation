@@ -1,0 +1,21 @@
+[OUTGOING_NURSE]: Hi, Wendell. This is Sam, the incoming nurse for day shift. We’ll do a quick bedside handover if that’s okay.
+[INCOMING_NURSE]: Hi, Wendell. I’ll just check your ID band while Jack talks us through things.
+[OUTGOING_NURSE]: Bed 3, is Wendell Mario Fleming, who is 41 years old, under Dr. Smith.
+[OUTGOING_NURSE]: He came in with liver failure for investigation, and has a background of type 2 diabetes.
+[INCOMING_NURSE]: Are his blood sugars in range?
+[OUTGOING_NURSE]: Yes, He’s still for bloods, and for a liver biopsy. CT and MRI are to be arranged as part of the plan.
+[INCOMING_NURSE]: Do you think they will get done today? if they are not too busy.
+[OUTGOING_NURSE]: Should do, He’s a bit jaundice and He has been vomiting during my shift; I gave him some antiemetics with good effect.
+[INCOMING_NURSE]: How are you feeling now, Wendell?
+[PATIENT]: Better than before. The nausea settled after the medication you gave me.
+[OUTGOING_NURSE]: He was seen by the team today. They started IV fluids, running at 100 mls per hour.
+[INCOMING_NURSE]: When was the cannula put in? or Any issues with the cannula?
+[OUTGOING_NURSE]: It was put in yesterday, He’s very difficult to cannulate, but the current line is patent and secure.
+[INCOMING_NURSE]: Okay, I’ll keep a close eye on it.
+[OUTGOING_NURSE]: His obs have all been stable, and he’s self-caring and ambulant.
+[INCOMING_NURSE]: Great. Wendell, if you feel nauseated again or dizzy when you’re up and about, please press the call bell.
+[PATIENT]: Will do.
+[INCOMING_NURSE]: I’ll follow up the bloods, check with radiology regarding CT/MRI timing, continue IV fluids at 100 mls/hr, monitor for nausea, and keep observing his vitals.
+[OUTGOING_NURSE]: Wendell, anything you want to add before I head off?
+[PATIENT]: No, that’s all. Thanks.
+[INCOMING_NURSE]: Thanks, Jack. I’ll be back shortly, Wendell.

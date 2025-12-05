@@ -1,0 +1,18 @@
+[INCOMING_NURSE]: Good Morning, Kate. I’m the day nurse taking over, my name is Mildred. Is it okay if we do your bedside handover with you?
+[PATIENT]: Yes, that’s fine.
+[OUTGOING_NURSE]:  Bed 7. This is Kate Orange, who is 41 years old, under Dr. Lee. She came in after a car accident with a skull fracture and is now one week post brain surgery. She’s much better.
+[INCOMING_NURSE]: Thanks. Any current concerns?
+[OUTGOING_NURSE]: her Head is not swollen, and there are no signs of any bleeding, and the surgical site is healing normally, which is good. Her Observations have been stable.
+[INCOMING_NURSE]: Any headache, dizziness, or nausea today?
+[PATIENT]: No, I feel okay.
+[OUTGOING_NURSE]: Antibiotics were IV yesterday; they’ve now been switched to oral and she’s continuing on orals today.
+[INCOMING_NURSE]: oral antibiotics are due 1000. How’s her mobility?
+[OUTGOING_NURSE]: She’s ambulant, short distances only around the ward. Self-caring with very minimal assistance.
+[INCOMING_NURSE]: Diet and fluids?
+[OUTGOING_NURSE]: General diet, tolerating well, normal fluids.
+[INCOMING_NURSE]: So the Plan for today is to continue oral antibiotics, continue neuro observations, and do the wound/skin checks. Anything else outstanding?
+[OUTGOING_NURSE]: No other problems noted.
+[INCOMING_NURSE]: Kate, is there anything you need right now or anything you’d like us to know?
+[PATIENT]: No, I’m fine. Thank you.
+[INCOMING_NURSE]: Perfect. We’ll check on you regularly and help with walks. Use your call bell if you need us.
+[OUTGOING_NURSE]: All yours. Thanks, Kate.

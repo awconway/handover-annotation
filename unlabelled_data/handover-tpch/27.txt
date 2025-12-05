@@ -1,0 +1,11 @@
+[NURSE]: Hi Dr. Lee, I need you to review Ms. Margaret Doyle in bed 7. She’s an 82-year-old patient who had an unwitnessed fall in her room about 45 minutes ago. She hit her head on the bedside cabinet and has a visible occipital hematoma.
+[DOCTOR]: Thanks. What’s her current condition?
+[NURSE]: She’s alert but drowsy. Her GCS is 14—she opens eyes to voice, is confused, and obeys commands. She’s complaining of a headache and mild nausea. No vomiting so far.
+[DOCTOR]: Any neuro obs or vitals?
+[NURSE]: Yes, we’ve started ½-hourly neuro obs. Her latest set: GCS: 14 ,BP: 132/78, HR: 88 bpm, RR: 18, Temp: 36.8°C, SpO?: 97% on room air, Q-ADDS score: 4 (GCS + nausea + age)
+[DOCTOR]: Any bloods done?
+[NURSE]: Yes, we drew bloods post-fall. FBC shows: Hb: 122, WCC: 8.6, Platelets: 210, INR: 1.1 Creatinine: 75, She’s not on anticoagulants.
+[DOCTOR]: Any other injuries?
+[NURSE]: No other obvious trauma. No limb pain or deformity. She mobilised with assistance post-fall but was unsteady.
+[DOCTOR]: Okay. We’ll need a CT head to rule out intracranial bleeding. Can you keep neuro obs going and notify me of any GCS drop or vomiting?
+[NURSE]: I’ll book the CT and continue neuro obs. I’ll escalate if her Q-ADDS increases or if she becomes more confused

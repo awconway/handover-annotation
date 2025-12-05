@@ -1,0 +1,16 @@
+[OUTGOING_NURSE]: Good Morning. This is Bed 1, Chris McDonald, 21 years old, under Dr Kenzie. He was admitted with an infection in his lungs following a swimming accident.
+[INCOMING_NURSE]: Hi Chris, I’m going to be your nurse today my name is Adam. Is it okay if we do your bedside handover?
+[PATIENT]: Sure.
+[INCOMING_NURSE]: Could you tell me your full name, please?
+[PATIENT]: Chris McDonald.
+[INCOMING_NURSE]: Thanks, Chris. I’ll just confirm your date of birth on your ID band, check your IV cannula and that the medications have been given.
+[OUTGOING_NURSE]: He’s currently on oxygen at 4 litres via simple face mask. No changes overnight; observations have remained stable his HR is 82 and BP of 124/76.
+[INCOMING_NURSE]: Chris, how’s your breathing feeling this morning—any chest pain or increased shortness of breath?
+[PATIENT]: About the same. No chest pain.
+[OUTGOING_NURSE]: Okay. He’s stable on the 4 litres of oxygen via a mask. There are no new orders from the team, Just regular pain relief, there are no other changes to report overnight. 
+[INCOMING_NURSE]: Okay. We’ll let Dr Kenzie’s team know if anything changes.
+[PATIENT]: Okay, thank you.
+[INCOMING_NURSE]: Is there anything you need right now—water, repositioning, or anything else?
+[PATIENT]: I’m fine, thanks.
+[OUTGOING_NURSE]: All right, I’ll hand over care now. Thanks, Chris.
+[INCOMING_NURSE]: I’ll be back shortly to recheck your obs and make sure you’re comfortable.

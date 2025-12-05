@@ -1,0 +1,14 @@
+[OUTGOING ED NURSE]: Hi, i'm handing over bed 4, Ms. Aisha Patel, 34 years old. She’s presented to ED with acute gastroenteritis—onset was about 24 hours ago.
+[INCOMING WARD NURSE]: Thanks. What are her main symptoms?
+[OUTGOING ED NURSE]: Profuse watery diarrhoea—about 6 episodes in the last 12 hours—and 3 episodes of vomiting. No blood in stool. She’s had mild abdominal cramping and reports feeling dizzy when standing.
+[INCOMING WARD NURSE]: What’s been done in ED?
+[OUTGOING ED NURSE]: She’s been rehydrated with 2 litres of IV normal saline. Bloods were taken—U&Es show mild hypokalaemia, which we’ve started correcting. Stool sample has been sent. She’s afebrile, and vitals are now stable—BP 108/70, HR 92, afebrile, RR 18, SpO? 99% on room air.
+[INCOMING WARD NURSE]: Any medications?
+[OUTGOING ED NURSE]: Ondansetron 4 mg IV given with good effect. She’s tolerating sips of water now. No antibiotics charted at this stage—awaiting stool results. Electrolyte replacement is charted.
+[INCOMING WARD NURSE]: Any comorbidities or allergies?
+[OUTGOING ED NURSE]: No known medical history. No regular medications. NKDA.
+[INCOMING WARD NURSE]: Any communication or social needs?
+[OUTGOING ED NURSE]: English is her first language. Lives alone, works as a teacher. She’s a bit embarrassed about the symptoms but otherwise coping well. Prefers a female nurse if possible.
+[INCOMING WAR DNURSE]: Got it. I’ll continue fluids, monitor output, and keep an eye on her electrolytes.
+[OUTGOING ED NURSE]: Perfect. Let me know if she deteriorates or becomes febrile. All documentation is up to date, including fluid balance and stool chart.
+

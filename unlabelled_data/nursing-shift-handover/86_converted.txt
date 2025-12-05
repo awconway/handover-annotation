@@ -1,0 +1,21 @@
+[INCOMING_NURSE]: Good Morning, Renata. I’m taking over your care for the day my name is Fred. Do you mind if we do your bedside handover with Jack?
+[OUTGOING_NURSE]: Hi, Renata. Could you please confirm your full name?
+[PATIENT]: Renata Cola.
+[OUTGOING_NURSE]: Thanks. We’re in room 1, bed 5. Renata is 33 years old and under Dr. Willow.
+[OUTGOING_NURSE]: She was admitted with an acute kidney injury of unknown cause.Her Workup is ongoing. She’s still awaiting a renal ultrasound, and she’s booked for a renal biopsy tomorrow.
+[INCOMING_NURSE]: Has consent been completed?
+[OUTGOING_NURSE]: Not yet. The consent still needs to be signed. The doctors have already discussed the procedure with her.
+[INCOMING_NURSE]: Okay, we’ll make sure that’s sorted with the team today.
+[OUTGOING_NURSE]: She's For the biopsy tomorrow,and needs to fast from midnight. All the regular medications can be given with sips of water.
+[PATIENT]: Okay, she needs to fast from midnight.
+[OUTGOING_NURSE]: She’s tolerating diet and fluids well for now and is on a strict fluid balance chart.
+[INCOMING_NURSE]: I’ll keep the input/output chart up to date.
+[OUTGOING_NURSE]: She also needs a new cannula today.
+[INCOMING_NURSE]: I’ll arrange a new IV cannula after handover.
+[OUTGOING_NURSE]: She’s self-caring and mobilises independently around the ward. No other issues to note at the moment.
+[INCOMING_NURSE]: Renata, do you have any questions or concerns right now?
+[PATIENT]: No, I’m okay. Just let me know when the ultrasound is.
+[INCOMING_NURSE]: I’ll follow up on the ultrasound timing and update you. We’ll also remind you this evening about fasting from midnight.
+[OUTGOING_NURSE]: That’s everything from me. I'm off to the shops. 
+[INCOMING_NURSE]: Thanks. I’ll get started on the cannula and check on the consent and scan time. Press your call bell if you need anything, Renata.
+[PATIENT]: Thank you.

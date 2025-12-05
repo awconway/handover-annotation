@@ -1,0 +1,13 @@
+[OUTGOING_NURSE]: Hi,i'm handing over bed 6, Mr. Robert Mason, 76 years old. He’s in with an acute exacerbation of congestive cardiac failure.
+[INCOMING_NURSE]: Okay, what’s his current status?
+[OUTGOING_NURSE]: He’s still a bit fluid overloaded—short of breath on minimal exertion and needing 2 L of oxygen to keep sats above 92%. He’s had IV frusemide 40 mg this morning and passed about 600 mL. Chest sounds are crackly bilaterally.
+[INCOMING_NURSE]: How are his obs?
+[OUTGOING_NURSE]: Vitals are stable—BP 110/68, HR 88, afebrile, RR 20. He’s alert and oriented, but a bit anxious. No chest pain reported.
+[INCOMING_NURSE]: Any background?
+[OUTGOING_NURSE]: Yes—he has ischaemic cardiomyopathy with an EF of 30%. Also has type 2 diabetes and CKD stage 3. Usual meds include carvedilol, perindopril, spironolactone, and frusemide. No known allergies.
+[INCOMING_NURSE]: How’s his fluid balance?
+[OUTGOING_NURSE]: Positive overnight but trending down. He’s on strict fluid balance and daily weights. We’ve started a fluid restriction—1.5 L per 24 hours.
+[INCOMING_NURSE]: Any support needs?
+[OUTGOING_NURSE]: English is his first language. His wife is his main support and has been in today. He’s a bit anxious about his breathing but very cooperative.
+[INCOMING_NURSE]: Got it. I’ll continue monitoring his fluid status and oxygen needs.
+[OUTGOING_NURSE]: Perfect. Let me know if his respiratory status worsens or if he doesn’t respond to diuresis. All documentation is up to date, including fluid balance and med chart.

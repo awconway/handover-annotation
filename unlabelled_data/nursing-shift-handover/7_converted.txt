@@ -1,0 +1,11 @@
+[INCOMING_NURSE]: Good Morning, Maria. I’m Alex, I’ll be looking after you today. I’m just getting handover from Sam, the night nurse.
+[OUTGOING_NURSE]: Hi Maria, hi Alex. This is bed five, Maria Sanner, who is 88 years old, under Dr. Garcia.
+[INCOMING_NURSE]: Hi Maria.
+[PATIENT]: Hello.
+[OUTGOING_NURSE]: Maria came in with high blood pressure it was 180/90. She has dementia and we’re just waiting for a nursing home placement. 
+[INCOMING_NURSE]: Thanks, Sam. No other updates or concerns?
+[OUTGOING_NURSE]: No, but she needs help walking to the bathroom as she forgets where it is.
+[INCOMING_NURSE]: Okay. Maria, we’ll keep an eye on your blood pressure and make sure you’re safe and comfortable while we wait for your placement. Is there anything you need right now?
+[PATIENT]: No, thank you.
+[INCOMING_NURSE]: Great. The call bell’s right here if you need us. I’ll check your chart and pop back shortly.
+[OUTGOING_NURSE]: Thanks, Maria. I’m heading off now. Take care.

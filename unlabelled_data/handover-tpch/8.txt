@@ -1,0 +1,14 @@
+[OUTGOING_NURSE]:
+Hi, I’m heading off for my break now. Can I hand over Mrs. Margaret Ellis in bed 3 to you?
+[INCOMING_NURSE]: Sure, go ahead.
+[OUTGOING_NURSE]: She’s 87, came in from Rosewood Nursing Home after a fall with head strike. There’s a small occipital hematoma, no loss of consciousness reported, but she’s been drowsy and mildly confused. Vitals are stable. GCS is 14.
+[INCOMING_NURSE]: Okay. Any advanced care planning?
+[OUTGOING_NURSE]: Yes, she has a DNR order from the nursing home. Family is aware and on their way in—we’re waiting for them before making any escalation decisions.
+[INCOMING_NURSE]: Any communication needs?
+[OUTGOING_NURSE]: Yes, she’s deaf. No hearing aids with her today. She responds best to written notes and gestures. I’ve left a whiteboard and marker at the bedside.
+[INCOMING_NURSE]: Thanks. Anything else I should know?
+[OUTGOING_NURSE]: Yes, she’s just been found incontinent of urine. She needs to be cleaned up—I’ve gathered the continence supplies but haven’t had a chance to assist her yet. She’s calm and cooperative.
+[INCOMING_NURSE]: No worries, I’ll take care of that now.
+[OUTGOING_NURSE]: Perfect. Let me know if anything changes. I’ll be back in 30 minutes.
+
+

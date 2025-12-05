@@ -1,0 +1,16 @@
+[OUTGOING_NURSE]: Hi, I'm  handing over bed 14, this is Ms. Emily Dawson, 67 years old. Emily, this is Nurse Priya, who’ll be looking after you this evening.
+[INCOMING_NURSE]: Hi Emily, nice to meet you. I’ll be taking over your care now. How are you feeling?
+[PATIENT]: A bit sore, but okay. Just tired.
+[OUTGOING_NURSE]: Emily came in this morning after a fall at home—she tripped over a rug and landed on her outstretched left arm. X-rays confirmed a closed fracture of the left distal radius. It’s been immobilised in a backslab, and ortho has reviewed—she’s for conservative management at this stage.
+[INCOMING_NURSE]: Got it. Any pain relief?
+[OUTGOING_NURSE]: Yes—she’s had regular paracetamol and one dose of oxycodone 5 mg earlier this afternoon. Pain is currently 3 out of 10, and she’s tolerating it well. PRNs are charted.
+[INCOMING_NURSE]: Any IV access?
+[OUTGOING_NURSE]: No IV needed—she’s on oral meds only. Vitals have been stable all shift—BP 132/76, HR 78, afebrile, SpO? 98% on room air.
+[INCOMING_NURSE]: Emily, are you managing okay with eating, drinking, and getting around?
+[PATIENT]: Yes, I can manage with my right hand. I just need help getting to the bathroom.
+[OUTGOING_NURSE]: She’s mobilising with supervision. No dizziness or unsteadiness, but we’ve kept her on assisted walks just in case. OT and physio have been referred for tomorrow.
+[INCOMING_NURSE]: Any allergies or other medical issues?
+[OUTGOING_NURSE]: No known drug allergies. Medical history includes hypertension and osteoarthritis. She’s on amlodipine and takes Panadol Osteo regularly at home.
+[INCOMING_NURSE]: Thanks. Emily, I’ll check in on your pain and help you settle in for the evening. If you need anything, just press the call bell.
+[PATIENT]: Thank you both. I appreciate it.
+[OUTGOING_NURSE]: All documentation is up to date, including neurovascular checks and pain scores. Let me know if anything changes.

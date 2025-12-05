@@ -1,0 +1,29 @@
+[INCOMING_NURSE]: Hi Natalia, I’m Sam, I’ll be looking after you today. I’m just getting handover from Mia, is that okay?
+[PATIENT]: Sure.
+
+[OUTGOING_NURSE]: Thanks, Natalia. So, Bed 1 is Natalia Torres, who is 45yrs, under Dr. Cox. Diagnosis and her full history are in the chart.
+[INCOMING_NURSE]: Okay.
+
+[OUTGOING_NURSE]: She’s still febrile, temps up to 39.3, ongoing for almost two weeks. Antipyretics have been given, but the fever’s persisted.
+[INCOMING_NURSE]: Okay. Natalia, are you feeling shivery or headachy right now?
+[PATIENT]: I'm just hot and tired.
+
+[OUTGOING_NURSE]: She’s been coughing up small amounts of blood and having some difficulty breathing.
+[INCOMING_NURSE]: Natalia, has the coughing or breathlessness changed overnight?
+[PATIENT]: No, about the same. Just little streaks when I cough.
+
+[OUTGOING_NURSE]: Otherwise she’s self-caring and ambulant. No other changes—she’s still the same as yesterday.
+[INCOMING_NURSE]: Okay. Any new meds or interventions overnight?
+[OUTGOING_NURSE]: No new orders overnight aside from regular antipyretics as charted.
+
+[INCOMING_NURSE]: Natalia, are you comfortable walking to the bathroom yourself, or would you like us to walk with you?
+[PATIENT]: I can walk, but I’d like someone nearby because of the breathing.
+[INCOMING_NURSE]: No problem, we’ll assist. Just ring me when you need to go to the toilet.
+
+[INCOMING_NURSE]: What is the plan for Natalia?
+[OUTGOING_NURSE]: Continue antipyretics as ordered, monitor fever and respiratory status. Escalate to the medical team if the haemoptysis increases or her breathing becomes worse.
+[INCOMING_NURSE]: I’ll keep close eye on observations and let Dr. Cox’s team know of any changes.
+
+[INCOMING_NURSE]: Natalia, is there anything you need right now—water, fan, or a cool cloth?
+[PATIENT]: A cool cloth would be nice.
+[INCOMING_NURSE]: I’ll bring that straight in. Thanks, Mia.

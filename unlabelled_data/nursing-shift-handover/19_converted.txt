@@ -1,0 +1,20 @@
+[INCOMING_NURSE]: Good Morning, Scott. I’m Alex, I’ll be looking after you today. I’m just getting bedside handover from Mia, is that okay?
+[PATIENT]: Sure.
+[INCOMING_NURSE]: I’ll just check your ID band. Iv Cannula and heparin infusion, Thank you.
+
+[OUTGOING_NURSE]: This is Scott Rogers, 66 years old, In Bed 2 and is under Dr Dalianis. He came in with chest pain and coronary artery narrowing. He’s for a procedure later today.
+[INCOMING_NURSE]: Is he prepped?
+[OUTGOING_NURSE]: Yes—pre‑op checklist is completed and filed at the front of the chart. An ECG has been done and looks normal. He’s in a gown and ready to go.
+[INCOMING_NURSE]: Fasting status?
+[OUTGOING_NURSE]: Fasted from midnight for the procedure.
+[INCOMING_NURSE]: And the planned procedure?
+[OUTGOING_NURSE]: Depending on the blockage, they may do a stent or balloon angioplasty; CABG is also on the consent. The consent form is in the chart.
+[INCOMING_NURSE]: Observations?
+[OUTGOING_NURSE]: All observations are stable.
+[INCOMING_NURSE]: Great, we’ll keep you fasted and ready, Scott, and we’ll send you when they call for you.
+
+[INCOMING_NURSE]: Scott, do you need anything for comfort right now?
+[PATIENT]: I’m okay, thanks.
+[INCOMING_NURSE]: All right. I’ll keep an eye on your observations and paperwork. Mia, anything else?
+[OUTGOING_NURSE]: That’s all for him.
+[INCOMING_NURSE]: Thanks, Mia. Scott, press the call bell if you need us. I’ll be back shortly.

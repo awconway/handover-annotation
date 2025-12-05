@@ -1,0 +1,14 @@
+[ED Nurse]: Hi, I’m handing over Mr. Jack Thompson, a 45-year-old male who presented to ED following a chainsaw injury to his left lower leg sustained while working in forestry. The injury occurred approximately 90 minutes ago on-site.
+[Paramedic]: Thanks. What’s his current condition?
+[ED Nurse]: He’s alert and orientated, GCS 15. He’s in moderate pain but stable. The wound is deep, located on the anterolateral aspect of the left lower leg, with visible muscle and tissue damage. No active arterial bleeding, but there was significant blood loss at the scene.
+[Paramedic]: Any neurovascular compromise?
+[ED Nurse]:
+We’ve done neurovascular obs: Sensation: Intact distal to the wound, Motor: Able to move toes, reduced strength in dorsiflexion, Capillary refill: less than 2 seconds, Pedal pulses: Present but slightly diminished compared to the right, Skin temp: Warm distally
+We’re monitoring closely for compartment syndrome.
+[Paramedic]: Any IV access?
+[ED Nurse]: Yes, he has a 16G cannula in the right antecubital fossa, patent. He’s received 1 L Normal Saline IV and IV morphine 5 mg for pain relief.
+[Paramedic]: Any other treatment so far?
+[ED Nurse]: The wound has been irrigated and dressed with sterile gauze. Tetanus status is unknown—awaiting confirmation. Bloods have been taken including FBC, coagulation, and crossmatch. He’s Nil by mouth and awaiting surgical review.
+[Paramedic]: Any other concerns?
+[ED Nurse]: He’s a smoker, no known drug allergies, and has no significant medical history. He’s anxious but cooperative. We’ve contacted his workplace and next of kin.
+[Paramedic]: Thanks. I’ll ensure safe transfer and continue monitoring neurovascular status en route

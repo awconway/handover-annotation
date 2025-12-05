@@ -1,0 +1,13 @@
+[ED Nurse]: Hi, I’m handing over Mr. Luke Harris, a 42-year-old male who presented to ED following a deliberate overdose. He reportedly ingested approximately 50 Panadol tablets, 20 Serepax, and a bottle of whisky at home after an argument with his partner.
+[Paramedic]: Thanks. What’s his current condition?
+[ED Nurse]: He arrived via ambulance, drowsy but rousable. He’s currently confused, slurred speech, and intermittently agitated. He’s on 2 L/min oxygen via nasal prongs, but his SpO? is sitting around 92%. He’s a smoker, and his respiratory rate is slightly depressed at 10–12 breaths per minute.
+[Paramedic]: Any vitals or Q-ADDS score?
+[ED Nurse]: Yes, latest observations: BP: 118/76, HR: 88 bpm, RR: 12, Temp: 36.5°C, SpO?: 92% on 2 L O?, GCS: 13 and a Q-ADDS score: 6 (due to RR, SpO?, confusion, and overdose)
+[Paramedic]: Any IV access or treatment started?
+[ED Nurse]: Yes, he has a 20G cannula in his right forearm, patent. We’ve started IV fluids (Normal Saline) and drawn bloods for paracetamol levels, LFTs, and coagulation profile. Activated charcoal was not given due to delayed presentation and reduced consciousness.
+[Paramedic]: Any social concerns?
+[ED Nurse]: Yes, he lives with his partner and has been in a verbal altercation prior to the overdose. He has no known mental health diagnosis, but this appears to be a first-time overdose. He has no children at home but reports high alcohol use and smoking daily.
+[Paramedic]: Any plans for transfer?
+[ED Nurse]: Yes, he’s being transferred to the medical ward for monitoring and possible N-acetylcysteine infusion pending paracetamol levels. Mental health team will review once medically stable.
+[Paramedic]: Okay, I’ll update the receiving team and ensure safe transfer.
+

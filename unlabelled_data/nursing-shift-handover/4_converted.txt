@@ -1,0 +1,15 @@
+[INCOMING_NURSE]: Good morning, Mike. I’m Daniel, I will be taking over your care now. Is it okay if we do your bedside handover with my colleague?
+[OUTGOING_NURSE]: Hi Mike, we’ll keep this brief. Could you confirm your full name for us?
+[PATIENT]: Mike Hanlin.
+[INCOMING_NURSE]: Thanks, His ID band matches. We’ll also need to verify if you have any allergies in your chart.
+
+[OUTGOING_NURSE]: So, Mike is 48 years old, admitted for investigation of chest pain—query heartburn versus heart attack. He’s on regular nitrates as charted. Observations have been stable. He’s for repeat bloods tomorrow. An echocardiogram still needs to be arranged. Plan is to keep monitoring for now.
+[INCOMING_NURSE]: Just to confirm he's on regular nitrates, his obs are stable, and he needs repeat bloods tomorrow, an  echo needs to be organized, and we will continue monitoring him.
+
+[INCOMING_NURSE]: Mike, if you feel any chest pain, pressure, shortness of breath, or anything changes, please press your call bell straight away.
+[PATIENT]: Okay.
+[OUTGOING_NURSE]: The Call bell is within reach. 
+[INCOMING_NURSE]: I’ll follow up with the team to confirm the echo booking and timing for the repeat bloods. I’ll also keep your observations going. Anything you need right now, Mike?
+[PATIENT]: No, I’m fine, thanks.
+[OUTGOING_NURSE]: All right, I’m heading off. Thanks, Mike.
+[INCOMING_NURSE]: I’ll be back shortly to check on you again.

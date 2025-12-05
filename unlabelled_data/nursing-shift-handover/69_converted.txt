@@ -1,0 +1,17 @@
+[INCOMING_NURSE]: Good Morning, Lawrence. I’m Evie, taking over your care. I’ll just get a quick bedside handover from Jack, if that’s okay.
+[OUTGOING_NURSE]: Hi, Evie. This is Bed 8, Lawrence Wong, who is 56 years old, under Dr Lee. He came in with a severe headache. He’s on regular analgesia and his observations have been stable. QADDS of zero. 
+[INCOMING_NURSE]: Could you please confirm your full name and date of birth?
+[PATIENT]: Lawrence Wong, and 25 December 1968.
+[INCOMING_NURSE]: Thank you. Any allergies to medications?
+[PATIENT]: No, none that I know of.
+[OUTGOING_NURSE]: Overnight he reported a headache so  I gave him some Endone as charted, with good effect, there are no other issues noted.
+[INCOMING_NURSE]: Lawrence, how’s your head feeling now—any pain, nausea, or light sensitivity?
+[PATIENT]: It’s okay at the moment—no nausea or light sensitivity.
+[INCOMING_NURSE]: we will give you regular analgesia as charted.
+[OUTGOING_NURSE]: Yes the Panadol is due at 1330. His Obs remain stable.
+[INCOMING_NURSE]: Perfect. So the plans is we’ll continue regular analgesia, monitor your pain and observations, and let Dr Lee’s team know if anything changes. Lawrence, please buzz if the headache returns or gets worse.
+[PATIENT]: Will do. Thank you.
+[INCOMING_NURSE]: Anything else before Jack heads off?
+[PATIENT]: I’m fine, thanks.
+[OUTGOING_NURSE]: All right, I’m off. Thanks, Lawrence.
+[INCOMING_NURSE]: Thanks, Jack. I’ll be back shortly, Lawrence.

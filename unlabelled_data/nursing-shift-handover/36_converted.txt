@@ -1,0 +1,30 @@
+[OUTGOING_NURSE]: Good Morning. Let’s do bedside handover for Bed 2.
+[OUTGOING_NURSE]: Hi Rob, this is Sam, the day nurse taking over from me.
+[INCOMING_NURSE]: Hi Rob. I’ll just do a quick handover with Jess, and then we’ll get you sorted for going home.
+[INCOMING_NURSE]: Could you confirm your full name for me?
+[PATIENT]: Rob Mahi.
+[INCOMING_NURSE]: Thanks, Rob.
+
+[OUTGOING_NURSE]: This is Bed 2, Rob Mahi, 62 years old, under Dr Jamie.
+[OUTGOING_NURSE]: He came in for an allergy test and asthma experiments, and he’s also here for physio input.
+[OUTGOING_NURSE]: His Past history is asthma and multiple allergies.
+[OUTGOING_NURSE]: He developed a rash from the allergy test yesterday and wasn’t happy about that.
+[INCOMING_NURSE]: Rob, are you still itchy or uncomfortable now?
+[PATIENT]: It’s a lot better today, just a bit sensitive.
+[INCOMING_NURSE]: Okay, we can get you some soothing cream if needed.
+
+[OUTGOING_NURSE]: Physiotherapy reviewed him and they recommended an adjustment to his asthma medications.
+[OUTGOING_NURSE]: He’s for discharge today. The discharge paperwork is completed; he’s just waiting for his medications from the pharmacy.
+[INCOMING_NURSE]: Great. Do we know what time pharmacy will send them up?
+[OUTGOING_NURSE]: They’ve been notified, so it should be soon. Everything else for the discharge is done.
+
+[INCOMING_NURSE]: Rob, once the tablets arrive, I’ll go through them with you and the medication changes physio suggested. How are you getting home?
+[PATIENT]: Okay Sounds good. I’ll call a taxi once the medications are here.
+[INCOMING_NURSE]: Any breathing issues at the moment? Wheeze or shortness of breath?
+[PATIENT]: No, I’m okay now.
+
+[INCOMING_NURSE]: Anything else outstanding, Jess?
+[OUTGOING_NURSE]: IV cannulas have been removed, we are Just waiting on the meds from pharmacy and he’s clear to leave.
+[INCOMING_NURSE]: Perfect. Rob, do you have any questions before Jess heads off?
+[PATIENT]: No, just keen to get my tablets and go.
+[INCOMING_NURSE]: We’ll chase pharmacy now. Thanks, Jess.

@@ -1,0 +1,19 @@
+[Outgoing Nurse]: Hi, I’m handing over Mr. Alan Fraser in bed 9. He’s a 74-year-old patient with acute respiratory failure secondary to COPD exacerbation. He was started on BiPAP overnight due to worsening respiratory distress and low oxygen saturations.
+[Incoming Nurse]: Thanks. What’s his current respiratory status?
+[Outgoing Nurse]: He’s currently on BiPAP settings: IPAP 14, EPAP 6, FiO? 40%. He’s tolerating the mask well and his SpO? is now 92%, up from 86% earlier. Respiratory rate is 24, and he’s less distressed than before.
+[Incoming Nurse]: Any recent observations?
+[Outgoing Nurse]: Yes, latest obs: BP: 138/82, HR: 88 bpm, RR: 24, Temp: 36.9°C, SpO?: 92% on BiPAP and a Q-ADDS score: 6 (due to respiratory rate, oxygen requirement, and BiPAP support)
+[Incoming Nurse]: Any IV access?
+[Outgoing Nurse]: Yes, he has a 20G cannula in his left forearm, patent and flushed. No IV fluids running currently—he’s on a fluid restriction chart.
+[Incoming Nurse]: What’s his fluid balance?
+[Outgoing Nurse]: Input (last 24h): ~1100 mL, Output: ~800 mL urine, total balance: +300 mL. He’s been drinking small amounts with assistance.
+[Incoming Nurse]: Any bloods?
+[Outgoing Nurse]: Yes, FBC taken this morning: Hb: 124, WCC: 9.2, Platelets: 210, U&E: within normal limit. No signs of infection or electrolyte imbalance.
+[Incoming Nurse]: What about nutrition?
+[Outgoing Nurse] He’s on a soft diet, tolerating small meals. Food chart is in progress—ate ~50% of breakfast and sipped fluids. Needs encouragement and supervision due to fatigue.
+[Incoming Nurse]: Any pressure area concerns?
+[Outgoing Nurse]: No current injuries. He’s on a pressure-relieving mattress and being repositioned every 2 hours. Skin checks are ongoing—no redness or breakdown noted.
+[Incoming Nurse]: Hygiene needs?
+[Outgoing Nurse]: He had a full wash this morning, including oral care. He’s continent of urine and bowels—opened bowels yesterday, formed stool.
+[Incoming Nurse]: Thanks. I’ll continue BiPAP monitoring, pressure care, and update the food and fluid charts.
+

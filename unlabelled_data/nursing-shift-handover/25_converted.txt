@@ -1,0 +1,21 @@
+[INCOMING_NURSE]: Hi Raquel, I’m the day nurse coming on. I’m just going to get handover from my colleague, is that okay?
+[PATIENT]: Yes, that’s fine.
+[OUTGOING_NURSE]: Thanks, Raquel. So, this is Raquel Suarez Cayetano in Bed 1, under Dr. Mills. She’s a 62-year-old new admission, arrived about three hours ago.
+[INCOMING_NURSE]: Hi Raquel, we will include you in the handover as we go.
+[OUTGOING_NURSE]: Her presenting complaints are chest pain, tiredness, dizziness, and low mood/depression. She also reports pain every time she eats, though it doesn’t seem clearly related to her digestion. She’s here for further investigation.
+[INCOMING_NURSE]: Okay. what is her past history?
+[OUTGOING_NURSE]: Type 2 diabetes and obesity noted. No other history has been provided yet.
+[INCOMING_NURSE]: Are the Allergies documented?
+[OUTGOING_NURSE]: No not yet, we still need to confirm and chart them.
+[INCOMING_NURSE]: Raquel, do you have any medication or food allergies that you’re aware of?
+[PATIENT]: Not that I know of.
+[INCOMING_NURSE]: Thank you. We will double-check with you again soon.
+[INCOMING_NURSE]: Has there been any initial investigations or treatments started?
+[OUTGOING_NURSE]: She’s admitted for further investigation; ED notes indicate the symptom set as above. No additional details yet from medical team—awaiting plan from Dr. Mills’ team.
+[INCOMING_NURSE]: Raquel, are you having any chest pain right now?
+[PATIENT]: It comes and goes. It’s not too bad at the moment.
+[INCOMING_NURSE]: Thank you. We’ll keep checking in with you but let us know if you do have any pain.
+[OUTGOING_NURSE]: That’s all I have at this stage for Raquel—new admission, three hours in, awaiting further workup.
+[INCOMING_NURSE]: Thanks. Raquel, we’ll continue regular observations, keep you comfortable, and I’ll follow up with Dr. Mills’ team about the plan. Is there anything you need right now?
+[PATIENT]: No, I’m okay. Thank you.
+[INCOMING_NURSE]: Great. Call bell is within reach—please buzz if the chest pain worsens or you feel more dizzy.

@@ -1,0 +1,15 @@
+[INCOMING_NURSE]: Good morning, Mr. Ahmed. I’m Jack, and I’ll be your nurse for today. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Mr. Ahmed. This is the nurse taking over for the day. Could you please confirm your full name?
+[PATIENT]: Farid Ahmed.
+[OUTGOING_NURSE]: Thank you. This is Mr. Farid Ahmed in Bed 1, Room 6, aged 70, under Dr. Nguyen.
+[OUTGOING_NURSE]: Mr. Ahmed is Day 5 post-op from a Whipple’s procedure. He’s currently experiencing delayed gastric emptying and has a nasogastric tube in situ on free drainage. He’s nil by mouth and receiving IV fluids. He’s also on IV antibiotics for a suspected wound infection—swabs were taken yesterday and we’re awaiting results.
+[OUTGOING_NURSE]: Pain is being managed with regular oral analgesia. His abdominal drain output has increased slightly overnight which is documented and flagged with the surgical team. He’s been reviewed this morning and remains under close observation.
+[OUTGOING_NURSE]: He was assisted by physiotherapy yesterday afternoon for deep breathing exercises and mobilisation to the chair. He tolerated the session but reported mild dizziness on standing.
+[INCOMING_NURSE]: Mr. Ahmed, how are you feeling this morning? Any pain or nausea?
+[PATIENT]: A bit bloated and tired, but the pain’s okay.
+[OUTGOING_NURSE]: No vomiting overnight. NG output has been moderate. We’ve kept him upright as much as possible to help with gastric emptying. Physio is scheduled to return later today to continue mobilisation and respiratory support.
+[INCOMING_NURSE]: I’ll follow up with the physio team and surgical team regarding the drain output and NG management. Is there anything you need before we finish handover?
+[PATIENT]: No, I’m alright for now.
+[OUTGOING_NURSE]: Please use the call bell if you need anything. I’ll leave you in good hands.
+[INCOMING_NURSE]: I’ll be back shortly to check your observations and review your chart, Mr. Ahmed.
+

@@ -1,0 +1,25 @@
+[INCOMING_DOCTOR]: Good morning, Ms. Lopez. I’m Dr. Chen from City Surgical Unit. I’ll get handover from my colleague now, is that okay?
+[PATIENT]: Yes, that’s fine.
+[OUTGOING_DOCTOR]: This is bed 5, Maria Lopez, 46 years old, under Dr. Singh.
+She was admitted yesterday with acute right upper quadrant pain and nausea. An Ultrasound confirmed multiple gallstones with signs of cholecystitis. She’s being transferred for laparoscopic cholecystectomy.
+[OUTGOING_DOCTOR]: She’s hemodynamically stable. No signs of biliary obstruction. Her pain is controlled with regular analgesia. There have been no changes in her condition overnight. 
+[INCOMING_DOCTOR]: Hi Ms. Lopez, can you confirm your full name for me?
+[PATIENT]: Maria Lopez.
+[INCOMING_DOCTOR]: Thank you. I’ll also check your wristband. That matches.
+Are you experiencing any pain or discomfort right now?
+[PATIENT]: Just a little soreness, but it’s better than yesterday.
+[OUTGOING_DOCTOR]: Vital signs this morning is BP: 124/76, HR: 82 bpm, RR: 16, Temp: 37.2
+[INCOMING_DOCTOR]: Any allergies?
+[PATIENT]: None that I know of.
+[INCOMING_DOCTOR]: I’ll confirm that in the chart.
+What’s her current medication chart?
+[OUTGOING_DOCTOR]:
+She’s currently receiving: IV ceftriaxone 1g daily for suspected cholecystitis, IV metronidazole 500mg TDS, Paracetamol 1g QID orally, Ondansetron 4mg IV PRN for nausea, IV fluids: Normal saline at 100 mL/hr and has been NBM since admission
+[INCOMING_DOCTOR]: Any relevant past medical history?
+[OUTGOING_DOCTOR]: Yes: Hypertension (on amlodipine 5mg daily), No diabetes, No previous surgeries, No known liver disease
+[INCOMING_DOCTOR]: So, the plan is transfer her for a laparoscopic cholecystectomy. No outstanding investigations?
+[OUTGOING_DOCTOR]:  Bloods from yesterday: WCC: 11.2, CRP: 45, LFTs: mildly elevated ALT 68, ALP 110, bilirubin is normal, Renal function is normal, her Electrolytes are within range.
+[INCOMING_DOCTOR]:  Ms. Lopez, is there anything you need before we finish handover?
+[PATIENT]: No, I’m okay. Thank you.
+[INCOMING_DOCTOR]: Alright, I’ll see you again shortly once you’re settled in.
+

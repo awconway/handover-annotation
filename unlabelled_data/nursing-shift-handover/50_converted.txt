@@ -1,0 +1,19 @@
+[INCOMING_NURSE]: Good Morning, Candice. I’m Sam, I’ll be looking after you today. I’m just getting handover from Alex, the night nurse. Is that okay?
+[PATIENT]: Sure.
+
+[OUTGOING_NURSE]: In bed 5 we have Candice Kosgay, 28 years old, under Dr Harrod. She came in with cystic fibrosis. There have been no changes overnight; the observations have been normal for her and she has a QADDS of 1 for respiration rate of 24.
+[INCOMING_NURSE]: Okay so there's been no changes overnight  and has a QADDS score of 1 for her resp rate. 
+[INCOMING_NURSE]: Candice, can I just check your wristband to confirm your details?
+[PATIENT]: Yes.
+[INCOMING_NURSE]: Thank you—details match.Her IV cannula looks like it is oozing so I will change it sometime today.
+
+[INCOMING_NURSE]: Any new symptoms since last night—breathlessness, chest pain, fever, or anything else?
+[PATIENT]: No, nothing new. I feel the same.
+[OUTGOING_NURSE]: She’s been stable and comfortable. No new orders from the team overnight.
+
+[INCOMING_NURSE]: Okay. So the Plan is to continue your current care, routine observations, and we’ll touch base with Dr Harrod’s team on their round. Candice, if anything changes—more short of breath, chest feels tighter, or you need anything—please press the call bell.
+[PATIENT]: Will do, thanks.
+
+[OUTGOING_NURSE]: That’s all from me. Anything you need before I head off, Candice?
+[PATIENT]: I’m fine, thanks.
+[INCOMING_NURSE]: Great. I’ll be back shortly to check your obs again.

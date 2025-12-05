@@ -1,0 +1,15 @@
+[INCOMING_NURSE]: Good Morning, George. I’m Alex, the day nurse. I’m just going to take handover from Maria, who’s been looking after you overnight—okay?
+[OUTGOING_NURSE]: Hi George. We’ll keep this brief.In Bed 1 is George Antonio Sanchez, he is 43 years old.
+[INCOMING_NURSE]: Hi George. I’ll just check your ID band, infusions and iv cannula. The arm band matches George Antonio Sanchez. Thank you.
+[INCOMING_NURSE]: Any allergies we should know about?
+[PATIENT]: No, none.
+[OUTGOING_NURSE]: George came in for investigation of high blood pressure. All the tests have been completed; we’re just waiting for the results.
+[INCOMING_NURSE]: What was his blood Pressure?
+[OUTGOING_NURSE]: It was 190/80 so a little high. If everything comes back within acceptable limits, he’s clear for discharge today as per the team.
+[INCOMING_NURSE]: Thanks. George, how are you feeling right now—any headache, chest pain, dizziness?
+[PATIENT]: I feel fine, no symptoms.
+[OUTGOING_NURSE]: He slept all night, and there have been no other issues overnight.
+[INCOMING_NURSE]: Okay. I’ll keep an eye on the results and update you as soon as they’re in. If all’s good, we’ll get your discharge sorted. How are you going to get home?
+[PATIENT]: My son will pick me up. I have to ring him when I am ready to go.
+[OUTGOING_NURSE]: Okay that's good.
+[INCOMING_NURSE]: Thanks, Maria. George, press the call bell if you need anything. I’ll be back shortly.

@@ -1,0 +1,27 @@
+[OUTGOING_NURSE]: This is bed 1. Hi Mary, I’m handing over to the day nurse now.
+[INCOMING_NURSE]: Hi Mary, I’m Alex, I’ll be looking after you today. Is it okay if we do bedside handover?
+[PATIENT]: Sure.
+[INCOMING_NURSE]: Could you tell me your full name, please?
+[PATIENT]: Mary Ocas.
+[INCOMING_NURSE]: Thanks, Mary. Any medication allergies?
+[PATIENT]: No, none.
+[OUTGOING_NURSE]: Mary is 20 years old, under Dr Forbes. She came in with severe abdominal pain.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: She’s charted regular paracetamol for pain and Endone PRN. She’s also written up for metoclopramide as an anti-emetic.
+[INCOMING_NURSE]: Got it—paracetamol regular, Endone PRN, metoclopramide PRN.
+[OUTGOING_NURSE]: Bloods and observations were taken.
+[INCOMING_NURSE]: I’ll check the results and trends after handover.
+[OUTGOING_NURSE]: She’s scheduled for a colonoscopy tomorrow. She needs to be nil by mouth from midnight tonight for the procedure.
+[INCOMING_NURSE]:  We’ll keep fluids and meals as ordered until then.
+[OUTGOING_NURSE]: Otherwise, she’s self-caring and ambulant.
+[INCOMING_NURSE]: Mary, how is your pain right now?
+[PATIENT]: It’s there, but manageable.
+[INCOMING_NURSE]: Okay, I’ll check the timing of your next regular paracetamol and offer PRN if you need it. Any nausea?
+[PATIENT]: A little earlier, but okay now.
+[INCOMING_NURSE]: If it returns, we’ve got metoclopramide available—just use the call bell.
+[OUTGOING_NURSE]: That’s everything from me I'm off to the shops.
+[INCOMING_NURSE]: The plan for today is to continue obs,and analgesia as charted ,give  anti-emetics PRN, maintain mobility, and prep for colonoscopy with NBM from midnight. I’ll confirm any additional pre-procedure instructions with the team.
+[PATIENT]: Okay, thanks.
+[INCOMING_NURSE]: Anything you need before we go, Mary?
+[PATIENT]: I’m fine, thank you.
+[INCOMING_NURSE]: Great—press the bell if you need anything. I’ll be back shortly.

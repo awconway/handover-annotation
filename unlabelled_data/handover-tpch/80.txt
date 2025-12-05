@@ -1,0 +1,14 @@
+[OUTGOING_NURSE]: Hi, I’M Brad am I’m handing over bed 12, Mrs. Maria Giannopoulos, 81 years old. She’s been admitted for severe symptomatic aortic stenosis and is scheduled for a TAVI tomorrow morning.
+[INCOMING_NURSE]: Thanks. What’s happening currently?
+[OUTGOING_NURSE]: She’s stable. No chest pain or syncope overnight. She’s NYHA Class III—gets breathless on minimal exertion. Vitals are within normal limits, and she’s on telemetry. No arrhythmias noted.
+[INCOMING_NURSE]: Has she been reviewed by the team?
+[OUTGOING_NURSE]: Yes, cardiology and interventional have reviewed. She’s been consented, and the procedure is booked for 8:00 AM. She’s fasting from midnight. Pre-op checklist is complete.
+[INCOMING_NURSE]: Any comorbidities?
+[OUTGOING_NURSE]: Yes—hypertension, chronic kidney disease stage 3, and mild cognitive impairment. She’s on perindopril, frusemide, and aspirin. No known allergies.
+[INCOMING_NURSE]: Any communication needs?
+[OUTGOING_NURSE]: English is her second language—Greek is her first. She understands most things but prefers slow, clear explanations. Interpreter has been arranged for the morning. Her son is her substitute decision-maker and has been involved in all discussions.
+[INCOMING_NURSE]: Any concerns overnight?
+[OUTGOING_NURSE]: She was a bit anxious about the procedure but settled after reassurance. No acute issues. She’s continent, mobilising with assistance, and on a low-sodium diet.
+[INCOMING_NURSE]: Got it. I’ll keep her calm and prep her for theatre in the morning.
+[OUTGOING_NURSE]: Perfect. Let me know if anything changes. All documentation is up to date, including the consent and pre-op orders.
+

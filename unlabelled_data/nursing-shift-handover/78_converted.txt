@@ -1,0 +1,23 @@
+[INCOMING_NURSE]: Good Morning, Andrew. I’m Sarah, I’ll be looking after you today. I’m just getting handover from Tom, the night nurse—does that sound okay?
+[PATIENT]: Yes, that’s fine.
+[INCOMING_NURSE]: Great. Could you tell us your full name, please?
+[PATIENT]: Andrew Hamond.
+[INCOMING_NURSE]: Thank you.
+
+[OUTGOING_NURSE]: This is Andrew Hamond, 81 years old, under Dr. Morris, room 1 bed 2. He came in with sepsis on the background of chronic renal failure secondary to hypertension. He’s on haemodialysis via a right arm AV fistula—thrill is good.
+[INCOMING_NURSE]: so no needles in that arm, due to the fistula.
+
+[OUTGOING_NURSE]: He’s still on IV antibiotics—vancomycin—and IV therapy. Normal saline is running at 83 mL per hour. He’s due for a vancomycin level tomorrow morning. We’re doing lying and standing blood pressures, daily weights, and strict fluid balance charting.
+[INCOMING_NURSE]: Okay, so Vancomycin is ongoing, a vancomycin  level is due tomorrow morning, he has NS 83 mL/hr.
+
+[OUTGOING_NURSE]: His next dialysis is on the morning list tomorrow. Blood pressures remain low—systolic 80 to 90—so he’s still on IV fluids. The team plan is to give albumin if his blood pressure doesn’t improve tomorrow after dialysis.
+[INCOMING_NURSE]: Is there another bag of fluids written up after this one goes through? 
+[OUTGOING_NURSE]: Yes, He spiked a temperature last night—38.4°C. We took blood cultures and gave paracetamol with good effect. He’s been afebrile today on my shift and otherwise all his obs are stable.
+[INCOMING_NURSE]: Thanks. I’ll keep an eye out for the culture results and continue monitoring.
+
+[INCOMING_NURSE]: Andrew, how are you feeling right now—any fever or chills?
+[PATIENT]: No, I feel okay. A bit tired.
+[INCOMING_NURSE]: Thanks—we’ll keep your fluids going and check your blood pressures lying and standing. Please press the call bell if you feel dizzy or unwell.
+
+[OUTGOING_NURSE]: That’s everything from me.
+[INCOMING_NURSE]: Thanks, Tom. I’ll review the med chart, confirm the vancomycin level time for the morning, and update the fluid balance and weight. Andrew, I’ll be back shortly to do your observations.

@@ -1,0 +1,21 @@
+[OUTGOING_NURSE]: Hi Rhonda, this is Sam, the day nurse who’ll be looking after you.
+[INCOMING_NURSE]: Hi Rhonda, nice to meet you. We’ll just do a quick bedside handover together.
+[OUTGOING_NURSE]: Rhonda, could you please tell us your full name and date of birth?
+[PATIENT]: I’m Rhonda McKenzie. Date of birth is the 12th of May.
+[INCOMING_NURSE]: Thanks, Rhonda. I’ll just check your wristband… great, details match your IV cannula is due to be changed today.
+
+[OUTGOING_NURSE]: So, this is Rhonda McKenzie, 24 years old, admitted for investigation of breathing disorders with an overnight sleep study.
+[OUTGOING_NURSE]: History-wise, she reports new snoring noted by her boyfriend and feeling tired despite getting about nine hours of sleep.
+[OUTGOING_NURSE]: She’s otherwise well today. No concerns raised this shift.
+[INCOMING_NURSE]: Okay. Has a time been set for the sleep study?
+[OUTGOING_NURSE]: Not yet. She’ll need preparation for the sleep study tonight; the sleep lab will let us know the time and come to set up.
+[INCOMING_NURSE]: We will run through the prep checklist this afternoon once they call.
+
+[INCOMING_NURSE]: Rhonda, any allergies we should know about?
+[PATIENT]: No, I don’t have any.
+[INCOMING_NURSE]: Any shortness of breath or chest discomfort right now?
+[PATIENT]: No, I feel okay.
+
+[OUTGOING_NURSE]: The plan for today is routine care, await the sleep lab timing, and complete sleep-study preparation this evening.
+[INCOMING_NURSE]: Sounds good. Rhonda, if you need anything before they come, use the call bell. I’ll check in again shortly.
+[PATIENT]: Thanks.

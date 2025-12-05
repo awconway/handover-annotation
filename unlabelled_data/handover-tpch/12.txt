@@ -1,0 +1,12 @@
+[NURSE]: Hi, I’m handing over Mrs. Lien Tran, 82 years old, here for a renal ultrasound to investigate reduced kidney function. She’s from a Vietnamese-speaking background and does not speak English. She also has significant vision impairment and is deaf.
+[RADIOGRAPHER]: Thanks. How does she communicate?
+[NURSE]: She uses Vietnamese sign language and gestures. Her daughter is on the way and usually helps interpret. In the meantime, we’ve requested a Vietnamese interpreter, but they haven’t arrived yet. I’ve written out some basic instructions in large print Vietnamese, but she may still need assistance understanding the procedure.
+[RADIOGRAPHER]: Is she medically stable?
+[NURSE]: Yes, vitals are stable. She’s a bit anxious due to the unfamiliar environment and communication barriers, so a calm approach will help.
+[RADIOGRAPHER]: Any mobility issues?
+[NURSE]: She’s ambulant with assistance. She uses a walking frame and needs help getting on and off the bed.
+[RADIOGRAPHER]: Any allergies or medications?
+[NURSE]: No known drug allergies. She’s on Amlodipine 5 mg daily, Furosemide 40 mg daily, Calcium carbonates she’s Nil by mouth for the scan and has had fluids withheld this morning.
+[RADIOGRAPHER]: I’ll wait for the interpreter or her daughter before starting. I’ll keep her comfortable in the meantime.
+[NURSE]: Perfect. Let me know if you need anything else.
+

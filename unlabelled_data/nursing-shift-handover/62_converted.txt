@@ -1,0 +1,29 @@
+[INCOMING_NURSE]: Good Morning, Michelle. I’m the incoming nurse today, my name is Toby. We’ll just do a quick bedside handover with the night nurse if that’s okay.
+[OUTGOING_NURSE]: Hi, Michelle. Could you please confirm your full name for us?
+[PATIENT]: Michelle Morgan.
+[INCOMING_NURSE]: Thank you.
+
+[OUTGOING_NURSE]: Okay, so Bed 1, is Michelle Morgan, who is 58 years old, under Dr. Fleming. She came in with headache and dizziness and is still under investigation.
+[INCOMING_NURSE]: Okay.
+
+[OUTGOING_NURSE]: she’s on regular Panadol for pain. She has PRNs available if she needs them, they are oxycodone and morphine. She reported a headache a little while ago — I gave her PRN oxycodone with good effect.
+[INCOMING_NURSE]: Thanks, I’ll check when the next regular analgesia is due and keep an eye on her pain scores.
+[PATIENT]: The headache is much better now, thank you.
+
+[OUTGOING_NURSE]: Mobility-wise, she’s ambulant and mostly self-caring but needs a little supervision in case she feels dizzy when walking.
+[INCOMING_NURSE]: Okay. Michelle, please buzz before you get up and we’ll walk with you.
+[PATIENT]: Sure, I will.
+
+[OUTGOING_NURSE]: Diet is general and she’s tolerating it well.
+[INCOMING_NURSE]: Great.
+
+[OUTGOING_NURSE]: Observations have been stable.
+[INCOMING_NURSE]: Perfect. I’ll do 4 hourly routine obs and neuro checks as per the unit protocol.
+
+[OUTGOING_NURSE]: That’s it from me, see you tomorrow.
+[INCOMING_NURSE]: So we will continue analgesia as charted, supervise your mobility, and wait for further investigations and instructions from Dr. Fleming’s team.
+[PATIENT]: Sounds good.
+
+[INCOMING_NURSE]: Anything else you need right now, Michelle?
+[PATIENT]: No, I’m okay. Thanks.
+[INCOMING_NURSE]: Great. Call if you feel dizzy or your headache returns. I’ll be back shortly.

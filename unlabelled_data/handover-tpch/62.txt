@@ -1,0 +1,15 @@
+[INCOMING_NURSE]: Good morning, Mr. Harris. I’m Jack, and I’ll be your nurse for today. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Mr. Harris. This is the nurse taking over for the day. Could you please confirm your full name?
+[PATIENT]: Thomas Harris.
+[OUTGOING_NURSE]: Thank you. This is Mr. Thomas Harris in Bed 5, Room 11, aged 45, under Dr. Singh, General Surgeon.
+[OUTGOING_NURSE]: Mr. Harris is Day 2 post-op from an open appendectomy for a perforated appendix. He has a surgical drain in situ, which has drained 80 mL of serous fluid overnight. He’s currently on IV antibiotics and analgesia. He remains nil by mouth and is receiving IV fluids.
+[OUTGOING_NURSE]: He’s had mild abdominal discomfort but no nausea or vomiting. Observations have been stable. Wound site is clean, dressing intact. Surgical team reviewed him this morning and will reassess drain output tomorrow.
+[OUTGOING_NURSE]: He was seen by physiotherapy yesterday afternoon and assisted to sit out of bed. He tolerated mobilisation well but reported mild dizziness. Breathing exercises were commenced.
+[INCOMING_NURSE]: Mr. Harris, how are you feeling this morning? Any pain or nausea?
+[PATIENT]: A bit sore and tired, but no nausea.
+[OUTGOING_NURSE]: Pain score was 4/10 on movement earlier. No new concerns noted. Dr. Singh is happy with progress so far and will review again tomorrow.
+[INCOMING_NURSE]: I’ll follow up with the physio team and surgical team regarding the drain and mobility. Is there anything you need before we finish handover?
+[PATIENT]: No, I’m okay.
+[OUTGOING_NURSE]: Please use the call bell if you need anything. I’ll leave you in good hands.
+[INCOMING_NURSE]: I’ll be back shortly to check your observations and review your chart, Mr. Harris. 
+

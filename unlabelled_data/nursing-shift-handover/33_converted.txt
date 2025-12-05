@@ -1,0 +1,20 @@
+[OUTGOING_NURSE]: Good Morning. This is Bed 5, Sandra Murdock.
+[INCOMING_NURSE]: Hi Sandra, I’m the incoming nurse. We’ll just do a quick bedside handover with you.
+[OUTGOING_NURSE]: Sandra, could you confirm your full name for us?
+[PATIENT]: Sandra Murdock.
+[INCOMING_NURSE]: Thanks, Sandra. 
+
+[OUTGOING_NURSE]: Sandra is 48 years old, under Dr. Cox. She was admitted with a lung cyst.
+[OUTGOING_NURSE]: She had a chest X-ray yesterday and a lung ultrasound. She had a lung biopsy today.
+[INCOMING_NURSE]: Any immediate issues post-biopsy?
+[OUTGOING_NURSE]: No immediate concerns so far. She seems comfortable and resting.
+
+[OUTGOING_NURSE]: The surgeons still need to review her today to decide on whether she need to have surgery.
+[OUTGOING_NURSE]: If they proceed, she needs to be nil by mouth tonight.
+[INCOMING_NURSE]: Okay, I’ll place NBM orders/signage for tonight if its confirmed.
+
+[INCOMING_NURSE]: Do you have Pain, or feeling more breathlessness, or anything we can get you now, Sandra?
+[PATIENT]: I’m comfortable, thanks.
+[OUTGOING_NURSE]: I think I have covered everything. She seems okay and is resting.
+
+[INCOMING_NURSE]: Thanks. I’ll keep an eye out for the surgical team and any updates from biopsy. Sandra, buzz if you need anything.

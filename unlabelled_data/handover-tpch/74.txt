@@ -1,0 +1,15 @@
+[INCOMING_NURSE]: Good morning, Emily. I’m Sarah, and I’ll be your nurse for today. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Emily. This is the nurse taking over for the day. Could you please confirm your full name?
+[PATIENT]: Emily Dawson.
+[OUTGOING_NURSE]: Thank you. This is Emily Dawson, 16 years old, in Bed 3, Room 12, under Dr. Langford, Adolescent Mental Health Consultant.
+[OUTGOING_NURSE]: Emily was admitted yesterday via ED with concerns of restrictive eating, rapid weight loss, and fatigue. She was referred by her GP and brought in by her parents, who report increasing anxiety around food and body image.
+[OUTGOING_NURSE]: She’s currently on a nutritional refeeding protocol and fluid balance charting. Bloods show low phosphate, mild hypokalaemia, and bradycardia on ECG. She’s on daily bloods and ECG monitoring. Dietitian and adolescent psychiatrist have reviewed her this morning.
+[OUTGOING_NURSE]: Emily is alert and cooperative but has expressed distress around meals. She’s had half a supplement drink this morning and tolerated it. No vomiting or laxative use reported. She’s been resting in bed and has not yet mobilised.
+[INCOMING_NURSE]: Emily, how are you feeling this morning? Any dizziness or nausea?
+[PATIENT]: Just a bit tired. I don’t really want to eat.
+[OUTGOING_NURSE]: She’s aware of the care plan and has agreed to meet with the social worker and psychologist later today. Her parents are involved and have asked for regular updates. No known allergies. No regular medications.
+[INCOMING_NURSE]: I’ll follow up with the mental health team and dietitian and check your bloods once they’re back. Is there anything you need before we finish handover?
+[PATIENT]: No, thank you.
+[OUTGOING_NURSE]: Please use the call bell if you need anything. I’ll leave you in good hands.
+[INCOMING_NURSE]: I’ll be back shortly to check your observations and review your chart, Emily.
+

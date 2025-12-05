@@ -1,0 +1,14 @@
+[INCOMING_NURSE]: Good morning, Mr. Reynolds. I’m Jack, and I’ll be your nurse for today. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Mr. Reynolds. This is the nurse taking over for the day. Could you please confirm your full name?
+[PATIENT]: Thomas Reynolds.
+[OUTGOING_NURSE]: Thank you. This is Mr. Thomas Reynolds in Bed 3, Room 8, aged 71, under Dr. Lim, Cardiothoracic Surgeon.
+[OUTGOING_NURSE]: Mr. Reynolds is Day 1 post-op from an aortic valve replacement. He returned from theatre yesterday afternoon and was transferred to the cardiac surgical ward overnight. He’s currently on telemetry monitoring. Vitals have remained stable. He’s receiving supplemental oxygen via nasal prongs at 2L/min.
+[OUTGOING_NURSE]: Pain is being managed with PCA (fentanyl), and he’s tolerating sips of water. Chest drain output overnight was 120 mL serosanguinous, within expected range. No signs of bleeding or infection. He’s been assisted to sit up in bed with physiotherapy this morning.
+[INCOMING_NURSE]: Mr. Reynolds, how are you feeling this morning? Any pain or dizziness?
+[PATIENT]: A bit sore, but I’m okay. Just tired.
+[OUTGOING_NURSE]: Pain score was 4/10 earlier. He’s alert and oriented. No nausea or vomiting. Surgical site dressing is intact. ECG shows sinus rhythm. Bloods taken this morning—awaiting results.
+[INCOMING_NURSE]: I’ll follow up with the surgical team and physio and check your bloods once they’re back. Is there anything you need before we finish handover?
+[PATIENT]: No, I’m fine for now.
+[OUTGOING_NURSE]: Please use the call bell if you need anything. I’ll leave you in good hands.
+[INCOMING_NURSE]: I’ll be back shortly to check your observations and review your chart, Mr. Reynolds.
+

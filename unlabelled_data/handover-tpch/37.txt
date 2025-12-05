@@ -1,0 +1,13 @@
+[Outgoing Nurse]: Hi, I’m handing over Mr. James Nolan in bed 4. He’s a 67-year-old patient admitted overnight with a suspected small bowel obstruction. He’s been reviewed by the surgical team and is currently awaiting theatre—likely this afternoon.
+[Incoming Nurse]: Thanks. What are his current symptoms?
+[Outgoing Nurse]: He’s had abdominal distension, nausea, and vomiting since yesterday. No bowel movements for 48 hours. He’s nil by mouth and has an NG tube on free drainage, which has drained about 400 mL of bilious fluid since insertion.
+[Incoming Nurse]: What’s his current status?
+[Outgoing Nurse]: Vitals are stable: BP: 128/76, HR: 88 bpm, RR: 18, Temp: 37.2°C, SpO?: 97% on room air, Q-ADDS score: 3 (based on nausea, pain, and reduced output)
+[Incoming Nurse]: Any IV access?
+[Outgoing Nurse]: Yes, he has a 20G cannula in his right forearm—patent. He’s on IV Normal Saline at 125 mL/hr. Electrolytes are being monitored—latest bloods show mild hypokalaemia (K+ 3.2), so we’ve added potassium to his fluids.
+[Incoming Nurse]: Any medications?
+[Outgoing Nurse]: He’s charted for: IV Metoclopramide 10 mg TDS, IV Paracetamol 1g QID, PRN Morphine 2.5–5 mg SC for pain, Nil oral meds due to NBM status
+[Incoming Nurse]: Any pressure care or hygiene needs?
+[Outgoing Nurse]: He’s been in bed most of the shift. We’ve started 2-hourly repositioning and he’s on a pressure-relieving mattress. No current pressure injuries. He’ll need a full wash this morning and assistance with hygiene.
+[Incoming Nurse]: Thanks. I’ll continue monitoring and prep him for theatre.
+

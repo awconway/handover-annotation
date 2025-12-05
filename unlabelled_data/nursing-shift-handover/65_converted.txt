@@ -1,0 +1,21 @@
+[INCOMING_NURSE]: Good Morning. Mind if I do bedside handover here in Bed 4?
+[OUTGOING_NURSE]: Sure. Hi Andreas, this is Priya, she’ll be looking after you today.
+[INCOMING_NURSE]: Hi Andreas. I’ll just listen in and then check a few things with you.
+
+[OUTGOING_NURSE]: So, Bed 4 is Andreas Melotov, 67, under Dr. Gordon, who was admitted with a head injury.
+[INCOMING_NURSE]: Any key history?
+[OUTGOING_NURSE]: I haven’t had a chance to read his full history yet. I caught the medical team on their round earlier and they said to continue the antibiotics and current management.
+[INCOMING_NURSE]: Okay, I’ll confirm the drug and next dose time on the med chart.
+[OUTGOING_NURSE]: Yep. Also, his… arms are all good—sorry, I mean his obs are all good. He’s stable and no other problems noted.
+[INCOMING_NURSE]: Okay, his blood pressure looks good.
+
+[INCOMING_NURSE]: Andreas, how’s your head feeling at the moment, any headache, nausea, or dizziness?
+[PATIENT]: Bit of a dull headache, but I’m okay.
+[INCOMING_NURSE]: Thanks. I’ll check what  pain relief you have written up.
+
+[INCOMING_NURSE]: Anything you need to do before you head off. 
+[OUTGOING_NURSE]: Just continue his antibiotics and routine monitoring. Nothing else has been flagged by the team.
+[INCOMING_NURSE]: Great. I’ll check the charts.
+[PATIENT]: Okay, thank you.
+[OUTGOING_NURSE]: Thanks, Andreas. I’ll head off. Priya’s got you now.
+[INCOMING_NURSE]: I’ll be back in a moment to do your observations and make you comfortable.

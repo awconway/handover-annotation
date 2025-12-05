@@ -1,0 +1,14 @@
+[INCOMING_NURSE]: Good morning, Mr. Blake. I’m Jack, and I’ll be your nurse for today. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Mr. Blake. This is the nurse taking over for the day. Could you please confirm your full name?
+[PATIENT]: Jason Blake.
+[OUTGOING_NURSE]: Thank you. This is Mr. Jason Blake in Bed 4, Room 7, aged 36, under Dr. Reynolds, Orthopaedic Consultant.
+[OUTGOING_NURSE]: Mr. Blake was transferred from ED last night following a worksite injury, where a nail was driven through his left index finger using a nail gun. The nail has been removed in ED under local anaesthetic. X-rays confirmed no bone involvement. Wound was irrigated and dressed. Tetanus booster administered.
+[OUTGOING_NURSE]: He’s currently on oral antibiotics and regular analgesia. No signs of infection noted. Neurovascular observations are intact—cap refill <2 seconds, good sensation and movement. Dressing remains clean and dry.
+[INCOMING_NURSE]: Mr. Blake, how’s the pain this morning? Any numbness or tingling?
+[PATIENT]: It’s sore, but I can move it. No numbness.
+[OUTGOING_NURSE]: Pain score was 4/10 earlier. He’s tolerating oral intake and mobilising independently. Dr. Reynolds will review later today to assess wound healing and determine if plastics input is needed.
+[INCOMING_NURSE]: I’ll check your observations and dressing shortly and follow up with the surgical team. Is there anything you need before we finish handover?
+[PATIENT]: No, I’m good.
+[OUTGOING_NURSE]: Please use the call bell if you need anything. I’ll leave you in good hands.
+[INCOMING_NURSE]: I’ll be back shortly to check your chart and wound, Mr. Blake.
+

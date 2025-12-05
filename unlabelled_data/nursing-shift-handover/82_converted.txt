@@ -1,0 +1,20 @@
+[INCOMING_NURSE]: Hi Cecilia, I’m Sam, I’ll be looking after you today. Is it okay if we do your handover at the bedside?
+[PATIENT]: Yes, that’s fine.
+[OUTGOING_NURSE]: We’re in Bed 1, This is Cecilia Ramos, 38, under Dr Willow. Admitted with a renal obstruction; Her full history is in the notes.
+[INCOMING_NURSE]: I’ll just check your ID band, Cecilia… great, thank you.
+[OUTGOING_NURSE]: She had a CT scan last week. She has been charted pain medication. 
+[INCOMING_NURSE]: Cecilia, how’s your pain right now?
+[PATIENT]: It’s still there, but manageable.
+[INCOMING_NURSE]: Okay, I’ll keep an eye on your timing and make sure you’re comfortable.
+[OUTGOING_NURSE]: The Plan is to discharge at the end of this week and Follow‑up with Dr Willow one week post discharge and book a renal outpatients appointment for two weeks after discharge. The discharge summary is at the front of the notes.
+[INCOMING_NURSE]:  Are we just waiting on medications to go home?
+[OUTGOING_NURSE]: Yes we are waiting for the discharge meds from pharmacy.
+[INCOMING_NURSE]:  I’ll chase those up.
+[OUTGOING_NURSE]: She’s quite anxious. Family is in attendance at the moment.
+[INCOMING_NURSE]: Cecilia, we’ll keep you updated about timing and the medications so you’re not left wondering.
+[PATIENT]: I appreciate that. I’ve been a bit worried.
+[INCOMING_NURSE]: Of course. I’ll check in regularly, and if anything changes with your pain or you have questions, press the call bell.
+[OUTGOING_NURSE]: That’s everything from me. See you tomorrow.
+[INCOMING_NURSE]: Thanks. Anything else you’d like us to know or anything you need right now, Cecilia?
+[PATIENT]: No, that’s all. Thank you.
+[INCOMING_NURSE]: Great—I’ll follow up pharmacy and be back shortly.

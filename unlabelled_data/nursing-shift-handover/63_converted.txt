@@ -1,0 +1,27 @@
+[INCOMING_NURSE]: Good Morning. Bed 2, Dylan Young?
+[OUTGOING_NURSE]: Yes. Hi Dylan, this is the day nurse taking over his name is Tom. We’ll do your bedside handover now.
+[INCOMING_NURSE]: Hi Dylan. I’ll speak clearly and take it slow. If you’d like to write or use signs, that’s fine.
+[PATIENT]: [nods; holds up notepad]
+
+[OUTGOING_NURSE]: So, Dylan Young, 41 years old, under Dr. Fleming. He’s an admission today with headaches, plus vision and speech problems.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: He needs assistance when walking to the toilet because he can’t see properly. His communication is difficult to understand at times so he uses sign language or writes down what he wants. we need to Allow extra time for him to communicate.
+[INCOMING_NURSE]:  We’ll keep the notepad and pen within reach so you can get it if you need it.
+[PATIENT]: [gives thumbs up]
+
+[OUTGOING_NURSE]: He’s on a general diet and his Observations have all been normal.
+[INCOMING_NURSE]: Any orders pending?
+[OUTGOING_NURSE]: He’s for  bloods today.
+[INCOMING_NURSE]: I’ll follow that up with pathology.
+
+[OUTGOING_NURSE]: He’s on regular analgesia for pain. The Headaches are the main issue he's complaining about.
+[INCOMING_NURSE]: I’ll check when the next dose is due and review pain scores.
+
+[INCOMING_NURSE]: Dylan, is there anything you need right now?
+[PATIENT]: [writes: “No, thanks.”]
+[INCOMING_NURSE]: Okay. We’ll help you to the bathroom when you need to go—please use the call bell and wait for us so we can assist safely.
+[PATIENT]: [nods]
+
+[OUTGOING_NURSE]: That’s all I need to tell you. Have a good shift.
+[INCOMING_NURSE]: Thanks. I’ll chase the bloods, continue regular obs and meds. 
+[PATIENT]: [gives a small wave]

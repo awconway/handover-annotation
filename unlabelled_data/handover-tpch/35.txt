@@ -1,0 +1,14 @@
+[Hospital Nurse]: Hi, I’m handing over Mrs. Emily Carter, a 38-year-old patient who was admitted three days ago and has now been newly diagnosed with bipolar disorder following a manic episode. She’s being discharged today and will require follow-up in the community.
+[Community Nurse]: Thanks. Can you tell me a bit about her presentation?
+[Hospital Nurse]: She was admitted after displaying elevated mood, pressured speech, and impulsive behaviour. No psychotic features noted. She’s now stabilised on medication and insight is improving. She’s aware of her diagnosis and has been engaging well with the mental health team.
+[Community Nurse]: What’s her current medication regimen?
+[Hospital Nurse]: She’s been started on: Lithium carbonate 400 mg BD – levels to be monitored, Quetiapine 100 mg nocte, PRN lorazepam 1 mg for agitation – not required in the last 48 hours there are No known drug allergies.
+[Community Nurse]: Any physical health concerns?
+[Hospital Nurse]: Vitals are stable. No IV access currently. She’s independent with ADLs. No pressure areas noted. She’s been eating and drinking well, and her fluid balance is normal. Bowels have been regular.
+[Community Nurse]: What’s her home situation?
+[Hospital Nurse]: She lives with her husband and three children aged 4, 7, and 12, plus a dog. Her husband has been very supportive and is aware of the diagnosis. He’s keen to be involved in her care and has asked for education around mood monitoring and medication.
+[Community Nurse]: Any follow-up arranged?
+[Hospital Nurse]: Yes, she’s been referred to the community mental health team for ongoing support, including mood tracking, medication adherence, and psychoeducation. She’ll also need a home visit within 48 hours to assess safety and support needs.
+[Community Nurse]: Thanks. I’ll follow up with the family and ensure she’s linked in with the right services.
+[Hospital Nurse]: Great. Let me know if you need anything further from the inpatient team.
+

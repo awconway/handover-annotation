@@ -1,0 +1,11 @@
+[NURSE]: Hi, I’m handing over details for Mr. Luke Harris, a 42-year-old male who presented to ED following a deliberate overdose. He reportedly ingested approximately 50 Panadol tablets, 20 Serepax, and a bottle of whisky at home.
+[PHARMACIST]: Thanks. What’s his current status?
+[NURSE]: He’s currently drowsy but rousable, with slurred speech and intermittent agitation. He’s on 2 L/min oxygen via nasal prongs, with SpO? around 92%. GCS is 13. He’s under close observation and has IV access in place.
+[PHARMACIST]: Have any treatments been initiated?
+[NURSE]: Yes, we’ve started IV fluids (Normal Saline) and taken bloods for paracetamol levels, LFTs, and coagulation profile. We’re awaiting results to determine if N-acetylcysteine is required. No activated charcoal was given due to delayed presentation and reduced consciousness.
+[PHARMACIST]: Any known allergies or regular medications?
+[NURSE]: No known drug allergies. No regular medications documented at this stage. He’s a daily smoker and reports high alcohol intake.
+[PHARMACIST]: Any concerns about interactions or toxicity?
+[NURSE]: Yes, we’re concerned about hepatotoxicity from paracetamol, sedation from Serepax, and CNS depression from alcohol. He’s being monitored for respiratory compromise and liver function deterioration.
+[PHARMACIST]: Thanks. I’ll review his chart and prepare for possible NAC administration. Let me know once the blood results are back.
+[NURSE]: Will do. I’ll keep you updated on his clinical status and any changes.

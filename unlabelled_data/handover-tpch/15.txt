@@ -1,0 +1,14 @@
+[RECOVERY_NURSE]: Hi, I’m handing over Mr. Daniel Hayes, 67 years old, just returned from the cath lab following a coronary angiogram. He’s being transferred back to CCU for ongoing monitoring.
+[CCU_NURSE]: Thanks. How did the procedure go?
+[RECOVERY_NURSE]: Procedure was uneventful. No stents placed today—angiogram was diagnostic only. He still has the femoral sheath in situ, and it needs to be transduced for haemodynamic monitoring. His heart rate is low, sitting around 48 bpm, so we’re keeping a close eye on it.
+[CCU_NURSE]: Okay. What are his current vitals?
+[RECOVERY_NURSE]: BP: 110/68, HR: 48 bpm, sinus bradycardia, RR: 16, SpO?: 97% on room air, Temp: 36.6°C, He’s alert and orientated, but a bit tired post-procedure.
+[CCU_NURSE]: Any lines or medications?
+[RECOVERY_NURSE]: Yes, a Femoral sheath – still in place, not yet transduced, IV cannula in left forearm, No IV infusions running currently, no sedation required post-procedure
+[CCU_NURSE]: Any pain or bleeding?
+[RECOVERY_NURSE]: No active bleeding. Puncture site is clean and dressed. No complaints of pain. He’s on bed rest, and we’ve reinforced strict leg immobilisation.
+[CCU_NURSE]: Any medications charted?
+[CCU_NURSE]: Thanks. I’ll get the sheath transduced and continue monitoring his HR closely.
+[RECOVERY_NURSE]: Perfect. Let me know if anything changes. All documentation is up to date.
+
+

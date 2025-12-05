@@ -1,0 +1,25 @@
+[OUTGOING_NURSE]: Good Morning. This is Pamela Harris Lee in bed 6. Pamela, this is Alex, the day nurse taking over from me.
+[INCOMING_NURSE]: Hi Pamela, nice to meet you. Is it okay if we do your bedside handover together?
+[PATIENT]: Sure.
+
+[OUTGOING_NURSE]: Pamela is 51 years old, admitted with an exacerbation of COPD. She’s a smoker and came in today with increased shortness of breath.
+[INCOMING_NURSE]: I am just going to check your arm band, Thanks. Pamela, can you confirm your full name for me?
+[PATIENT]: Pamela Harris Lee.
+[INCOMING_NURSE]: Thank you. Any medication allergies?
+[PATIENT]: No allergies that I know of.
+
+[OUTGOING_NURSE]: She’s much the same as she was on arrival. She’s on her regular inhalers and nebulisers, and she’s pretty stable at the moment.
+[INCOMING_NURSE]: Any changes in observations or need for escalation?
+[OUTGOING_NURSE]: No changes. Observations are stable and there are no new concerns during my shift.
+[INCOMING_NURSE]: Is oxygen required?
+[OUTGOING_NURSE]: Not at the moment she is maintaining her satuarations at 98% on room air with nebs/inhalers as charted.
+
+[INCOMING_NURSE]: Pamela, how are you feeling right now?
+[PATIENT]: Still a bit short of breath, but better after the nebs.
+[INCOMING_NURSE]: Okay. I’ll make sure your inhalers and nebulisers are on time, and check in regularly with you let me know if you feel more short of breath.
+
+[OUTGOING_NURSE]: The plan for today is to continue regular puffers and nebs as charted, and  monitor her respiratory status and observations. She’s currently stable.
+[INCOMING_NURSE]: I’ll review inhaler technique later and make sure she's comfortable. Pamela, press your call bell if your breathing worsens or you need anything.
+[PATIENT]: Will do, thank you.
+[OUTGOING_NURSE]: All right, that’s everything from me.
+[INCOMING_NURSE]: Thanks. I’ll take it from here.

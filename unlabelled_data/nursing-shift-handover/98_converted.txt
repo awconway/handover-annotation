@@ -1,0 +1,22 @@
+[INCOMING_NURSE]: Good Morning, Lyndon. I’m Sam, I’ll be looking after you now. I’m just going to get handover from Pat, is that okay?
+[PATIENT]: Sure.
+[OUTGOING_NURSE]: Thanks, Sam. This is Bed 2, Lyndon Basilakis, who is 50 years old, under Dr. Forbes. He came in with severe abdominal pain and fever.
+[INCOMING_NURSE]: Thanks. Lyndon, can you confirm your full name and date of birth for us?
+[PATIENT]: Lyndon Basilakis, 12th of March, 1974.
+[INCOMING_NURSE]: Great, thank you.
+[OUTGOING_NURSE]: On my shift he’s been afebrile, but he still reports abdominal pain.
+[INCOMING_NURSE]: Okay. Lyndon, how’s your pain right now, out of 10?
+[PATIENT]: About a 6.
+[OUTGOING_NURSE]: I’ve given pain relief with good effect earlier, and he settled, but it does creep back.
+[INCOMING_NURSE]: Noted. Any nausea or vomiting?
+[PATIENT]: A little nausea, no vomiting.
+[OUTGOING_NURSE]: Also, per team request, we need MRSA and VRE surveillance—I've referred/notified the team for that.
+[INCOMING_NURSE]: Have the surveillance swabs been taken yet?
+[OUTGOING_NURSE]: Not yet we still need to do them.
+[INCOMING_NURSE]: Okay, I’ll follow up and get those done.
+[INCOMING_NURSE]: Any other concerns—fluids, IV access, allergies?
+[OUTGOING_NURSE]: No IV access changes to report and no new allergies disclosed to me. Main issue has been the abdominal pain; otherwise afebrile this shift.
+[INCOMING_NURSE]: Thanks. Lyndon, I’ll check your observations now, get you something for that pain as due, and I’ll follow up the MRSA/VRE swabs.
+[PATIENT]: Thanks.
+[OUTGOING_NURSE]: That’s all from me.
+[INCOMING_NURSE]: Thanks, Pat. I’ll take it from here.

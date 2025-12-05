@@ -1,0 +1,14 @@
+[OUTGOING_NURSE]: Hi, I’m handing over bed 5, Ms. Carol Tan, 72 years old. She was admitted for a permanent pacemaker insertion due to symptomatic bradycardia. The procedure was done this morning, but she’s developed a left-sided pneumothorax post-op.
+[INCOMING_NURSE]: Oh no—how was it picked up?
+[OUTGOING_NURSE]: She became short of breath and desaturated to 89% on room air about an hour post-procedure. Chest X-ray confirmed a moderate pneumothorax. The cardiology team has reviewed, and a chest drain has been inserted—left side, mid-axillary line.
+[INCOMING_NURSE]: How is she now?
+[OUTGOING_NURSE]: More comfortable. She’s on 2 L nasal prongs—sats are now 96%. Drain is on low suction and swinging well. No signs of tension. Vitals are stable—BP 122/70, HR 78 (paced), RR 20, Temp 36.7.
+[INCOMING_NURSE]: IV access?
+[OUTGOING_NURSE]: One 20G in the right forearm—patent. She’s on maintenance IV fluids—normal saline at 75 mL/hr. No IV antibiotics charted at this stage.
+[INCOMING_NURSE]: Medications?
+[OUTGOING_NURSE]: Regular meds include metoprolol, atorvastatin, and aspirin. She’s had paracetamol for mild post-op pain. No known allergies. Analgesia and PRNs are charted.
+[INCOMING_NURSE]: Any other concerns?
+[OUTGOING_NURSE]: She’s a bit anxious and tearful—understandably shaken by the complication. English is her first language. She’s continent and mobilising with assistance. Physio has been informed for post-drain mobility review.
+[INCOMING_NURSE]: Got it. I’ll monitor the drain, pain, and oxygen needs closely.
+[OUTGOING_NURSE]: Perfect. Let the team know if there’s any increase in respiratory distress or if the drain output changes significantly. All documentation is up to date, including drain chart, obs, and post-op notes.
+

@@ -1,0 +1,16 @@
+[NURSE]: Hi, I’m handing over Mr. David Lang in bed 11. He’s a 71-year-old patient admitted yesterday following a left-sided ischemic stroke. He’s currently stable but has significant right-sided weakness and difficulty with coordination, especially upper limb function.
+[OCCUPATIONAL THERAPIST]: Thanks. What’s his current level of function?
+[NURSE]: He’s alert and orientated, GCS 15. He’s mobilising with assistance but struggling with feeding, grooming, and dressing tasks. He’s right-hand dominant, which is now affected. He would benefit from an OT assessment for functional support and adaptive equipment.
+[OCCUPATIONAL THERAPIST]: Any positioning or pressure care?
+[NURSE]: Yes, we’re using 30-degree lateral tilt positioning to support his hemiplegic side and prevent pressure injury. He’s on a pressure-relieving mattress and repositioned every 2 hours.
+[OCCUPATIONAL THERAPIST]: Any IV access or medications?
+[NURSE]: He has a 20G IV cannula in his left forearm—patent, no fluids running.
+
+[OCCUPATIONAL THERAPIST]: What about nutrition and hydration?
+[NURSE]: He’s on a soft diet with thickened fluids Level 2 as per speech pathology.
+Fluid balance chart shows: Input (last 24h): ~1600 mL, Output: ~1400 mL (urine), total balance: of 200 mL. He’s tolerating oral intake well with supervision.
+[OCCUPATIONAL THERAPIST]: Any bowel issues?
+[NURSE]: He opened his bowels this morning—formed stool, no concerns. Charted daily bowel monitoring.
+[OCCUPATIONAL THERAPIST]: Thanks. I’ll assess his ADLs and see what supports we can put in place.
+[NURSE]: Thanks. Let me know if you need assistance during the assessment or if any equipment needs to be ordered.
+

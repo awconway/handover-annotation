@@ -1,0 +1,10 @@
+[WARD NURSE 1]: Hey, just handing over James Taylor, 42 years old, admitted yesterday with severe tonsillitis. He’s heading to theatre later this morning for a tonsillectomy.
+[WARD NURSE 2]: Okay, thanks. What’s his current status?
+[WARD NURSE 1]: He’s afebrile now, vitals are stable — RR 16, SpO? 98% on room air, HR 82. Still has significant throat pain and is nil by mouth in preparation for surgery. ENT reviewed him this morning and confirmed he’s on the list.
+[WARD NURSE 2]: Got it. Any IV access?
+[WARD NURSE 1]: Yes, 20G in the right forearm — patent and secure. He’s had IV fluids and antibiotics this morning. No known drug allergies.
+[WARD NURSE 2]: Any behavioural or cognitive concerns?
+[WARD NURSE 1]: No concerns. He’s alert and cooperative, just a bit anxious about the procedure, which is understandable.
+[WARD NURSE 2]: Has the pre-op checklist been done?
+[WARD NURSE 1]: Yep — checklist complete, consent signed, anaesthetics team has reviewed. Theatre is booked for 11:30 AM. Just keep an eye out for any changes and let the team know if there’s a delay.
+

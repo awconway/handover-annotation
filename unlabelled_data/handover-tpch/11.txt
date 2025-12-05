@@ -1,0 +1,15 @@
+[OUTGOING_NURSE]: Hi, I’m handing over bed 8, Jake Morrison, 23 years old. He’s Day 1 post-VATS for a left-sided pneumothorax following a football injury on Saturday. He’s just come back from theatre this morning.
+[INCOMING_NURSE]: How’s he doing?
+[OUTGOING_NURSE]: He’s stable post-op. Vitals are within normal limits. He’s alert and orientated, but still a bit groggy from anaesthetic.
+[INCOMING_NURSE]: Any drains or lines?
+[OUTGOING_NURSE]: Yes, he has: One chest drain on the left side, currently on suction, IV cannula in the right forearm, PCA in place – fentanyl-based, set up and functioning
+He’s been shown how to use the PCA but may need reinforcement. He’s hesitant and unsure about pressing the button.
+[INCOMING_NURSE]: Got it. I’ll go over it with him again.
+[OUTGOING_NURSE]: Pain score is around 4/10 at rest, 6/10 on movement. He’s tolerating oral fluids and has had a light meal. No nausea or vomiting.
+[INCOMING_NURSE]: Any other concerns?
+[OUTGOING_NURSE]: He’s understandably anxious about the chest drain and movement. He’s due for a physio review later today to start gentle breathing exercises and mobilisation.
+[INCOMING_NURSE]: Any allergies or medications?
+[OUTGOING_NURSE]: No known drug allergies. Regular meds include paracetamol and ibuprofen pre-op. Post-op: Fentanyl PCA, Paracetamol 1g QID, Ondansetron PRN, Cephazolin IV (prophylactic).
+[INCOMING_NURSE]: Thanks. I’ll check the drain output and reinforce PCA use.
+[OUTGOING_NURSE]: Perfect. Let me know if anything changes. He’s currently resting in bed.
+

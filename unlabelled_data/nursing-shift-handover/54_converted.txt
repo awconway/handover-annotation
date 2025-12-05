@@ -1,0 +1,20 @@
+[INCOMING_NURSE]: Good Morning. I’m taking over from nights. Mind if we do your handover here, Nick?
+[PATIENT]: Sure, that’s fine.
+[OUTGOING_NURSE]: Thanks, Nick. This is the bedside handover for Room 2, Bed 1. Patient is Nick Smith, 45 years old, under Dr. Wu. He came in with a head injury.
+[INCOMING_NURSE]: Hi Nick, I’m the day nurse. Could you confirm your full name for me?
+[PATIENT]: Nick Smith.
+[INCOMING_NURSE]: Thank you. ID band matches. Any allergies we should know about?
+[PATIENT]: None that I know of.
+[OUTGOING_NURSE]: Overnight he’s been alright, no other problems reported. No changes noted—he’s still the same as prior shift.
+[INCOMING_NURSE]: Any new symptoms—headache getting worse, nausea, vomiting, confusion, vision changes?
+[PATIENT]: No, nothing new. I feel about the same.
+[OUTGOING_NURSE]: Neuro checks unchanged from earlier entries. No concerns raised overnight. Vitals stable as per obs chart.
+[INCOMING_NURSE]: Any lines or drains we need to be aware of?
+[OUTGOING_NURSE]: No new lines or devices. Usual monitoring only.
+[INCOMING_NURSE]: Okay. Plan is to continue neuro observations as charted and escalate if there’s any change, and await Dr. Wu’s review?
+[OUTGOING_NURSE]: Exactly. Call the team if there’s any neuro deterioration or if pain escalates.
+[INCOMING_NURSE]: Nick, your call bell is right here. Please press it if you notice worsening headache, feel sick, or anything doesn’t feel right.
+[PATIENT]: Got it. Thanks.
+[OUTGOING_NURSE]: Anything else you need before I head off?
+[PATIENT]: No, I’m okay.
+[INCOMING_NURSE]: Thanks. I’ll check your chart and be back shortly to repeat your observations.

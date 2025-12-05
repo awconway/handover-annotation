@@ -1,0 +1,14 @@
+[DIETITIAN]: Hi, I’m handing over Mr. Robert King, 58 years old, currently Day 3 post-abdominal surgery. He’s receiving Total Parenteral Nutrition (TPN) via a central line due to nil oral intake and delayed return of gut function.
+[NURSE]: Thanks. What’s the current TPN plan?
+[DIETITIAN]: He’s on a standard TPN formulation with electrolytes, glucose, amino acids, and lipids. It’s running over 24 hours via central line, and we’re monitoring daily bloods—including U&Es, LFTs, glucose, and triglycerides. His fluid balance and weight should be tracked daily.
+[NURSE]: Any specific concerns?
+[DIETITIAN]: Yes, he’s at risk of refeeding syndrome, so we’ve started thiamine supplementation and are watching his phosphate and magnesium levels closely. So far, electrolytes are stable.
+[NURSE]: Is he tolerating the TPN well?
+[DIETITIAN]: Yes, no signs of intolerance. No nausea or vomiting. He’s alert and understands the plan. We’ve discussed the importance of not disconnecting the line and keeping the TPN pump running continuously.
+[NURSE]: (to patient) Hi Mr. King, I’ll be looking after you today. How are you feeling?
+[PATIENT]: A bit tired, but okay. I’m just hoping I can eat again soon.
+[DIETITIAN]: We’re aiming to reassess gut function in the next 48 hours. Once bowel sounds return and surgical team clears it, we’ll start clear fluids, then build up gradually.
+[NURSE]: I’ll monitor his obs, fluid balance, and bloods. Anything else?
+[DIETITIAN]: Just make sure the TPN line stays dedicated—no meds or flushes through it. And please notify me if there are any signs of infection, line issues, or abnormal blood results.
+[NURSE]: Will do. Thanks for the handover.
+

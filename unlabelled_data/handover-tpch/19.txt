@@ -1,0 +1,12 @@
+[NURSE]: Hi Dr. Patel, I need to escalate a concern about Mr. Thomas Nguyen, 74 years old, currently in bed 5 on the urology ward. He’s deteriorating clinically and I think he needs a medical review as soon as possible.
+[DOCTOR]: Okay, what’s going on?
+[NURSE]: He was admitted yesterday with acute urinary retention and a history of benign prostatic hyperplasia. He had a catheter inserted, but over the last few hours he’s become increasingly lethargic, tachycardic, and hypotensive. His urine output has dropped significantly.
+[DOCTOR]: What are his current vitals?
+[NURSE]: His BP is 88/54, HR: 112 bpm, RR: 22, SpO?: 96% on room air, Temp: 37.9°C, Urine output: 40 mL over the last 3 hours, Q-ADDS score: 7
+[DOCTOR]:Any pain or other symptoms?
+[NURSE]: He’s complaining of lower abdominal discomfort and has a low-grade fever. He’s also confused, which is new for him. No vomiting, but he’s refusing fluids.
+[DOCTOR]: Any recent bloods?
+[NURSE] Yes, from this morning: a white cell count of : 14.6, CRP: 98, Creatinine: 168 (up from 102 yesterday), eGFR: 4. He Looks like he’s heading into acute kidney injury, possibly secondary to infection or obstruction.
+[DOCTOR]: Okay, thanks. I’ll come and review him now. We may need imaging and to escalate to the surgical team if obstruction is worsening.
+[NURSE]: I’ll keep monitoring and prepare for possible transfer or escalation.
+

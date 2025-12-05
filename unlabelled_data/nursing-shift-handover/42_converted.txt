@@ -1,0 +1,21 @@
+[OUTGOING_NURSE]:Good Morning, Coco. I’m just handing over to Priya for day shift, is that okay?
+[PATIENT]: Sure.
+[INCOMING_NURSE]: Hi, Coco. I’m Priya. We’ll do a quick bedside handover.
+[OUTGOING_NURSE]: Great. This is bed three, Coco Constantino, 61 years old, under Dr. Hudgens. He came in with pneumonia and an allergic reaction to penicillin.
+[INCOMING_NURSE]: Coco, can you confirm your name for me?
+[PATIENT]: Coco Constantino.
+[INCOMING_NURSE]: Thank you. Any allergies?
+[OUTGOING_NURSE]: Yes—penicillin. He was accidentally prescribed penicillin for the pneumonia and developed a rash, fever, and difficulty breathing afterward. Allergy is now documented.
+[INCOMING_NURSE]: Noted—penicillin allergy with rash, fever, breathing difficulty.
+[OUTGOING_NURSE]: Respiratory-wise, he’s on his regular puffers with PRN nebulisers. He’s also on prednisolone; we’re doing random BGLs. He’s on oral antibiotics and an antihistamine.
+[INCOMING_NURSE]: I will do  BGL checks, and give oral ABs (non-penicillin), and antihistamine as ordered.
+[OUTGOING_NURSE]: Today he’s afebrile. He’s on oxygen at 2 litres via nasal prongs. Sats are normal and all other obs are stable. He has a QADDS of 2 for breathing the doctors are aware.
+[INCOMING_NURSE]: Coco, how’s your breathing now?
+[PATIENT]: Better than yesterday.
+[INCOMING_NURSE]: Good to hear. Any itch or rash still bothering you?
+[PATIENT]: A bit of itch, but it’s settling.
+[OUTGOING_NURSE]: He’s self-caring and ambulant.
+[INCOMING_NURSE]: The plan for today is to continue oxygen at 2 L and wean as tolerated, monitor sats and obs, continue puffers/PRN nebs, steroids with random BGLs, oral antibiotics and antihistamine. We’ll reinforce the penicillin allergy bracelet and chart.
+[PATIENT]: Okay.
+[OUTGOING_NURSE]: Okay are you happy with the handover
+[INCOMING_NURSE]: Thanks. Coco, press the call bell if you feel short of breath or the rash worsens. I’ll be back to check your sugars and see if we can reduce the oxygen later.

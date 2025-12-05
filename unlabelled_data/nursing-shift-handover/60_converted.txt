@@ -1,0 +1,22 @@
+[OUTGOING_NURSE]:Good Morning, Terry. I’m Jack from night shift. This is Evie; she’ll be looking after you today.
+[INCOMING_NURSE]: Hi, terry. I’ll just do bedside handover with Jack if that’s okay.
+[INCOMING_NURSE]: Can I confirm your details? I’ll check your wristband… Thank you. That matches the chart.
+
+[OUTGOING_NURSE]: This is Terry Patterson, 70 years old, in Room 2, Bed 7, under Dr De Silva.
+[OUTGOING_NURSE]: Terry came in with dementia; he’s not confused today and has been very pleasant.
+[OUTGOING_NURSE]: He’s tolerated his diet well and has taken all the medications as prescribed.
+[OUTGOING_NURSE]: His Vital signs have been stable and there were no other problems noted overnight.
+[OUTGOING_NURSE]: He’s still awaiting nursing home placement. That’s all from my end.
+
+[INCOMING_NURSE]: Thanks, Jack.
+[INCOMING_NURSE]: Terry, how are you feeling this morning—any pain or discomfort?
+[PATIENT]: I’m feeling fine, thank you.
+[INCOMING_NURSE]: Great. We’ll keep your meals coming as ordered and your regular meds on time.
+[INCOMING_NURSE]: I’ll continue routine observations and I’ll touch base with the team about your nursing home placement progress.
+
+[INCOMING_NURSE]: Do you need any help with anything right now?
+[PATIENT]: No, I’m okay.
+[INCOMING_NURSE]: Your call bell is right here within reach. Please press it if you need assistance, and we’ll check in regularly.
+
+[OUTGOING_NURSE]: All right, that’s handover complete from me.
+[INCOMING_NURSE]: Thanks, Jack. I’ll take it from here. I’ll be back shortly, Terry.

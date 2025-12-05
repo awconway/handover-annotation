@@ -1,0 +1,12 @@
+[NURSE]: Hi, this is Mrs. Joan Murphy, 73 years old. Joan, this is Liam, one of our physiotherapists. He’s here to help with your breathing and to assist with collecting a sputum sample.
+[PHYSIO]: Hi Joan, nice to meet you. I’ll be working with you today to help clear your chest and get a sample if we can. How are you feeling?
+[PATIENT]: Still a bit chesty and tired. I’ve been coughing but not bringing much up.
+[NURSE]: Joan came in last night with an acute exacerbation of COPD—increased SOB, wheeze, and a productive cough. She’s now on IV ceftriaxone and hydrocortisone, and we’re trying to get a sputum sample for culture before the next dose.
+[PHYSIO]: Okay, has she been able to expectorate anything yet?
+[NURSE]: Not yet—she’s coughing but not clearing much. She’s on salbutamol and ipratropium nebs Q4H, and we’ve just given her a neb about 20 minutes ago to help loosen things up.
+[PHYSIO]: Great, that should help. I’ll do some chest physio and see if we can get a sample.
+[NURSE]: She’s on 2 L nasal prongs, target sats 88–92%. Her Q-ADDS score is 4, so she’s on 2-hourly observations. RR is 22, sats 91%, HR 96, BP 134/78, Temp 37.4. She’s also on a respiratory chart—we’re tracking sputum colour and volume, and she’s on a fluid balance chart due to poor oral intake.
+[PHYSIO]: Understood. Joan, I’ll help you with some breathing techniques and gentle percussion. If you feel the urge to cough anything up, we’ll collect it in a sterile pot.
+[PATIENT]: Okay, I’ll try.
+[NURSE]: Thanks, Liam. Let me know if you’re able to get a sample or if she needs a second neb beforehand. Everything’s documented in the chart, and the pathology slip is ready.
+

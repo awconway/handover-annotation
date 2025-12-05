@@ -1,0 +1,32 @@
+[INCOMING_NURSE]: Good Morning, Marco. I’m the incoming nurse. I’ll just get bedside handover from my colleague and then we’ll check in with you.
+[OUTGOING_NURSE]: Hi, Marco. He’s Bed 6 in Room 1, under Dr. Sun. Admitted with nephrolithiasis—kidney stones.
+[INCOMING_NURSE]: Thanks. Marco, can you confirm your full name and age?
+[PATIENT]: Marco Calasso, 40.
+[INCOMING_NURSE]: Great, thank you.
+
+[OUTGOING_NURSE]: He has a background history of depression and asthma. He’s on both oral and IV antibiotics. He’s for a Lithotripsy with Dr. Sun next week.
+[INCOMING_NURSE]: Okay what day?
+
+[OUTGOING_NURSE]: Wednesday, I think. His Main issues overnight have been pain, it has been severe—he’s rating it 10 out of 10 despite regular Panadol, plus PRN Morphine and Endone.
+[PATIENT]: It’s been really strong, yeah.
+[INCOMING_NURSE]: Okay, Marco, we’ll reassess that right after handover.
+
+[OUTGOING_NURSE]: He still has haematuria. He also had nausea and vomiting; we gave IV metoclopramide with good effect—settled the nausea.
+[INCOMING_NURSE]: Good to hear the antiemetic helped.
+
+[OUTGOING_NURSE]:He has one IV cannula in the right hand— the site is patent and intact.
+[INCOMING_NURSE]: I’ll check the site and flush after handover.
+
+[OUTGOING_NURSE]: Blood pressure has been elevated; up to 180/86 the team are aware. He’s on FBC and a general diet.
+[INCOMING_NURSE]: FBC as in fluid balance charting?
+[OUTGOING_NURSE]: Yes—fluid balance charting. General diet otherwise.
+[INCOMING_NURSE]:  Any other tests or bookings today?
+[OUTGOING_NURSE]: There may be something pending for tomorrow; waiting on the team to confirm. Lithotripsy is next week.
+
+[INCOMING_NURSE]: So the plan is to continue oral and IV antibiotics, monitor hematuria and fluid balance, manage pain—consider review since he’s still 10/10—and keep an eye on the BP; team already informed.
+[OUTGOING_NURSE]: Agreed.
+
+[INCOMING_NURSE]: Marco, is there anything else worrying you right now?
+[PATIENT]: Mostly the pain. The nausea’s better.
+[INCOMING_NURSE]: Okay. We’ll be back shortly to reassess your pain and give what’s due. Use your call bell if it spikes again.
+[OUTGOING_NURSE]: Thanks, Marco. I’ll leave you with the day team now.

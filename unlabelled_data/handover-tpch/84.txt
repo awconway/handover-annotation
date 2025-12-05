@@ -1,0 +1,14 @@
+[OUTGOING_NURSE]: Hi, I'm handing over bed 11, Mr. Thomas Nguyen, 64 years old. He’s been admitted with multiple left-sided rib fractures—ribs 5 through 8—after a fall from a ladder yesterday.
+[INCOMING_NURSE]: Ouch. How’s he doing now?
+[OUTGOING_NURSE]: He’s stable but in quite a bit of pain, especially with deep breathing and movement. He’s on regular paracetamol and oxycodone PRN. We’ve also started a fentanyl PCA overnight, which he’s using appropriately.
+[INCOMING_NURSE]: Any respiratory concerns?
+[OUTGOING_NURSE]: No signs of pneumothorax or haemothorax on imaging. Chest X-ray shows isolated rib fractures. He’s on 2 L nasal prongs to maintain sats above 94%. We’re encouraging deep breathing and coughing—he’s using the incentive spirometer.
+[INCOMING_NURSE]: Any comorbidities?
+[OUTGOING_NURSE]: Hypertension and mild COPD. No known allergies. He’s a non-smoker now but has a 30-pack-year history.
+[INCOMING_NURSE]: Mobilising?
+[OUTGOING_NURSE]: With assistance. Physio reviewed this morning and will continue daily. He’s slow but safe with a frame. Needs supervision for toileting.
+[INCOMING_NURSE]: Any communication or support needs?
+[OUTGOING_NURSE]: English is his first language. Lives with his wife. He’s a bit frustrated with the pain but very cooperative.
+[INCOMING_NURSE]: Got it. I’ll keep an eye on his pain and respiratory effort.
+[OUTGOING_NURSE]: Perfect. Let me know if his pain escalates or if there are any signs of respiratory compromise. All documentation is up to date, including pain scores and PCA charting.
+

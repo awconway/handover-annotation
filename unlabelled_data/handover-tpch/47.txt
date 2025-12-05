@@ -1,0 +1,14 @@
+
+[NURSE 1]: Hi, I’m handing over Mr. Alan Roberts, 76 years old. He’s on the ward with a Stage 2 pressure injury on his right shoulder. Wound care is ongoing.
+[NURSE 2]: Okay, thanks. What’s the current wound management plan?
+[NURSE 1]: The area is dressed with a hydrocolloid dressing, changed every 72 hours or as needed. No signs of infection — no redness or discharge. Tissue viability nurse has reviewed and documented the plan.
+[NURSE 2]: Got it. Any pain or discomfort?
+[NURSE 1]: He reports mild discomfort during dressing changes but otherwise tolerating well. Analgesia charted PRN — he had paracetamol this morning.
+[NURSE 2]: Any IV access?
+[NURSE 1]: Yes, 22G cannula in the left forearm. It’s patent, no signs of phlebitis. Due for review tomorrow — charted for removal if no longer needed.
+[NURSE 2]: I’ll check the site during rounds. Any meds due?
+[NURSE 1]: No meds due right now. He’s on oral antibiotics — started two days ago for a UTI, due to complete in three more days. No known drug allergies.
+[NURSE 2]: Any behavioural or cognitive concerns?
+[NURSE 1]: No concerns. He’s alert, oriented, and engaging well. Mobilising with assistance. Pressure area care chart is up to date.
+[NURSE 2]: Great, I’ll keep an eye on the wound and IV site. Let me know if anything changes.
+

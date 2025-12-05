@@ -1,0 +1,21 @@
+[INCOMING_NURSE]: Hi Oliver, I’m the incoming nurse. We’ll do a quick bedside handover with my colleague, is that okay?
+[PATIENT]: Sure.
+
+[OUTGOING_NURSE]: Thanks, Oliver. This is Oliver Green in bed five, he is 41 years old, under Dr McDonald. He’s come in with asthma for investigation.
+[INCOMING_NURSE]: Thanks. Oliver, could you confirm your full name for us?
+[PATIENT]: Oliver Green.
+[INCOMING_NURSE]: Thank you. Any allergies we should know about?
+[PATIENT]: No, none that I’m aware of.
+
+[OUTGOING_NURSE]: He’s a smoker. Observations have been stable today his QADDS is zero today. He’s just arrived on the ward, so the doctors haven’t reviewed him yet and I’m not sure of the plan at this stage.
+[INCOMING_NURSE]: Okay. Are you comfortable right now—any shortness of breath or chest tightness?
+[PATIENT]: I’m okay at the moment.
+
+[OUTGOING_NURSE]: He’s ambulant and self-caring. No other complaints noted.
+[INCOMING_NURSE]: Great. I’ll keep monitoring your observations and we’ll touch base with Dr McDonald’s team when they come around. If you feel any worsening breathlessness or wheeze, press the call bell straight away.
+[PATIENT]: Will do.
+
+[OUTGOING_NURSE]: That's it from me
+[INCOMING_NURSE]: Thanks. Oliver, do you need anything before we go?
+[PATIENT]: No, I’m fine, thanks.
+[INCOMING_NURSE]: Alright, I’ll be back to check on you shortly.

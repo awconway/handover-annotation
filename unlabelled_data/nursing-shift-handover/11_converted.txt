@@ -1,0 +1,23 @@
+[INCOMING_NURSE] Hi Thomas. Shall we start at Bed 1?
+[OUTGOING_NURSE]: Yep. Bed 1 is Ramanathan Nishapilai, under Dr. Smith.
+[OUTGOING_NURSE]: Hi Ramanathan, this is Thomas, the day nurse taking over from me.
+[INCOMING_NURSE]: Hi Ramanathan. Can you please confirm your full name?
+[PATIENT]: Ramanathan Nishapilai.
+[INCOMING_NURSE]: Thanks. I’m checking your ID band now the details match. I'm just going to check your medication charts and your IV cannula to make sure they are correct. Do you have any allergies we should know about?
+[PATIENT]: No known drug allergies.
+[INCOMING_NURSE]: Great. And what pronouns do you prefer?
+[PATIENT]: He/him.
+[OUTGOING_NURSE]: Thanks—apologies if I misspoke earlier.
+
+[OUTGOING_NURSE]: Ramanathan is 46 years old, admitted under Dr. Smith with a two-week history of arrhythmia. He has a prior history of the same issue and is here for management.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: He’s on the same medication regimen as previously; nothing new added and no changes overnight. There’s no plan for discharge yet.
+[INCOMING_NURSE]: Has he had any issues overnight such as chest pain, dizziness, palpitations?
+[OUTGOING_NURSE]: No he hasn't mentioned anything to me. He’s been stable.
+[INCOMING_NURSE]: Thanks.
+
+[INCOMING_NURSE]: Ramanathan, anything you’d like to add or anything you need right now?
+[PATIENT]: No, I’m okay, thanks.
+[INCOMING_NURSE]: All right, we’ll continue with your current management and I’ll check in regularly. Use the call bell if you need me.
+[OUTGOING_NURSE]: Thanks, Ramanathan. I’ll leave you with Thomas.
+[INCOMING_NURSE]: Thanks for the handover.

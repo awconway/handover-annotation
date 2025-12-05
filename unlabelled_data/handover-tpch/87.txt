@@ -1,0 +1,16 @@
+[OUTGOING_NURSE]: Hi, I’m handing over bed 8, Mr. Angelo Romano, 84 years old. He’s in for a TAVI via left subclavian access, scheduled for tomorrow morning. He’s now developed a new arrhythmia—I’ve notified the medical team.
+[INCOMING_NURSE]: Okay—what kind of arrhythmia?
+[OUTGOING_NURSE]: He went into new-onset atrial fibrillation about an hour ago—irregularly irregular rhythm, HR peaked at 130. He’s asymptomatic but more confused than usual. No chest pain or syncope. ECG has been done and uploaded.
+[INCOMING_NURSE]: What’s been done so far?
+[OUTGOING_NURSE]: The cardiology registrar has been notified and is reviewing. We’ve done a full set of bloods including U&Es, magnesium, and troponin. He’s on telemetry and we’re monitoring closely. No rate control started yet—awaiting medical orders.
+[INCOMING_NURSE]: What’s his baseline?
+[OUTGOING_NURSE]: Normally in sinus rhythm. He’s got known aortic stenosis and mild cognitive impairment. He’s also incontinent of urine—currently in pads. No IDC.
+[INCOMING_NURSE]: IV access?
+[OUTGOING_NURSE]: Two good IVs—18G in the right forearm and 20G in the left hand. Maintenance fluids running at 75 mL/hr. He’s fasting from midnight for the procedure.
+[INCOMING_NURSE]: Medications?
+[OUTGOING_NURSE]: Regular meds include frusemide, aspirin, and atorvastatin. No anticoagulants yet—this will likely be reviewed post-TAVI. PRN paracetamol and haloperidol are charted. No known allergies.
+[INCOMING_NURSE]: Any support needs?
+[OUTGOING_NURSE]: English is his second language—Italian is his first. Interpreter is booked for tomorrow. His daughter is his next of kin and has been very involved. He’s quite anxious and confused, especially with the new arrhythmia.
+[INCOMING_NURSE]: Got it. I’ll keep monitoring his rhythm and wait for the plan from cardiology.
+[OUTGOING_NURSE]: Perfect. Let me know if his condition worsens—especially if he becomes hypotensive or more confused. All documentation is up to date, including ECG, fluid balance, and neuro obs.
+

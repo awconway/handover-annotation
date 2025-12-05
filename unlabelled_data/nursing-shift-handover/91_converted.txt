@@ -1,0 +1,28 @@
+[INCOMING_NURSE]: Good Morning, Alex. I’m Priya, I’ll be looking after you today. I’m just going to get bedside handover from Sam, the night nurse. Is that okay?
+[PATIENT]: Sure, that’s fine.
+[OUTGOING_NURSE]: Thanks, Priya. This is Alexander Marek in Room 4, under Dr Gaylor. Alex, can you confirm your full name and date of birth for us?
+[PATIENT]: Alexander Marek, 12-09-58.
+[INCOMING_NURSE]: Great, thank you. Any allergies to medications?
+[PATIENT]: None that I know of.
+[OUTGOING_NURSE]: Okay. So, Alex is 66 years old, admitted with acute on chronic renal failure. He’s on home haemodialysis normally.
+[OUTGOING_NURSE]: He has a history of end-stage renal failure, type 2 diabetes, hypertension, and depression. He also has atrial fibrillation and is on warfarin.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: We need his warfarin level today to guide dosing. ED drew bloods but missed the warfarin/INR, so that still needs to be taken and then please get the doctors to review the result.
+[INCOMING_NURSE]: I’ll take the INR straight after handover and flag it with the team.
+[OUTGOING_NURSE]: His potassium this morning is 6.2, so very high. The doctors are aware and we’re waiting on their treatment orders. I’ve printed the hyperkalaemia protocol and left it just outside the notes if you need it.
+[INCOMING_NURSE]: Thanks, I see it there. I’ll follow up for orders.
+[OUTGOING_NURSE]: He’s for renal ultrasound and biopsy to be arranged by the renal team.
+[OUTGOING_NURSE]: He's for daily weight and he’s 82 kilograms today.
+[OUTGOING_NURSE]: His Lying and standing blood pressures are stable—no postural drop.
+[OUTGOING_NURSE]: AV fistula observations are good: there’s a bruit and thrill present.
+[OUTGOING_NURSE]: Blood glucose levels QID; latest BGL is 5.6.
+[INCOMING_NURSE]: Perfect. Alex, do you usually dialyze Monday, Wednesday, Friday mornings?
+[PATIENT]: Yes, M-W-F in the mornings. I had dialysis yesterday.
+[OUTGOING_NURSE]: I’ve called the dialysis unit to let them know he’s admitted and needs scheduling while he’s here.
+[INCOMING_NURSE]: Great, I’ll coordinate with them for the next session.
+[OUTGOING_NURSE]: Otherwise he’s stable at the moment.
+[INCOMING_NURSE]: Alex, anything you want to add or anything you need right now?
+[PATIENT]: No, I’m okay, thank you.
+[INCOMING_NURSE]: I’ll draw your INR now, and chase the team for the hyperkalaemia orders, 
+[OUTGOING_NURSE]: Sounds good. Thanks, Priya.
+[INCOMING_NURSE]: I’ll get started now, Alex.

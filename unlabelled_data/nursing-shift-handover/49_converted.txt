@@ -1,0 +1,26 @@
+[INCOMING_NURSE]: Good Morning, Neil. I’m Sam, I’ll be looking after you today. Is it okay if we do your handover at the bedside?
+[PATIENT]: Sure.
+[OUTGOING_NURSE]: Thanks, Neil. Hi Sam. This is Bed 4, Neil Paganus, He is 39 years old.
+[INCOMING_NURSE]: Neil, can you tell me your full name, please?
+[PATIENT]: Neil Paganus.
+[INCOMING_NURSE]: Thank you. I'll  just check your medication charts and IV cannula to make sure they are up to date. 
+
+[OUTGOING_NURSE]: Neil came in with severe allergy symptoms and a history of asthma. He had difficulty breathing and was very chesty on arrival. He was febrile with a temperature of 38.8.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: We took blood cultures and gave paracetamol with good effect. The medical team has reviewed; Dr Tim was informed, and antibiotics have been changed as per their plan.
+[INCOMING_NURSE]: So the Blood cultures are still pending?
+[OUTGOING_NURSE]: Yes.
+[INCOMING_NURSE]: How’s your breathing now, Neil?
+[PATIENT]: Better than before, still a bit tight but improving.
+[INCOMING_NURSE]: Okay, we’ll keep a close eye on that.
+
+[OUTGOING_NURSE]: He’s on a general diet, self-caring, and ambulant.
+[INCOMING_NURSE]: Any other concerns overnight?
+[OUTGOING_NURSE]: No acute events after paracetamol. He’s been comfortable and mobilizing independently.
+[INCOMING_NURSE]: Great. Any specific precautions?
+[OUTGOING_NURSE]: Just routine observations, we are monitoring his temperature and respiratory status, and giving the antibiotics as charted.
+
+[INCOMING_NURSE]: Neil, we’ll keep checking your observations and let you know when any results come back. Please use the call bell if your breathing worsens or you feel unwell.
+[PATIENT]: Will do, thanks.
+[INCOMING_NURSE]: Thanks for the handover.
+[OUTGOING_NURSE]: No worries. I’m off—call me if you need anything before I go.

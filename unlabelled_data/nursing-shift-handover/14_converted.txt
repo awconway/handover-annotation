@@ -1,0 +1,23 @@
+[INCOMING_NURSE]: Good morning, Ken. I’m Alex, the day nurse. I’ll just get handover from Maya, then we’ll check in with you.
+[OUTGOING_NURSE]: Hi Alex. This is Bed 3, Ken Harris, he is 71 years old, under Dr Gregor.
+[INCOMING_NURSE]: Thanks. Ken, could you confirm your full name for me?
+[PATIENT]: Ken Harris.
+[INCOMING_NURSE]: Thank you. I’ve checked your ID band as well. The cannular looks like it needs changed it has been in for 3 days.  
+
+[OUTGOING_NURSE]: Ken came in with an arrhythmia. He had chest pain this morning an ECG was done and reviewed by the team. He was given anginine and morphine for the pain.
+[INCOMING_NURSE]: Ken, how’s the chest pain now? what is it out of 10? 10 being really bad.
+[PATIENT]: Its about a 2, It’s eased off a lot. Just a bit uncomfortable.
+[INCOMING_NURSE]: Okay, we’ll keep an eye on it. Let me know if it gets any worse. 
+
+[OUTGOING_NURSE]: He’s still tachycardic at 120. Blood pressure has been within normal range for him. He’s scoring a QADDS of 3 for the tachycardia. He’s otherwise stable and for monitoring.
+[INCOMING_NURSE]: what's his normal blood pressure? Does he have a history of atrial fibrillation?
+
+[OUTGOING_NURSE]: His BP is normally 90/40. This is a new rhythm problem. New meds have been ordered in the med chart by the team after they reviewed the ECG. We're to continue pulse checks for a full minute with each set of obs.
+[INCOMING_NURSE]: what time is the echo booked for?
+[OUTGOING_NURSE]: Sometime this afternoon there is no exact time yet.
+[INCOMING_NURSE]: okay, i'll chase it up and see if we can get it done today.
+[INCOMING_NURSE]: Ken, we’re waiting for your heart ultrasound this afternoon. We’ll keep checking your pulse and rhythm and let you know as soon as we have a time for the echo. If the chest pain worsens or you feel dizzy or short of breath, press your call bell straight away.
+[PATIENT]: Okay, thanks.
+[OUTGOING_NURSE]: Anything you need before I head off, Ken?
+[PATIENT]: I’m fine for now.
+[INCOMING_NURSE]: Thanks, Maya. I'll be back Ken to do some obs, soon.

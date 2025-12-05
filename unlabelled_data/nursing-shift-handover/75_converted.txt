@@ -1,0 +1,18 @@
+[OUTGOING_NURSE]: Good Morning. This is bed 6, Lisa Kerr, who is 62, under Dr Lane.
+[INCOMING_NURSE]: Hi Lisa, I’m Evie, taking over your care now. Jack’s just going to give me the handover.
+[PATIENT]: Okay… Where am I again?
+[INCOMING_NURSE]: You’re in hospital, Lisa. You’re safe. Your husband’s on his way.
+
+[OUTGOING_NURSE]: Lisa came in about three hours ago with a cerebral hemorrhage (apoplexy). Initial observations were taken and were within normal limits. She’s on neuro observations and currently scoring GCS 15. No weakness noted in either arm or leg.
+[INCOMING_NURSE]: How often are the neuro obs? Has she had a CT head?
+[OUTGOING_NURSE]:  hourly, She had a  CT brain which confirmed the hemorrhage. She’s on the emergency theatre list for brain surgery today. She’s been fasting since ED.
+[INCOMING_NURSE]: So, NBM since 0930.
+
+[OUTGOING_NURSE]: We’re waiting for her husband to arrive to provide consent—he has power of attorney. Lisa’s confused and isn’t able to sign consent herself. She’s in a gown and the pre-op checklist is completed.
+[INCOMING_NURSE]: I’ll keep her NBM, and liaise with theatres. I’ll contact the team once her husband arrives for consent.
+[PATIENT]: Is my husband coming?
+[INCOMING_NURSE]: Yes, he’s on his way, and we’ll update you both as soon as we have the surgery time.
+
+[INCOMING_NURSE]: Any changes or concerns since arrival?
+[OUTGOING_NURSE]: No acute changes—stable obs, remains confused but cooperative.
+[INCOMING_NURSE]: Thanks. I’ll stay close by, Lisa. Press the call bell if you need me.

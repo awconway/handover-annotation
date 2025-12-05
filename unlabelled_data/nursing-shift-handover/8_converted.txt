@@ -1,0 +1,19 @@
+[INCOMING_NURSE]: Good Morning, Phil. I’m Alex, I’ll be looking after you today. I’m just going to get handover from Sam, is that okay?
+[PATIENT]: Sure, that’s fine.
+[OUTGOING_NURSE]: Thanks, Phil. So, this is Phil Albert Rivet, He's 64 years old, In bed 2, under Dr. Garcia.
+[INCOMING_NURSE]: Hi Phil, can you confirm your full name for me, and I’ll check your wristband?
+[PATIENT]: Phil Albert Rivet.
+[INCOMING_NURSE]: Thank you.
+[OUTGOING_NURSE]: Phil came in by ambulance four days ago for thrombolytic therapy. He’s got a long history of cardiac problems of about 14 years.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: He was on regular GTN on arrival and he’s still on regular GTN as charted.
+[INCOMING_NURSE]: Okay, so continuing nitrates as per the med chart.
+[OUTGOING_NURSE]: The obs are stable, and he’s gradually improving. There have been no other problems noted overnight.
+[INCOMING_NURSE]: Are there any changes in your symptoms, Phil? Any chest pain or shortness of breath right now?
+[PATIENT]: No, I’m comfortable at the moment.
+[INCOMING_NURSE]: Good to hear. I’ll keep an eye on your vitals and meds.
+[OUTGOING_NURSE]: That’s pretty much it from me. He's Stable,and improving, we are continuing with the GTN, and routine obs.
+[INCOMING_NURSE]: Thanks. I’ll review the chart and do your next set of obs shortly. Phil, buzz if you need anything.
+[PATIENT]: Will do, thanks.
+[OUTGOING_NURSE]: Thanks, Phil. I’ll head off. Alex, he’s all yours.
+[INCOMING_NURSE]: Thanks, Sam.

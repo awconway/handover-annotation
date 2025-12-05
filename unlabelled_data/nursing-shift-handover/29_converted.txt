@@ -1,0 +1,22 @@
+[INCOMING_NURSE]: Good Morning, Christina. I’m the day nurse, Sam. I’ll just get handover from Taylor here at your bedside if that’s okay.
+[PATIENT]: That’s fine.
+[OUTGOING_NURSE]: Thanks, Christina. Bed 5, Christina Davis, who is 29 years old, under Dr. Mills. She originally presented with vomiting and was diagnosed with pneumonia.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: She’s pregnant, and she mentioned she has a 3-year-old daughter. She’s been coughing, particularly after talking.
+[INCOMING_NURSE]: Right.
+[OUTGOING_NURSE]: She’s on oral antibiotics. Observations have been stable throughout my shift, with a QADDs of zero.
+[INCOMING_NURSE]: Any other issues overnight? 
+[OUTGOING_NURSE]: No, nothing else to note.
+[INCOMING_NURSE]: Christina, how are you feeling now? Okay to speak or would you prefer short questions?
+[PATIENT]: Talking makes me cough more.
+[INCOMING_NURSE]: Understood. Any nausea at the moment?
+[PATIENT]: No, just the cough.
+[INCOMING_NURSE]: Thanks. Taylor, any pending tests or consults?
+[OUTGOING_NURSE]: None pending at the moment.
+[INCOMING_NURSE]: The plan for the morning is to continue oral antibiotics as charted, keep observations going, minimize long conversations to reduce cough triggers, and call us if you feel more short of breath or the cough worsens.
+[PATIENT]: Okay.
+[OUTGOING_NURSE]: I’ve documented the stable obs and that she’s tolerating care.
+[INCOMING_NURSE]: Christina, I’ll come back shortly with your medications and to recheck your observations. Is the call bell is within reach?
+[PATIENT]: Yes.
+[INCOMING_NURSE]: Thanks, Taylor. Have a good rest.
+[OUTGOING_NURSE]: Thanks. Bye, Christina.

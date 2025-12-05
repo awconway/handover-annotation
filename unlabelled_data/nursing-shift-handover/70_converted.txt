@@ -1,0 +1,25 @@
+[INCOMING_NURSE]: good Morning, Mr. Keller. I’m Evie, I’ll be looking after you today. I’m just getting handover from Jack.
+[OUTGOING_NURSE]: Hi Luke, we’re just doing your bedside handover.
+[INCOMING_NURSE]: Can you tell us your name?
+[PATIENT]: I… I want to go home.
+[INCOMING_NURSE]: That’s okay. I’ll just check your ID band… Luke Keller, 74, under Dr. Lee. Thanks.
+
+[OUTGOING_NURSE]: So, Bed 1, Luke Keller, who is 74 years old, under Dr. Lee. Admitted with Alzheimer’s disease. His observations are stable.
+[OUTGOING_NURSE]: He’s very confused and may become aggressive at times. We need to get security to help us as he punches and kicks at times
+[INCOMING_NURSE]: Okay, so security know that we will contact them if he gets too aggressive? .
+[OUTGOING_NURSE]: Yes. he needs a hosit to transer with  2–3 people as he is heavy. 
+[INCOMING_NURSE]: how much does he weigh?
+[OUTGOING_NURSE]: He’s 150 kg and is doubly incontinent of urine and feces and has a pad in situ.
+[OUTGOING_NURSE]: He needs to be fed and must sit fully upright when eating, so he doesn't choke.
+[OUTGOING_NURSE]: His Tablets need to be crushed; he also needs a referral to Speech Pathology.
+[INCOMING_NURSE]: I’ll do the SP referral for you if you like, I'll get the wardsman to help me sit him up.
+[OUTGOING_NURSE]: He’s a high falls risk.
+[OUTGOING_NURSE]: He needs regular pressure area care and is on a pressure-relieving mattress as he stays in bed most of the time.
+[INCOMING_NURSE]: How often is he being turned? 
+[OUTGOING_NURSE]: Evry 2 hours Otherwise, he’s stable.
+
+[PATIENT]: Where’s my wife?
+[INCOMING_NURSE]: We’ll check on that for you, Luke. I’ll be back shortly to help you with breakfast and your morning care.
+[OUTGOING_NURSE]: Is there anything else you need right now, Luke?
+[PATIENT]: No… okay.
+[INCOMING_NURSE]: Thanks, Jack. I’ll take it from here.

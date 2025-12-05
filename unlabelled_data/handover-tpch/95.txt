@@ -1,0 +1,15 @@
+[OUTGOING_NURSE]: Hi, I’m handing over Mr. James Daniels, 58 years old. James, this is Nurse Sarah, who’ll be looking after you this afternoon.
+[INCOMING_NURSE]: Hi James, I’ll be your nurse for the next shift. How are you feeling?
+[PATIENT]: Bloated and uncomfortable. It’s hard to breathe when I lie flat.
+[OUTGOING_NURSE]: James has decompensated liver disease from long-term alcohol use. He’s been admitted with tense ascites—his abdomen is distended and uncomfortable, and he’s short of breath. He’s for a therapeutic paracentesis this afternoon.
+[INCOMING_NURSE]: Okay. Has he been consented?
+[OUTGOING_NURSE]: Yes, the medical team has reviewed and consented him. Ultrasound has confirmed large-volume ascites. He’s been fasted, and we’ve inserted a 20G IV in the right forearm—patent and flushed.
+[INCOMING_NURSE]: Any medications?
+[OUTGOING_NURSE]: He’s on IV albumin post-drain as per protocol, and oral spironolactone and frusemide. No antibiotics charted yet—awaiting fluid culture results. No known allergies.
+[INCOMING_NURSE]: Fluid balance?
+[OUTGOING_NURSE]: He’s on a strict fluid balance chart. We’ve started daily weights and abdominal girth measurements. He’s mildly hypotensive—BP 94/60, HR 88, RR 20, SpO? 96% on room air. Temp 36.9. He’s on Q-ADDS—scoring 3 due to low BP, so we’re doing 4-hourly observations.
+[INCOMING_NURSE]: Any support needs?
+[OUTGOING_NURSE]: English is his first language. He’s alert and oriented but anxious about the procedure. He’s been open about his alcohol use and is willing to engage with support services. Social work and AOD team have been referred.
+[INCOMING_NURSE]: Got it. James, I’ll check your obs and help you get comfortable before the procedure. Let me know if you feel dizzy or more bloated.
+[PATIENT]: Thanks. I just want this fluid out.
+[OUTGOING_NURSE]: All documentation is up to date—fluid chart, Q-ADDS, and med chart. Let the team know if his BP drops further or if there are signs of infection post-drain.

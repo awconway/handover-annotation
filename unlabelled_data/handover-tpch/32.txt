@@ -1,0 +1,12 @@
+[NURSE]: Hi Dr. Sharma, I’d like you to review Mr. David Lang in bed 11. He’s a 71-year-old patient admitted yesterday with a left-sided ischemic stroke. He’s currently stable but showing significant right-sided weakness and difficulty with coordination.
+[DOCTOR]: Thanks. What’s his current status?
+[NURSE]: He’s alert and orientated, GCS 15. Vitals are stable: BP: 142/86, HR: 78 bpm, RR: 16, Temp: 36.7°C, SpO?: 96% on room air, Q-ADDS score: 2 for (BP + mobility). He’s mobilising with assistance but has poor upper limb function on the right. He’s struggling with feeding and grooming tasks. I think he’d benefit from an occupational therapy referral to assess for functional support and equipment.
+[DOCTOR]: Any IV access?
+[NURSE]: Yes, he has a 20G cannula in his left forearm—patent and flushed. No IV fluids running currently.
+[DOCTOR]: What medications is he on?
+[NURSE]; He’s currently prescribed: Aspirin 100 mg daily, Atorvastatin 40 mg nocte, Perindopril 4 mg daily, Paracetamol 1g QID PRN for comfort. No known drug allergies.
+[DOCTOR]: How is he positioned?
+[NURSE]: We’re using 30-degree lateral tilt positioning to offload pressure areas and support his hemiplegic side. He’s on a pressure-relieving mattress and being repositioned every 2 hours.
+[DOCTOR]: Thanks. I’ll review him and put in the OT referral. Please continue neuro obs and let me know if his mobility or cognition changes.
+[NURSE]: Will do. I’ll also update the allied health team and document the referral request.
+

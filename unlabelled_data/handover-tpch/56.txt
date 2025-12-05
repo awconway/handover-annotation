@@ -1,0 +1,13 @@
+[NURSE]: Good morning, Dr. Chen. I’d like to hand over Mr. Robert Hayes in bed 12. He’s a 72-year-old patient with congestive heart failure, admitted three days ago with worsening dyspnoea and peripheral oedema. His ejection fraction is 30%, confirmed on echo.
+[DOCTOR]: Thanks. Mr. Hayes, how are you feeling this morning?
+[PATIENT]: Still a bit short of breath, especially when I move around. My legs feel heavy.
+[NURSE]: He’s been on IV frusemide 40 mg BD, and we’ve seen some improvement in his fluid balance. His Input (last 24h) is  1200 mL his Output is  1800 mL via IDC. His total balance is -600 mL. He’s on a fluid restriction of 1.5 L/day and a low-sodium diet.
+[DOCTOR]: Any changes in observations?
+[NURSE]: Yes, latest obs: BP: 110/70, HR: 88 bpm, RR: 20, SpO?: 94% on room air, Temp: 36.7°C and a Q-ADDS score:  of 4 (due to RR and ongoing symptoms). He’s been repositioned 2-hourly, and we’re maintaining pressure area care with a pressure-relieving mattress. No skin breakdown noted.
+[DOCTOR]: Any concerns with medications or tolerance?
+[NURSE]: He’s tolerating oral meds well he has No known drug allergies.
+[PATIENT]: Doctor, do you think I’ll be going home soon?
+[DOCTOR]: We’re seeing good progress, Mr. Hayes. We’ll continue monitoring your fluid status and symptoms. If things keep improving, we’ll start planning for discharge with community follow-up.
+[NURSE]: I’ll continue monitoring his Q-ADDS, fluid balance, and skin integrity. Would you like a repeat blood panel today?
+[DOCTOR]: Yes, let’s check renal function and electrolytes again. Thanks.
+

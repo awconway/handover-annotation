@@ -1,0 +1,31 @@
+[OUTGOING_NURSE]: Good Morning. Bed 4 is Robert Lewis, but he prefers Bob.
+[INCOMING_NURSE]: Hi Bob, I’m taking over your care now. Is it okay if we do handover at the bedside?
+[PATIENT]: Sure.
+[INCOMING_NURSE]: Thanks, Bob.
+
+[OUTGOING_NURSE]: Bob is 62, under Dr. Johnson. He came in with a heart attack and has had a CABG.
+[INCOMING_NURSE]: Any other medical history?
+[OUTGOING_NURSE]: Notes say “high HD.” We’ll need to clarify whether that’s hypertension or hyperlipidaemia in the chart/with the team.
+[INCOMING_NURSE]: Okay, I’ll confirm that in the notes.
+
+[OUTGOING_NURSE]: He’s due for MRSA and VRE surveillance swabs.
+[INCOMING_NURSE]: I’ll collect those this morning.
+
+[OUTGOING_NURSE]: Ongoing surgical wound care—site looks clean and is healing well.
+[INCOMING_NURSE]: Bob, we’ll take a quick look later when we do your checks. Any pain at the wound site?
+[PATIENT]: It’s okay, it's just a bit tender.
+
+[OUTGOING_NURSE]: He’s been complaining of constipation— there has been no bowel movement for three days. Regular aperients have been given with good effect; he reports some relief.
+[INCOMING_NURSE]: Okay, Bob, we’ll keep up the aperients and monitor for a bowel motion. Let us know if you feel any abdominal pain or nausea.
+[PATIENT]: Will do.
+
+[OUTGOING_NURSE]: All observations are stable.
+[INCOMING_NURSE]: Great. Any lines or drains?
+[OUTGOING_NURSE]: No additional lines to note. Just routine post-op wound care.
+
+[INCOMING_NURSE]: Thanks. Plan for today: collect MRSA/VRE swabs, continue surgical wound care, manage constipation, and routine obs. Anything else pending with Dr. Johnson?
+[OUTGOING_NURSE]: There are no other outstanding tasks from my end.
+
+[INCOMING_NURSE]: Bob, is there anything you need right now?
+[PATIENT]: I’m okay, thanks.
+[INCOMING_NURSE]: Alright, I’ll be back shortly to do your checks and get those swabs done.

@@ -1,0 +1,43 @@
+[INCOMING_NURSE]: Hi Mindy. I’m Sam, I’ll be looking after you today. I’m just getting handover from Alex, is that okay?
+[PATIENT]: Sure.
+
+[OUTGOING_NURSE]: Thanks, Mindy. So, bed 2 is Mindy Jasmine Parks, 34 years old, under Dr. Cox.
+[INCOMING_NURSE]: Hi Mindy, could you confirm your full name for us?
+[PATIENT]: Mindy Jasmine Parks.
+[INCOMING_NURSE]: Thank you. I’ve checked your wristband—details match the chart and you have had all your medications for now. 
+
+[OUTGOING_NURSE]: Mindy has recurrent lung cancer with chest pain and a cough. She had lung cancer five years ago. she was also a heavy smoker for about 10 years.
+[INCOMING_NURSE]: Okay. Is she still smoking or has she given up?
+
+[OUTGOING_NURSE]: She has given up. She had bloods taken this morning and I haven’t checked if the results are back yet. From the doctors’ ward round, my understanding is they weren’t great, but I don’t have the specifics. This will need to be  followed-up.
+[INCOMING_NURSE]: No Problem, I’ll chase the blood results and review the notes/orders after this.
+
+[OUTGOING_NURSE]: Her family is in attendance.
+[INCOMING_NURSE]: Thanks.
+
+[OUTGOING_NURSE]: Her observations were stable for my whole shift so QADDS equals zero.
+[INCOMING_NURSE]: Is she on  any oxygen or telemetry?
+[OUTGOING_NURSE]: No, just routine monitoring. She’s for further monitoring today.
+
+[OUTGOING_NURSE]: Mindy’s been uncomfortable lying down.
+[INCOMING_NURSE]: Mindy, are you still uncomfortable when flat?
+[PATIENT]: Yes, it’s worse when I lie back.
+[INCOMING_NURSE]: Okay, we can sit you up more and use extra pillows—let us know what’s most comfortable. Any chest pain right now?
+[PATIENT]: A little, mostly when I lie down.
+[INCOMING_NURSE]: Thanks, let the team know if it changes and I can get you some pain relief.
+
+[OUTGOING_NURSE]: She’s self-caring and ambulant.
+[INCOMING_NURSE]: Great.
+
+[INCOMING_NURSE]: Any meds or infusions I need to be aware of?
+[OUTGOING_NURSE]: No nothing at the moment.
+
+[OUTGOING_NURSE]: That’s everything I need to tell you.
+[INCOMING_NURSE]: Thanks, Alex.
+
+[INCOMING_NURSE]: The plan for today is to continue monitoring her observations, follow up today’s blood results and the medical plan with Dr. Cox’s team, manage comfort—keep Mindy more upright for breathing and chest discomfort, and keep family informed. Mindy, please buzz if the chest pain worsens or you feel more short of breath.
+[PATIENT]: Okay, thank you.
+
+[OUTGOING_NURSE]: Anything else you need before I go, Mindy?
+[PATIENT]: No, I’m okay.
+[INCOMING_NURSE]: I’ll be back shortly after I check those results.

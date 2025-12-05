@@ -1,0 +1,19 @@
+[INCOMING_NURSE]: Good Morning, Mr Hunt. I’m taking over your care now. We’ll just do a quick bedside handover with my colleague, okay?
+[OUTGOING_NURSE]: Thanks. This is Abraham Hunt, 83 years old, under Dr Jamie.
+[INCOMING_NURSE]: Mr Hunt, could you confirm your name for me?
+[PATIENT]: Abraham Hunt.
+[INCOMING_NURSE]: Thank you. Any medication allergies that you know of? and when was the cannula inserted?
+[PATIENT]: No, not that I know of, it was put in yesterday in ED.
+[OUTGOING_NURSE]: He presented with chest pain, but it’s more likely not cardiac-related. He does have a history of a heart attack five years ago.
+[INCOMING_NURSE]: Any chest pain right now, Mr Hunt?
+[PATIENT]: No, none at the moment.
+[INCOMING_NURSE]: Any shortness of breath?
+[PATIENT]: No.
+[OUTGOING_NURSE]: He’s stable. On a general diet, self-caring and ambulant on the ward. He’s on his regular puffers and nebs.
+[INCOMING_NURSE]: Noted. Any IV lines?
+[OUTGOING_NURSE]: No. Meds-wise, he’s also on Clexane daily.
+[INCOMING_NURSE]: What’s the plan for today?
+[OUTGOING_NURSE]: He’s awaiting the doctor’s review under and may need some follow up tests to see what is happening for you to come into hospital.
+[INCOMING_NURSE]: Mr Hunt, we’ll keep monitoring you. If that chest pain returns or anything changes, please press the call bell straight away.
+[PATIENT]: Will do. Thank you.
+[INCOMING_NURSE]: Thanks for the handover. I’ll check your obs shortly and make sure your puffers and nebs are on schedule.

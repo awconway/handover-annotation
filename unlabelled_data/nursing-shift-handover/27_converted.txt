@@ -1,0 +1,28 @@
+[OUTGOING_NURSE]: Good Morning. Let's do bedside handover for Bed 3.
+[OUTGOING_NURSE]: Hi Kelly, this is Sam, the incoming nurse who'll be looking after you today.
+[INCOMING_NURSE]: Hi Kelly. Is it okay if we do handover at the bedside?
+[PATIENT]: Sure.
+
+[INCOMING_NURSE]: Could you please confirm your full name and date of birth?
+[PATIENT]: Kelly Diana Clarkson. 12 Jan 1990
+[INCOMING_NURSE]: Thank you. And any allergies?
+[PATIENT]: Pollen — I get hayfever.
+[INCOMING_NURSE]: Okay.
+
+[OUTGOING_NURSE]: Kelly is 36 years old, and is under Dr. Mills. She was admitted with query asthma for further investigation.
+[OUTGOING_NURSE]: Her past history includes bronchitis, and she’s recently had influenza.
+[OUTGOING_NURSE]: She’s allergic to pollens, as she mentioned.
+[OUTGOING_NURSE]: She’s currently on oral antibiotics.
+[OUTGOING_NURSE]: She’s ambulant, self-caring, and on a general diet.
+
+[INCOMING_NURSE]: Thanks. Any specific tests or times booked yet?
+[OUTGOING_NURSE]: Not yet — we are waiting further directions from Dr. Mills’ team.
+
+[INCOMING_NURSE]: Kelly, how are you feeling right now? Any concerns you want me to know about?
+[PATIENT]: I’m okay, just a bit chesty from the recent flu.
+
+[INCOMING_NURSE]: I’ll keep an eye on your breathing and check your medication chart for the antibiotics. You’re fine to continue with the general diet.
+[OUTGOING_NURSE]: That’s everything from me.
+
+[INCOMING_NURSE]: Thanks. Kelly, press the call bell if you need anything. I’ll be back shortly to do your observations and touch base about the plan for today.
+[PATIENT]: Thanks.

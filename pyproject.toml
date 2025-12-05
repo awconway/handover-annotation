@@ -1,0 +1,18 @@
+[project]
+name = "handover-annotation"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dspy-ai>=3.0.4",
+    "en-core-web-sm",
+    "numpy>=2.3.5",
+    "pytest>=9.0.1",
+    "rapidfuzz>=3.14.3",
+    "spacy>=3.8.11",
+    "thinc>=8.3.10",
+]
+
+[tool.uv.sources]
+en-core-web-sm = { url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0.tar.gz" }

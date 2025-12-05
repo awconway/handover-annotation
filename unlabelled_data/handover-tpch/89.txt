@@ -1,0 +1,18 @@
+[OUTGOING_NURSE]: Hi, I’m handing over bed 10, this is Mrs. Joan Murphy, 73 years old. Joan, this is Nurse Alex, who’ll be looking after you this afternoon.
+[INCOMING_NURSE]: Hi Joan, nice to meet you. I’ll be taking over your care now. How are you feeling?
+[PATIENT]: Still a bit breathless, but better than this morning.
+[OUTGOING_NURSE]: Joan came in overnight with an acute exacerbation of COPD—increased shortness of breath, wheeze, and productive cough. She’s now on IV ceftriaxone and IV hydrocortisone, both charted for 3 days. She’s also on salbutamol and ipratropium nebs Q4H.
+[INCOMING_NURSE]: Got it. What’s her oxygen requirement?
+[OUTGOING_NURSE]: She’s on 2 L via nasal prongs to keep sats between 88–92%—that’s her target range. She desats quickly if off oxygen. Her Q-ADDS score was 4 earlier due to increased RR and oxygen requirement, so she’s on 2-hourly observations.
+[INCOMING_NURSE]: Any recent changes?
+[OUTGOING_NURSE]: She’s improving slowly. RR is down to 22, sats 91% on 2 L, HR 96, BP 134/78, Temp 37.4. She’s afebrile now. We’ve started a fluid balance chart—she’s on IV fluids at 75 mL/hr due to poor oral intake. Strict input/output is being monitored.
+[INCOMING_NURSE]: Any comorbidities?
+[OUTGOING_NURSE]: Yes—hypertension and osteoporosis. No known drug allergies. She’s normally independent at home but has needed assistance with ADLs today due to fatigue.
+[INCOMING_NURSE]: Joan, are you managing okay with meals and drinks?
+[PATIENT]: Not really hungry, but I’ve had some soup and water.
+[INCOMING_NURSE]: That’s okay—we’ll keep encouraging fluids and monitor your intake.
+[OUTGOING_NURSE]: She’s also on a respiratory chart—we’re tracking sputum colour, volume, and work of breathing. Physio has been to see her and will review again tomorrow.
+[INCOMING_NURSE]: Thanks. Joan, I’ll check your obs shortly and make sure your breathing stays comfortable. Let me know if you feel more breathless or unwell.
+[PATIENT]: Will do. Thank you both.
+[OUTGOING_NURSE]: All documentation is up to date—Q-ADDS, fluid balance, and respiratory charting. Let the team know if her Q-ADDS score increases or if she deteriorates.
+

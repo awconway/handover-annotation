@@ -1,0 +1,23 @@
+[OUTGOING_NURSE]: Good Morning. This is David Adams in bed 8, he is under Dr. Wu.
+[INCOMING_NURSE]: Hi David, I’m taking over your care now. We’ll just do a quick bedside handover.
+[OUTGOING_NURSE]: David, could you confirm your name for us please, and date of birth?
+[PATIENT]: David Adams. 16 January 1984
+[INCOMING_NURSE]: Thanks, David. Any allergies recorded?
+[OUTGOING_NURSE]: None recorded on the chart.
+
+[OUTGOING_NURSE]: David is 34, admitted with a head injury. He’s been having headaches and is photophobic.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]:  He’s on Endone and morphine for the pain, and is for a CT brain tomorrow, and depending on those results, they’re planning to do endoscopic brain surgery later this week.
+[INCOMING_NURSE]: Okay,  I’ll keep an eye on the schedule for CT.
+[OUTGOING_NURSE]: He’s for daily bloods but he is a difficult stab, you may need to get the phlebotomist to do them, he's on neuro obs QID as per orders.
+[INCOMING_NURSE]: Have the bloods been taken today? 
+[OUTGOING_NURSE]: No, not yet, I'll ring the phlebotomist before I go home. His GCS has been 15 throughout my shift, and his observations have been stable.
+[INCOMING_NURSE]: Great.
+[OUTGOING_NURSE]: He’s pretty much self-caring and we’ve not noted any other issues.
+[INCOMING_NURSE]: David, we’ll keep the lights a bit dim for your comfort with the photophobia and keep working on your pain relief. If your headache worsens or anything changes, please buzz.
+[PATIENT]: Okay, thanks.
+
+[INCOMING_NURSE]: So the plan is to continue Endone/morphine for pain as charted, QID neuro obs, daily bloods, CT brain tomorrow, and wait for the surgical plan based on results.
+[OUTGOING_NURSE]: Anything you want to add, David?
+[PATIENT]: No, that’s all good.
+[INCOMING_NURSE]: Thanks. I’ll be back shortly to do your next set of obs.

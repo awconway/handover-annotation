@@ -1,0 +1,16 @@
+[OUTGOING_NURSE]: Good Morning, Jeff. I’m handing over to Mia, who’ll be looking after you today.
+[INCOMING_NURSE]: Hi Jeff, I’m Mia. Is it okay if we do your bedside handover now?
+[PATIENT]: Sure.
+[OUTGOING_NURSE]: Bed 1, Jeffrey Morgan Rossiter , he prefers Jeff, he is 76 years old, under Dr. Hudgens. He presented with pain; we’re investigating the source—cardiac, respiratory, or gastrointestinal.
+[INCOMING_NURSE]: Jeff, are you having any pain right now?
+[PATIENT]: No, I’m comfortable at the moment.
+[OUTGOING_NURSE]: He’s stable and has had no other pain noted since arrival.
+[INCOMING_NURSE]: Okay. What’s planned today?
+[OUTGOING_NURSE]: He’s for CT chest and abdomen to be arranged, echocardiogram, stress test, and lung function tests—all to be booked. He’s also still for bloods and ongoing monitoring.
+[INCOMING_NURSE]: Okay. You have a bit on today Jeff,  I’ll chase up bookings and get the bloods done shortly, then continue observations.
+[PATIENT]: Sounds good.
+[OUTGOING_NURSE]: That’s all from me for Jeff.
+[INCOMING_NURSE]: Jeff, if you get any pain or feel unwell, please press the call bell. I’ll be back after I’ve arranged those tests.
+[PATIENT]: Will do. Thank you.
+[OUTGOING_NURSE]: Thanks, Jeff. Have a good day.
+[INCOMING_NURSE]: Thanks for the handover.

@@ -1,0 +1,16 @@
+[NURSE]: Hi Dr. Ahmed, I need you to urgently review Mr. Leonard Price in bed 10. He’s a 76-year-old patient with a history of congestive heart failure and COPD. He’s deteriorated over the last few hours with worsening shortness of breath and low oxygen saturations.
+[DOCTOR]:
+What’s happening currently?
+[NURSE]: He’s tachypnoeic and using accessory muscles. His SpO? is 86% on 6 L via Hudson mask. He’s visibly distressed and unable to speak in full sentences. Auscultation reveals coarse crackles bilaterally. He’s likely fluid overloaded—his legs are oedematous, and his fluid balance is +1800 mL over the last 48 hours.
+[DOCTOR]: What are his latest observations?
+[NURSE]: BP: 158/92, HR: 112 bpm, RR: 32, Temp: 37.1°C, SpO?: 86% on 6 L O?, he’s  Alert but anxious his Q-ADDS score: 8 (SpO? + RR + HR + respiratory distress)
+[DOCTOR]: Any current respiratory support?
+[NURSE]: Not yet, but I believe he needs to be started on BiPAP. I’ve prepped the machine and mask. He’s not tolerating high-flow oxygen and is tiring.
+[DOCTOR]: IV access?
+[NURSE]: Yes, he has a 22G cannula in his right forearm, patent. No current IV fluids running. He’s on a fluid restriction chart.
+[DOCTOR]: Medications?
+[NURSE]:
+He’s charted for: Frusemide 40 mg IV BD – last dose was this morning, Spiriva inhaler daily, PRN salbutamol neb – given 1 hour ago, Paracetamol 1g QID PRN. He has No known allergies.
+[DOCTOR]: Thanks. We’ll start BiPAP immediately and arrange for transfer to HDU or the respiratory unit. Please continue monitoring and notify me of any changes.
+[NURSE]: Will do. I’ll document the escalation and prep for transfer.
+

@@ -1,0 +1,16 @@
+[AMBULANCE OFFICER]: Hi there, I’m bringing in Mrs. Margaret Ellis, 87 years old, from Rosewood Nursing Home. She had a fall earlier this morning—staff found her on the floor next to her bed. She’s hit her head, and there’s a small occipital hematoma. No loss of consciousness reported, but she’s been drowsy and confused since.
+[ED NURSE]: Thanks. Any known medical history?
+[AMBULANCE OFFICER]: Yes, she has: Hypertension, Osteoarthritis, Early-stage dementia and a Profound hearing loss – she’s deaf and communicates via written notes and gestures. No hearing aids in place today.
+[ED NURSE]: Any medications or allergies?
+[AMBULANCE OFFICER]: She’s on amlodipine and paracetamol regularly. No known drug allergies.
+[ED NURSE]: What’s her current condition?
+[AMBULANCE OFFICER]:
+Vitals on arrival: BP: 102/64, HR: 88, RR: 18, Temp: 36.7°C, SpO?: 97% on room air
+She’s responsive but confused. No vomiting. GCS is 14.
+[ED NURSE]: Any advanced care directives?
+[AMBULANCE OFFICER]: Yes, nursing home staff provided documentation indicating a Do Not Resuscitate (DNR) order. There’s also a note that family must be involved in any escalation decisions. Her daughter and son are on their way to the hospital now.
+[ED NURSE]: Thanks. Any IV access?
+[AMBULANCE OFFICER]: No IV inserted yet. She may need one for imaging or fluids depending on your assessment.
+[ED NURSE]:  We’ll get her triaged and notify the medical team. I’ll also make sure we have written communication tools available for her.
+[AMBULANCE OFFICER]: Perfect. She’s currently calm but may need reassurance once she’s in the bay.
+

@@ -1,0 +1,22 @@
+[OUTGOING_NURSE]: Bed 5 is Layla Sonia Da Silva. Layla, this is George who is the day nurse and will be looking after you.
+[INCOMING_NURSE]: Hi, Layla. We’ll do a quick bedside handover with you.
+[INCOMING_NURSE]: Could you tell us your full name, just to confirm who you are.
+[PATIENT]: Layla Sonia Da Silva.
+[OUTGOING_NURSE]: Thanks, Layla. So, Layla is 34 years old, admitted under Dr. Liu for management of her diabetes.
+[OUTGOING_NURSE]: Her past history is: type 1 diabetes since childhood and hypertension.
+[OUTGOING_NURSE]: She’s independent and ambulant on the ward, she is self-caring with her own blood glucose checks and insulin.
+[INCOMING_NURSE]: Layla, are you comfortable checking your BGLs and giving your insulin yourself?
+[PATIENT]: Yes, I’ve been doing it for a long time.
+[OUTGOING_NURSE]: Her insulin is on a sliding scale/variable dose. We confirm each dose with the doctor based on her current BGL.
+[OUTGOING_NURSE]: Her morning sugars have been trending high, so the team still needs to review and possibly adjust the regimen.
+[OUTGOING_NURSE]: Her Blood pressure has been in the high-normal range around 140/84; also for team review.
+[OUTGOING_NURSE]: She’s still for a referral to the diabetes educator.
+[OUTGOING_NURSE]: There are no other problems noted.
+[INCOMING_NURSE]: Okay, I will 
+- Touch base with the team about the morning highs and her BP.
+- Clarify the next insulin dose with the doctor.
+- Follow up the diabetic educator referral and see when they are coming.
+- Continue to document her BGLs and insulin administration. 
+[INCOMING_NURSE]: Layla, is there anything you need right now or anything you’d like to add?
+[PATIENT]: No, I’m okay. Thanks.
+[INCOMING_NURSE]: Great. We’ll check in again after I speak with the team.

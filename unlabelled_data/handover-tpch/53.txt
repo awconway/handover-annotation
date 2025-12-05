@@ -1,0 +1,10 @@
+[Hospital Nurse]: Hi, I’m handing over Mr. Harold Bennett, a 79-year-old resident from Greenview Aged Care Facility. He was admitted 5 days ago with a chest infection and is now medically stable and ready for discharge back to the nursing home.
+[Nursing Home Nurse]: Thanks. What’s his current condition?
+[Hospital Nurse]: He’s alert and orientated, though mildly fatigued. He’s completed a course of IV antibiotics—ceftriaxone—and has now transitioned to oral amoxicillin 500 mg TDS, which he’ll continue for another 3 days. His SpO? is 96% on room air, and he’s no longer requiring supplemental oxygen.
+[Nursing Home Nurse]: Any ongoing care needs?
+[Hospital Nurse]: Yes:  he needs Pressure area care: He’s at moderate risk (Waterlow score 16), so continue 2-hourly repositioning and maintain use of a pressure-relieving mattress. His Fluid balance chart shows he’s been drinking well, no IV fluids required. Input ~1600 mL/day, output ~1400 mL/day. The Bowel chart:  shows his Last bowel movement was yesterday—formed stool. Continue monitoring. He’s Mobilising with assistance. Physiotherapy has recommended gentle walking with a frame. His Q-ADDS score: Currently 2 (mild fatigue and recent infection). Continue routine obs twice daily unless deterioration.
+[Nursing Home Nurse]: Any medications or allergies?
+[Hospital Nurse]: He’s on: Amoxicillin 500 mg TDS (3 days remaining), Paracetamol 1g QID PRN, Atorvastatin 20 mg nocte, he has No known drug allergies.
+[Nursing Home Nurse]: Thanks. I’ll continue monitoring and update the GP if needed.
+[Hospital Nurse]: Perfect. Discharge summary and medication chart are with the transfer paperwork. Let me know if you need anything further.
+

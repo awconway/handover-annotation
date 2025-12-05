@@ -1,0 +1,29 @@
+[INCOMING_NURSE]: Hi, Thuy. I’m Sam, I’ll be looking after you today. I’m just getting handover from Alex who’s finishing night shift, is that okay?
+[PATIENT]: Sure.
+[OUTGOING_NURSE]: Thanks, Thuy. So, bed 8, is Thuy Leu, she is 29 years old, under Dr. Greger.
+[INCOMING_NURSE]: Hi Thuy—could you please confirm your name for me?
+[PATIENT]: Thuy Leu.
+[INCOMING_NURSE]: Thank you. I’ll confirm your date of birth on the chart in a moment.
+
+[OUTGOING_NURSE]: Thuy came in with chest pain and was found to have blood clots in her lungs.
+[INCOMING_NURSE]: What is the current plan from the team?
+[OUTGOING_NURSE]: She’s still waiting for the doctors to review; they said they’ll be back later today to outline the plan.
+[INCOMING_NURSE]: Okay, we’ll keep an eye out for them and follow up if needed.
+
+[OUTGOING_NURSE]: She’s self-caring and ambulant.
+[INCOMING_NURSE]: Thuy, please ring the bell if you feel dizzy or the pain ramps up before you walk anywhere.
+[PATIENT]: Okay, I will.
+
+[OUTGOING_NURSE]: Her observations have all been normal.
+[INCOMING_NURSE]: Thuy, how’s your chest pain right now? what is it out of 10? 10 being really sore.
+[PATIENT]: It’s there but manageable probably a 3.
+[OUTGOING_NURSE]: she’s had regular paracetamol and Endone as needed.
+[INCOMING_NURSE]: I’ll check when the time when the next dose is due and reassess after I've done the obs.
+
+[INCOMING_NURSE]: Anything else that I need to chase?
+[OUTGOING_NURSE]: We are just waiting for the medical review and plan.
+[INCOMING_NURSE]: Thanks, Alex.
+
+[INCOMING_NURSE]: Thuy, is there anything you need before we go?
+[PATIENT]: I’m okay for now, thanks.
+[INCOMING_NURSE]: Perfect. I’ll be back shortly to recheck your observations and pain and to touch base about the doctors’ review.

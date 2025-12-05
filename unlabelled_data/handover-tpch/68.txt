@@ -1,0 +1,15 @@
+[INCOMING_NURSE]: Good morning, Mr. Thompson. I’m Jack, and I’ll be your nurse for today. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Mr. Thompson. This is the nurse taking over for the day. Could you please confirm your full name?
+[PATIENT]: Peter Thompson.
+[OUTGOING_NURSE]: Thank you. This is Mr. Peter Thompson in Bed 6, Room 4, aged 78, under Dr. Ellis, General Medicine.
+[OUTGOING_NURSE]: Mr. Thompson was brought into ED yesterday by his wife due to severe constipation and abdominal discomfort. He had not opened his bowels for 6 days and was experiencing bloating and reduced appetite. His wife, who is also elderly, was struggling to manage his care at home.
+[OUTGOING_NURSE]: He was assessed in ED, given a fleet enema and started on oral laxatives. Abdominal X-ray showed significant faecal loading but no obstruction. He’s now admitted for bowel management and monitoring. Vitals are stable. No nausea or vomiting overnight.
+[OUTGOING_NURSE]: He’s had one small bowel motion early this morning. Pain score was 3/10. He’s tolerating fluids and has been mobilising with assistance.
+[INCOMING_NURSE]: Mr. Thompson, how are you feeling this morning? Any relief after the bowel motion?
+[PATIENT]: A little better, still a bit uncomfortable.
+[OUTGOING_NURSE]: He’s aware of the plan and has been cooperative. His wife is quite anxious and has asked to speak with someone about support at home. A social worker referral has been made to assess home care needs and carer support.
+[INCOMING_NURSE]: I’ll follow up with the social work team and check in with Dr. Ellis’s team regarding next steps. Is there anything you need before we finish handover?
+[PATIENT]: No, I’m okay.
+[OUTGOING_NURSE]: Please use the call bell if you need anything. I’ll leave you in good hands.
+[INCOMING_NURSE]: I’ll be back shortly to check your observations and review your chart, Mr. Thompson.
+

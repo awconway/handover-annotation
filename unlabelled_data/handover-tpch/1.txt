@@ -1,0 +1,25 @@
+[INCOMING_NURSE]:
+Good morning, Mr. Smith. I’m the incoming nurse from City Hospital. I’ll get handover from my colleague now, is that okay?
+[PATIENT]: Yes, that’s fine.
+[OUTGOING_NURSE]: This is bed 12, John Smith, 78 years old, under Dr. Patel.
+He was admitted two days ago following a fall at home, resulting in a displaced fracture of the left femur. He’s being transferred for surgical fixation.
+[OUTGOING_NURSE]: He has a history of Type 2 Diabetes and mild dementia. He’s usually oriented to person and place but can become confused in unfamiliar environments. Observations have been stable, and pain is managed with regular paracetamol.
+[INCOMING_NURSE]:
+Hi Mr. Smith, can you tell us your full name to confirm your ID?
+[PATIENT]: John Smith.
+[INCOMING_NURSE]: I’ll also check your wristband. Great, that matches.
+Are you having any discomfort right now?
+[PATIENT]: Just a bit of pain in my leg, but it’s okay.
+[OUTGOING_NURSE]: No interventions overnight. Vital signs remained within normal limits: BP: 132/78, HR:88, RR:18, Temp: 36.8. 
+[INCOMING_NURSE]: Any allergies we should know about? I’ll double-check your chart as well.
+[PATIENT]: Please check the chart.
+[INCOMING_NURSE]: Bloods from yesterday show: Hb:125, CRP:12, HbA1c:7.4 from last month. 
+[OUTGOING_NURSE]: He’s currently NBM for surgery. IV fluids are running at maintenance rate.
+No anticoagulants. Pressure area care in place. Nil weight-bearing.
+[INCOMING_NURSE]: So, the plan is to continue monitoring and prepare for surgical fixation. There are no outstanding tasks at this stage.
+[OUTGOING_NURSE]: Everything is up to date.
+[INCOMING_NURSE]: Mr. Smith, is there anything you need before we finish handover?
+[PATIENT]: No, thank you.
+[INCOMING_NURSE]:
+Okay, I’ll be back shortly to check on you again.
+

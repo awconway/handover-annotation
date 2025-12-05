@@ -1,0 +1,11 @@
+[Outgoing Nurse]: Hi, I just wanted to hand over Mr. Alan Hughes in bed 12. He’s a 74-year-old gentleman with metastatic pancreatic cancer. He’s been transitioned to comfort care and is now actively dying. Based on his current condition, we expect he may only have a few hours left.
+[Incoming Nurse]: Thanks. Can you tell me how he’s been over the last shift?
+[Outgoing Nurse]: He’s been mostly unconscious, with shallow breathing and mottled extremities. Respiratory rate is around 8–10, irregular. He hasn’t responded to verbal stimuli since early this morning. His family has been at the bedside and are aware of the situation.
+[Incoming Nurse]: Is he comfortable?
+[Outgoing Nurse]: Yes, we’ve been managing symptoms proactively. He’s on a subcutaneous syringe driver with: Morphine 10 mg over 24 hours for pain and dyspnoea, Midazolam 10 mg over 24 hours for agitation, Hyoscine butyl bromide 20 mg over 24 hours for secretions. No breakthrough doses needed in the last 6 hours. Mouth care has been done regularly, and pressure areas are being monitored.
+[Incoming Nurse]: Any recent changes?
+[Outgoing Nurse]: His urine output has ceased, and he hasn’t had any oral intake since yesterday. Skin is cool and cyanosed. We’ve updated the family and offered support. They’re aware of the expected timeframe and have requested privacy.
+[Incoming Nurse]: Any escalation plans?
+[Outgoing Nurse]: No further interventions planned. ARP is in place. The focus is on comfort and dignity. Please continue regular checks, offer support to the family, and notify the team if any distressing symptoms arise.
+[Incoming Nurse]: I’ll keep a close eye and ensure everything remains peaceful.
+

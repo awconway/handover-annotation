@@ -1,0 +1,16 @@
+[NIGHT_NURSE]: Morning. Handing over Mrs. Evelyn Taylor, 81 years old, in bed 7. Evelyn, this is Nurse Mia, who’ll be looking after you today.
+[MORNING_NURSE]: Hi Evelyn, I’ll be your nurse this morning. How are you feeling?
+[PATIENT]: I feel a bit strange. My right arm feels heavy, and I’m having trouble speaking clearly.
+[NIGHT_NURSE]: That’s actually new. She was drowsy overnight, but I thought it was just fatigue. I didn’t notice any clear deficits during the night, but she’s now showing slurred speech and right-sided weakness. I’ve just done a quick neuro check—there’s a facial droop and reduced grip on the right.
+[MORNING_NURSE]: That sounds like a possible stroke. Has the doctor been notified?
+[NIGHT_NURSE]: Not yet—I picked it up just before handover. I was about to escalate. She’s on Q-ADDS, scoring 6 now—due to new neuro changes and slightly elevated BP (162/94). HR 84, RR 18, SpO? 97% on room air, Temp 36.6.
+[MORNING_NURSE]: Okay, I’ll call the medical registrar immediately and start hourly neuro obs.
+[DOCTOR]: (enters) I’ve just been informed. Evelyn, I’m Dr. Singh. We’re concerned you may have had a stroke overnight, and we’re going to do some urgent tests, including a CT scan.
+[PATIENT]: Oh… I didn’t realise. I just thought I was tired.
+[DOCTOR]: You did the right thing by speaking up. We’ll take care of you.
+[MORNING_NURSE]: I’ll stay with her and start the neuro obs now. Is she nil by mouth?
+[DOCTOR]: Yes, keep her NPO until we assess her swallow. I’ll organise an urgent stroke team review.
+[NIGHT_NURSE]: She’s on a fluid balance chart, and her oral intake was minimal overnight. No IV fluids running yet. She’s on regular antihypertensives and aspirin. No known allergies.
+[MORNING_NURSE]: Got it. I’ll update the family once we have a clearer picture.
+[NIGHT_NURSE]: Thanks. All documentation is up to date—Q-ADDS, med chart, and fluid balance.
+

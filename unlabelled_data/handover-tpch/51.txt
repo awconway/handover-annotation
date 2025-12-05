@@ -1,0 +1,12 @@
+[NURSE]: Hi Dr. Singh, I need to speak with you about Mr. Jason Cole in bed 7. He’s a 49-year-old patient admitted yesterday with a non-ST elevation myocardial infarction (NSTEMI). He’s now requesting to self-discharge against medical advice.
+[DOCTOR]: Okay. What’s prompting the request?
+[NURSE]: He’s frustrated and says he “feels fine” and wants to go home. He’s been arguing with staff and mentioned needing to “sort things out” with his partner. He’s also expressed discomfort with being in hospital and says he doesn’t want to stay another night.
+[DOCTOR]: Any safety concerns?
+[NURSE]: Yes. He’s still on aspirin and enoxaparin and has not yet had his cardiology review. He’s a daily smoker and disclosed regular cannabis use. He’s currently on 2 L oxygen via nasal prongs, with SpO? sitting around 93%. He’s intermittently short of breath and still reporting mild chest tightness.
+[DOCTOR]: What are his latest observations?
+[NURSE]: BP: 132/84, HR: 102 bpm, RR: 20, Temp: 36.8°C, SpO?: 93% on 2 L O? and Q-ADDS score: 6 (due to HR, SpO?, and chest symptoms)
+[DOCTOR]: Has he been informed of the risks?
+[NURSE]: I’ve explained the risks of leaving before cardiology clearance, including potential for arrhythmia or further cardiac events. He’s aware but says he’s “not staying.” I’ve started the Against Medical Advice documentation and flagged it with the nurse unit manager.
+[DOCTOR]: Thanks. I’ll speak with him directly and assess capacity. If he’s determined to leave, we’ll need to complete the discharge summary and safety netting advice.
+[NURSE]:
+Understood. I’ll keep monitoring and let you know if his condition changes.

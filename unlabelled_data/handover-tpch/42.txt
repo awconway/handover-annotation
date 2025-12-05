@@ -1,0 +1,14 @@
+[Outgoing Nurse]: Hi, I’m handing over Mrs. Joan Ellis in bed 2. She’s an 81-year-old patient admitted with a urinary tract infection and worsening confusion. She’s currently alert but disoriented and has been incontinent of both urine and bowels during the shift.
+[Incoming Nurse]: Thanks. What’s her current Q-ADDS score?
+[Outgoing Nurse]: Her Q-ADDS score is 5—based on confusion, elevated temperature, and increased respiratory rate. Latest observations are BP: 132/78, HR: 94 bpm, RR: 22, Temp: 38.3°C, SpO?: 96% on room air, she is Alert but confused.
+[Incoming Nurse]: Is she on any monitoring charts?
+[Outgoing Nurse]: Yes, a Fluid Balance Chart – she’s had ~900 mL oral intake today, and incontinent of urine twice. A Bowel Chart – opened bowels once this morning, loose stool and a Falls Risk Chart – high risk due to confusion and mobility issues.
+[Incoming Nurse]: Any pressure area concerns?
+[Outgoing Nurse]: No current injuries, but she’s at risk. She’s on a pressure-relieving mattress and being repositioned every 2 hours. Skin checks are ongoing—no redness noted.
+[Incoming Nurse]: What about hygiene?
+[Outgoing Nurse]: She’s had a full wash this morning, including peri-care. She’ll likely need another wash later due to incontinence. Continence aids are in use.
+[Incoming Nurse]: Any IV access or medications?
+[Outgoing Nurse]: No IV access currently. She’s on: Paracetamol 1g QID, IV Ceftriaxone 1g daily – given this morning, PRN lorazepam 0.5 mg – not required today
+No known allergies.
+[Incoming Nurse]: Thanks. I’ll continue monitoring, update the charts, and assist with hygiene as needed.
+

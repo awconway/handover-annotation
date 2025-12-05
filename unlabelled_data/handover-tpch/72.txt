@@ -1,0 +1,14 @@
+[INCOMING_NURSE]: Good morning, Mr. Patel. I’m Jack, and I’ll be your nurse for today. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Mr. Patel. This is the nurse taking over for the day. Could you please confirm your full name?
+[PATIENT]: Rakesh Patel.
+[OUTGOING_NURSE]: Thank you. This is Mr. Rakesh Patel in Bed 1, Room 3, aged 58, under Dr. Morrison, General Surgeon.
+[OUTGOING_NURSE]: Mr. Patel was admitted this morning for an elective inguinal hernia repair. He’s nil by mouth and awaiting theatre. Pre-op bloods, ECG, and consent have been completed. He’s aware of the procedure and has no concerns at this stage.
+[OUTGOING_NURSE]: He’s hemodynamically stable. No pain reported currently. He’s had mild discomfort over the past few weeks, especially with lifting. No signs of strangulation or obstruction. Vitals are within normal limits.
+[INCOMING_NURSE]: Mr. Patel, how are you feeling this morning? Any pain or nausea?
+[PATIENT]: No pain right now, just a bit nervous.
+[OUTGOING_NURSE]: Understandable. He’s been reassured and is coping well. No allergies. Medications include atorvastatin 20mg daily and paracetamol PRN. No anticoagulants. No previous surgeries.
+[INCOMING_NURSE]: I’ll follow up with the surgical team and theatre staff. Is there anything you need before we finish handover?
+[PATIENT]: No, I’m okay. Thanks.
+[OUTGOING_NURSE]: Please use the call bell if you need anything. I’ll leave you in good hands.
+[INCOMING_NURSE]: I’ll be back shortly to check your observations and review your chart, Mr. Patel.
+

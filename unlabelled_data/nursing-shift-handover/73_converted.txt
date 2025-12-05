@@ -1,0 +1,22 @@
+[INCOMING_NURSE]: Good Morning, Sarah. I’m Jess, the day nurse. I’m going to get handover from Mark and then we’ll make a plan with you both. Hi there.
+[OUTGOING_NURSE]: Hi Jess. Bed 4, Sarah Jeffries, 62, under Dr. Lane. Admitted with a head injury after a fall. Sarah’s husband is here at the bedside.
+[INCOMING_NURSE]: Thanks. Sarah, could you confirm your full name for me while I check your ID band?
+[PATIENT]: Sarah Jeffries.
+[INCOMING_NURSE]: Hi, Mr. Jeffries.
+[SPOUSE]: Hi.
+[OUTGOING_NURSE]: Overnight she’s been stable with no changes. She’s improving. We’re awaiting discharge planning once she’s fully recovered. Ongoing management of pain with medications and antibiotics, and she’s continuing with physio.
+[INCOMING_NURSE]: Any new concerns overnight—nausea, dizziness, confusion?
+[OUTGOING_NURSE]: No, none reported. Still the same and getting better.
+[INCOMING_NURSE]: Sarah, how’s your pain right now?
+[PATIENT]: A bit sore, but manageable.
+[INCOMING_NURSE]: Okay, we’ll stay on top of that. I’ll check when your next dose is due. Mark, antibiotics ongoing as charted?
+[OUTGOING_NURSE]: Yes, continuing as charted. Physio is ongoing as well.
+[INCOMING_NURSE]: Perfect. I’ll touch base with physio about today’s session and with the team about discharge planning.
+[SPOUSE]: Do you know when she might go home?
+[INCOMING_NURSE]: The team will confirm after they review her and the discharge plan is finalized. We’ll keep you updated today.
+[OUTGOING_NURSE]: Anything you want to add, Sarah?
+[PATIENT]: No, that covers it.
+[INCOMING_NURSE]: The Call bell is here within reach. We’ll keep your pain controlled, give antibiotics as prescribed, and coordinate physio and discharge planning. Anything you need before Mark heads off?
+[PATIENT]: I’m okay, thank you.
+[OUTGOING_NURSE]: Thanks, Sarah. I’ll leave you with Jess.
+[INCOMING_NURSE]: Thanks, Mark. I’ll be back shortly with your pain meds and an update.

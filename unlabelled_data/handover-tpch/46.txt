@@ -1,0 +1,10 @@
+[ED Nurse]: Hi, I’m handing over Mr. Luke Harris, a 42-year-old male who presented to ED earlier today following a deliberate overdose. He reportedly ingested approximately 50 Panadol tablets, 20 Serepax, and a bottle of whisky after a fight with his partner.
+[Drug & Alcohol Nurse]: Thanks. What’s his current condition?
+[ED Nurse]: He’s currently drowsy but rousable, with slurred speech, intermittent agitation, and low oxygen saturations—around 92% on 2 L nasal prongs. GCS is 13. He’s under close observation and has IV access in place. Bloods have been taken for paracetamol levels, LFTs, and coagulation profile. We’re awaiting results to determine if NAC is required.
+[Drug & Alcohol Nurse]: Any known substance use history?
+[ED Nurse]: He’s a daily smoker and reports heavy alcohol use, especially during periods of stress. No documented history of drug use, but this is his first known overdose. He’s not currently linked in with any mental health or addiction services.
+[Drug & Alcohol Nurse]: Any social concerns?
+[ED Nurse]: Yes, he lives with his partner, and the overdose occurred following a verbal altercation. He’s currently not safe to discharge and will need a mental health review once medically stable. No children at home, but he’s expressed feelings of hopelessness and anger.
+[Drug & Alcohol Nurse]: Thanks. I’ll assess him once he’s more alert and begin planning for support post-discharge, including possible referral to AOD services and counselling.
+[ED Nurse]: Perfect. Let me know if you need anything from the medical team or if you’d like to join the MDT review later today.
+

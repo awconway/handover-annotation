@@ -1,0 +1,14 @@
+[NURSE]: Hi Dr. Singh, I need to escalate a concern about Mrs. Joan Wallace, bed 7. She’s Day 5 post-abdominal surgery and was awaiting PEG insertion, but she’s now showing signs of clinical deterioration.
+[DOCTOR]: Okay, what’s happening?
+[NURSE]: She’s become increasingly hypotensive and tachycardic, and her respiratory rate is elevated. She’s also confused, which is new. Her urine output has dropped, and she’s looking pale and clammy.
+[DOCTOR]: Do you have her latest vitals?
+[NURSE]: Yes: BP: 86/52, HR: 118 bpm, RR: 26, SpO?: 94% on 4L nasal prongs, Temp: 38.2°C, Urine output: 30 mL over the last 3 hours and Q-ADDS score: 8
+[DOCTOR]: Any recent bloods?
+[NURSE]: Yes, from this morning her WCC: 15.4, CRP: 122, Creatinine: 168, Lactate: 3.1
+She’s likely heading into sepsis or acute kidney injury.
+[DOCTOR]: Thanks. I’ll come and review her immediately. We may need to escalate to ICU for closer monitoring and support.
+[NURSE]: Understood. I’ll prepare for potential transfer and notify the bed manager.
+[NURSE (to BED MANAGER)]: Hi, I’m calling regarding Mrs. Joan Wallace, bed 7. She’s deteriorating post-abdominal surgery and may require ICU admission. The doctor is reviewing her now, but I wanted to flag the need for a potential ICU bed.
+[BED MANAGER]: Thanks for the heads-up. I’ll check availability and hold a bed provisionally. Please confirm once the doctor makes the decision.
+[NURSE]: Will do. I’ll keep you updated.
+

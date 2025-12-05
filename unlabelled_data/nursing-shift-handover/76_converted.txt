@@ -1,0 +1,23 @@
+[OUTGOING_NURSE]: Good Morning, Mary. I’m just handing over to Sam for the day shift, is that okay?
+[INCOMING_NURSE]: Hi Mary, I’m Sam. I’ll be looking after you today.
+[OUTGOING_NURSE]: We’re in room 1, bed 1. This is Mary Smith, 56, under Dr. Smith. Mary, could you confirm your full name and date of birth for us?
+[PATIENT]: Mary Smith, 12th of March, 1968.
+[INCOMING_NURSE]: Thanks, Mary.
+
+[OUTGOING_NURSE]: Mary came in with shortness of breath on a background of acute on chronic renal failure, secondary to type 1 diabetes. She’s on a sliding scale insulin and self-administers her insulin.
+[OUTGOING_NURSE]: Past history includes hypertension, osteoporosis, anaemia, and she has had a previous CVA.
+[OUTGOING_NURSE]: She has a left AV fistula with a good bruit and thrill, and she’s on haemodialysis. She’s booked for dialysis this afternoon and needs the dialysis prescription for this afternoon.
+[OUTGOING_NURSE]: She’s on a diabetic diet and is self-caring.
+[OUTGOING_NURSE]: She’s for IV antibiotics after dialysis and also needs a social worker referral.
+[OUTGOING_NURSE]: That’s it from me. 
+
+[INCOMING_NURSE]: Thanks. Mary, do you still self-administer your insulin here in hospital?
+[PATIENT]: Yes, I do.
+[INCOMING_NURSE]: Great. I’ll check the sliding scale and make sure it’s all documented. Any issues with your fistula today?
+[PATIENT]: No, it’s been fine.
+[INCOMING_NURSE]: Good to hear.
+
+[INCOMING_NURSE]: I’ll ring dialysis to confirm your pickup time and ensure the prescription is in place. I’ll also check the chart for the IV antibiotics to give after dialysis and put in the social work referral. Anything you need right now?
+[PATIENT]: No, I’m okay. Thank you.
+[OUTGOING_NURSE]: All right, see you tomorrow. 
+[INCOMING_NURSE]: Thanks, we’ll see you soon, Mary.

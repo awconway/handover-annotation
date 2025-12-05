@@ -1,0 +1,22 @@
+[INCOMING_NURSE]: Hi Jerry, I’m Taylor, I’ll be looking after you today. I’m just going to get handover from Sam who’s been on the night shift, is that okay?
+[PATIENT]: Sure.
+[OUTGOING_NURSE]: Morning, Taylor. This is Jerry Reed.
+[INCOMING_NURSE]: Hi Jerry.
+[OUTGOING_NURSE]: Jerry is 45, under Dr. Harry. He has a history of congestive cardiac failure, IHT, hypertension, type 2 diabetes (diet controlled), and depression.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: He came in with bilateral leg oedema. He has a right AV graft and is scheduled for haemodialysis tomorrow afternoon.
+[INCOMING_NURSE]: Okay, he has a right AV graft in situ, and dialysis is tomorrow afternoon.
+[OUTGOING_NURSE]: He’s on a 1.2-litre fluid restriction with daily weights. He’s on IV furosemide. We also need lying and standing blood pressures to be done this afternoon.
+[INCOMING_NURSE]: I’ll do the blood pressure this afternoon. 
+[OUTGOING_NURSE]: He’s for the diabetic educator tomorrow at 1 pm, and there’s a family meeting booked for Thursday at 2:30 pm.
+[INCOMING_NURSE]: Okay, diabetic educator tomorrow 1300, family meeting Thursday 1430.
+[OUTGOING_NURSE]: Jerry’s been very demanding and at times aggressive with staff. We’ve been using clear communication and de-escalation; please approach with firm boundaries and escalate if safety is a concern.
+[INCOMING_NURSE]: Thanks for the heads-up. Jerry, we want to make sure you feel heard and comfortable. If something’s not working for you, let us know and we’ll do our best within the plan we have.
+[PATIENT]: Okay.
+[INCOMING_NURSE]: Any pain or shortness of breath right now?
+[PATIENT]: Just the legs feel heavy. No chest pain.
+[OUTGOING_NURSE]: That’s consistent with earlier. No other acute issues noted on my shift.
+[INCOMING_NURSE]: Great. I’ll double-check your weight, input/output, and confirm your dialysis booking for tomorrow afternoon. I’ll also set reminders for the orthostatic BPs.
+[OUTGOING_NURSE]: Perfect. That’s everything from me.
+[INCOMING_NURSE]: Thanks, Sam. Jerry, I’ll be back shortly with your morning plan and to talk through the fluid restriction and what to expect today.
+[PATIENT]: Thanks.

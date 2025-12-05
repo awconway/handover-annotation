@@ -1,0 +1,26 @@
+[INCOMING_NURSE]: Good Morning, Rebecca. I’m Mia, I’ll be looking after you today. I’m just going to get handover from Alex, is that okay?
+[PATIENT]: Sure.
+[OUTGOING_NURSE]: Hi, Mia. This is Rebecca Burks who is a 54 year old, under Dr Dalianis.
+[INCOMING_NURSE]: Hi Rebecca. Can you please tell me your full name and date of birth?
+[PATIENT]: Rebecca Burks, and it’s the 14th of May, 1970.
+[INCOMING_NURSE]: Thank you. Any allergies we need to know about?
+[PATIENT]: None that I’m aware of.
+[OUTGOING_NURSE]: Presentation was dizziness, weakness, tachycardia and nausea. She’s diagnosed with ischaemic heart disease, with a history of atherosclerosis and breast cancer.
+[INCOMING_NURSE]: How are you feeling right now, Rebecca?
+[PATIENT]: Still a bit weak and a little queasy, but better than yesterday.
+[OUTGOING_NURSE]: She’s otherwise stable today. The patient is self-caring and ambulant, but she needs a little supervision when walking—so one assist because of the weakness.
+[INCOMING_NURSE]: We’ll make sure someone walks with you.
+[OUTGOING_NURSE]: She’s on regular anti-emetics before meals for her nausea, and she’s also got regular pain relief charted.
+[INCOMING_NURSE]: I’ll check when the next anti-emetic is due before breakfast.
+[OUTGOING_NURSE]: Observations are visible on the station screens, but they still need to be written into the obs chart each round.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: We need to do a ECG printout at the start of each shift, and any time there’s an abnormality. we put the printouts in her chart.
+[INCOMING_NURSE]: Rebecca I’ll do a baseline ECG after handover so we have it for this shift.
+[OUTGOING_NURSE]: The blood pressure needs to be done on her right arm due to her right-sided mastectomy.
+[INCOMING_NURSE]: Thanks for the reminder. I’ll use the left arm only and pop a “no BP right arm” sign if it’s not already up.
+[OUTGOING_NURSE]: Doctors are around frequently, so we can check anything with them as needed.
+[INCOMING_NURSE]: Rebecca, we’ll help you up with one person and keep your call bell close. Anything you need before we go?
+[PATIENT]: Could I have some water, please?
+[INCOMING_NURSE]: Of course—I’ll bring that in with your meds. Plan for the shift: baseline ECG and file, regular obs documented in the chart, anti-emetic before meals, pain relief as needed, supervise mobilising with one assist, and BP on the left arm only.
+[OUTGOING_NURSE]: That’s everything from me.
+[PATIENT]: Thank you both.

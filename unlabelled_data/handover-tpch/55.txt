@@ -1,0 +1,13 @@
+NURSE: Dr. Lee, Mr. Matthews arrested about 40 minutes ago. We initiated CPR immediately and followed the ALS protocol. He was in asystole throughout. Despite full resuscitation efforts, we were unable to regain a pulse. Time of death was recorded at 11:42 AM.
+DOCTOR: Thanks for the update. Were the family contacted?
+NURSE: Yes, his wife and daughter are here now. They’re in the quiet room. I’ve let them know there was a serious deterioration, but they don’t know he’s passed yet.
+DOCTOR: Alright. Let’s speak with them together. I’ll lead the conversation, and you can support with any nursing or practical details.
+DOCTOR: Mrs. Matthews, I’m Dr. Lee, and this is Nurse Taylor. I’m very sorry to have to share difficult news with you.
+FAMILY MEMBER (Wife): Is he okay? What happened?
+DOCTOR: Earlier today, John’s heart suddenly stopped. We began resuscitation immediately and continued for over 30 minutes. Despite our best efforts, we were unable to bring him back. I’m very sorry—John has died.
+FAMILY MEMBER (Daughter): No… are you sure? He was talking this morning…
+NURSE: I know this is incredibly hard to hear. We were with him the whole time and did everything we could. He was not in pain, and we made sure he was treated with dignity.
+FAMILY MEMBER (Wife): What happens now?
+DOCTOR: We’ll give you time with him if you wish. There’s no rush. Later, we’ll need to complete some paperwork, and we can help guide you through the next steps.
+NURSE: I’ll stay with you and help with anything you need. We can also contact the pastoral care team or social worker if you’d like support.
+

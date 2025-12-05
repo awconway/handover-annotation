@@ -1,0 +1,27 @@
+[OUTGOING_NURSE]: Hi, Mindy. This is Alex, the day nurse who’ll be looking after you now. Is it okay if we do your bedside handover?
+[PATIENT]: Yes, that’s fine.
+
+[INCOMING_NURSE]: Thanks, Mindy. I’m Alex. Could you please confirm your full name and date of birth?
+[PATIENT]: Mindy Thompson, 16 April 1948.
+[INCOMING_NURSE]: Great, thank you. And we’re in room 4.
+
+[OUTGOING_NURSE]: So, this is Mindy Thompson, who is 63 years old. She came in about an hour ago with right upper quadrant pain on a background of a liver cyst.
+[OUTGOING_NURSE]: She’s had an X-ray and a CT done; results are pending.
+[OUTGOING_NURSE]: Her observations have been stable since arrival.
+[OUTGOING_NURSE]: The RUQ pain was relieved with morphine with good effect.
+[OUTGOING_NURSE]: She’s for surgery, but that’s still to be organised pending imaging and surgical review.
+[OUTGOING_NURSE]: Her mum is at the bedside in attendance.
+[OUTGOING_NURSE]: Her Allergies haven’t been confirmed yet on the chart.
+
+[INCOMING_NURSE]: Thanks. Mindy, how is your pain right now?
+[PATIENT]: Much better after the morphine, just a dull ache.
+[INCOMING_NURSE]: Okay, we’ll keep monitoring and can give more as prescribed if you need it. I’ll also follow up your X-ray and CT results and touch base with the surgical team about the plan and timing.
+
+[INCOMING_NURSE]: Any nausea or dizziness?
+[PATIENT]: No.
+[INCOMING_NURSE]: Good. I’ll also confirm your allergy status and ensure you’re comfortable while we wait for the results. If you need anything, press the call bell. Hi there, Mum—thanks for being here.
+
+[OUTGOING_NURSE]: That’s everything from me. Anything else you’d like to add, Mindy?
+[PATIENT]: No, thank you.
+
+[INCOMING_NURSE]: Great. I’ll be back shortly with an update once I’ve checked your scans and spoken with the team.

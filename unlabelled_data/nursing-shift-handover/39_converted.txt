@@ -1,0 +1,20 @@
+[INCOMING_NURSE]: Good morning, Jeffrey. I’m the incoming nurse, and I’ll be looking after you today. I’m just going to get handover from my colleague, is that okay?
+[OUTGOING_NURSE]: Morning, Jeffrey. This is the day nurse taking over. We’ll do a quick bedside handover.
+[INCOMING_NURSE]: To confirm, could you tell me your full name, please?
+[PATIENT]: Jeffrey Castro.
+[INCOMING_NURSE]: Thank you, Jeffrey. I’ll just check your wristband… all good. Bed 6, under Dr. Hudgens, I'll just check your IV mediations with the order.
+
+[OUTGOING_NURSE]: So, this is bed 6, Jeffrey Castro, 73 years old, under Dr. Hudgens. He came in with COPD. He’s still the same as yesterday—no changes overnight—and observations are all stable. He has been started on IV fluids as he seems a bit dehydrated. 
+[INCOMING_NURSE]: Any issues with shortness of breath, chest pain, or new cough overnight?
+[OUTGOING_NURSE]: No, there have been no complaints of pain and he is normally slightly short of breath so nothing new to report as there are no changes from his baseline.
+[PATIENT]: I feel about the same.
+[INCOMING_NURSE]: Okay. Any treatments or interventions pending this morning?
+[OUTGOING_NURSE]: No new orders at the moment. Continue care as charted and keep monitoring.
+[INCOMING_NURSE]: Great. We’ll continue routine obs and keep an eye on your breathing and comfort, Jeffrey. If anything changes and you become more breathless, or get chest pain, or you feel unwell—please press the call bell.
+[PATIENT]: Will do.
+[INCOMING_NURSE]: Do you need anything before we finish handover, more water, your pillows adjusted, or help to the bathroom?
+[PATIENT]: I’m fine for now, thanks.
+[OUTGOING_NURSE]: The call bell is within reach here on your right, Jeffrey.
+[INCOMING_NURSE]: I’ll review your chart now and be back shortly to check in again. Thanks for the handover.
+[OUTGOING_NURSE]: No worries. I’m off—have a good day.
+[PATIENT]: Thank you.

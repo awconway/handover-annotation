@@ -1,0 +1,18 @@
+[INCOMING_NURSE]: Good morning, Ms. Nguyen. I’m Jack, and I’ll be your nurse for today. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Ms. Nguyen. This is the nurse taking over for the day. Could you please confirm your full name?
+[PATIENT]: Linh Nguyen.
+[OUTGOING_NURSE]: Thank you. This is Ms. Linh Nguyen in Bed 3, Room 5, aged 34, under Dr. Patel, Psychiatry Registrar.
+[OUTGOING_NURSE]: Ms. Nguyen presented yesterday following suicidal ideation and low mood. She was brought in by her sister after expressing thoughts of self-harm. She has no current injuries. Observations have remained stable overnight. She’s alert, tearful at times, and has engaged minimally with staff.
+[OUTGOING_NURSE]: A mental health review is scheduled for this morning. A social worker has also been involved to support psychosocial needs and coordinate with family. Her sister and mother are present and have requested to be involved in care planning.
+[SOCIAL WORKER]: Hi Linh, I’m Amina, one of the hospital social workers. I understand you’ve been going through a really difficult time. Would it be okay if we talked for a few minutes?
+[PATIENT]: Okay.
+[SOCIAL WORKER]: Thank you. I want to make sure you feel safe and supported. You mentioned feeling overwhelmed—can you tell me a little about what’s been happening?
+[PATIENT]: I just feel like I can’t cope anymore. Everything’s too much.
+[SOCIAL WORKER]: I’m really sorry you’re feeling this way. You’re not alone, and we’re here to help. Your sister and mum are here and want to support you. Would you be comfortable if we invited them in to talk together?
+[PATIENT]: Yes, I think so.
+[SOCIAL WORKER]: Okay. We’ll also work with Dr. Patel and the mental health team to make sure you have a plan in place before discharge—whether that’s follow-up care, counselling, or community support. We’ll take it one step at a time.
+SISTER]: Linh, we’re here for you. We didn’t know how bad things were, but we want to help however we can.
+[MOTHER]: We love you. We’ll do whatever it takes to support you.
+[SOCIAL WORKER]: Thank you both. We’ll work together to make sure Linh has the right care and support moving forward.
+
+

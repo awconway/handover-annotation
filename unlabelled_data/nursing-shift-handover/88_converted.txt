@@ -1,0 +1,28 @@
+[INCOMING_NURSE]: Good Morning, Agatha. I’m Priya, I’ll be looking after you today. I’m just getting handover from Sam, is that okay?
+[PATIENT]: Yes, that’s fine.
+[OUTGOING_NURSE]: Thanks, Agatha. So, Bed 1, Agatha Holmes, is 50 years old. She’s come in with an acute kidney injury for investigation.
+[INCOMING_NURSE]: Agatha, could you confirm your full name and date of birth for us?
+[PATIENT]: Agatha Holmes, and it’s 14 July 1974.
+[INCOMING_NURSE]: Thank you.
+[OUTGOING_NURSE]: She’s under the nephrology team. There was a note about “other doctor’s… Son” in the referral—think that means Dr Son’s team is consulting as well.
+[INCOMING_NURSE]: Okay, I’ll confirm teams on the board.
+[OUTGOING_NURSE]: As a kidney patient she’s on the usual daily bloods, lying and standing blood pressures, daily weights, and weekly urinalysis.
+[INCOMING_NURSE]: Do we have the pathology forms in the chart?
+[OUTGOING_NURSE]: Yes, the forms are in the chart.
+[OUTGOING_NURSE]: There are specific times for a few of her tablets—I'll give you a more detailed rundown after the round.
+[INCOMING_NURSE]: Perfect, I’ll touch base with you for the med timings before the next dose window.
+[OUTGOING_NURSE]: Also, she on a strict fluid chart  And random BGLs while on prednisolone.
+[INCOMING_NURSE]: Is the pred written up on the med chart?
+[OUTGOING_NURSE]: Yes, it’s charted.
+[OUTGOING_NURSE]: She’s definitely on a strict fluid balance chart.
+[INCOMING_NURSE]: We’ll keep it up to date. Agatha, we’ll be measuring everything you drink and all urine output—if you need any help with the jugs or the pan, just buzz us.
+[PATIENT]: Sure, I can do that.
+[INCOMING_NURSE]: Any allergies we should know about, Agatha?
+[PATIENT]: No, none that I know of.
+[INCOMING_NURSE]: Any dizziness when standing or going to the bathroom?
+[PATIENT]: A little light‑headed when I get up.
+[INCOMING_NURSE]: Thanks—that fits with the postural checks we’ll be doing. We’ll take it slow and use the call bell before you stand.
+[OUTGOING_NURSE]: That’s everything from me for Agatha right now.
+[INCOMING_NURSE]: Great.so today we need to do bloods, lying/standing BPs, daily weight, continue strict fluid balance, random BGLs on pred, and I’ll come back to confirm those med timing specifics with you, Sam. Agatha, is there anything you need before we go?
+[PATIENT]: I’m okay, thank you.
+[INCOMING_NURSE]: We’ll be back shortly to get your weight and do your blood pressure checks. Press the buzzer if you need us.

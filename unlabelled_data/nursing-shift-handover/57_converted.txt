@@ -1,0 +1,17 @@
+[INCOMING_NURSE]: Good Morning, Ms. Bunting. I’m Alex, I’ll be looking after you today. I’m just getting handover from Priya who’s been on the night shift.
+[OUTGOING_NURSE]: Hi Alex. This is Ether Bunting in Room 2, Bed 4. Esther, could you please confirm your full name?
+[PATIENT]: Esther Bunting.
+[INCOMING_NURSE]: Thank you, Ms. Bunting. Your Wristband matches. We’ll keep this brief.
+
+[OUTGOING_NURSE]: Esther is 88 years old, under Dr. George De Silva. She was admitted with epilepsy. she has had no seizure activity during my shift, and she’s stable with no other changes noted.
+[INCOMING_NURSE]: Thanks. Esther, have you had any dizziness, headaches, or warning signs overnight?
+[PATIENT]: No, I feel fine.
+[OUTGOING_NURSE]: Great. She’s been comfortable and settled.
+[INCOMING_NURSE]: Okay. Plan is to continue routine observations and safety checks. Esther, your call bell is right here—please press it if you need anything or if you feel unwell.
+[PATIENT]: All right, thank you.
+
+[OUTGOING_NURSE]: That’s all from me—no new orders or changes.
+[INCOMING_NURSE]: I’ll keep monitoring and update Dr. De Silva if anything changes. Anything you need before we go, Ms. Bunting?
+[PATIENT]: No, I’m okay. Thanks.
+[OUTGOING_NURSE]: Thanks, Esther. I’ll head off. 
+[INCOMING_NURSE]: I’ll be back shortly to check on you.

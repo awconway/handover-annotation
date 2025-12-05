@@ -1,0 +1,24 @@
+[OUTGOING_NURSE]: Morning. This is Bed 2.
+[OUTGOING_NURSE]: Hercules Kokinakis, he is 76, under Dr Kenzie.
+[INCOMING_NURSE]: Hi Hercules, I’m the incoming nurse my name is Brad. We’re just doing your handover.
+[INCOMING_NURSE]: He’s on a ventilator, so communication will be limited—Hercules, if you’re comfortable, give me a thumbs up?
+[PATIENT]: Gives a small nod.
+
+[OUTGOING_NURSE]: He was found by his wife on the floor at home, unconscious and not breathing so she rang the ambulance.
+[OUTGOING_NURSE]: He has a past history of type 2 diabetes, sleep apnoea, and is overweight.
+[OUTGOING_NURSE]: He is currently stable but ventilated, he needs regular position changes to prevent a pressure area.
+
+[INCOMING_NURSE]: Any immediate concerns overnight?
+[OUTGOING_NURSE]: No acute issues flagged. Monitoring ongoing while ventilated, his bp is 180/82 HR 56.
+
+[INCOMING_NURSE]: What it is the plan for today? 
+[OUTGOING_NURSE]: Physio is to start next shift.
+[OUTGOING_NURSE]: He is waiting for an ICU bed—transfer as soon as there’s a room available, this can be arranged sooner if he deteriorates, but he is currently stable.
+
+[INCOMING_NURSE]: Okay so physio will start on the next shift, and pending ICU bed. I’ll continue close monitoring and liaise with bed management.
+[INCOMING_NURSE]: Hercules, we’ll keep you comfortable and keep you updated. If you’re in any pain, try to nod and we’ll assess.
+
+[OUTGOING_NURSE]: That’s everything from me. Anything to add, Hercules?
+[PATIENT]: Shakes head.
+
+[INCOMING_NURSE]: Thanks. I’ll take it from here.

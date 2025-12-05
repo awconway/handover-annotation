@@ -1,0 +1,21 @@
+[INCOMING_NURSE]: Good Morning. I’m taking over Bed 5. Hi Yvonne, and hi there, Mum—I’m Tony. We’ll do a quick bedside handover with Heather, is that okay?
+[OUTGOING_NURSE]: This is Bed 5, who is Yvonne Matthews, she is26 years old, under Dr. Gordon. I’ve just checked her ID band—details and they match the chart.
+[INCOMING_NURSE]: Great, thanks. Hi Yvonne—feel free to jump in if we miss anything.
+[PATIENT]: Okay.
+
+[OUTGOING_NURSE]: Yvonne came in with a head injury sustained while playing basketball. The team are planning surgery, but we’re still waiting for the  results and for the surgeons to review her CT.
+[INCOMING_NURSE]: So she still needs a surgical review of the CT before any final plan.
+[OUTGOING_NURSE]: Yes. Her Observations have all been within normal limits, the BP is 112/76 and HR is 56 QADDS is Zero. She reported a headache today, so we gave some Endone  with a good effect.
+[INCOMING_NURSE]: Yvonne, how’s the headache now?
+[PATIENT]: Better since the tablet, I'm just a bit worried.
+[INCOMING_NURSE]: I hear you. We’ll keep you updated as soon as we hear from the surgeons.
+
+[OUTGOING_NURSE]: She’s self-caring and ambulant, with her mother in attendance. She’s very anxious and asking for frequent updates. Otherwise, she’s stable.
+[INCOMING_NURSE]: Thanks. I’ll check when radiology and the surgical team are likely to review the CT and I’ll come back to let you both know.
+[PATIENT]: Thank you.
+
+[INCOMING_NURSE]: Anything else outstanding?
+[OUTGOING_NURSE]: No other issues noted.
+[INCOMING_NURSE]: All her vitals look  good, I guees we will wait for the CT to be  reviewed to know the surgical plan. Yvonne, press the call bell if your headache worsens, you feel nauseous, dizzy, or anything changes.
+[PATIENT]: I will.
+[INCOMING_NURSE]: Thanks. I’ll be back shortly after I touch base with the team.

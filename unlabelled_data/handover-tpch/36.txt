@@ -1,0 +1,13 @@
+[NURSE]: Hi, I’m handing over Mrs. Emily Carter, a 38-year-old patient who was admitted three days ago following a manic episode. She’s now been newly diagnosed with bipolar disorder and is being discharged today. I’d like to arrange home supports to help her transition safely.
+[SOCIAL WORKER]: Thanks. Can you tell me about her current situation?
+[NURSE]: She lives with her husband and three children aged 4, 7, and 12, plus a dog. Her husband is supportive but understandably overwhelmed. He’s asked for help managing the household while Emily stabilises. She’s currently well but still adjusting to the diagnosis.
+[SOCIAL WORKER]: What kind of supports do you think she’ll need?
+[NURSE]: She’ll benefit from: Domestic assistance (light cleaning, laundry, meal prep), Childcare support during the day, especially for the younger children, Mental health outreach for medication adherence and mood monitoring, Education for the family around bipolar disorder and crisis planning. Possibly pet care support if her condition fluctuates
+[SOCIAL WORKER]: Any safety concerns?
+[NURSE]: No current risks identified. She’s engaging well, has insight, and is compliant with treatment. Her husband is aware of early warning signs and has contact details for crisis support.
+[SOCIAL WORKER]: What’s her medication plan?
+[NURSE]:
+She’s been started on: Lithium carbonate 400 mg BD, Quetiapine 100 mg nocte, PRN lorazepam 1 mg – not used in the last 48 hours, she’ll need regular lithium level monitoring and follow-up with the community mental health team.
+[SOCIAL WORKER]: Thanks. I’ll organise a home support package and liaise with the mental health team and family services.
+[NURSE]: Perfect. Let me know if you need anything further from the ward team.
+

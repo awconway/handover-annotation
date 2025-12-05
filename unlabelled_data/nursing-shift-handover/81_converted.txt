@@ -1,0 +1,29 @@
+[INCOMING_NURSE]:  Good Morning, Nicholas. I’m Mia, I’ll be looking after you today. I’m just getting handover from Sam, the night nurse. Is that okay?
+[PATIENT]: Sure, that’s fine.
+[OUTGOING_NURSE]: Thanks, Nicholas. So, this is Room 3, Bed 1: Nicholas Ferrer, 64, under Dr. Morris. Admitted with painful urination, haematuria, and reported fevers prior to admission.
+[INCOMING_NURSE]: Hi Nicholas, could you tell us your full name, please, while I check your ID band?
+[PATIENT]: Nicholas Ferrer.
+[INCOMING_NURSE]: Thank you, matches the band. 
+[OUTGOING_NURSE]: He has a history of hypertension, type 2 diabetes diet-controlled, depression, GORD, and gout.
+[INCOMING_NURSE]: Okay.
+[OUTGOING_NURSE]: Observations have been stable and he’s afebrile on the ward.
+[INCOMING_NURSE]: Any pain right now, Nicholas?
+[PATIENT]: A bit of burning when I go, but otherwise okay.
+[INCOMING_NURSE]: We’ll keep an eye on that and use what’s charted if you need it.
+[OUTGOING_NURSE]: We still need to collect a urine MCS, and he is for bloods tomorrow morning as per the request.
+[INCOMING_NURSE]: I’ll make sure the urine specimen pot is at the bedside and labelled, and we’ll collect it next when you void. 
+[OUTGOING_NURSE]: He’s still for the team review today.
+[INCOMING_NURSE]: Under Dr. Morris so we’ll watch for their round.
+[OUTGOING_NURSE]: He's on a diabetic diet and his BGLs are BD as ordered.
+[INCOMING_NURSE]: Any issues with intake?
+[OUTGOING_NURSE]: He is Eating and drinking fine and is self-caring and can mobilise independently.
+[INCOMING_NURSE]: Great. No falls risk concerns noted?
+[OUTGOING_NURSE]: No, he’s steady.
+[INCOMING_NURSE]: Nicholas, the plan from here isto get a urine sample off to the lab, check your sugars twice today, and the medical team will review you. If the burning worsens or you notice more blood, please buzz us straight away.
+[PATIENT]: Okay, will do.
+[INCOMING_NURSE]: Call bell’s within reach here—do you have it?
+[PATIENT]: Yep, right here.
+[OUTGOING_NURSE]: That’s everything from me.
+[INCOMING_NURSE] Nicholas, can I get you anything before we head off?
+[PATIENT]: I’m fine, thanks.
+[INCOMING_NURSE]: I’ll be back shortly to set up the specimen and do your obs.

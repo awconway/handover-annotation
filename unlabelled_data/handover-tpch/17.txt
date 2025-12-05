@@ -1,0 +1,18 @@
+[CATHLABNURSE]: Hi, I’m handing over Mrs. Fatima El-Sayed, 61 years old, just returned from the cath lab following an angiogram and stent placement for an anterior STEMI. She’s being transferred back to CCU for ongoing monitoring and support.
+[CCU_NURSE]: Can you give me a summary?
+[CATHLABNURSE]: Sure. She had two stents placed in the LAD. The myocardium is stunned, and she’s currently supported with an intra-aortic balloon pump (IABP). It’s set to 1:1 augmentation, and she’s tolerating it well so far. She’s haemodynamically stable but requires close monitoring.
+[CCU_NURSE]:
+Vitals?
+[CATHLABNURSE]: BP: 98/60, HR: 52 bpm – sinus bradycardia, RR: 18, SpO?: 96% on room air, Temp: 36.8°C. She’s alert but fatigued. No chest pain currently.
+[CCU_NURSE]: Any lines or attachments?
+[CATHLABNURSE]: she has a IABP via right femoral artery, an Arterial line in left radial a CVL in right internal jugular, an IDC in place draining over 30mls an hour. And Telemetry monitoring. She’s on IV heparin infusion for IABP patency and low-dose noradrenaline at 2 mcg/min.
+[CCU_NURSE]: Any investigations pending?
+[CATHLABNURSE]: Yes, she’s booked for a chest X-ray to confirm IABP positioning and a transthoracic echocardiogram to assess myocardial function. Cardiology team will review later today.
+[CCU_NURSE]: Any communication needs?
+[CATHLABNURSE]: Yes, she’s from a non-English speaking background—Arabic is her first language. She understands basic English but struggles with medical terms. Her daughter is bilingual and has been helping. Interpreter has been requested for ward rounds.
+[CCU_NURSE]: Any allergies or medications?
+[CATHLABNURSE]:
+No known drug allergies. 
+[CCU_NURSE]: Thanks. I’ll transduce the IABP and continue monitoring closely.
+[CATHLABNURSE]: Perfect. Let me know if anything changes. All documentation is up to date.
+

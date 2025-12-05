@@ -1,0 +1,17 @@
+[INCOMING_NURSE]: Good morning, Lucila. I’m the day nurse coming on. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Morning. This is bed 6, Ms. Lucila Marlor, 88 years old, who is under Dr. Sanchez.
+[INCOMING_NURSE]: Hi Ms. Marlor. We’re just talking about you so we can plan your care today.
+[OUTGOING_NURSE]: Lucila was admitted five days ago with a suspected overdose. She lives in a retirement facility. She’s been improving since admission.
+[INCOMING_NURSE]: Okay, Any change in how much help she needs?
+[OUTGOING_NURSE]: She needs minimal assistance with ADLs—same as previously noted.
+[INCOMING_NURSE]: so she's minimal assist with activities of daily living? 
+[INCOMING_NURSE]: Ms. Marlor, does that sound right to you just need a little help with things like washing, dressing, and getting around?
+[PATIENT]: Yes, that’s right. I just need a hand sometimes.
+[INCOMING_NURSE]: No worries, we’ll make sure you’ve got the help you need.
+[INCOMING_NURSE]: Any other issues overnight?
+[OUTGOING_NURSE]: No new issues reported. She is continuing to improve.
+[INCOMING_NURSE]: Thanks. Is there a plan for today?
+[OUTGOING_NURSE]: To continue current care, assist with ADLs as needed, and await Dr. Sanchez’s review.
+[INCOMING_NURSE]: Perfect. Ms. Marlor, we’ll check on you regularly. Use your call bell if you need anything between visits.
+[PATIENT]: Thank you.
+[INCOMING_NURSE]: Thanks for the handover.

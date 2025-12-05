@@ -1,0 +1,17 @@
+[INCOMING_NURSE]: Good Morning, Alex. I’m Sam, I’ll be looking after you today. I’m just going to get handover from Priya if that’s okay.
+[OUTGOING_NURSE]: Hi Sam. This is Alex Nasser, who is 53 years old, in Room 1 Bed 4, under Dr. Morris.
+[INCOMING_NURSE]: Thanks. Alex, could you confirm your full name for me?
+[PATIENT]: Alex Nasser.
+[INCOMING_NURSE]: Thank you.
+[OUTGOING_NURSE]: Alex came in with back pain and fever, query urinary stones.
+[INCOMING_NURSE]: And on your shift he’s been afebrile, correct?
+[OUTGOING_NURSE]: Yes, afebrile on my shift and he’s on the same regimen. No other changes.
+[INCOMING_NURSE]: Has the team reviewed today?
+[OUTGOING_NURSE]: Not yet—no doctor review so far today. Otherwise he’s stable.
+[INCOMING_NURSE]: Okay. Vitals been steady and pain manageable?
+[OUTGOING_NURSE]: Vitals stable; pain similar to admission but settled with current plan.
+[INCOMING_NURSE]: Great. Alex, I’ll keep an eye on your pain and temperature and check in regularly. If anything changes, press the call bell.
+[PATIENT]: Okay, thanks.
+[INCOMING_NURSE]: Anything else before you head off, Priya?
+[OUTGOING_NURSE]: That’s everything from me.
+[INCOMING_NURSE]: Thanks. I’ll await Dr. Morris’ review and continue the current plan.

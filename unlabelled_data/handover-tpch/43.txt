@@ -1,0 +1,13 @@
+
+[NURSE 1]: Hey, I’m handing over Sarah Nguyen, 29 years old, came into ED earlier today with acute abdominal pain — mainly in the right lower quadrant. She’s currently awaiting surgical review.
+[NURSE 2]: Okay, thanks. What’s her current status?
+[NURSE 1]: Vitals are stable — temp 37.8°C, HR 88, BP 118/76, RR 18, SpO? 99% on room air. Pain is sitting at 6/10, managed with IV analgesia. She’s nil by mouth pending review.
+[NURSE 2]: Any imaging done?
+[NURSE 1]: Yes, she’s had an abdominal ultrasound — inconclusive. CT abdomen is booked for this afternoon. Bloods show mild leukocytosis, CRP elevated. Urine is clear, pregnancy test negative.
+[NURSE 2]: Any IV access?
+[NURSE 1]: Yep, 20G in the left antecubital fossa — patent. She’s had IV fluids and analgesia. No known allergies.
+[NURSE 2]: Any behavioural concerns?
+[NURSE 1]: No concerns. She’s alert, oriented, and coping well. Just anxious about the possibility of surgery.
+[NURSE 2]: Got it. Anything else I need to follow up?
+[NURSE 1]: Just keep an eye on her pain and nausea. Surgical team should be around shortly. Let me know if anything changes.
+

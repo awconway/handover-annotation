@@ -1,0 +1,11 @@
+[Outgoing Nurse]: Hi, I’m handing over Mrs. Elaine Morris in bed 6. She’s an 84-year-old patient with reduced mobility following a recent pneumonia admission. She has a stage 2 pressure injury on her right hip.
+[Incoming Nurse]: Thanks. What’s the current condition of the wound?
+[Outgoing Nurse]: It’s a shallow ulcer with partial thickness skin loss. The wound bed is moist but clean, with no signs of infection. There’s mild erythema around the edges. The wound care nurse reviewed it this morning and recommended continuing with Allevyn Gentle Border dressing.
+[Incoming Nurse]: How often does it need changing?
+[Outgoing Nurse]: Every 3 days unless soiled or lifting. The next dressing change is due on Friday. We’re documenting progress in the wound chart and taking weekly photos for review.
+[Incoming Nurse]: What’s her Waterlow score?
+[Outgoing Nurse]: Waterlow score is 18, so she’s at high risk. She’s on a pressure-relieving mattress and we’re repositioning her every 2 hours.
+[Incoming Nurse]: Any other relevant care?
+[Outgoing Nurse]: Yes:  she has No IV access currently, her Oral intake is adequate, there’s No IDC, but she is continent of urine and bowels, Pain score is 1/10 at rest, no analgesia required, Skin integrity checks are ongoing, no other areas of concern
+[Incoming Nurse]: Thanks. I’ll continue the pressure care, monitor the wound, and follow the dressing schedule.
+

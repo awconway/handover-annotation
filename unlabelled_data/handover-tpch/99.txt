@@ -1,0 +1,12 @@
+[WARD NURSE]: Hi, I’m handing over Mrs. Evelyn Grant, 87 years old, being transferred to the transit lounge to await transport back to her nursing home. Evelyn, this is Nurse Tom, who’ll be looking after you until your transport arrives.
+[TRANSIT LOUNGE NURSE]: Hi Evelyn, lovely to meet you. We’ll make sure you’re comfortable while you wait.
+[WARD NURSE]: Evelyn was admitted five days ago with aspiration pneumonia. She’s responded well to IV antibiotics and supportive care. She’s now afebrile, respiratory rate is 18, SpO? 96% on room air, and she’s mobilising short distances with assistance.
+[TRANSIT LOUNGE NURSE]: Great. Any swallowing concerns?
+[WARD NURSE]: Yes, she has known dysphagia—thickened fluids and minced moist diet. She’s been reviewed by speech pathology and is safe to resume her usual nursing home diet plan. No signs of aspiration since admission.
+[TRANSIT LOUNGE NURSE]: Okay. Any medications due?
+[WARD NURSE]: No meds due during transit. She’s had her morning meds—oral antibiotics completed yesterday. No allergies. She has a 22G IV in the left hand, but it can be removed before discharge.
+[TRANSIT LOUNGE NURSE]: Any behavioural concerns?
+[WARD NURSE]: No. She’s pleasant, a bit confused at times but reorients easily. Nursing home staff are aware and familiar with her baseline.
+[TRANSIT LOUNGE NURSE]: Got it. Is transport booked?
+[WARD NURSE]: Yes, booked for 11:30 AM. All discharge paperwork is complete, including medication summary and nursing home handover form. Please let the team know if there’s any delay or change in her condition.
+

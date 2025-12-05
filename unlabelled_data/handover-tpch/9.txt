@@ -1,0 +1,14 @@
+[WARD_NURSE]: Hi, thanks for coming to see Mr. Alan Brooks in bed 12. He’s Day 1 post-CABG, just transferred from ICU this morning. He’s stable but still has several attachments in place, so we’ll need to be cautious with mobility.
+[PHYSIOTHERAPIST]: Can you give me a quick overview?
+[WARD_NURSE]: Sure. He had a triple vessel CABG yesterday. He’s currently on: IV dopamine, weaning at 0.05 mcg/kg/min, currently running at 3 mcg/min, he has a CVL in the right internal jugular, there are Three chest drains still in situ. He has an IDC draining clear urine, Telemetry monitoring active. 
+[PHYSIOTHERAPIST]: Okay. Is he alert and able to follow instructions?
+[WARD_NURSE]: Yes, he’s alert, orientated, and cooperative. Pain is well-managed with paracetamol and PRN oxycodone. He’s keen to mobilise but understandably anxious.
+[PHYSIOTHERAPIST]: Any precautions I should be aware of?
+[WARD_NURSE]: Yes—sternal precautions apply. No pushing or pulling with arms, no lifting above shoulder height. We’ll need to support the chest drains and CVL during movement. IDC can be secured to the leg.
+[PHYSIOTHERAPIST]: Any recent obs or concerns?
+[WARD_NURSE]:
+Vitals are stable: BP: 104/68, HR: 88 bpm, sinus rhythm, SpO?: 96% on room air
+No dizziness or desaturation noted. He’s due for obs in 30 minutes.
+[PHYSIOTHERAPIST]: I’ll start with a gentle sit-out and breathing exercises and reassess tolerance. I’ll liaise with the team about progressing mobility tomorrow.
+[WARD_NURSE]: Perfect. Let me know if you need help with attachments or if anything changes.
+

@@ -1,0 +1,16 @@
+[NURSE]: Hi Dr. Patel, thanks for coming. I’d like you to review Ms. Evelyn Grant in bed 9. She’s a 68-year-old patient admitted with a urinary tract infection. She’s deteriorated over the last few hours.
+[DOCTOR]: What’s happening?
+[NURSE]: She’s has become increasingly tachycardic and febrile. Her Q-ADDS score is 6, which triggered the escalation. She’s also reporting increased confusion compared to her baseline.
+[DOCTOR]: Okay, can you give me her latest observations?
+[NURSE]: Her BP: 98/62, HR: 112 bpm, RR: 22, Temp: 38.6°C, SpO?: 95% on room air, Conscious state: Alert but confused, Q-ADDS score: 6 (HR + Temp + RR + confusion).
+[DOCTOR]:Has she had any recent bloods or urine cultures?
+[NURSE]: Yes, bloods were taken this morning. WCC is 14.2, CRP is 98. Creatinine is slightly up at 102. Urine sample sent, awaiting results.
+[DOCTOR]: Any IV access?
+[NURSE]: No, she doesn’t currently have a cannula. We’ll need to insert one.
+[DOCTOR]: Okay. What’s her allergy status?
+[NURSE]: She has a documented penicillin allergy—rash and swelling reported previously.
+[DOCTOR]: What’s her current medication chart?
+[NURSE]: She’s on: Paracetamol 1g QID, IV fluids: Normal saline at 100 mL/hr, no antibiotics started yet due to allergy—awaiting review.
+[DOCTOR]: Alright. I’ll assess her now and likely start IV ceftriaxone and IV gentamicin, given the allergy. We’ll also need to insert a cannula and consider transfer to the acute medical unit if her condition worsens.
+[NURSE]: I’ll prepare for the cannula and notify the AMU team if needed.
+[DOCTOR]: Let me know if her Q-ADDS score increases or if she becomes more confused.

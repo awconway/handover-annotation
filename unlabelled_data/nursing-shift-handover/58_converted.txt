@@ -1,0 +1,10 @@
+[INCOMING_NURSE]: Good Morning, Phil. I’m the day nurse coming on, my name is Barbara. I’ll just get a quick handover from my colleague if that’s okay.
+[OUTGOING_NURSE]: Hi. This is room 2, bed 5—Phil Albert Revett, who is 64 years old, under Dr George De Silva. Phil, could you confirm your name for us?
+[PATIENT]: Phil Albert Revett.
+[INCOMING_NURSE]: Thanks, Phil.
+[OUTGOING_NURSE]: Phil came in post–brain surgery. He’s doing well. Observations are stable and there’ve been no other changes this shift.
+[INCOMING_NURSE]: Great. Phil, how are you feeling right now—any dizziness, headache, nausea, or new weakness?
+[PATIENT]: I’m okay, no new issues.
+[INCOMING_NURSE]: Good to hear. We’ll keep monitoring your observations and let Dr De Silva’s team know if anything changes. Call bell is within reach—please press it if you need us.
+[OUTGOING_NURSE]: All right, that’s everything from me, see you tomorrow.
+[INCOMING_NURSE]: Thanks. I’ll check your obs shortly, Phil, and I’ll be back to see you again soon.

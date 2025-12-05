@@ -1,0 +1,19 @@
+[INCOMING_NURSE]: Good Morning, Frank. I’m the day nurse coming on now my name is Henry. I’ll get a quick handover from Arthur at the bedside if that’s okay.
+[OUTGOING_NURSE]: Hi. This is bed 5, Frank Morgan Montgomery. Frank, this is the incoming nurse who’ll be looking after you today.
+[INCOMING_NURSE]: Hi Frank—could you tell me your full name and date of birth.
+[PATIENT]: Frank Morgan Montgomery, 25 October 1947.
+[INCOMING_NURSE]: Thank you.
+
+[OUTGOING_NURSE]: Frank is 78 years old and under Dr. Sanchez. He came in with shortness of breath and tiredness post‑op. He has a history of CABG eight years ago. We’ve noted a decreasing level of consciousness, so neuro observations are being done QID. He was tachy this morning—post‑op—and he’s on oxygen at 3 liters via nasal prongs. His oxygen saturations are all good now. He’s here for further monitoring.
+[INCOMING_NURSE]:  Has there been any changes to his LOC since earlier?
+[OUTGOING_NURSE]: He's a little drowsy compared to baseline but rousable; no acute deterioration since last my last round.
+[INCOMING_NURSE]: Okay, I’ll keep a close eye and escalate if there’s any decline. Frank, how’s your breathing feeling right now?
+[PATIENT]: Better than before, just a bit tired.
+[INCOMING_NURSE]: All right. We’ll continue monitoring your heart rate, breathing, and level of alertness. If you feel more short of breath or more drowsy, please let us know.
+
+[INCOMING_NURSE]: Anything else outstanding—bloods, scans, or new orders?
+[OUTGOING_NURSE]: No new orders noted; just ongoing monitoring.
+[INCOMING_NURSE]: Perfect. I’ll check your vitals shortly, Frank, and make sure you’re comfortable. Do you need anything before we finish handover?
+[PATIENT]: No, thank you.
+[OUTGOING_NURSE]: All right, Frank. I’m heading off now. You’re in good hands.
+[INCOMING_NURSE]: I’ll be back in a moment to recheck your observations.

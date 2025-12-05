@@ -1,0 +1,11 @@
+[INCOMING_NURSE]: Good Morning, Lucy. I’m Sam, the day nurse. Is it okay if I get bedside handover from Mia?
+[PATIENT]: Yes, that’s fine.
+[OUTGOING_NURSE]: So, bed six is Lucy Harold, who is 27, and under Dr. Harold. She came in post–brain surgery.
+[INCOMING_NURSE]: So she's a post-op neurosurgical admission under Dr. Harold.
+[OUTGOING_NURSE]: Her observations are stable her BP is 124/70 and HR is 68. The bone flap site dressing is left intact—awaiting the surgery team to review, there are no other changes since she came to us.
+[INCOMING_NURSE]: Okay. I'll leave the bone flap dressing intact until reviewed by the surgical team. 
+[INCOMING_NURSE]: Lucy, are you comfortable at the moment?
+[PATIENT]: I’m okay, thanks.
+[INCOMING_NURSE]: Great. I’ll keep an eye on your observations and wait for the surgical team review. Mia, anything else I need to know?
+[OUTGOING_NURSE]: Nope that's everything.
+[INCOMING_NURSE]: Thanks. Lucy, buzz if you need anything—I’ll be back shortly.

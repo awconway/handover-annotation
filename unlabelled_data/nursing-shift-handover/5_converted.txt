@@ -1,0 +1,14 @@
+[INCOMING_NURSE]: Good morning, Mr. Wong. I’m Jack I will be your nurse for the day. We’ll do a quick bedside handover with my colleague, if that’s okay.
+[OUTGOING_NURSE]: Hi, Mr. Wong. This is the Nurse taking over for the day. Could you confirm your name for us?
+[PATIENT]: Lumin Wong.
+[OUTGOING_NURSE]: Thank you. This is Mr. Lumin Wong in bed 5, he is 75 years old, under Dr. Liu.
+[OUTGOING_NURSE]: He’s waiting for heart surgery to be arranged by the team. He’s been in and out of hospital over the last three months.
+[OUTGOING_NURSE]: There have been no other changes reported this shift.
+[INCOMING_NURSE]: Any new symptoms or concerns overnight, Mr. Wong?
+[PATIENT]: No, I’m okay. Just waiting to hear about the surgery.
+[OUTGOING_NURSE]: There are no new complaints noted, and currently, no updates from the team yet regarding a surgery time.
+[INCOMING_NURSE]: I’ll follow up with Dr. Liu’s team about timing and let you know as soon as we hear.
+[INCOMING_NURSE]: Anything you need before we finish handover?
+[PATIENT]: No, thank you.
+[OUTGOING_NURSE]: please use the call bell if you need anything. I’ll leave you in good hands.
+[INCOMING_NURSE]: I’ll be back shortly to check your observations and review your chart, Mr. Wong.
