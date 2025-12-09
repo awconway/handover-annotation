@@ -1,3 +1,5 @@
+from tkinter.constants import TRUE
+
 import dspy
 
 from checklist_task.signatures import build_predictor
@@ -9,7 +11,7 @@ _, testset = prepare_dataset(DATA_FILE)
 
 predictor = build_predictor()
 
-lm = dspy.LM(model="openai/gpt-5.1", cache=False)
+lm = dspy.LM(model="openai/gpt-5.1")
 dspy.settings.configure(lm=lm)
 predictor.load(OUTPUT_MODEL_FILE)
 for name, pred in predictor.named_predictors():
@@ -20,5 +22,4 @@ for name, pred in predictor.named_predictors():
     print(pred.signature.instructions)
     print("*********************************")
 score = evaluate_checklist(predictor, testset, EVAL_RESULTS_FILE)
-print(predictor.inspect_history(-1))
 print("Evaluation complete. Score:", score)

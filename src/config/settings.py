@@ -1,6 +1,6 @@
 # Select exactly one model and one optimiser per run
 
-MODEL_NAME = "gpt_nano"  # options: see model_registry.py
+MODEL_NAME = "gpt_5.1"  # options: see model_registry.py
 OPTIMISER_NAME = "gepa_heavy_checklist"  # options: see optimiser_registry.py
 
 DATA_FILE = "./annotated_data/db_20251127_tokenised.jsonl"
