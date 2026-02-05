@@ -4,12 +4,20 @@ import dspy
 import srsly
 
 
-def prepare_dataset(path: str):
+def _matches_annotator(line: dict, annotator_id: str | None) -> bool:
+    if annotator_id is None:
+        return True
+    return line.get("_annotator_id") == annotator_id
+
+
+def prepare_dataset(path: str, annotator_id: str | None = None):
     rng = random.Random(339)  # local, deterministic RNG
     train, test = [], []
 
     for line in srsly.read_jsonl(path):
         if not isinstance(line, dict):
+            continue
+        if not _matches_annotator(line, annotator_id):
             continue
 
         ex = dspy.Example(
@@ -33,12 +41,14 @@ SBAR_ALLOWED_LABELS = {
 }
 
 
-def prepare_dataset_sbar_span(path: str):
+def prepare_dataset_sbar_span(path: str, annotator_id: str | None = None):
     rng = random.Random(339)  # local, deterministic RNG
     train, test = [], []
 
     for line in srsly.read_jsonl(path):
         if not isinstance(line, dict):
+            continue
+        if not _matches_annotator(line, annotator_id):
             continue
 
         # Filter out spans with disallowed labels
@@ -76,12 +86,14 @@ UNCERTAINTY_ALLOWED_LABELS = {
 }
 
 
-def prepare_dataset_uncertainty_span(path: str):
+def prepare_dataset_uncertainty_span(path: str, annotator_id: str | None = None):
     rng = random.Random(339)  # local, deterministic RNG
     train, test = [], []
 
     for line in srsly.read_jsonl(path):
         if not isinstance(line, dict):
+            continue
+        if not _matches_annotator(line, annotator_id):
             continue
 
         # Filter out spans with disallowed labels
