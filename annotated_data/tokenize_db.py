@@ -7,8 +7,8 @@ import srsly
 nlp = spacy.blank("en")
 
 # Input and output file paths
-input_path = "db_20251201.jsonl"
-output_path = "annotated_data/db_20251201_tokenised.jsonl"
+input_path = "db_20260129.jsonl"
+output_path = "annotated_data/db_20260129_tokenised.jsonl"
 
 # Read all Prodigy-style examples
 examples = srsly.read_jsonl(input_path)
