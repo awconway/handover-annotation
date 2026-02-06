@@ -2,9 +2,12 @@ import argparse
 
 from config.dspy_settings import configure_dspy
 from config.model_registry import load_model
-from checklist_task.signatures import build_predictor
-from data.dataset import prepare_dataset, prepare_dataset_all
-from eval.evaluator import evaluate_checklist
+from data.dataset import (
+    prepare_dataset_uncertainty_span,
+    prepare_dataset_uncertainty_span_all,
+)
+from eval.evaluator import evaluate_sbar
+from uncertain_span_task.signatures import build_predictor
 
 DATA_FILE = "./annotated_data/db_20260129_tokenised.jsonl"
 
@@ -41,22 +44,22 @@ def parse_args() -> argparse.Namespace:
 
 args = parse_args()
 if args.use_all:
-    testset = prepare_dataset_all(DATA_FILE, annotator_id=args.annotator_id)
+    testset = prepare_dataset_uncertainty_span_all(
+        DATA_FILE, annotator_id=args.annotator_id
+    )
 else:
-    _, testset = prepare_dataset(DATA_FILE, annotator_id=args.annotator_id)
+    _, testset = prepare_dataset_uncertainty_span(
+        DATA_FILE, annotator_id=args.annotator_id
+    )
 output_model_file = args.output_model_file
 eval_results_file = args.eval_results_file
 
 predictor = build_predictor()
+predictor.load(output_model_file)
+
 lm = load_model(args.model_name)
 configure_dspy(lm)
-predictor.load(output_model_file)
-for name, pred in predictor.named_predictors():
-    print("================================")
-    print(f"Predictor: {name}")
-    print("================================")
-    print("Prompt:")
-    print(pred.signature.instructions)
-    print("*********************************")
-score = evaluate_checklist(predictor, testset, eval_results_file)
+
+score = evaluate_sbar(predictor, testset, eval_results_file)
+print(predictor.inspect_history(-1))
 print("Evaluation complete. Score:", score)

@@ -1,7 +1,10 @@
 import argparse
 
-from data.dataset import prepare_dataset
-from training.trainer import train
+from config.dspy_settings import configure_dspy
+from config.model_registry import load_model
+from config.optimiser_registry import OPTIM_REGISTRY, load_optimiser
+from data.dataset import prepare_dataset_sbar_span
+from sbar_span_task.signatures import build_predictor
 
 DATA_FILE = "./annotated_data/db_20260129_tokenised.jsonl"
 
@@ -32,17 +35,22 @@ def parse_args() -> argparse.Namespace:
 
 
 args = parse_args()
-trainset, valset = prepare_dataset(DATA_FILE, annotator_id=args.annotator_id)
+allowed_span_optimisers = {name for name in OPTIM_REGISTRY if name == "none" or name.endswith("_span")}
+if args.optimiser_name not in allowed_span_optimisers:
+    raise ValueError(
+        "Unsupported optimiser for SBAR span. "
+        "Use a span optimiser like 'gepa_light_span' or 'gepa_heavy_span'."
+    )
+
+trainset, valset = prepare_dataset_sbar_span(DATA_FILE, annotator_id=args.annotator_id)
 output_model_file = args.output_model_file
 
-predictor = train(args.model_name, args.optimiser_name, trainset, valset)
-predictor.save(output_model_file)
-for name, pred in predictor.named_predictors():
-    print("================================")
-    print(f"Predictor: {name}")
-    print("================================")
-    print("Prompt:")
-    print(pred.signature.instructions)
-    print("*********************************")
+lm = load_model(args.model_name)
+configure_dspy(lm)
 
+predictor = build_predictor()
+optimiser_fn = load_optimiser(args.optimiser_name)
+predictor = optimiser_fn(predictor, trainset, valset)
+
+predictor.save(output_model_file)
 print("Training complete. Saved to", output_model_file)

@@ -1,17 +1,12 @@
 import argparse
 
-import dspy
-
-from config.settings import (
-    DATA_FILE,
-    EVAL_RESULTS_FILE,
-    MODEL_NAME,
-    OUTPUT_MODEL_FILE,
-    with_annotator_suffix,
-)
-from data.dataset import prepare_dataset_sbar_span
+from config.dspy_settings import configure_dspy
+from config.model_registry import load_model
+from data.dataset import prepare_dataset_sbar_span, prepare_dataset_sbar_span_all
 from eval.evaluator import evaluate_sbar
 from sbar_span_task.signatures import build_predictor
+
+DATA_FILE = "./annotated_data/db_20260129_tokenised.jsonl"
 
 
 def parse_args() -> argparse.Namespace:
@@ -22,27 +17,41 @@ def parse_args() -> argparse.Namespace:
         help="Filter examples by _annotator_id (e.g. handover_db-user1).",
     )
     parser.add_argument(
-        "--suffix-eval-only",
+        "--use-all",
         action="store_true",
-        help="Suffix only eval output files (load shared model).",
+        help="Evaluate on all matching examples (no train/test split).",
+    )
+    parser.add_argument(
+        "--output-model-file",
+        required=True,
+        help="Path to the trained program to load.",
+    )
+    parser.add_argument(
+        "--eval-results-file",
+        required=True,
+        help="Path to write eval JSONL results.",
+    )
+    parser.add_argument(
+        "--model-name",
+        required=True,
+        help="Model registry key (see src/config/model_registry.py).",
     )
     return parser.parse_args()
 
 
 args = parse_args()
-_, testset = prepare_dataset_sbar_span(DATA_FILE, annotator_id=args.annotator_id)
-if args.annotator_id and args.suffix_eval_only:
-    output_model_file = OUTPUT_MODEL_FILE
-    eval_results_file = with_annotator_suffix(EVAL_RESULTS_FILE, args.annotator_id)
+if args.use_all:
+    testset = prepare_dataset_sbar_span_all(DATA_FILE, annotator_id=args.annotator_id)
 else:
-    output_model_file = with_annotator_suffix(OUTPUT_MODEL_FILE, args.annotator_id)
-    eval_results_file = with_annotator_suffix(EVAL_RESULTS_FILE, args.annotator_id)
+    _, testset = prepare_dataset_sbar_span(DATA_FILE, annotator_id=args.annotator_id)
+eval_results_file = args.eval_results_file
+output_model_file = args.output_model_file
 
 predictor = build_predictor()
 
-lm = dspy.LM(model="openai/gpt-5-nano")
-dspy.settings.configure(lm=lm)
-# predictor.load(output_model_file)
+lm = load_model(args.model_name)
+configure_dspy(lm)
+predictor.load(output_model_file)
 
 score = evaluate_sbar(predictor, testset, eval_results_file)
 print(predictor.inspect_history(-1))

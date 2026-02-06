@@ -4,7 +4,7 @@ from types import SimpleNamespace
 import dspy
 import pytest
 
-from gepa_span_metric import gepa_span_metric
+from span_metric.gepa_span_metric import gepa_span_metric
 
 
 def test_gepa_span_metric_exact_match():
@@ -17,7 +17,7 @@ def test_gepa_span_metric_exact_match():
     }
 
     pred = SimpleNamespace(
-        spans=[
+        pred_spans=[
             {
                 "label": "Unknown fact",
                 "quote": "I’ve escalated to the medical registrar—awaiting review.",
@@ -40,7 +40,7 @@ def test_gepa_span_metric_partial_overlap():
 
     # Overlaps partially but not exact
     pred = SimpleNamespace(
-        spans=[
+        pred_spans=[
             {
                 "label": "Unknown fact",
                 "quote": "escalated to the medical registrar",
@@ -64,7 +64,7 @@ def test_gepa_span_metric_label_mismatch():
     }
 
     pred = SimpleNamespace(
-        spans=[
+        pred_spans=[
             {
                 "label": "Procedural uncertainty",  # WRONG LABEL
                 "quote": "I’ve escalated to the medical registrar—awaiting review.",
@@ -89,7 +89,7 @@ def test_gepa_span_metric_label_mismatch_feedback_present():
     }
 
     pred = SimpleNamespace(
-        spans=[
+        pred_spans=[
             {
                 "label": "Procedural uncertainty",  # WRONG LABEL
                 "quote": "I’ve escalated to the medical registrar—awaiting review.",
@@ -133,7 +133,7 @@ def test_gepa_span_metric_multiple_preds_golds():
     }
 
     pred = SimpleNamespace(
-        spans=[
+        pred_spans=[
             {
                 "label": "Unknown fact",
                 "quote": "I’ve escalated to the medical registrar—awaiting review.",
@@ -158,11 +158,28 @@ def test_gepa_span_metric_feedback_returned():
         "gold_spans": [],
     }
 
-    pred = SimpleNamespace(spans=[])
+    pred = SimpleNamespace(pred_spans=[])
 
     out = gepa_span_metric(example, pred, pred_name="span_module.predict")
     assert hasattr(out, "score")
     assert hasattr(out, "feedback")
+
+
+def test_gepa_feedback_includes_gold_quote_text():
+    text = "Nurse update: maybe later today after review."
+    start = text.index("maybe")
+    end = text.index("today") + len("today")
+    example = {
+        "text": text,
+        "gold_spans": [
+            {"start": start, "end": end, "label": "Indefinite Timing"},
+        ],
+    }
+    pred = SimpleNamespace(pred_spans=[])
+
+    out = gepa_span_metric(example, pred, pred_name="span_module.predict")
+    assert 'quote="maybe later today"' in out.feedback
+    assert f"span=[{start}, {end}]" in out.feedback
 
 
 def test_gepa_span_metric_no_spans_is_perfect():
@@ -170,7 +187,7 @@ def test_gepa_span_metric_no_spans_is_perfect():
         "text": "Some text",
         "gold_spans": [],
     }
-    pred = SimpleNamespace(spans=[])
+    pred = SimpleNamespace(pred_spans=[])
 
     # Plain metric mode
     score = gepa_span_metric(example, pred)

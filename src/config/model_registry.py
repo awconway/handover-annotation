@@ -3,7 +3,7 @@ import dspy
 MODEL_REGISTRY = {
     "gpt_nano": lambda: dspy.LM(model="openai/gpt-5-nano"),
     "gpt_mini": lambda: dspy.LM(model="openai/gpt-5-mini"),
-    "gpt_5.1": lambda: dspy.LM(model="openai/gpt-5.1"),
+    "gpt_5.2": lambda: dspy.LM(model="openai/gpt-5.2"),
 }
 
 

@@ -49,12 +49,12 @@ def test_prepare_dataset_sbar_span_filters_disallowed_labels(tmp_path):
 
     # All spans in all remaining examples must have allowed labels
     for ex in examples:
-        for span in ex["labels"]:  # <--- access the "labels" field
+        for span in ex["gold_spans"]:
             assert span["label"] in allowed_labels
 
     # The disallowed label "OTHER" should be removed from "Mixed labels"
     mixed = next(e for e in examples if e.text == "Mixed labels")
-    mixed_labels = {span["label"] for span in mixed["labels"]}
+    mixed_labels = {span["label"] for span in mixed["gold_spans"]}
     assert "OTHER" not in mixed_labels
     assert {"SITUATION", "ASSESSMENT"}.issubset(mixed_labels)
 

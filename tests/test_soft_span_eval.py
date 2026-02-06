@@ -1,7 +1,7 @@
 # test_span_eval.py
 import pytest
 
-from sbar_span_task.metric_gepa import label_aware_soft_f1
+from span_metric.soft_f1 import label_aware_soft_f1
 
 # sample paragraph (use the same text used in your earlier examples)
 PARAGRAPH = (

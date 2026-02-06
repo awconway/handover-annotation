@@ -1,5 +1,4 @@
 import json
-from string import printable
 
 import dspy
 
@@ -11,6 +10,32 @@ def format_span(span):
     if span is None:
         return "None"
     return f"[{span[0]}, {span[1]}]"
+
+
+def _extract_span_quote(text, span):
+    """
+    Safely extract quote text for a [start, end] char span.
+    Returns None when span is missing/invalid.
+    """
+    if span is None or not isinstance(span, (list, tuple)) or len(span) != 2:
+        return None
+
+    start, end = span
+    if not isinstance(start, int) or not isinstance(end, int):
+        return None
+
+    text_len = len(text)
+    start = max(0, min(start, text_len))
+    end = max(0, min(end, text_len))
+    if end <= start:
+        return ""
+    return text[start:end]
+
+
+def _format_quote(quote):
+    if quote is None:
+        return "None"
+    return json.dumps(quote, ensure_ascii=False)
 
 
 def build_feedback(text, golds, preds, detailed):
@@ -25,15 +50,18 @@ def build_feedback(text, golds, preds, detailed):
     # --- GOLD SPANS ---
     fb.append("Gold spans:\n")
     for g in detailed["golds"]:
+        gold_quote = _extract_span_quote(text, g["span"])
         fb.append(
-            f"  - Gold #{g['idx']} — label='{g['label']}', span={format_span(g['span'])}"
+            f"  - Gold #{g['idx']} — label='{g['label']}', "
+            f"quote={_format_quote(gold_quote)}, span={format_span(g['span'])}"
         )
 
     # --- PRED SPANS ---
     fb.append("\nPredicted spans:\n")
     for p in detailed["preds"]:
         fb.append(
-            f"  - Pred #{p['idx']} — label='{p['label']}', quote='{p['quote']}', mapped_span={format_span(p['span'])}"
+            f"  - Pred #{p['idx']} — label='{p['label']}', "
+            f"quote={_format_quote(p['quote'])}, mapped_span={format_span(p['span'])}"
         )
 
     # --- MATCHES ---
@@ -74,8 +102,10 @@ def build_feedback(text, golds, preds, detailed):
     if unmatched_gold:
         fb.append("\nUnmatched gold spans:")
         for g in unmatched_gold:
+            gold_quote = _extract_span_quote(text, g["span"])
             fb.append(
-                f"  - Gold #{g['idx']} (label='{g['label']}', span={format_span(g['span'])}) was not predicted."
+                f"  - Gold #{g['idx']} (label='{g['label']}', "
+                f"quote={_format_quote(gold_quote)}, span={format_span(g['span'])}) was not predicted."
             )
 
     # --- UNMATCHED PREDS ---
@@ -86,7 +116,8 @@ def build_feedback(text, golds, preds, detailed):
         fb.append("\nUnmatched predicted spans:")
         for p in unmatched_preds:
             fb.append(
-                f"  - Pred #{p['idx']} (label='{p['label']}', quote='{p['quote']}') did not match any gold span."
+                f"  - Pred #{p['idx']} (label='{p['label']}', "
+                f"quote={_format_quote(p['quote'])}) did not match any gold span."
             )
 
     # Final summary / guidance
@@ -140,7 +171,7 @@ def gepa_span_metric(example, pred, trace=None, pred_name=None, pred_trace=None)
     print(json.dumps(pred_items, indent=2, ensure_ascii=False))
     print("================================================\n")
 
-    # Run your span F1 evaluator
+    # Run span F1 evaluator
     out = label_aware_soft_f1(
         text=text,
         gold_spans=gold_spans,
@@ -151,6 +182,14 @@ def gepa_span_metric(example, pred, trace=None, pred_name=None, pred_trace=None)
     )
 
     score = out["f1"]
+
+    # Expose all computed metrics on the prediction so eval JSONL can include them.
+    # (The metric function must still return a numeric score for dspy.Evaluate.)
+    try:
+        pred["span_metrics"] = out
+    except Exception:
+        # If `pred` isn't dictlike for some reason, skip attaching metrics.
+        pass
 
     # --- special-case: no golds and no preds => perfect behavior ---
     if not out["detailed"]["golds"] and not out["detailed"]["preds"]:
@@ -182,4 +221,4 @@ def gepa_span_metric(example, pred, trace=None, pred_name=None, pred_trace=None)
     # print("Feedback:", feedback.replace("\n", "\\n"))
     # print("================================================\n")
 
-    return dspy.Prediction(score=score, feedback=feedback)
+    return dspy.Prediction(score=score, feedback=feedback, metrics=out)

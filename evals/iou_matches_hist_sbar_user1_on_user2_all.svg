@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500">
+<rect width="100%" height="100%" fill="white"/>
+<line x1="60" y1="30" x2="60" y2="440" stroke="#333"/>
+<line x1="60" y1="440" x2="880" y2="440" stroke="#333"/>
+<line x1="55" y1="440.0" x2="60" y2="440.0" stroke="#333"/>
+<text x="50" y="444.0" text-anchor="end" font-size="10" fill="#333">0</text>
+<line x1="55" y1="358.0" x2="60" y2="358.0" stroke="#333"/>
+<text x="50" y="362.0" text-anchor="end" font-size="10" fill="#333">143</text>
+<line x1="55" y1="276.0" x2="60" y2="276.0" stroke="#333"/>
+<text x="50" y="280.0" text-anchor="end" font-size="10" fill="#333">286</text>
+<line x1="55" y1="194.0" x2="60" y2="194.0" stroke="#333"/>
+<text x="50" y="198.0" text-anchor="end" font-size="10" fill="#333">429</text>
+<line x1="55" y1="112.00000000000003" x2="60" y2="112.00000000000003" stroke="#333"/>
+<text x="50" y="116.00000000000003" text-anchor="end" font-size="10" fill="#333">572</text>
+<line x1="55" y1="30.0" x2="60" y2="30.0" stroke="#333"/>
+<text x="50" y="34.0" text-anchor="end" font-size="10" fill="#333">716</text>
+<line x1="60.0" y1="440" x2="60.0" y2="445" stroke="#333"/>
+<text x="60.0" y="460" text-anchor="middle" font-size="10" fill="#333">0.0</text>
+<line x1="224.0" y1="440" x2="224.0" y2="445" stroke="#333"/>
+<text x="224.0" y="460" text-anchor="middle" font-size="10" fill="#333">0.2</text>
+<line x1="388.0" y1="440" x2="388.0" y2="445" stroke="#333"/>
+<text x="388.0" y="460" text-anchor="middle" font-size="10" fill="#333">0.4</text>
+<line x1="552.0" y1="440" x2="552.0" y2="445" stroke="#333"/>
+<text x="552.0" y="460" text-anchor="middle" font-size="10" fill="#333">0.6</text>
+<line x1="716.0" y1="440" x2="716.0" y2="445" stroke="#333"/>
+<text x="716.0" y="460" text-anchor="middle" font-size="10" fill="#333">0.8</text>
+<line x1="880.0" y1="440" x2="880.0" y2="445" stroke="#333"/>
+<text x="880.0" y="460" text-anchor="middle" font-size="10" fill="#333">1.0</text>
+<rect x="60.0" y="440.0" width="41.0" height="0.0" fill="#3b6ea8" opacity="0.85"/>
+<rect x="101.0" y="438.85474860335194" width="41.0" height="1.1452513966480637" fill="#3b6ea8" opacity="0.85"/>
+<rect x="142.0" y="437.1368715083799" width="41.0" height="2.8631284916201025" fill="#3b6ea8" opacity="0.85"/>
+<rect x="183.0" y="436.56424581005587" width="41.0" height="3.4357541899441344" fill="#3b6ea8" opacity="0.85"/>
+<rect x="224.0" y="434.2737430167598" width="41.0" height="5.726256983240205" fill="#3b6ea8" opacity="0.85"/>
+<rect x="265.0" y="430.26536312849163" width="41.0" height="9.734636871508371" fill="#3b6ea8" opacity="0.85"/>
+<rect x="306.0" y="430.26536312849163" width="41.0" height="9.734636871508371" fill="#3b6ea8" opacity="0.85"/>
+<rect x="347.0" y="423.9664804469274" width="41.0" height="16.03351955307261" fill="#3b6ea8" opacity="0.85"/>
+<rect x="388.0" y="422.8212290502793" width="41.0" height="17.178770949720672" fill="#3b6ea8" opacity="0.85"/>
+<rect x="429.0" y="421.1033519553073" width="41.0" height="18.89664804469271" fill="#3b6ea8" opacity="0.85"/>
+<rect x="470.0" y="413.659217877095" width="41.0" height="26.34078212290501" fill="#3b6ea8" opacity="0.85"/>
+<rect x="511.0" y="418.81284916201116" width="41.0" height="21.18715083798884" fill="#3b6ea8" opacity="0.85"/>
+<rect x="552.0" y="422.8212290502793" width="41.0" height="17.178770949720672" fill="#3b6ea8" opacity="0.85"/>
+<rect x="593.0" y="416.5223463687151" width="41.0" height="23.47765363128491" fill="#3b6ea8" opacity="0.85"/>
+<rect x="634.0" y="425.1117318435754" width="41.0" height="14.888268156424601" fill="#3b6ea8" opacity="0.85"/>
+<rect x="675.0" y="419.9581005586592" width="41.0" height="20.041899441340775" fill="#3b6ea8" opacity="0.85"/>
+<rect x="716.0" y="417.09497206703907" width="41.0" height="22.905027932960934" fill="#3b6ea8" opacity="0.85"/>
+<rect x="757.0" y="404.4972067039106" width="41.0" height="35.50279329608941" fill="#3b6ea8" opacity="0.85"/>
+<rect x="798.0" y="389.036312849162" width="41.0" height="50.963687150837984" fill="#3b6ea8" opacity="0.85"/>
+<rect x="839.0" y="30.0" width="41.0" height="410.0" fill="#3b6ea8" opacity="0.85"/>
+<line x1="753.243016727989" y1="30" x2="753.243016727989" y2="440" stroke="#d14" stroke-dasharray="4 3"/>
+<text x="757.243016727989" y="42" font-size="10" fill="#d14">mean</text>
+<line x1="860.827774586" y1="30" x2="860.827774586" y2="440" stroke="#2a7" stroke-dasharray="4 3"/>
+<text x="864.827774586" y="42" font-size="10" fill="#2a7">median</text>
+<text x="450.0" y="18" text-anchor="middle" font-size="14" fill="#111">Match IoU Histogram (bin=0.05)</text>
+<text x="895" y="495" text-anchor="end" font-size="10" fill="#555">n=1270  mean=0.845  median=0.977</text>
+</svg>

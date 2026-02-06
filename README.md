@@ -14,8 +14,10 @@ The project uses:
 
 project/
   pyproject.toml
-  run_train.py
+  run_train_checklist.py
   run_eval.py
+  run_eval_checklist.py
+  run_eval_sbar_span.py
   src/
     checklist_task/
       labels.py
@@ -58,18 +60,20 @@ This makes the src/ packages importable.
 3. Configuration
 ============================================================
 
-Edit:
+Training and eval scripts take required CLI flags instead of settings.py defaults. Paths are used exactly as provided (no auto suffixing).
 
-src/config/settings.py
+Fixed data file:
 
-Example:
+./annotated_data/db_20260129_tokenised.jsonl
 
-MODEL_NAME = "gpt_nano"           # gpt_nano, gpt_mini, gpt_o3
-OPTIMISER_NAME = "mipro_light"    # none, mipro_light, mipro_heavy
-DATA_FILE = "./annotated_data/db_20251120_tokenised.jsonl"
-OUTPUT_MODEL_FILE = "trained_model.json"
+Training flags (required):
+- `--model-name`: key from `src/config/model_registry.py`
+- `--optimiser-name`: key from `src/config/optimiser_registry.py`
+- `--output-model-file`: path to save the trained program
 
-Change the model or optimiser by modifying those two lines.
+Evaluation flags (required):
+- `--output-model-file`: path to the trained program to load
+- `--eval-results-file`: path to write JSONL results
 
 There is no automatic looping — exactly one model and one optimiser run per training.
 
@@ -79,14 +83,19 @@ There is no automatic looping — exactly one model and one optimiser run per tr
 
 From the project root:
 
-uv run run_train.py
+uv run run_train_checklist.py --model-name gpt_nano --optimiser-name gepa_heavy_checklist --output-model-file ./compiled_programs/trained_gpt_nano_gepa_heavy_checklist.json
+
+Optional:
+
+uv run run_train_checklist.py --model-name gpt_nano --optimiser-name gepa_heavy_checklist --output-model-file ./compiled_programs/trained_gpt_nano_gepa_heavy_checklist.json --annotator-id handover_db-user1
+
 
 This:
 
-- loads the model from settings.py  
-- loads the optimiser  
+- loads the model from the registry  
+- loads the optimiser from the registry  
 - trains on the train split  
-- saves the program to OUTPUT_MODEL_FILE  
+- saves the program to `--output-model-file`  
 
 Output example:
 
@@ -96,16 +105,40 @@ Training complete. Saved to trained_model.json
 5. Running Evaluation
 ============================================================
 
-After training:
+After training (checklist):
 
-uv run run_eval.py
+uv run run_eval.py --output-model-file ./compiled_programs/trained_gpt_nano_gepa_heavy_checklist.json --eval-results-file ./evals/eval_gpt_nano_gepa_heavy_checklist.jsonl
 
-This:
+Optional:
 
-- loads OUTPUT_MODEL_FILE  
+uv run run_eval.py --output-model-file ./compiled_programs/trained_gpt_nano_gepa_heavy_checklist.json --eval-results-file ./evals/eval_gpt_nano_gepa_heavy_checklist.jsonl --annotator-id handover_db-user1
+uv run run_eval.py --output-model-file ./compiled_programs/trained_gpt_nano_gepa_heavy_checklist.json --eval-results-file ./evals/eval_gpt_nano_gepa_heavy_checklist.jsonl --annotator-id handover_db-user1 --use-all
+
+Flag meanings:
+- `--output-model-file`: model file to load.
+- `--eval-results-file`: JSONL output path.
+- `--annotator-id`: filter examples to a single annotator (matches `_annotator_id` in the JSONL).
+- `--use-all`: evaluate on all matching examples (no 75/25 train-test split).
+
+If you want per-annotator outputs, pass a distinct `--eval-results-file` (and/or `--output-model-file` for training).
+
+Checklist eval with checklist-specific metrics:
+
+uv run run_eval_checklist.py --output-model-file ./compiled_programs/trained_gpt_nano_gepa_heavy_checklist.json --eval-results-file ./evals/eval_gpt_nano_gepa_heavy_checklist.jsonl
+uv run run_eval_checklist.py --output-model-file ./compiled_programs/trained_gpt_nano_gepa_heavy_checklist.json --eval-results-file ./evals/eval_gpt_nano_gepa_heavy_checklist.jsonl --annotator-id handover_db-user1 --use-all
+
+SBAR span eval:
+
+uv run run_eval_sbar_span.py
+
+Note: run_eval_sbar_span.py currently uses the SBAR span dataset and the configured LM without loading a trained program.
+
+run_eval.py and run_eval_checklist.py:
+
+- loads `--output-model-file`  
 - prepares the test split  
 - runs evaluation  
-- writes eval_results.jsonl  
+- writes `--eval-results-file`  
 
 Output example:
 
@@ -129,7 +162,7 @@ To add a model:
 To add an optimiser:
   edit src/config/optimiser_registry.py
 
-Then set it in settings.py.
+Then pass it via `--model-name` or `--optimiser-name`.
 
 ============================================================
 7. Notes
