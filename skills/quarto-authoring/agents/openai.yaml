@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quarto Authoring"
+  short_description: "Guidance for Quarto authoring and migration"
+  default_prompt: "Help write and migrate Quarto documents with correct syntax."
