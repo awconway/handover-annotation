@@ -1,3 +1,5 @@
+import os
+
 # Select exactly one model and one optimiser per run
 
 MODEL_NAME = "gpt_nano"  # options: see model_registry.py
