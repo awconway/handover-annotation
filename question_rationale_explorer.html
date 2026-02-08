@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Question & Rationale Explorer</title>
+  <style>
+    :root {
+      --bg-1: #f4f8f7;
+      --bg-2: #eef3fa;
+      --surface: #ffffff;
+      --text: #17242f;
+      --muted: #4d616f;
+      --border: #d7e1ea;
+      --q: #167d73;
+      --r: #be5a2f;
+      --accent: #2459a8;
+      --shadow: 0 8px 24px rgba(20, 31, 43, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Avenir Next", "IBM Plex Sans", "Source Sans 3", "Helvetica Neue", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 500px at 110% -20%, #d6ecff 0%, transparent 60%),
+        radial-gradient(900px 400px at -10% -10%, #d8f1ea 0%, transparent 62%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      min-height: 100vh;
+      padding: 18px;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      gap: 14px;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.4rem, 2.4vw, 2rem);
+      line-height: 1.15;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .controls-grid {
+      margin-top: 12px;
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    input[type="text"],
+    select,
+    button,
+    input[type="file"] {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--text);
+      padding: 9px 10px;
+      font: inherit;
+    }
+
+    .button-row {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    button {
+      background: #f7fbff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #edf6ff;
+    }
+
+    .status {
+      margin-top: 10px;
+      padding: 9px 10px;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      border: 1px solid var(--border);
+      background: #f8fbff;
+      color: var(--muted);
+    }
+
+    .status.error {
+      background: #fff2ef;
+      border-color: #f0c7be;
+      color: #8c2f11;
+    }
+
+    .cards {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px;
+      background: #fff;
+    }
+
+    .card-title {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .card-value {
+      margin-top: 6px;
+      font-size: 1.45rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .two-col {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .bar-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .bar-row {
+      display: grid;
+      gap: 5px;
+    }
+
+    .bar-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    .bar-meta span:first-child {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .bar-meta span:last-child {
+      color: var(--muted);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: #e8eef4;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .bar-fill.q {
+      background: linear-gradient(90deg, #1f9e92, var(--q));
+    }
+
+    .bar-fill.r {
+      background: linear-gradient(90deg, #d37d58, var(--r));
+    }
+
+    .top-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 7px;
+    }
+
+    .top-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      background: #fff;
+    }
+
+    .top-list .text {
+      color: var(--text);
+      line-height: 1.32;
+    }
+
+    .top-list .count {
+      background: #eef5ff;
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      height: fit-content;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .table-wrap {
+      overflow: auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #e7edf2;
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.35;
+    }
+
+    th {
+      background: #f5f9fc;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--muted);
+    }
+
+    td.small {
+      white-space: nowrap;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    details {
+      margin-top: 8px;
+    }
+
+    summary {
+      cursor: pointer;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    @media (max-width: 800px) {
+      body {
+        padding: 12px;
+      }
+
+      .panel {
+        padding: 12px;
+      }
+
+      .button-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="panel">
+      <h1>Question & Rationale Type Explorer</h1>
+      <p>Explore recurring question and rationale patterns in <code>annotated_data/db_20260129_tokenised.jsonl</code>, with annotator-level filtering.</p>
+
+      <div class="controls-grid">
+        <label>
+          JSONL path (served from repo root)
+          <input id="pathInput" type="text" value="annotated_data/db_20260129_tokenised.jsonl">
+        </label>
+        <label>
+          Filter by annotator
+          <select id="annotatorSelect">
+            <option value="__all__">All annotators</option>
+          </select>
+        </label>
+        <label>
+          Search question/rationale text
+          <input id="searchInput" type="text" placeholder="e.g. allergies, medication, mobility">
+        </label>
+        <label>
+          Or load a local JSONL file
+          <input id="fileInput" type="file" accept=".jsonl,.txt">
+        </label>
+      </div>
+
+      <div class="button-row" style="margin-top:10px;">
+        <button id="loadPathBtn" type="button">Load From Path</button>
+        <button id="resetBtn" type="button">Reset Filters</button>
+      </div>
+      <div id="status" class="status">Loading default dataset...</div>
+    </section>
+
+    <section class="panel">
+      <h2>Overview</h2>
+      <div id="summaryCards" class="cards"></div>
+    </section>
+
+    <section class="panel two-col">
+      <div>
+        <h2>Question Types</h2>
+        <div id="questionTypeBars" class="bar-list"></div>
+      </div>
+      <div>
+        <h2>Rationale Types</h2>
+        <div id="rationaleTypeBars" class="bar-list"></div>
+      </div>
+    </section>
+
+    <section class="panel two-col">
+      <div>
+        <h2>Most Common Question Templates</h2>
+        <ol id="topQuestions" class="top-list"></ol>
+      </div>
+      <div>
+        <h2>Most Common Rationale Templates</h2>
+        <ol id="topRationales" class="top-list"></ol>
+      </div>
+    </section>
+
+    <section class="panel two-col">
+      <div>
+        <h2>Question Slot Usage</h2>
+        <div id="questionSlotBars" class="bar-list"></div>
+      </div>
+      <div>
+        <h2>Rationale Slot Usage</h2>
+        <div id="rationaleSlotBars" class="bar-list"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Example Question/Rationale Pairs (Filtered)</h2>
+      <p class="muted" id="pairsNote"></p>
+      <div class="table-wrap" style="margin-top:10px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Annotator</th>
+              <th>Slot</th>
+              <th>Question</th>
+              <th>Rationale</th>
+            </tr>
+          </thead>
+          <tbody id="pairsBody"></tbody>
+        </table>
+      </div>
+      <details>
+        <summary>How type classification works</summary>
+        <p style="margin-top:8px;">
+          Types are assigned with keyword-based rules (for example: "allergy", "medication", "vitals", "mobility", "pressure", "plan", "discharge", "history").
+          This gives a fast thematic overview, not a perfect NLP taxonomy.
+        </p>
+      </details>
+    </section>
+  </main>
+
+  <script>
+    const QUESTION_TYPE_RULES = [
+      { name: "Allergy", patterns: [/\ballerg/, /\bdrug allergy/ ] },
+      { name: "Patient ID", patterns: [/\bidentifier\b/, /\bidentification\b/, /\bdob\b/, /\bur\b/, /\bdate of birth\b/, /\bfull name\b/, /\bid\b/] },
+      { name: "Medication", patterns: [/\bmedication/, /\bmeds\b/, /\bdrug\b/, /\bcharted\b/, /\bprn\b/, /\bwarfarin\b/] },
+      { name: "History & Comorbidities", patterns: [/\bcomorbid/, /\bmedical history\b/, /\bsocial history\b/, /\bbackground history\b/, /\bhistory\b/] },
+      { name: "Vitals & Observation", patterns: [/\bvital/, /\bobs\b/, /\bobservations?\b/, /\bbp\b/, /\bhr\b/, /\brr\b/, /\btemp\b/] },
+      { name: "Devices & Access", patterns: [/\biv\b/, /\bline\b/, /\baccess\b/, /\bcatheter\b/, /\bdevice\b/] },
+      { name: "Nutrition & Fluids", patterns: [/\bdiet\b/, /\beat\b/, /\bdrink\b/, /\bnutrition\b/, /\bfluid\b/, /\bnbm\b/] },
+      { name: "Mobility", patterns: [/\bmobil/, /\bfalls?\b/, /\bwalking\b/, /\bweight bearing\b/] },
+      { name: "Skin & Pressure Injury", patterns: [/\bskin\b/, /\bpressure\b/, /\bpi risk\b/, /\bwound\b/] },
+      { name: "Pain", patterns: [/\bpain\b/] },
+      { name: "Pathology & Tests", patterns: [/\bpathology\b/, /\blab\b/, /\bbloods?\b/, /\binr\b/, /\btest\b/, /\bx-ray\b/, /\bscan\b/] },
+      { name: "Plan & Follow-up", patterns: [/\bplan\b/, /\bfollow up\b/, /\bdischarge\b/, /\bnext\b/, /\bactions?\b/, /\btask\b/] }
+    ];
+
+    const RATIONALE_TYPE_RULES = [
+      { name: "Correct Patient Identification", patterns: [/\bid\b/, /\bidentif/, /\bdate of birth\b/, /\bur\b/, /\bincorrect patient\b/] },
+      { name: "Allergy Harm Prevention", patterns: [/\ballerg/, /\badverse reaction\b/] },
+      { name: "Medication Safety", patterns: [/\bmedication\b/, /\bmeds\b/, /\bdrug\b/, /\bprn\b/, /\badministration\b/] },
+      { name: "Monitoring & Escalation", patterns: [/\bmonitor/, /\bstatus\b/, /\bobserve\b/, /\bescalat/, /\bintervention\b/, /\bvitals?\b/] },
+      { name: "Holistic Background Understanding", patterns: [/\bholistic\b/, /\bcomorbid/, /\bbackground\b/, /\bmedical history\b/, /\bsocial history\b/] },
+      { name: "Nutrition & Aspiration Prevention", patterns: [/\bdiet\b/, /\bfluid\b/, /\bnutrition\b/, /\baspiration\b/, /\bchoking\b/] },
+      { name: "Mobility & Skin Risk Prevention", patterns: [/\bmobil/, /\bpressure\b/, /\bskin\b/, /\bfalls?\b/] },
+      { name: "Care Planning & Continuity", patterns: [/\bcare plan\b/, /\bplan\b/, /\bhandover\b/, /\bcontinuity\b/, /\bfollow up\b/] },
+      { name: "Patient Safety (General)", patterns: [/\bpatient safety\b/, /\bsafe\b/, /\bsafety\b/, /\brisk\b/] }
+    ];
+
+    const state = {
+      allRows: [],
+      sourceLabel: "",
+      selectedAnnotator: "__all__",
+      searchTerm: ""
+    };
+
+    const els = {
+      pathInput: document.getElementById("pathInput"),
+      annotatorSelect: document.getElementById("annotatorSelect"),
+      searchInput: document.getElementById("searchInput"),
+      fileInput: document.getElementById("fileInput"),
+      loadPathBtn: document.getElementById("loadPathBtn"),
+      resetBtn: document.getElementById("resetBtn"),
+      status: document.getElementById("status"),
+      summaryCards: document.getElementById("summaryCards"),
+      questionTypeBars: document.getElementById("questionTypeBars"),
+      rationaleTypeBars: document.getElementById("rationaleTypeBars"),
+      topQuestions: document.getElementById("topQuestions"),
+      topRationales: document.getElementById("topRationales"),
+      questionSlotBars: document.getElementById("questionSlotBars"),
+      rationaleSlotBars: document.getElementById("rationaleSlotBars"),
+      pairsBody: document.getElementById("pairsBody"),
+      pairsNote: document.getElementById("pairsNote")
+    };
+
+    function setStatus(message, isError = false) {
+      els.status.textContent = message;
+      els.status.classList.toggle("error", isError);
+    }
+
+    function normaliseText(value) {
+      if (typeof value !== "string") return "";
+      return value.trim();
+    }
+
+    function normaliseTemplate(value) {
+      return normaliseText(value)
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function classify(text, rules) {
+      const probe = normaliseTemplate(text);
+      if (!probe) return "Other";
+      for (const rule of rules) {
+        if (rule.patterns.some((pattern) => pattern.test(probe))) {
+          return rule.name;
+        }
+      }
+      return "Other";
+    }
+
+    function parseJsonl(content) {
+      const rows = [];
+      let skipped = 0;
+      const lines = content.split(/\r?\n/);
+      for (let i = 0; i < lines.length; i += 1) {
+        const line = lines[i].trim();
+        if (!line) continue;
+        try {
+          const obj = JSON.parse(line);
+          rows.push({
+            annotator: normaliseText(obj._annotator_id || obj.annotator_id || obj.annotator || "(unknown)"),
+            question_1: normaliseText(obj.question_1),
+            question_2: normaliseText(obj.question_2),
+            question_3: normaliseText(obj.question_3),
+            rationale_1: normaliseText(obj.rationale_1),
+            rationale_2: normaliseText(obj.rationale_2),
+            rationale_3: normaliseText(obj.rationale_3)
+          });
+        } catch {
+          skipped += 1;
+        }
+      }
+      return { rows, skipped };
+    }
+
+    function uniqueSorted(values) {
+      return Array.from(new Set(values)).sort((a, b) => a.localeCompare(b));
+    }
+
+    function countBy(items) {
+      const map = new Map();
+      for (const item of items) {
+        map.set(item, (map.get(item) || 0) + 1);
+      }
+      return map;
+    }
+
+    function mapToSortedArray(map) {
+      return Array.from(map.entries()).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    }
+
+    function topTemplates(texts, limit = 15) {
+      const map = new Map();
+      for (const text of texts) {
+        const clean = normaliseText(text);
+        const key = normaliseTemplate(clean);
+        if (!key) continue;
+        if (!map.has(key)) {
+          map.set(key, { text: clean, count: 0 });
+        }
+        const current = map.get(key);
+        current.count += 1;
+        if (clean.length < current.text.length) current.text = clean;
+      }
+      return Array.from(map.values())
+        .sort((a, b) => b.count - a.count || a.text.localeCompare(b.text))
+        .slice(0, limit);
+    }
+
+    function makeBarList(container, entries, total, kind) {
+      container.innerHTML = "";
+      if (!entries.length) {
+        container.innerHTML = "<p class='muted'>No data in current filter.</p>";
+        return;
+      }
+      for (const [label, count] of entries) {
+        const ratio = total > 0 ? (count / total) * 100 : 0;
+        const row = document.createElement("div");
+        row.className = "bar-row";
+        row.innerHTML = `
+          <div class="bar-meta">
+            <span>${escapeHtml(label)}</span>
+            <span>${count} (${ratio.toFixed(1)}%)</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill ${kind}" style="width:${(count > 0 ? Math.max(1.5, ratio) : 0).toFixed(2)}%"></div>
+          </div>
+        `;
+        container.appendChild(row);
+      }
+    }
+
+    function makeTopList(container, items) {
+      container.innerHTML = "";
+      if (!items.length) {
+        container.innerHTML = "<li><span class='text muted'>No data in current filter.</span></li>";
+        return;
+      }
+      for (const item of items) {
+        const li = document.createElement("li");
+        li.innerHTML = `<span class="text">${escapeHtml(item.text)}</span><span class="count">${item.count}</span>`;
+        container.appendChild(li);
+      }
+    }
+
+    function makeCards(stats) {
+      const cards = [
+        { title: "Rows", value: stats.rows.toLocaleString() },
+        { title: "Annotators", value: stats.annotators.toLocaleString() },
+        { title: "Question Items", value: stats.questions.toLocaleString() },
+        { title: "Rationale Items", value: stats.rationales.toLocaleString() },
+        { title: "Rows With Any Q/R", value: stats.rowsWithAny.toLocaleString() },
+        { title: "Avg Questions / Row", value: stats.avgQPerRow.toFixed(2) },
+        { title: "Avg Rationales / Row", value: stats.avgRPerRow.toFixed(2) }
+      ];
+      els.summaryCards.innerHTML = cards
+        .map((c) => `<article class="card"><div class="card-title">${c.title}</div><div class="card-value">${c.value}</div></article>`)
+        .join("");
+    }
+
+    function makePairsTable(pairs) {
+      els.pairsBody.innerHTML = "";
+      if (!pairs.length) {
+        els.pairsBody.innerHTML = "<tr><td colspan='4' class='muted'>No question/rationale pairs for current filter.</td></tr>";
+        return;
+      }
+
+      const shown = pairs.slice(0, 200);
+      for (const p of shown) {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td class="small">${escapeHtml(p.annotator)}</td>
+          <td class="small">${p.slot}</td>
+          <td>${escapeHtml(p.question || "—")}</td>
+          <td>${escapeHtml(p.rationale || "—")}</td>
+        `;
+        els.pairsBody.appendChild(row);
+      }
+      const suffix = pairs.length > shown.length ? ` Showing first ${shown.length}.` : "";
+      els.pairsNote.textContent = `${pairs.length} pair(s) in current filter.${suffix}`;
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+
+    function getFilteredRows() {
+      const selected = state.selectedAnnotator;
+      const search = state.searchTerm.trim().toLowerCase();
+      return state.allRows.filter((row) => {
+        if (selected !== "__all__" && row.annotator !== selected) return false;
+        if (!search) return true;
+        const text = [
+          row.question_1, row.question_2, row.question_3,
+          row.rationale_1, row.rationale_2, row.rationale_3
+        ].join(" ").toLowerCase();
+        return text.includes(search);
+      });
+    }
+
+    function rebuildAnnotatorOptions() {
+      const prev = state.selectedAnnotator;
+      const annotators = uniqueSorted(state.allRows.map((r) => r.annotator));
+      els.annotatorSelect.innerHTML = "<option value='__all__'>All annotators</option>";
+      for (const a of annotators) {
+        const opt = document.createElement("option");
+        opt.value = a;
+        opt.textContent = a;
+        els.annotatorSelect.appendChild(opt);
+      }
+      if ([ "__all__", ...annotators ].includes(prev)) {
+        els.annotatorSelect.value = prev;
+      } else {
+        els.annotatorSelect.value = "__all__";
+        state.selectedAnnotator = "__all__";
+      }
+    }
+
+    function render() {
+      const rows = getFilteredRows();
+      const annotators = uniqueSorted(rows.map((r) => r.annotator));
+
+      const questions = [];
+      const rationales = [];
+      const pairs = [];
+      const qSlotCounts = { question_1: 0, question_2: 0, question_3: 0 };
+      const rSlotCounts = { rationale_1: 0, rationale_2: 0, rationale_3: 0 };
+
+      for (const row of rows) {
+        for (let i = 1; i <= 3; i += 1) {
+          const q = row[`question_${i}`];
+          const r = row[`rationale_${i}`];
+          if (q) {
+            questions.push(q);
+            qSlotCounts[`question_${i}`] += 1;
+          }
+          if (r) {
+            rationales.push(r);
+            rSlotCounts[`rationale_${i}`] += 1;
+          }
+          if (q || r) {
+            pairs.push({
+              annotator: row.annotator,
+              slot: i,
+              question: q,
+              rationale: r
+            });
+          }
+        }
+      }
+
+      const rowsWithAny = rows.filter((r) =>
+        r.question_1 || r.question_2 || r.question_3 ||
+        r.rationale_1 || r.rationale_2 || r.rationale_3
+      ).length;
+
+      makeCards({
+        rows: rows.length,
+        annotators: annotators.length,
+        questions: questions.length,
+        rationales: rationales.length,
+        rowsWithAny,
+        avgQPerRow: rows.length ? questions.length / rows.length : 0,
+        avgRPerRow: rows.length ? rationales.length / rows.length : 0
+      });
+
+      const qTypeCounts = mapToSortedArray(countBy(questions.map((q) => classify(q, QUESTION_TYPE_RULES))));
+      const rTypeCounts = mapToSortedArray(countBy(rationales.map((r) => classify(r, RATIONALE_TYPE_RULES))));
+      makeBarList(els.questionTypeBars, qTypeCounts, questions.length, "q");
+      makeBarList(els.rationaleTypeBars, rTypeCounts, rationales.length, "r");
+
+      makeTopList(els.topQuestions, topTemplates(questions, 15));
+      makeTopList(els.topRationales, topTemplates(rationales, 15));
+
+      const qSlotEntries = [
+        ["question_1", qSlotCounts.question_1],
+        ["question_2", qSlotCounts.question_2],
+        ["question_3", qSlotCounts.question_3]
+      ];
+      const rSlotEntries = [
+        ["rationale_1", rSlotCounts.rationale_1],
+        ["rationale_2", rSlotCounts.rationale_2],
+        ["rationale_3", rSlotCounts.rationale_3]
+      ];
+      makeBarList(els.questionSlotBars, qSlotEntries, rows.length || 1, "q");
+      makeBarList(els.rationaleSlotBars, rSlotEntries, rows.length || 1, "r");
+
+      pairs.sort((a, b) =>
+        a.annotator.localeCompare(b.annotator) ||
+        a.slot - b.slot ||
+        a.question.localeCompare(b.question)
+      );
+      makePairsTable(pairs);
+    }
+
+    async function loadFromText(content, sourceLabel) {
+      const { rows, skipped } = parseJsonl(content);
+      state.allRows = rows;
+      state.sourceLabel = sourceLabel;
+      rebuildAnnotatorOptions();
+      render();
+      const annotators = uniqueSorted(rows.map((r) => r.annotator));
+      setStatus(
+        `Loaded ${rows.length.toLocaleString()} rows from ${sourceLabel} (${annotators.length} annotator(s), ${skipped} skipped line(s)).`
+      );
+    }
+
+    async function loadFromPath() {
+      const path = els.pathInput.value.trim();
+      if (!path) {
+        setStatus("Please provide a JSONL path.", true);
+        return;
+      }
+      try {
+        setStatus(`Loading ${path}...`);
+        const response = await fetch(path);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const text = await response.text();
+        await loadFromText(text, path);
+      } catch (error) {
+        setStatus(
+          `Could not load "${path}". If you opened this file directly in a browser, use "Choose File" instead. (${error.message})`,
+          true
+        );
+      }
+    }
+
+    els.loadPathBtn.addEventListener("click", loadFromPath);
+
+    els.fileInput.addEventListener("change", async (event) => {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      try {
+        setStatus(`Loading ${file.name}...`);
+        const text = await file.text();
+        await loadFromText(text, file.name);
+      } catch (error) {
+        setStatus(`Failed to read file: ${error.message}`, true);
+      }
+    });
+
+    els.annotatorSelect.addEventListener("change", () => {
+      state.selectedAnnotator = els.annotatorSelect.value;
+      render();
+    });
+
+    els.searchInput.addEventListener("input", () => {
+      state.searchTerm = els.searchInput.value || "";
+      render();
+    });
+
+    els.resetBtn.addEventListener("click", () => {
+      state.selectedAnnotator = "__all__";
+      state.searchTerm = "";
+      els.annotatorSelect.value = "__all__";
+      els.searchInput.value = "";
+      render();
+    });
+
+    loadFromPath();
+  </script>
+</body>
+</html>
