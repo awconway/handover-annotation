@@ -133,6 +133,22 @@ uv run run_eval_sbar_span.py
 
 Note: run_eval_sbar_span.py currently uses the SBAR span dataset and the configured LM without loading a trained program.
 
+SBAR LangExtract experiment (few-shot extraction from SBAR spans):
+
+uv run run_experiment_sbar_langextract.py --model-id gemini-2.5-flash --annotator-id handover_db-user1 --train-examples 24 --eval-examples 20
+
+Use the same test split as `prepare_dataset_sbar_span`:
+
+uv run run_experiment_sbar_langextract.py --model-id gpt-5.2 --use-dataset-test-split
+
+OpenAI-style settings (matching LangExtract docs):
+
+OPENAI_API_KEY=... uv run run_experiment_sbar_langextract.py --model-id gpt-5.2 --fence-output --no-use-schema-constraints
+
+If you only want to validate data loading and output formatting without API calls:
+
+uv run run_experiment_sbar_langextract.py --dry-run
+
 run_eval.py and run_eval_checklist.py:
 
 - loads `--output-model-file`  
