@@ -104,7 +104,7 @@ def main() -> None:
 
     print(f"Per-label analysis for {path.name}")
     print(
-        "label\tgold\tpred\tmatched_gold\tmatched_pred\trecall\tprecision\tf1\tmean_iou"
+        "label\tgold\ttotal_pred_spans\tmatched_gold\tmatched_pred\trecall\tprecision\tf1\tmean_iou"
     )
     for lab, g, p, mg, mp, recall, precision, f1, mean_iou in rows:
         print(
