@@ -63,6 +63,36 @@ def parse_args() -> argparse.Namespace:
         help="Skip LangExtract API calls and write empty predictions for smoke tests.",
     )
     parser.add_argument(
+        "--prompt-validation-level",
+        choices=["off", "warning", "error"],
+        default="warning",
+        help=(
+            "Prompt alignment validation mode for few-shot examples. "
+            "Validation runs once per experiment, not per eval record."
+        ),
+    )
+    parser.add_argument(
+        "--prompt-validation-strict",
+        action="store_true",
+        help=(
+            "When validation level is 'error', also fail on non-exact "
+            "alignment (fuzzy/lesser)."
+        ),
+    )
+    parser.set_defaults(show_progress=True)
+    parser.add_argument(
+        "--show-progress",
+        dest="show_progress",
+        action="store_true",
+        help="Show LangExtract progress during each extraction call.",
+    )
+    parser.add_argument(
+        "--no-show-progress",
+        dest="show_progress",
+        action="store_false",
+        help="Hide LangExtract progress output.",
+    )
+    parser.add_argument(
         "--use-dataset-test-split",
         action="store_true",
         help=(
@@ -112,6 +142,9 @@ summary = run_langextract_sbar_experiment(
     api_key=api_key,
     fence_output=args.fence_output,
     use_schema_constraints=args.use_schema_constraints,
+    prompt_validation_level=args.prompt_validation_level,
+    prompt_validation_strict=args.prompt_validation_strict,
+    show_progress=args.show_progress,
     use_dataset_test_split=args.use_dataset_test_split,
     dry_run=args.dry_run,
 )

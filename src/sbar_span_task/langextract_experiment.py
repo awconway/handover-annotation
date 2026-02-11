@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any
 
 import srsly
+from span_metric.soft_f1 import label_aware_soft_f1
 
 SBAR_ALLOWED_LABELS = {
     "SITUATION",
@@ -15,9 +16,17 @@ SBAR_ALLOWED_LABELS = {
 }
 
 DEFAULT_PROMPT_DESCRIPTION = (
-    "Extract exact quote spans from the handover transcript and assign each span to one "
-    "SBAR label: SITUATION, BACKGROUND, ASSESSMENT, or RECOMMENDATION. "
-    "Do not paraphrase. Ignore text that does not belong to SBAR."
+    """
+    The task is to extract quotes from the text of a clinical handover transcript that aligns with the SBAR framework (SITUATION, BACKGROUND, ASSESSMENT, RECOMMENDATION) and label them accordingly.
+
+    Instructions
+    - If the transcript contains multiple different pieces of information within the same SBAR category from different sections of the text, extract each as a separate quote.
+    - **Do not combine parts from different sections of the text into a single quote.**
+    - Extracted quotes must appear **exactly as written in the original transcript**, preserving spelling, capitalization, punctuation, and phrasing. Do not paraphrase. Do not summarize. Do not correct incorrectly spelled words. Do not correct errors. Do not rephrase.
+    - Assign quotes to the correct SBAR label based on its content, regardless of its position in the transcript.
+    - If parts of the text do not fit into any SBAR category, do not extract it.
+    - Quotes should only be assigned to one of the SBAR labels.
+    """
 )
 
 
@@ -31,45 +40,63 @@ class SbarItem:
 class SbarRecord:
     text: str
     items: list[SbarItem]
+    gold_spans: list[dict[str, Any]]
     annotator_id: str | None
 
 
-def _span_items_from_text_and_spans(
+def _valid_gold_spans_from_text_and_spans(
     text: str, raw_spans: list[dict[str, Any]] | None
-) -> list[SbarItem]:
-    """Return valid SBAR span items from text and raw spans."""
+) -> list[dict[str, Any]]:
+    """Return valid SBAR gold spans with explicit char boundaries."""
     spans = raw_spans or []
-
-    valid_spans = [
-        span
-        for span in spans
-        if isinstance(span, dict) and span.get("label") in SBAR_ALLOWED_LABELS
-    ]
-    valid_spans.sort(key=lambda span: (span.get("start", -1), span.get("end", -1)))
-
-    items: list[SbarItem] = []
-    seen: set[tuple[str, str]] = set()
     text_len = len(text)
+    valid_gold_spans: list[dict[str, Any]] = []
 
-    for span in valid_spans:
+    for span in spans:
+        if not isinstance(span, dict):
+            continue
+        label = span.get("label")
         start = span.get("start")
         end = span.get("end")
-        label = span.get("label")
 
+        if label not in SBAR_ALLOWED_LABELS:
+            continue
         if not isinstance(start, int) or not isinstance(end, int):
             continue
         if start < 0 or end <= start or end > text_len:
             continue
 
-        quote = text[start:end]
+        valid_gold_spans.append(
+            {
+                "start": start,
+                "end": end,
+                "label": str(label),
+            }
+        )
+
+    valid_gold_spans.sort(key=lambda span: (span["start"], span["end"]))
+    return valid_gold_spans
+
+
+def _span_items_from_gold_spans(
+    text: str, raw_spans: list[dict[str, Any]] | None
+) -> list[SbarItem]:
+    """Return de-duplicated SBAR label/quote items from raw spans."""
+    valid_spans = _valid_gold_spans_from_text_and_spans(text=text, raw_spans=raw_spans)
+
+    items: list[SbarItem] = []
+    seen: set[tuple[str, str]] = set()
+
+    for span in valid_spans:
+        quote = text[span["start"] : span["end"]]
         if not quote:
             continue
 
-        key = (str(label), quote)
+        key = (span["label"], quote)
         if key in seen:
             continue
         seen.add(key)
-        items.append(SbarItem(label=str(label), quote=quote))
+        items.append(SbarItem(label=span["label"], quote=quote))
 
     return items
 
@@ -77,7 +104,7 @@ def _span_items_from_text_and_spans(
 def span_items_from_record(record: dict[str, Any]) -> list[SbarItem]:
     """Return valid SBAR span items from a raw Prodigy-style record."""
     text = str(record.get("text") or "")
-    return _span_items_from_text_and_spans(
+    return _span_items_from_gold_spans(
         text=text, raw_spans=record.get("spans") or []
     )
 
@@ -94,7 +121,13 @@ def load_sbar_records(path: str, annotator_id: str | None = None) -> list[SbarRe
         if not text:
             continue
 
-        items = span_items_from_record(row)
+        gold_spans = _valid_gold_spans_from_text_and_spans(
+            text=text,
+            raw_spans=row.get("spans") or [],
+        )
+        if not gold_spans:
+            continue
+        items = _span_items_from_gold_spans(text=text, raw_spans=gold_spans)
         if not items:
             continue
 
@@ -102,6 +135,7 @@ def load_sbar_records(path: str, annotator_id: str | None = None) -> list[SbarRe
             SbarRecord(
                 text=text,
                 items=items,
+                gold_spans=gold_spans,
                 annotator_id=row.get("_annotator_id"),
             )
         )
@@ -218,6 +252,9 @@ def _call_extract_api(
     api_key: str | None,
     fence_output: bool | None,
     use_schema_constraints: bool,
+    prompt_validation_level: Any,
+    prompt_validation_strict: bool,
+    show_progress: bool,
 ) -> Any:
     kwargs = {
         "prompt_description": prompt_description,
@@ -226,15 +263,14 @@ def _call_extract_api(
         "api_key": api_key,
         "fence_output": fence_output,
         "use_schema_constraints": use_schema_constraints,
+        "prompt_validation_level": prompt_validation_level,
+        "prompt_validation_strict": prompt_validation_strict,
+        "show_progress": show_progress,
     }
     try:
         return lx.extract(text_or_documents=text, **kwargs)
     except TypeError:
         return lx.extract(text=text, **kwargs)
-
-
-def _items_to_dicts(items: list[SbarItem]) -> list[dict[str, str]]:
-    return [dataclasses.asdict(item) for item in items]
 
 
 def _records_from_dspy_examples(examples: list[Any]) -> list[SbarRecord]:
@@ -248,12 +284,77 @@ def _records_from_dspy_examples(examples: list[Any]) -> list[SbarRecord]:
         except Exception:
             spans = []
 
-        items = _span_items_from_text_and_spans(text=text, raw_spans=spans)
+        gold_spans = _valid_gold_spans_from_text_and_spans(text=text, raw_spans=spans)
+        if not gold_spans:
+            continue
+        items = _span_items_from_gold_spans(text=text, raw_spans=gold_spans)
         if not items:
             continue
-        records.append(SbarRecord(text=text, items=items, annotator_id=None))
+        records.append(
+            SbarRecord(text=text, items=items, gold_spans=gold_spans, annotator_id=None)
+        )
 
     return records
+
+
+def _parse_prompt_validation_level(lx: Any, level: str) -> Any:
+    normalized = level.strip().lower()
+    mapping = {
+        "off": lx.prompt_validation.PromptValidationLevel.OFF,
+        "warning": lx.prompt_validation.PromptValidationLevel.WARNING,
+        "error": lx.prompt_validation.PromptValidationLevel.ERROR,
+    }
+    if normalized not in mapping:
+        raise ValueError(
+            "prompt_validation_level must be one of: off, warning, error."
+        )
+    return mapping[normalized]
+
+
+def _items_to_pred_items(items: list[SbarItem]) -> list[dict[str, str]]:
+    return [{"label": item.label, "quote": item.quote} for item in items]
+
+
+def _eval_row_for_record(
+    *,
+    record: SbarRecord,
+    pred_items: list[SbarItem],
+    span_metrics: dict[str, Any],
+) -> dict[str, Any]:
+    """Build an eval JSONL row with the same schema as run_eval_sbar_span.py."""
+    return {
+        "example": {
+            "text": record.text,
+            "gold_spans": record.gold_spans,
+        },
+        "prediction": {
+            "pred_spans": _items_to_pred_items(pred_items),
+            "span_metrics": span_metrics,
+        },
+        "score": span_metrics["f1"],
+    }
+
+
+def iou_span_metrics(
+    *, text: str, gold_spans: list[dict[str, Any]], pred_items: list[SbarItem]
+) -> dict[str, Any]:
+    """Compute IoU-based metrics using the same function as gepa_span_metric."""
+    out = label_aware_soft_f1(
+        text=text,
+        gold_spans=gold_spans,
+        pred_items=_items_to_pred_items(pred_items),
+        fuzzy_threshold=0.6,
+        iou_threshold=None,
+        require_label_match=True,
+    )
+    metrics = dict(out)
+    metrics["true_positives"] = out["tp"]
+
+    # Match gepa_span_metric behavior.
+    if not out["detailed"]["golds"] and not out["detailed"]["preds"]:
+        metrics["f1"] = 1.0
+
+    return metrics
 
 
 def run_langextract_sbar_experiment(
@@ -269,6 +370,9 @@ def run_langextract_sbar_experiment(
     api_key: str | None = None,
     fence_output: bool | None = None,
     use_schema_constraints: bool = True,
+    prompt_validation_level: str = "warning",
+    prompt_validation_strict: bool = False,
+    show_progress: bool = True,
     use_dataset_test_split: bool = False,
     dry_run: bool = False,
 ) -> dict[str, float]:
@@ -317,15 +421,17 @@ def run_langextract_sbar_experiment(
 
     if dry_run:
         for record in held_out_records:
+            metrics = iou_span_metrics(
+                text=record.text,
+                gold_spans=record.gold_spans,
+                pred_items=[],
+            )
             rows.append(
-                {
-                    "text": record.text,
-                    "gold_items": _items_to_dicts(record.items),
-                    "pred_items": [],
-                    "metrics": exact_match_metrics(record.items, []),
-                    "model_id": model_id,
-                    "dry_run": True,
-                }
+                _eval_row_for_record(
+                    record=record,
+                    pred_items=[],
+                    span_metrics=metrics,
+                )
             )
         Path(output_file).parent.mkdir(parents=True, exist_ok=True)
         srsly.write_jsonl(output_file, rows)
@@ -339,6 +445,19 @@ def run_langextract_sbar_experiment(
     few_shot_examples = [
         _to_langextract_example(lx, record) for record in training_records
     ]
+    requested_validation_level = _parse_prompt_validation_level(
+        lx, prompt_validation_level
+    )
+    if requested_validation_level != lx.prompt_validation.PromptValidationLevel.OFF:
+        report = lx.prompt_validation.validate_prompt_alignment(
+            examples=few_shot_examples,
+            aligner=lx.resolver.WordAligner(),
+        )
+        lx.prompt_validation.handle_alignment_report(
+            report,
+            level=requested_validation_level,
+            strict_non_exact=prompt_validation_strict,
+        )
 
     for record in held_out_records:
         raw_prediction = _call_extract_api(
@@ -350,19 +469,24 @@ def run_langextract_sbar_experiment(
             api_key=api_key,
             fence_output=fence_output,
             use_schema_constraints=use_schema_constraints,
+            prompt_validation_level=lx.prompt_validation.PromptValidationLevel.OFF,
+            prompt_validation_strict=prompt_validation_strict,
+            show_progress=show_progress,
         )
         pred_items = _extract_items_from_prediction(raw_prediction)
-        metrics = exact_match_metrics(record.items, pred_items)
+        metrics = iou_span_metrics(
+            text=record.text,
+            gold_spans=record.gold_spans,
+            pred_items=pred_items,
+        )
         f1_sum += metrics["f1"]
 
         rows.append(
-            {
-                "text": record.text,
-                "gold_items": _items_to_dicts(record.items),
-                "pred_items": _items_to_dicts(pred_items),
-                "metrics": metrics,
-                "model_id": model_id,
-            }
+            _eval_row_for_record(
+                record=record,
+                pred_items=pred_items,
+                span_metrics=metrics,
+            )
         )
 
     Path(output_file).parent.mkdir(parents=True, exist_ok=True)

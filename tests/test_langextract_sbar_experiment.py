@@ -2,8 +2,10 @@ import srsly
 
 from sbar_span_task.langextract_experiment import (
     exact_match_metrics,
+    iou_span_metrics,
     load_sbar_records,
     run_langextract_sbar_experiment,
+    SbarItem,
     span_items_from_record,
 )
 
@@ -40,8 +42,6 @@ def test_exact_match_metrics_returns_expected_values():
         {"label": "ASSESSMENT", "quote": "C"},
     ]
 
-    from sbar_span_task.langextract_experiment import SbarItem
-
     gold_items = [SbarItem(**item) for item in gold]
     pred_items = [SbarItem(**item) for item in pred]
     metrics = exact_match_metrics(gold_items, pred_items)
@@ -50,6 +50,17 @@ def test_exact_match_metrics_returns_expected_values():
     assert metrics["precision"] == 0.5
     assert metrics["recall"] == 0.5
     assert metrics["f1"] == 0.5
+
+
+def test_iou_span_metrics_gives_partial_credit_for_overlap():
+    text = "Alice had chest pain and then improved."
+    gold_spans = [{"start": 6, "end": 20, "label": "ASSESSMENT"}]  # "had chest pain"
+    preds = [SbarItem(label="ASSESSMENT", quote="chest pain")]
+
+    metrics = iou_span_metrics(text=text, gold_spans=gold_spans, pred_items=preds)
+
+    assert metrics["f1"] > 0.0
+    assert metrics["true_positives"] > 0.0
 
 
 def test_load_sbar_records_respects_annotator_filter(tmp_path):
@@ -113,7 +124,11 @@ def test_use_dataset_test_split_matches_prepare_dataset_test_split(tmp_path):
     )
 
     out_rows = list(srsly.read_jsonl(output_file))
-    out_texts = [row["text"] for row in out_rows]
+    out_texts = [row["example"]["text"] for row in out_rows]
+    for row in out_rows:
+        assert set(row.keys()) == {"example", "prediction", "score"}
+        assert set(row["example"].keys()) == {"text", "gold_spans"}
+        assert set(row["prediction"].keys()) == {"pred_spans", "span_metrics"}
 
     assert int(summary["num_eval_examples"]) == len(expected_test_texts)
     assert out_texts == expected_test_texts
