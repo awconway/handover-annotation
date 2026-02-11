@@ -12,6 +12,11 @@ DATA_FILE = "./annotated_data/db_20260129_tokenised.jsonl"
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
+        "--data-file",
+        default=DATA_FILE,
+        help="Path to tokenised Prodigy JSONL data.",
+    )
+    parser.add_argument(
         "--output-model-file",
         required=True,
         help="Path to the trained program to load.",
@@ -41,9 +46,9 @@ def parse_args() -> argparse.Namespace:
 
 args = parse_args()
 if args.use_all:
-    testset = prepare_dataset_all(DATA_FILE, annotator_id=args.annotator_id)
+    testset = prepare_dataset_all(args.data_file, annotator_id=args.annotator_id)
 else:
-    _, testset = prepare_dataset(DATA_FILE, annotator_id=args.annotator_id)
+    _, testset = prepare_dataset(args.data_file, annotator_id=args.annotator_id)
 output_model_file = args.output_model_file
 eval_results_file = args.eval_results_file
 

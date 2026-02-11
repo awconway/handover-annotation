@@ -15,6 +15,11 @@ configure_dspy(lm)
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
+        "--data-file",
+        default=DATA_FILE,
+        help="Path to tokenised Prodigy JSONL data.",
+    )
+    parser.add_argument(
         "--annotator-id",
         default=None,
         help="Filter examples by _annotator_id (e.g. handover_db-user1).",
@@ -23,7 +28,7 @@ def parse_args() -> argparse.Namespace:
 
 
 args = parse_args()
-_, testset = prepare_dataset(DATA_FILE, annotator_id=args.annotator_id)
+_, testset = prepare_dataset(args.data_file, annotator_id=args.annotator_id)
 
 predictor = build_predictor()
 case = testset[17]

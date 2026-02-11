@@ -12,6 +12,11 @@ DATA_FILE = "./annotated_data/db_20260129_tokenised.jsonl"
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
+        "--data-file",
+        default=DATA_FILE,
+        help="Path to tokenised Prodigy JSONL data.",
+    )
+    parser.add_argument(
         "--model-name",
         required=True,
         help="Model registry key (see src/config/model_registry.py).",
@@ -45,7 +50,7 @@ if args.optimiser_name not in allowed_span_optimisers:
     )
 
 trainset, valset = prepare_dataset_uncertainty_binary_span(
-    DATA_FILE, annotator_id=args.annotator_id
+    args.data_file, annotator_id=args.annotator_id
 )
 output_model_file = args.output_model_file
 
