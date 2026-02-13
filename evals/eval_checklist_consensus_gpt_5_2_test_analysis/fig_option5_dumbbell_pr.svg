@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="770" viewBox="0 0 1400 770">
+<rect width="100%" height="100%" fill="white"/>
+<text x="40" y="42" font-size="26" font-weight="700" fill="#111">Per-label Precision vs Recall (Dumbbell)</text>
+<text x="40" y="68" font-size="14" fill="#444">Sorted by |Recall-Precision|, support >= 5. Marker size scales with support.</text>
+<line x1="350" y1="690" x2="1240" y2="690" stroke="#222" stroke-width="1.5"/>
+<line x1="350" y1="690" x2="350" y2="100" stroke="#222" stroke-width="1.5"/>
+<line x1="350.00" y1="690" x2="350.00" y2="696" stroke="#333" stroke-width="1"/>
+<text x="350.00" y="714" font-size="11" text-anchor="middle" fill="#333">0.0</text>
+<line x1="439.00" y1="690" x2="439.00" y2="696" stroke="#333" stroke-width="1"/>
+<text x="439.00" y="714" font-size="11" text-anchor="middle" fill="#333">0.1</text>
+<line x1="439.00" y1="690" x2="439.00" y2="-9309" stroke="#ececec" stroke-width="1"/>
+<line x1="528.00" y1="690" x2="528.00" y2="696" stroke="#333" stroke-width="1"/>
+<text x="528.00" y="714" font-size="11" text-anchor="middle" fill="#333">0.2</text>
+<line x1="528.00" y1="690" x2="528.00" y2="-9309" stroke="#ececec" stroke-width="1"/>
+<line x1="617.00" y1="690" x2="617.00" y2="696" stroke="#333" stroke-width="1"/>
+<text x="617.00" y="714" font-size="11" text-anchor="middle" fill="#333">0.3</text>
+<line x1="617.00" y1="690" x2="617.00" y2="-9309" stroke="#ececec" stroke-width="1"/>
+<line x1="706.00" y1="690" x2="706.00" y2="696" stroke="#333" stroke-width="1"/>
+<text x="706.00" y="714" font-size="11" text-anchor="middle" fill="#333">0.4</text>
+<line x1="706.00" y1="690" x2="706.00" y2="-9309" stroke="#ececec" stroke-width="1"/>
+<line x1="795.00" y1="690" x2="795.00" y2="696" stroke="#333" stroke-width="1"/>
+<text x="795.00" y="714" font-size="11" text-anchor="middle" fill="#333">0.5</text>
+<line x1="795.00" y1="690" x2="795.00" y2="-9309" stroke="#ececec" stroke-width="1"/>
+<line x1="884.00" y1="690" x2="884.00" y2="696" stroke="#333" stroke-width="1"/>
+<text x="884.00" y="714" font-size="11" text-anchor="middle" fill="#333">0.6</text>
+<line x1="884.00" y1="690" x2="884.00" y2="-9309" stroke="#ececec" stroke-width="1"/>
+<line x1="973.00" y1="690" x2="973.00" y2="696" stroke="#333" stroke-width="1"/>
+<text x="973.00" y="714" font-size="11" text-anchor="middle" fill="#333">0.7</text>
+<line x1="973.00" y1="690" x2="973.00" y2="-9309" stroke="#ececec" stroke-width="1"/>
+<line x1="1062.00" y1="690" x2="1062.00" y2="696" stroke="#333" stroke-width="1"/>
+<text x="1062.00" y="714" font-size="11" text-anchor="middle" fill="#333">0.8</text>
+<line x1="1062.00" y1="690" x2="1062.00" y2="-9309" stroke="#ececec" stroke-width="1"/>
+<line x1="1151.00" y1="690" x2="1151.00" y2="696" stroke="#333" stroke-width="1"/>
+<text x="1151.00" y="714" font-size="11" text-anchor="middle" fill="#333">0.9</text>
+<line x1="1151.00" y1="690" x2="1151.00" y2="-9309" stroke="#ececec" stroke-width="1"/>
+<line x1="1240.00" y1="690" x2="1240.00" y2="696" stroke="#333" stroke-width="1"/>
+<text x="1240.00" y="714" font-size="11" text-anchor="middle" fill="#333">1.0</text>
+<line x1="835.45" y1="120" x2="1240.00" y2="120" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="835.45" cy="120" r="4.60" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="1240.00" cy="120" r="4.60" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="124" font-size="12" text-anchor="end" fill="#222">Skin integrity | interventions</text>
+<text x="1248" y="124" font-size="11" text-anchor="start" fill="#444">Δ=+0.455 | n=6</text>
+<line x1="1141.11" y1="150" x2="824.67" y2="150" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="1141.11" cy="150" r="5.24" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="824.67" cy="150" r="5.24" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="154" font-size="12" text-anchor="end" fill="#222">Infusions</text>
+<text x="1248" y="154" font-size="11" text-anchor="start" fill="#444">Δ=-0.356 | n=15</text>
+<line x1="973.00" y1="180" x2="1240.00" y2="180" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="973.00" cy="180" r="5.18" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="1240.00" cy="180" r="5.18" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="184" font-size="12" text-anchor="end" fill="#222">Nutrition | restrictions</text>
+<text x="1248" y="184" font-size="11" text-anchor="start" fill="#444">Δ=+0.300 | n=14</text>
+<line x1="985.71" y1="210" x2="1240.00" y2="210" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="985.71" cy="210" r="5.51" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="1240.00" cy="210" r="5.51" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="214" font-size="12" text-anchor="end" fill="#222">Introduction of clinicians involved in handover to patient/carer</text>
+<text x="1248" y="214" font-size="11" text-anchor="start" fill="#444">Δ=+0.286 | n=20</text>
+<line x1="930.43" y1="240" x2="1184.38" y2="240" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="930.43" cy="240" r="5.30" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="1184.38" cy="240" r="5.30" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="244" font-size="12" text-anchor="end" fill="#222">Invitation for patient/carer to participate in handover</text>
+<text x="1248" y="244" font-size="11" text-anchor="start" fill="#444">Δ=+0.285 | n=16</text>
+<line x1="1005.79" y1="270" x2="1180.67" y2="270" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="1005.79" cy="270" r="5.24" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="1180.67" cy="270" r="5.24" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="274" font-size="12" text-anchor="end" fill="#222">Pathology</text>
+<text x="1248" y="274" font-size="11" text-anchor="start" fill="#444">Δ=+0.196 | n=15</text>
+<line x1="1062.00" y1="300" x2="1187.65" y2="300" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="1062.00" cy="300" r="5.36" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="1187.65" cy="300" r="5.36" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="304" font-size="12" text-anchor="end" fill="#222">Mobility | aids</text>
+<text x="1248" y="304" font-size="11" text-anchor="start" fill="#444">Δ=+0.141 | n=17</text>
+<line x1="906.25" y1="330" x2="795.00" y2="330" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="906.25" cy="330" r="4.92" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="795.00" cy="330" r="4.92" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="334" font-size="12" text-anchor="end" fill="#222">Significant events or complications</text>
+<text x="1248" y="334" font-size="11" text-anchor="start" fill="#444">Δ=-0.125 | n=10</text>
+<line x1="1137.31" y1="360" x2="1240.00" y2="360" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="1137.31" cy="360" r="5.66" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="1240.00" cy="360" r="5.66" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="364" font-size="12" text-anchor="end" fill="#222">Devices | lines | vascular access</text>
+<text x="1248" y="364" font-size="11" text-anchor="start" fill="#444">Δ=+0.115 | n=23</text>
+<line x1="1112.86" y1="390" x2="1204.40" y2="390" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="1112.86" cy="390" r="5.75" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="1204.40" cy="390" r="5.75" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="394" font-size="12" text-anchor="end" fill="#222">Medication chart | flag high risk meds</text>
+<text x="1248" y="394" font-size="11" text-anchor="start" fill="#444">Δ=+0.103 | n=25</text>
+<line x1="1149.18" y1="420" x2="1240.00" y2="420" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="1149.18" cy="420" r="6.48" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="1240.00" cy="420" r="6.48" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="424" font-size="12" text-anchor="end" fill="#222">Care plan/pathway actions to follow up</text>
+<text x="1248" y="424" font-size="11" text-anchor="start" fill="#444">Δ=+0.102 | n=44</text>
+<line x1="973.00" y1="450" x2="1042.22" y2="450" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="973.00" cy="450" r="4.85" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="1042.22" cy="450" r="4.85" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="454" font-size="12" text-anchor="end" fill="#222">Fluid balance | restrictions</text>
+<text x="1248" y="454" font-size="11" text-anchor="start" fill="#444">Δ=+0.078 | n=9</text>
+<line x1="1190.56" y1="480" x2="1240.00" y2="480" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="1190.56" cy="480" r="5.36" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="1240.00" cy="480" r="5.36" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="484" font-size="12" text-anchor="end" fill="#222">Relevant clinical and social history | comorbidities</text>
+<text x="1248" y="484" font-size="11" text-anchor="start" fill="#444">Δ=+0.056 | n=17</text>
+<line x1="1141.11" y1="510" x2="1187.65" y2="510" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="1141.11" cy="510" r="5.36" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="1187.65" cy="510" r="5.36" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="514" font-size="12" text-anchor="end" fill="#222">Pain management</text>
+<text x="1248" y="514" font-size="11" text-anchor="start" fill="#444">Δ=+0.052 | n=17</text>
+<line x1="1202.13" y1="540" x2="1240.00" y2="540" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="1202.13" cy="540" r="6.52" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="1240.00" cy="540" r="6.52" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="544" font-size="12" text-anchor="end" fill="#222">Primary diagnosis | reason for admission</text>
+<text x="1248" y="544" font-size="11" text-anchor="start" fill="#444">Δ=+0.043 | n=45</text>
+<line x1="1002.67" y1="570" x2="981.61" y2="570" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="1002.67" cy="570" r="6.01" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="981.61" cy="570" r="6.01" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="574" font-size="12" text-anchor="end" fill="#222">Current status (awaiting tests/procedures, on interim orders/plan)</text>
+<text x="1248" y="574" font-size="11" text-anchor="start" fill="#444">Δ=-0.024 | n=31</text>
+<line x1="1195.50" y1="600" x2="1195.50" y2="600" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="1195.50" cy="600" r="6.35" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="1195.50" cy="600" r="6.35" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="604" font-size="12" text-anchor="end" fill="#222">Observations | Q-ADDS | recent escalations</text>
+<text x="1248" y="604" font-size="11" text-anchor="start" fill="#444">Δ=+0.000 | n=40</text>
+<line x1="1141.11" y1="630" x2="1141.11" y2="630" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="1141.11" cy="630" r="5.41" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="1141.11" cy="630" r="5.41" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="634" font-size="12" text-anchor="end" fill="#222">Alerts - allergies</text>
+<text x="1248" y="634" font-size="11" text-anchor="start" fill="#444">Δ=+0.000 | n=18</text>
+<line x1="350.00" y1="660" x2="350.00" y2="660" stroke="#bdbdbd" stroke-width="2.4"/>
+<circle cx="350.00" cy="660" r="4.85" fill="#1f77b4" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<circle cx="350.00" cy="660" r="4.85" fill="#ff7f0e" fill-opacity="0.9" stroke="white" stroke-width="1"/>
+<text x="338" y="664" font-size="12" text-anchor="end" fill="#222">Asked patient/carer about goals and preferences</text>
+<text x="1248" y="664" font-size="11" text-anchor="start" fill="#444">Δ=+0.000 | n=9</text>
+<circle cx="40" cy="95" r="6" fill="#1f77b4"/><text x="52" y="99" font-size="12" fill="#333">Precision</text>
+<circle cx="160" cy="95" r="6" fill="#ff7f0e"/><text x="172" y="99" font-size="12" fill="#333">Recall</text>
+</svg>

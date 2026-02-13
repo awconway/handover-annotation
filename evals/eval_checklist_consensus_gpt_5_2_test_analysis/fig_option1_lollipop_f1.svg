@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="928" viewBox="0 0 1400 928">
+<rect width="100%" height="100%" fill="white"/>
+<text x="40" y="42" font-size="26" font-weight="700" fill="#111">Per-label F1 (Lollipop)</text>
+<text x="40" y="68" font-size="14" fill="#444">Sorted by bucket then support. Dot color denotes bucket and dot size denotes support.</text>
+<line x1="330" y1="848" x2="1280" y2="848" stroke="#222" stroke-width="1.5"/>
+<line x1="330" y1="848" x2="330" y2="100" stroke="#222" stroke-width="1.5"/>
+<line x1="330.00" y1="848" x2="330.00" y2="854" stroke="#333" stroke-width="1"/>
+<text x="330.00" y="872" font-size="11" text-anchor="middle" fill="#333">0.0</text>
+<line x1="425.00" y1="848" x2="425.00" y2="854" stroke="#333" stroke-width="1"/>
+<text x="425.00" y="872" font-size="11" text-anchor="middle" fill="#333">0.1</text>
+<line x1="425.00" y1="848" x2="425.00" y2="-9151" stroke="#ececec" stroke-width="1"/>
+<line x1="520.00" y1="848" x2="520.00" y2="854" stroke="#333" stroke-width="1"/>
+<text x="520.00" y="872" font-size="11" text-anchor="middle" fill="#333">0.2</text>
+<line x1="520.00" y1="848" x2="520.00" y2="-9151" stroke="#ececec" stroke-width="1"/>
+<line x1="615.00" y1="848" x2="615.00" y2="854" stroke="#333" stroke-width="1"/>
+<text x="615.00" y="872" font-size="11" text-anchor="middle" fill="#333">0.3</text>
+<line x1="615.00" y1="848" x2="615.00" y2="-9151" stroke="#ececec" stroke-width="1"/>
+<line x1="710.00" y1="848" x2="710.00" y2="854" stroke="#333" stroke-width="1"/>
+<text x="710.00" y="872" font-size="11" text-anchor="middle" fill="#333">0.4</text>
+<line x1="710.00" y1="848" x2="710.00" y2="-9151" stroke="#ececec" stroke-width="1"/>
+<line x1="805.00" y1="848" x2="805.00" y2="854" stroke="#333" stroke-width="1"/>
+<text x="805.00" y="872" font-size="11" text-anchor="middle" fill="#333">0.5</text>
+<line x1="805.00" y1="848" x2="805.00" y2="-9151" stroke="#ececec" stroke-width="1"/>
+<line x1="900.00" y1="848" x2="900.00" y2="854" stroke="#333" stroke-width="1"/>
+<text x="900.00" y="872" font-size="11" text-anchor="middle" fill="#333">0.6</text>
+<line x1="900.00" y1="848" x2="900.00" y2="-9151" stroke="#ececec" stroke-width="1"/>
+<line x1="995.00" y1="848" x2="995.00" y2="854" stroke="#333" stroke-width="1"/>
+<text x="995.00" y="872" font-size="11" text-anchor="middle" fill="#333">0.7</text>
+<line x1="995.00" y1="848" x2="995.00" y2="-9151" stroke="#ececec" stroke-width="1"/>
+<line x1="1090.00" y1="848" x2="1090.00" y2="854" stroke="#333" stroke-width="1"/>
+<text x="1090.00" y="872" font-size="11" text-anchor="middle" fill="#333">0.8</text>
+<line x1="1090.00" y1="848" x2="1090.00" y2="-9151" stroke="#ececec" stroke-width="1"/>
+<line x1="1185.00" y1="848" x2="1185.00" y2="854" stroke="#333" stroke-width="1"/>
+<text x="1185.00" y="872" font-size="11" text-anchor="middle" fill="#333">0.9</text>
+<line x1="1185.00" y1="848" x2="1185.00" y2="-9151" stroke="#ececec" stroke-width="1"/>
+<line x1="1280.00" y1="848" x2="1280.00" y2="854" stroke="#333" stroke-width="1"/>
+<text x="1280.00" y="872" font-size="11" text-anchor="middle" fill="#333">1.0</text>
+<line x1="330" y1="120" x2="1280.00" y2="120" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1280.00" cy="120" r="4.04" fill="#8c564b" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="124" font-size="12" text-anchor="end" fill="#222">ID check of 3 patient identifiers</text>
+<text x="1288" y="124" font-size="11" text-anchor="start" fill="#444">F1=1.000 | n=1</text>
+<line x1="330" y1="148" x2="1259.35" y2="148" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1259.35" cy="148" r="10.00" fill="#1f77b4" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="152" font-size="12" text-anchor="end" fill="#222">Primary diagnosis | reason for admission</text>
+<text x="1288" y="152" font-size="11" text-anchor="start" fill="#444">F1=0.978 | n=45</text>
+<line x1="330" y1="176" x2="1015.25" y2="176" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1015.25" cy="176" r="8.81" fill="#1f77b4" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="180" font-size="12" text-anchor="end" fill="#222">Current status (awaiting tests/procedures, on interim orders/plan)</text>
+<text x="1288" y="180" font-size="11" text-anchor="start" fill="#444">F1=0.721 | n=31</text>
+<line x1="330" y1="204" x2="857.78" y2="204" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="857.78" cy="204" r="6.30" fill="#1f77b4" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="208" font-size="12" text-anchor="end" fill="#222">Significant events or complications</text>
+<text x="1288" y="208" font-size="11" text-anchor="start" fill="#444">F1=0.556 | n=10</text>
+<line x1="330" y1="232" x2="1174.44" y2="232" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1174.44" cy="232" r="7.43" fill="#2ca02c" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="236" font-size="12" text-anchor="end" fill="#222">Alerts - allergies</text>
+<text x="1288" y="236" font-size="11" text-anchor="start" fill="#444">F1=0.889 | n=18</text>
+<line x1="330" y1="260" x2="1252.86" y2="260" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1252.86" cy="260" r="7.30" fill="#2ca02c" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="264" font-size="12" text-anchor="end" fill="#222">Relevant clinical and social history | comorbidities</text>
+<text x="1288" y="264" font-size="11" text-anchor="start" fill="#444">F1=0.971 | n=17</text>
+<line x1="330" y1="288" x2="1090.00" y2="288" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1090.00" cy="288" r="4.81" fill="#2ca02c" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="292" font-size="12" text-anchor="end" fill="#222">Alerts - falls risk</text>
+<text x="1288" y="292" font-size="11" text-anchor="start" fill="#444">F1=0.800 | n=3</text>
+<line x1="330" y1="316" x2="1090.00" y2="316" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1090.00" cy="316" r="4.81" fill="#2ca02c" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="320" font-size="12" text-anchor="end" fill="#222">Alerts - pressure injury risk</text>
+<text x="1288" y="320" font-size="11" text-anchor="start" fill="#444">F1=0.800 | n=3</text>
+<line x1="330" y1="344" x2="1280.00" y2="344" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1280.00" cy="344" r="4.04" fill="#2ca02c" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="348" font-size="12" text-anchor="end" fill="#222">Advanced care planning</text>
+<text x="1288" y="348" font-size="11" text-anchor="start" fill="#444">F1=1.000 | n=1</text>
+<line x1="330" y1="372" x2="1232.50" y2="372" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1232.50" cy="372" r="9.60" fill="#ff7f0e" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="376" font-size="12" text-anchor="end" fill="#222">Observations | Q-ADDS | recent escalations</text>
+<text x="1288" y="376" font-size="11" text-anchor="start" fill="#444">F1=0.950 | n=40</text>
+<line x1="330" y1="400" x2="1190.38" y2="400" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1190.38" cy="400" r="8.22" fill="#ff7f0e" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="404" font-size="12" text-anchor="end" fill="#222">Medication chart | flag high risk meds</text>
+<text x="1288" y="404" font-size="11" text-anchor="start" fill="#444">F1=0.906 | n=25</text>
+<line x1="330" y1="428" x2="1221.84" y2="428" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1221.84" cy="428" r="8.00" fill="#ff7f0e" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="432" font-size="12" text-anchor="end" fill="#222">Devices | lines | vascular access</text>
+<text x="1288" y="432" font-size="11" text-anchor="start" fill="#444">F1=0.939 | n=23</text>
+<line x1="330" y1="456" x2="1151.62" y2="456" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1151.62" cy="456" r="7.30" fill="#ff7f0e" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="460" font-size="12" text-anchor="end" fill="#222">Mobility | aids</text>
+<text x="1288" y="460" font-size="11" text-anchor="start" fill="#444">F1=0.865 | n=17</text>
+<line x1="330" y1="484" x2="1198.57" y2="484" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1198.57" cy="484" r="7.30" fill="#ff7f0e" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="488" font-size="12" text-anchor="end" fill="#222">Pain management</text>
+<text x="1288" y="488" font-size="11" text-anchor="start" fill="#444">F1=0.914 | n=17</text>
+<line x1="330" y1="512" x2="963.33" y2="512" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="963.33" cy="512" r="7.04" fill="#ff7f0e" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="516" font-size="12" text-anchor="end" fill="#222">Infusions</text>
+<text x="1288" y="516" font-size="11" text-anchor="start" fill="#444">F1=0.667 | n=15</text>
+<line x1="330" y1="540" x2="1112.35" y2="540" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1112.35" cy="540" r="7.04" fill="#ff7f0e" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="544" font-size="12" text-anchor="end" fill="#222">Pathology</text>
+<text x="1288" y="544" font-size="11" text-anchor="start" fill="#444">F1=0.824 | n=15</text>
+<line x1="330" y1="568" x2="1112.35" y2="568" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1112.35" cy="568" r="6.90" fill="#ff7f0e" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="572" font-size="12" text-anchor="end" fill="#222">Nutrition | restrictions</text>
+<text x="1288" y="572" font-size="11" text-anchor="start" fill="#444">F1=0.824 | n=14</text>
+<line x1="330" y1="596" x2="1030.00" y2="596" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1030.00" cy="596" r="6.13" fill="#ff7f0e" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="600" font-size="12" text-anchor="end" fill="#222">Fluid balance | restrictions</text>
+<text x="1288" y="600" font-size="11" text-anchor="start" fill="#444">F1=0.737 | n=9</text>
+<line x1="330" y1="624" x2="1000.59" y2="624" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1000.59" cy="624" r="5.56" fill="#ff7f0e" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="628" font-size="12" text-anchor="end" fill="#222">Skin integrity | interventions</text>
+<text x="1288" y="628" font-size="11" text-anchor="start" fill="#444">F1=0.706 | n=6</text>
+<line x1="330" y1="652" x2="330.00" y2="652" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="330.00" cy="652" r="3.00" fill="#ff7f0e" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="656" font-size="12" text-anchor="end" fill="#222">Critical monitoring | alarms</text>
+<text x="1288" y="656" font-size="11" text-anchor="start" fill="#444">F1=0.000 | n=0</text>
+<line x1="330" y1="680" x2="1228.92" y2="680" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1228.92" cy="680" r="9.92" fill="#d62728" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="684" font-size="12" text-anchor="end" fill="#222">Care plan/pathway actions to follow up</text>
+<text x="1288" y="684" font-size="11" text-anchor="start" fill="#444">F1=0.946 | n=44</text>
+<line x1="330" y1="708" x2="330.00" y2="708" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="330.00" cy="708" r="6.13" fill="#d62728" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="712" font-size="12" text-anchor="end" fill="#222">Asked patient/carer about goals and preferences</text>
+<text x="1288" y="712" font-size="11" text-anchor="start" fill="#444">F1=0.000 | n=9</text>
+<line x1="330" y1="736" x2="1174.44" y2="736" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1174.44" cy="736" r="5.09" fill="#d62728" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="740" font-size="12" text-anchor="end" fill="#222">Discharge plan</text>
+<text x="1288" y="740" font-size="11" text-anchor="start" fill="#444">F1=0.889 | n=4</text>
+<line x1="330" y1="764" x2="646.67" y2="764" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="646.67" cy="764" r="4.04" fill="#d62728" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="768" font-size="12" text-anchor="end" fill="#222">Critical actions required</text>
+<text x="1288" y="768" font-size="11" text-anchor="start" fill="#444">F1=0.333 | n=1</text>
+<line x1="330" y1="792" x2="1121.67" y2="792" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1121.67" cy="792" r="7.67" fill="#9467bd" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="796" font-size="12" text-anchor="end" fill="#222">Introduction of clinicians involved in handover to patient/carer</text>
+<text x="1288" y="796" font-size="11" text-anchor="start" fill="#444">F1=0.833 | n=20</text>
+<line x1="330" y1="820" x2="1060.77" y2="820" stroke="#c9c9c9" stroke-width="2"/>
+<circle cx="1060.77" cy="820" r="7.17" fill="#9467bd" fill-opacity="0.9" stroke="#fff" stroke-width="1.2"/>
+<text x="318" y="824" font-size="12" text-anchor="end" fill="#222">Invitation for patient/carer to participate in handover</text>
+<text x="1288" y="824" font-size="11" text-anchor="start" fill="#444">F1=0.769 | n=16</text>
+<circle cx="40" cy="92" r="6" fill="#8c564b"/>
+<text x="52" y="96" font-size="12" fill="#333">Identification</text>
+<circle cx="250" cy="92" r="6" fill="#1f77b4"/>
+<text x="262" y="96" font-size="12" fill="#333">Situation</text>
+<circle cx="460" cy="92" r="6" fill="#2ca02c"/>
+<text x="472" y="96" font-size="12" fill="#333">Background</text>
+<circle cx="670" cy="92" r="6" fill="#ff7f0e"/>
+<text x="682" y="96" font-size="12" fill="#333">Assessment</text>
+<circle cx="880" cy="92" r="6" fill="#d62728"/>
+<text x="892" y="96" font-size="12" fill="#333">Recommendation</text>
+<circle cx="1090" cy="92" r="6" fill="#9467bd"/>
+<text x="1102" y="96" font-size="12" fill="#333">Patient Involvement</text>
+<circle cx="40" cy="118" r="6.13" fill="#888" fill-opacity="0.35" stroke="#666" stroke-width="0.8"/>
+<text x="56" y="122" font-size="11" fill="#444">n~9</text>
+<circle cx="130" cy="118" r="8.42" fill="#888" fill-opacity="0.35" stroke="#666" stroke-width="0.8"/>
+<text x="146" y="122" font-size="11" fill="#444">n~27</text>
+<circle cx="220" cy="118" r="10.00" fill="#888" fill-opacity="0.35" stroke="#666" stroke-width="0.8"/>
+<text x="236" y="122" font-size="11" fill="#444">n~45</text>
+</svg>

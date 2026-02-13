@@ -199,3 +199,20 @@ Then pass it via `--model-name` or `--optimiser-name`.
 - Trained DSPy programs are saved/loaded via .save() and .load().
 
 ============================================================
+8. Reproducible Checklist Eval Analysis
+============================================================
+
+To generate reproducible error-analysis artifacts (summary JSON + label CSV + bucket CSV + per-example error CSV):
+
+uv run python analysis/analyze_checklist_eval.py ./evals/eval_checklist_consensus_gpt_5_2_test.jsonl
+
+By default, outputs are written to:
+
+./evals/eval_checklist_consensus_gpt_5_2_test_analysis/
+
+Optional:
+
+- `--out-dir <path>` to choose a different output directory.
+- `--top-k <int>` to change how many top FN/FP labels and FN->FP pairs are reported.
+
+============================================================
