@@ -42,26 +42,16 @@ PYTHON_MIN_MAJOR="${PYTHON_MIN_MAJOR:-3}"
 PYTHON_MIN_MINOR="${PYTHON_MIN_MINOR:-10}"
 PYTHON_DEBUG_MODULE_LOAD="${PYTHON_DEBUG_MODULE_LOAD:-0}"
 VENV_DIR="${VENV_DIR:-$PBS_O_WORKDIR/.venv_cluster_py312}"
+PYTHON_BIN=""
 
-if ! command -v module >/dev/null 2>&1; then
-  echo "Environment modules are required but 'module' command is not available."
-  exit 1
+# Fast path: if project venv already works on this node, use it directly.
+if [ -x "$VENV_DIR/bin/python3" ] && "$VENV_DIR/bin/python3" -c "import sys; raise SystemExit(0 if sys.version_info >= (${PYTHON_MIN_MAJOR}, ${PYTHON_MIN_MINOR}) else 1)" >/dev/null 2>&1; then
+  PYTHON_BIN="$VENV_DIR/bin/python3"
+  echo "Using existing venv interpreter: $PYTHON_BIN"
+elif [ -x "$VENV_DIR/bin/python" ] && "$VENV_DIR/bin/python" -c "import sys; raise SystemExit(0 if sys.version_info >= (${PYTHON_MIN_MAJOR}, ${PYTHON_MIN_MINOR}) else 1)" >/dev/null 2>&1; then
+  PYTHON_BIN="$VENV_DIR/bin/python"
+  echo "Using existing venv interpreter: $PYTHON_BIN"
 fi
-
-if [ -z "$PYTHON_MODULE_CANDIDATES" ]; then
-  DISCOVERED_PYTHON_MODULES="$(
-    { module --ignore_cache -t spider Python 2>&1 || true; } | awk '/^Python\// {print $1}' | tr '\n' ' '
-  )"
-  if [ -n "$DISCOVERED_PYTHON_MODULES" ]; then
-    PYTHON_MODULE_CANDIDATES="$PYTHON_MODULE $DISCOVERED_PYTHON_MODULES"
-  else
-    PYTHON_MODULE_CANDIDATES="$PYTHON_MODULE"
-  fi
-fi
-PYTHON_MODULE_CANDIDATES="$(
-  printf '%s\n' $PYTHON_MODULE_CANDIDATES | awk 'NF && !seen[$0]++' | tr '\n' ' '
-)"
-echo "Python module candidates: $PYTHON_MODULE_CANDIDATES"
 
 python_is_usable() {
   command -v python3 >/dev/null 2>&1 || return 1
@@ -129,49 +119,71 @@ try_python_module() {
   return 2
 }
 
-ATTEMPT_INDEX=0
-for mod in $PYTHON_MODULE_CANDIDATES; do
-  ATTEMPT_INDEX=$((ATTEMPT_INDEX + 1))
-  echo "Trying Python module [$ATTEMPT_INDEX]: $mod"
-
-  if try_python_module "$mod" ""; then
-    break
+if [ -z "$PYTHON_BIN" ]; then
+  if ! command -v module >/dev/null 2>&1; then
+    echo "Environment modules are required but 'module' command is not available."
+    exit 1
   fi
 
-  while IFS= read -r chain; do
-    [ -n "$chain" ] || continue
-    echo "  trying prerequisite chain: $chain"
-    if try_python_module "$mod" "$chain"; then
-      break 2
+  if [ -z "$PYTHON_MODULE_CANDIDATES" ]; then
+    DISCOVERED_PYTHON_MODULES="$(
+      { module --ignore_cache -t spider Python 2>&1 || true; } | awk '/^Python\// {print $1}' | tr '\n' ' '
+    )"
+    if [ -n "$DISCOVERED_PYTHON_MODULES" ]; then
+      PYTHON_MODULE_CANDIDATES="$PYTHON_MODULE $DISCOVERED_PYTHON_MODULES"
+    else
+      PYTHON_MODULE_CANDIDATES="$PYTHON_MODULE"
     fi
-  done < <(extract_spider_chains "$mod" | awk 'NF && !seen[$0]++')
-done
+  fi
+  PYTHON_MODULE_CANDIDATES="$(
+    printf '%s\n' $PYTHON_MODULE_CANDIDATES | awk 'NF && !seen[$0]++' | tr '\n' ' '
+  )"
+  echo "Python module candidates: $PYTHON_MODULE_CANDIDATES"
 
-if [ -z "$SELECTED_PYTHON_MODULE" ]; then
-  echo "Could not load a runnable python3 >=${PYTHON_MIN_MAJOR}.${PYTHON_MIN_MINOR} on this node."
-  echo "Tried PYTHON_MODULE_CANDIDATES: $PYTHON_MODULE_CANDIDATES"
-  echo "Tip: set PYTHON_DEBUG_MODULE_LOAD=1 to show full module load errors."
-  exit 1
-fi
+  ATTEMPT_INDEX=0
+  for mod in $PYTHON_MODULE_CANDIDATES; do
+    ATTEMPT_INDEX=$((ATTEMPT_INDEX + 1))
+    echo "Trying Python module [$ATTEMPT_INDEX]: $mod"
 
-echo "Using Python module: $SELECTED_PYTHON_MODULE"
-if [ -n "$SELECTED_PYTHON_CHAIN" ]; then
-  echo "Using prerequisite chain: $SELECTED_PYTHON_CHAIN"
-fi
+    if try_python_module "$mod" ""; then
+      break
+    fi
 
-if [ ! -x "$VENV_DIR/bin/python3" ] && [ ! -x "$VENV_DIR/bin/python" ]; then
-  python3 -m venv "$VENV_DIR"
-fi
+    while IFS= read -r chain; do
+      [ -n "$chain" ] || continue
+      echo "  trying prerequisite chain: $chain"
+      if try_python_module "$mod" "$chain"; then
+        break 2
+      fi
+    done < <(extract_spider_chains "$mod" | awk 'NF && !seen[$0]++')
+  done
 
-PYTHON_BIN="$VENV_DIR/bin/python3"
-if [ ! -x "$PYTHON_BIN" ]; then
-  PYTHON_BIN="$VENV_DIR/bin/python"
-fi
-if ! "$PYTHON_BIN" -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 10) else 1)" >/dev/null 2>&1; then
-  echo "Existing venv is not runnable or is <3.10; recreating $VENV_DIR"
-  python3 -m venv --clear "$VENV_DIR"
+  if [ -z "$SELECTED_PYTHON_MODULE" ]; then
+    echo "Could not load a runnable python3 >=${PYTHON_MIN_MAJOR}.${PYTHON_MIN_MINOR} on this node."
+    echo "Tried PYTHON_MODULE_CANDIDATES: $PYTHON_MODULE_CANDIDATES"
+    echo "Tip: set PYTHON_DEBUG_MODULE_LOAD=1 to show full module load errors."
+    exit 1
+  fi
+
+  echo "Using Python module: $SELECTED_PYTHON_MODULE"
+  if [ -n "$SELECTED_PYTHON_CHAIN" ]; then
+    echo "Using prerequisite chain: $SELECTED_PYTHON_CHAIN"
+  fi
+
+  if [ ! -x "$VENV_DIR/bin/python3" ] && [ ! -x "$VENV_DIR/bin/python" ]; then
+    python3 -m venv "$VENV_DIR"
+  fi
+
   PYTHON_BIN="$VENV_DIR/bin/python3"
-  "$PYTHON_BIN" -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 10) else 1)" >/dev/null
+  if [ ! -x "$PYTHON_BIN" ]; then
+    PYTHON_BIN="$VENV_DIR/bin/python"
+  fi
+  if ! "$PYTHON_BIN" -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 10) else 1)" >/dev/null 2>&1; then
+    echo "Existing venv is not runnable or is <3.10; recreating $VENV_DIR"
+    python3 -m venv --clear "$VENV_DIR"
+    PYTHON_BIN="$VENV_DIR/bin/python3"
+    "$PYTHON_BIN" -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 10) else 1)" >/dev/null
+  fi
 fi
 
 DEPS_STAMP="$VENV_DIR/.handover_deps_v4"
