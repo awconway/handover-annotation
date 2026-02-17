@@ -1,0 +1,1338 @@
+{
+  "per_bucket": [
+    {
+      "bucket": "assessment",
+      "f1": 0.8507462686567164,
+      "fn": 10,
+      "fp": 50,
+      "precision": 0.7737556561085973,
+      "pred": 221,
+      "recall": 0.9447513812154696,
+      "support": 181,
+      "tp": 171
+    },
+    {
+      "bucket": "background",
+      "f1": 0.923076923076923,
+      "fn": 0,
+      "fp": 7,
+      "precision": 0.8571428571428571,
+      "pred": 49,
+      "recall": 1.0,
+      "support": 42,
+      "tp": 42
+    },
+    {
+      "bucket": "id",
+      "f1": 0.10526315789473684,
+      "fn": 0,
+      "fp": 17,
+      "precision": 0.05555555555555555,
+      "pred": 18,
+      "recall": 1.0,
+      "support": 1,
+      "tp": 1
+    },
+    {
+      "bucket": "patient_involvement",
+      "f1": 0.45238095238095233,
+      "fn": 17,
+      "fp": 29,
+      "precision": 0.3958333333333333,
+      "pred": 48,
+      "recall": 0.5277777777777778,
+      "support": 36,
+      "tp": 19
+    },
+    {
+      "bucket": "recommendation",
+      "f1": 0.6758620689655171,
+      "fn": 9,
+      "fp": 38,
+      "precision": 0.5632183908045977,
+      "pred": 87,
+      "recall": 0.8448275862068966,
+      "support": 58,
+      "tp": 49
+    },
+    {
+      "bucket": "situation",
+      "f1": 0.8229166666666665,
+      "fn": 7,
+      "fp": 27,
+      "precision": 0.7452830188679245,
+      "pred": 106,
+      "recall": 0.9186046511627907,
+      "support": 86,
+      "tp": 79
+    }
+  ],
+  "per_example": [
+    {
+      "error_count": 10,
+      "extra_labels": "assess_infusions|assess_monitoring|assess_nutrition|assess_skin_integrity|id_check|introduction_clinicians|invitation|sit_events|sit_status",
+      "fn_count": 1,
+      "fp_count": 9,
+      "gold_count": 8,
+      "gold_labels": "assess_devices|assess_mobility|assess_obs|assess_pain|assess_pathology|introduction_patients|rec_plan|sit_diagnosis",
+      "idx": 17,
+      "missing_labels": "introduction_patients",
+      "pred_count": 16,
+      "pred_labels": "assess_devices|assess_infusions|assess_mobility|assess_monitoring|assess_nutrition|assess_obs|assess_pain|assess_pathology|assess_skin_integrity|id_check|introduction_clinicians|invitation|rec_plan|sit_diagnosis|sit_events|sit_status",
+      "score": 0.5833333333,
+      "text_excerpt": "[INCOMING_NURSE]: Good morning, Mr. Reynolds. I\u2019m Jack, and I\u2019ll be your nurse for today. We\u2019ll do a quick bedside handover with my colleague, if that\u2019s okay. [OUTGOING_NURSE]: Hi, Mr. Reynolds. This is the nurse taking over for the day...."
+    },
+    {
+      "error_count": 8,
+      "extra_labels": "bg_allergies|id_check|introduction_clinicians|invitation|rec_actions",
+      "fn_count": 3,
+      "fp_count": 5,
+      "gold_count": 8,
+      "gold_labels": "assess_medications|assess_obs|assess_pathology|introduction_patients|rec_patient_goals|rec_plan|sit_diagnosis|sit_status",
+      "idx": 24,
+      "missing_labels": "assess_pathology|introduction_patients|rec_patient_goals",
+      "pred_count": 10,
+      "pred_labels": "assess_medications|assess_obs|bg_allergies|id_check|introduction_clinicians|invitation|rec_actions|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.5555555556,
+      "text_excerpt": "[INCOMING_NURSE]: Good morning, Mike. I\u2019m Daniel, I will be taking over your care now. Is it okay if we do your bedside handover with my colleague? [OUTGOING_NURSE]: Hi Mike, we\u2019ll keep this brief. Could you confirm your full name for us..."
+    },
+    {
+      "error_count": 8,
+      "extra_labels": "assess_fluid_balance|assess_pain|assess_pathology|introduction_clinicians|rec_actions|sit_events",
+      "fn_count": 2,
+      "fp_count": 6,
+      "gold_count": 9,
+      "gold_labels": "assess_infusions|assess_nutrition|assess_obs|id_check|introduction_patients|invitation|rec_plan|sit_diagnosis|sit_status",
+      "idx": 16,
+      "missing_labels": "assess_obs|introduction_patients",
+      "pred_count": 13,
+      "pred_labels": "assess_fluid_balance|assess_infusions|assess_nutrition|assess_pain|assess_pathology|id_check|introduction_clinicians|invitation|rec_actions|rec_plan|sit_diagnosis|sit_events|sit_status",
+      "score": 0.6363636364,
+      "text_excerpt": "[INCOMING_NURSE]: Good morning, Mr. Davies. I\u2019m Jack, and I\u2019ll be your nurse for today. We\u2019ll just do a quick bedside handover with my colleague, if that\u2019s okay. [OUTGOING_NURSE]: Hi, Mr. Davies. This is Emma the nurse taking over for th..."
+    },
+    {
+      "error_count": 7,
+      "extra_labels": "assess_nutrition|id_check|introduction_clinicians|invitation|sit_events",
+      "fn_count": 2,
+      "fp_count": 5,
+      "gold_count": 7,
+      "gold_labels": "assess_obs|assess_pathology|bg_history|introduction_patients|rec_patient_goals|rec_plan|sit_diagnosis",
+      "idx": 15,
+      "missing_labels": "introduction_patients|rec_patient_goals",
+      "pred_count": 10,
+      "pred_labels": "assess_nutrition|assess_obs|assess_pathology|bg_history|id_check|introduction_clinicians|invitation|rec_plan|sit_diagnosis|sit_events",
+      "score": 0.5882352941,
+      "text_excerpt": "[INCOMING_NURSE]: Good morning, Ms. Bennett. I\u2019m Jack, and I\u2019ll be your nurse for today. We\u2019ll do a quick bedside handover with my colleague, if that\u2019s okay. [OUTGOING_NURSE]: Hi, Ms. Bennett. This is the nurse taking over for the day. C..."
+    },
+    {
+      "error_count": 7,
+      "extra_labels": "assess_medications|assess_pain|bg_history|id_check|introduction_clinicians|rec_actions|sit_status",
+      "fn_count": 0,
+      "fp_count": 7,
+      "gold_count": 5,
+      "gold_labels": "assess_infusions|assess_obs|invitation|rec_plan|sit_diagnosis",
+      "idx": 22,
+      "missing_labels": "",
+      "pred_count": 12,
+      "pred_labels": "assess_infusions|assess_medications|assess_obs|assess_pain|bg_history|id_check|introduction_clinicians|invitation|rec_actions|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.5882352941,
+      "text_excerpt": "[INCOMING_NURSE]: Good morning, Jeffrey. I\u2019m the incoming nurse, and I\u2019ll be looking after you today. I\u2019m just going to get handover from my colleague, is that okay? [OUTGOING_NURSE]: Morning, Jeffrey. This is the day nurse taking over. ..."
+    },
+    {
+      "error_count": 7,
+      "extra_labels": "assess_monitoring|id_check|introduction_clinicians|rec_actions|sit_status",
+      "fn_count": 2,
+      "fp_count": 5,
+      "gold_count": 7,
+      "gold_labels": "assess_obs|bg_history|introduction_patients|invitation|rec_plan|sit_diagnosis|sit_events",
+      "idx": 40,
+      "missing_labels": "introduction_patients|sit_events",
+      "pred_count": 10,
+      "pred_labels": "assess_monitoring|assess_obs|bg_history|id_check|introduction_clinicians|invitation|rec_actions|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.5882352941,
+      "text_excerpt": "[INCOMING_NURSE]: Good Morning, Frank. I\u2019m the day nurse coming on now my name is Henry. I\u2019ll get a quick handover from Arthur at the bedside if that\u2019s okay. [OUTGOING_NURSE]: Hi. This is bed 5, Frank Morgan Montgomery. Frank, this is th..."
+    },
+    {
+      "error_count": 7,
+      "extra_labels": "id_check|introduction_clinicians|rec_actions|sit_events|sit_status",
+      "fn_count": 2,
+      "fp_count": 5,
+      "gold_count": 12,
+      "gold_labels": "assess_devices|assess_infusions|assess_medications|assess_mobility|assess_obs|assess_pathology|bg_history|introduction_patients|invitation|rec_patient_goals|rec_plan|sit_diagnosis",
+      "idx": 18,
+      "missing_labels": "introduction_patients|rec_patient_goals",
+      "pred_count": 15,
+      "pred_labels": "assess_devices|assess_infusions|assess_medications|assess_mobility|assess_obs|assess_pathology|bg_history|id_check|introduction_clinicians|invitation|rec_actions|rec_plan|sit_diagnosis|sit_events|sit_status",
+      "score": 0.7407407407,
+      "text_excerpt": "[OUTGOING_NURSE]: Hi, Wendell. This is Sam, the incoming nurse for day shift. We\u2019ll do a quick bedside handover if that\u2019s okay. [INCOMING_NURSE]: Hi, Wendell. I\u2019ll just check your ID band while Jack talks us through things. [OUTGOING_NUR..."
+    },
+    {
+      "error_count": 6,
+      "extra_labels": "assess_monitoring|id_check|introduction_clinicians|rec_actions|sit_status",
+      "fn_count": 1,
+      "fp_count": 5,
+      "gold_count": 6,
+      "gold_labels": "assess_obs|bg_allergies|introduction_patients|invitation|rec_plan|sit_diagnosis",
+      "idx": 41,
+      "missing_labels": "introduction_patients",
+      "pred_count": 10,
+      "pred_labels": "assess_monitoring|assess_obs|bg_allergies|id_check|introduction_clinicians|invitation|rec_actions|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.625,
+      "text_excerpt": "[OUTGOING_NURSE]: Good Morning. This is Bed 3, Alistair Edwards, who is 43 years old, under Dr Jamie. [INCOMING_NURSE]: Hi Alistair, I\u2019m the incoming nurse for the day, my name is Dan. We\u2019ll do a quick bedside handover with you, if that\u2019..."
+    },
+    {
+      "error_count": 6,
+      "extra_labels": "assess_fluid_balance|assess_infusions|assess_medications|assess_obs|rec_actions",
+      "fn_count": 1,
+      "fp_count": 5,
+      "gold_count": 7,
+      "gold_labels": "assess_devices|assess_nutrition|assess_pathology|rec_plan|sit_diagnosis|sit_events|sit_status",
+      "idx": 4,
+      "missing_labels": "sit_events",
+      "pred_count": 11,
+      "pred_labels": "assess_devices|assess_fluid_balance|assess_infusions|assess_medications|assess_nutrition|assess_obs|assess_pathology|rec_actions|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.6666666667,
+      "text_excerpt": "[DIETITIAN]: Hi, I\u2019m handing over Mr. Robert King, 58 years old, currently Day 3 post-abdominal surgery. He\u2019s receiving Total Parenteral Nutrition (TPN) via a central line due to nil oral intake and delayed return of gut function. [NURSE..."
+    },
+    {
+      "error_count": 6,
+      "extra_labels": "assess_nutrition|bg_allergies|rec_actions|sit_diagnosis|sit_status",
+      "fn_count": 1,
+      "fp_count": 5,
+      "gold_count": 8,
+      "gold_labels": "assess_devices|assess_fluid_balance|assess_infusions|assess_obs|assess_pathology|bg_history|rec_plan|sit_events",
+      "idx": 6,
+      "missing_labels": "assess_infusions",
+      "pred_count": 12,
+      "pred_labels": "assess_devices|assess_fluid_balance|assess_nutrition|assess_obs|assess_pathology|bg_allergies|bg_history|rec_actions|rec_plan|sit_diagnosis|sit_events|sit_status",
+      "score": 0.7,
+      "text_excerpt": "[NURSE]: Hi Dr. Nguyen, I need you to review Ms. Lara Bennett in bed 5. She\u2019s a 56-year-old patient with a known history of epilepsy. She had a tonic-clonic seizure about 20 minutes ago on the ward. It lasted approximately 90 seconds and..."
+    },
+    {
+      "error_count": 6,
+      "extra_labels": "assess_monitoring|id_check|introduction_clinicians|rec_actions",
+      "fn_count": 2,
+      "fp_count": 4,
+      "gold_count": 10,
+      "gold_labels": "assess_devices|assess_medications|assess_obs|assess_pain|bg_allergies|introduction_patients|invitation|rec_patient_goals|rec_plan|sit_diagnosis",
+      "idx": 23,
+      "missing_labels": "introduction_patients|rec_patient_goals",
+      "pred_count": 12,
+      "pred_labels": "assess_devices|assess_medications|assess_monitoring|assess_obs|assess_pain|bg_allergies|id_check|introduction_clinicians|invitation|rec_actions|rec_plan|sit_diagnosis",
+      "score": 0.7272727273,
+      "text_excerpt": "[INCOMING_NURSE]: Good Morning, Matthew. I\u2019m taking over your care now. Is it okay if we do your bedside handover with Jack? [OUTGOING_NURSE]: Hi Matthew, I\u2019m just handing over to Evie for day shift. [OUTGOING_NURSE]: Could you please co..."
+    },
+    {
+      "error_count": 6,
+      "extra_labels": "assess_pathology|introduction_clinicians|invitation|rec_actions|sit_status",
+      "fn_count": 1,
+      "fp_count": 5,
+      "gold_count": 10,
+      "gold_labels": "assess_medications|assess_mobility|assess_nutrition|assess_obs|assess_pain|bg_fall_risk|bg_history|introduction_patients|rec_plan|sit_diagnosis",
+      "idx": 29,
+      "missing_labels": "introduction_patients",
+      "pred_count": 14,
+      "pred_labels": "assess_medications|assess_mobility|assess_nutrition|assess_obs|assess_pain|assess_pathology|bg_fall_risk|bg_history|introduction_clinicians|invitation|rec_actions|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.75,
+      "text_excerpt": "[INCOMING_NURSE]: Good Morning, Natalie. I\u2019m Sam, I\u2019ll be looking after you today. I\u2019m just going to get bedside handover from Alex, is that okay? [PATIENT]: That\u2019s fine. [OUTGOING_NURSE]: Thanks, Natalie. So, this is room 4, bed 5. Pati..."
+    },
+    {
+      "error_count": 6,
+      "extra_labels": "assess_devices|assess_fluid_balance|id_check|introduction_clinicians|rec_actions",
+      "fn_count": 1,
+      "fp_count": 5,
+      "gold_count": 11,
+      "gold_labels": "assess_medications|assess_obs|assess_pathology|bg_allergies|bg_history|introduction_patients|invitation|rec_patient_goals|rec_plan|sit_diagnosis|sit_status",
+      "idx": 28,
+      "missing_labels": "introduction_patients",
+      "pred_count": 15,
+      "pred_labels": "assess_devices|assess_fluid_balance|assess_medications|assess_obs|assess_pathology|bg_allergies|bg_history|id_check|introduction_clinicians|invitation|rec_actions|rec_patient_goals|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.7692307692,
+      "text_excerpt": "[INCOMING_NURSE]: Good Morning, Alex. I\u2019m Priya, I\u2019ll be looking after you today. I\u2019m just going to get bedside handover from Sam, the night nurse. Is that okay? [PATIENT]: Sure, that\u2019s fine. [OUTGOING_NURSE]: Thanks, Priya. This is Alex..."
+    },
+    {
+      "error_count": 5,
+      "extra_labels": "assess_pain|id_check|invitation|sit_events",
+      "fn_count": 1,
+      "fp_count": 4,
+      "gold_count": 5,
+      "gold_labels": "assess_nutrition|assess_pathology|rec_plan|sit_diagnosis|sit_status",
+      "idx": 21,
+      "missing_labels": "assess_pathology",
+      "pred_count": 8,
+      "pred_labels": "assess_nutrition|assess_pain|id_check|invitation|rec_plan|sit_diagnosis|sit_events|sit_status",
+      "score": 0.6153846154,
+      "text_excerpt": "[OUTGOING_NURSE]: Good Morning. This is Bed 5, Sandra Murdock. [INCOMING_NURSE]: Hi Sandra, I\u2019m the incoming nurse. We\u2019ll just do a quick bedside handover with you. [OUTGOING_NURSE]: Sandra, could you confirm your full name for us? [PATI..."
+    },
+    {
+      "error_count": 5,
+      "extra_labels": "id_check|introduction_clinicians|rec_actions|sit_status",
+      "fn_count": 1,
+      "fp_count": 4,
+      "gold_count": 6,
+      "gold_labels": "assess_devices|assess_obs|introduction_patients|invitation|rec_plan|sit_diagnosis",
+      "idx": 43,
+      "missing_labels": "introduction_patients",
+      "pred_count": 9,
+      "pred_labels": "assess_devices|assess_obs|id_check|introduction_clinicians|invitation|rec_actions|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.6666666667,
+      "text_excerpt": "[INCOMING_NURSE]: Good Morning, Candice. I\u2019m Sam, I\u2019ll be looking after you today. I\u2019m just getting handover from Alex, the night nurse. Is that okay? [PATIENT]: Sure. [OUTGOING_NURSE]: In bed 5 we have Candice Kosgay, 28 years old, unde..."
+    },
+    {
+      "error_count": 5,
+      "extra_labels": "assess_mobility|assess_nutrition|bg_history",
+      "fn_count": 2,
+      "fp_count": 3,
+      "gold_count": 8,
+      "gold_labels": "assess_devices|assess_pain|assess_skin_integrity|bg_pi_risk|rec_plan|sit_diagnosis|sit_events|sit_status",
+      "idx": 7,
+      "missing_labels": "sit_events|sit_status",
+      "pred_count": 9,
+      "pred_labels": "assess_devices|assess_mobility|assess_nutrition|assess_pain|assess_skin_integrity|bg_history|bg_pi_risk|rec_plan|sit_diagnosis",
+      "score": 0.7058823529,
+      "text_excerpt": "[Outgoing Nurse]: Hi, I\u2019m handing over Mrs. Elaine Morris in bed 6. She\u2019s an 84-year-old patient with reduced mobility following a recent pneumonia admission. She has a stage 2 pressure injury on her right hip. [Incoming Nurse]: Thanks. ..."
+    },
+    {
+      "error_count": 5,
+      "extra_labels": "assess_monitoring|assess_skin_integrity|rec_actions|sit_events",
+      "fn_count": 1,
+      "fp_count": 4,
+      "gold_count": 8,
+      "gold_labels": "assess_devices|assess_infusions|assess_medications|assess_mobility|assess_obs|assess_pain|sit_diagnosis|sit_status",
+      "idx": 1,
+      "missing_labels": "assess_medications",
+      "pred_count": 11,
+      "pred_labels": "assess_devices|assess_infusions|assess_mobility|assess_monitoring|assess_obs|assess_pain|assess_skin_integrity|rec_actions|sit_diagnosis|sit_events|sit_status",
+      "score": 0.7368421053,
+      "text_excerpt": "[RECOVERY_NURSE]: Hi, I\u2019m handing over Mr. Daniel Hayes, 67 years old, just returned from the cath lab following a coronary angiogram. He\u2019s being transferred back to CCU for ongoing monitoring. [CCU_NURSE]: Thanks. How did the procedure ..."
+    },
+    {
+      "error_count": 5,
+      "extra_labels": "assess_devices|assess_obs|introduction_clinicians|rec_discharge_plan|sit_events",
+      "fn_count": 0,
+      "fp_count": 5,
+      "gold_count": 8,
+      "gold_labels": "assess_mobility|assess_pain|bg_history|introduction_patients|invitation|rec_plan|sit_diagnosis|sit_status",
+      "idx": 36,
+      "missing_labels": "",
+      "pred_count": 13,
+      "pred_labels": "assess_devices|assess_mobility|assess_obs|assess_pain|bg_history|introduction_clinicians|introduction_patients|invitation|rec_discharge_plan|rec_plan|sit_diagnosis|sit_events|sit_status",
+      "score": 0.7619047619,
+      "text_excerpt": "[NURSE AMY]: Good morning, Ms. Carter. I\u2019m Amy, and I\u2019ll be your nurse for today. We\u2019ll do a quick bedside handover with my colleague, if that\u2019s okay. [OUTGOING_NURSE]: Hi, Ms. Carter. This is the nurse taking over for the day. Could you..."
+    },
+    {
+      "error_count": 5,
+      "extra_labels": "introduction_clinicians|rec_actions",
+      "fn_count": 3,
+      "fp_count": 2,
+      "gold_count": 11,
+      "gold_labels": "assess_mobility|assess_nutrition|assess_obs|assess_pathology|bg_history|introduction_patients|invitation|rec_patient_goals|rec_plan|sit_diagnosis|sit_status",
+      "idx": 39,
+      "missing_labels": "assess_pathology|introduction_patients|rec_patient_goals",
+      "pred_count": 10,
+      "pred_labels": "assess_mobility|assess_nutrition|assess_obs|bg_history|introduction_clinicians|invitation|rec_actions|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.7619047619,
+      "text_excerpt": "[OUTGOING_NURSE]: Good Morning, Eric. This is Sam, the day nurse taking over from me. [INCOMING_NURSE]: Hi, Eric. We\u2019ll do your handover together at the bedside. [OUTGOING_NURSE]: Bed eight is Eric Wong, he is 69 years old, under Dr John..."
+    },
+    {
+      "error_count": 5,
+      "extra_labels": "assess_pathology|introduction_clinicians|rec_plan|sit_diagnosis|sit_status",
+      "fn_count": 0,
+      "fp_count": 5,
+      "gold_count": 9,
+      "gold_labels": "assess_fluid_balance|assess_infusions|assess_medications|assess_nutrition|assess_obs|bg_allergies|introduction_patients|rec_actions|sit_events",
+      "idx": 37,
+      "missing_labels": "",
+      "pred_count": 14,
+      "pred_labels": "assess_fluid_balance|assess_infusions|assess_medications|assess_nutrition|assess_obs|assess_pathology|bg_allergies|introduction_clinicians|introduction_patients|rec_actions|rec_plan|sit_diagnosis|sit_events|sit_status",
+      "score": 0.7826086957,
+      "text_excerpt": "[NIGHT_NURSE]: Morning. Handing over Mrs. Evelyn Taylor, 81 years old, in bed 7. Evelyn, this is Nurse Mia, who\u2019ll be looking after you today. [MORNING_NURSE]: Hi Evelyn, I\u2019ll be your nurse this morning. How are you feeling? [PATIENT]: I..."
+    },
+    {
+      "error_count": 5,
+      "extra_labels": "id_check|introduction_clinicians|rec_actions",
+      "fn_count": 2,
+      "fp_count": 3,
+      "gold_count": 13,
+      "gold_labels": "assess_mobility|assess_nutrition|assess_obs|assess_pain|assess_pathology|bg_fall_risk|bg_history|introduction_patients|invitation|rec_patient_goals|rec_plan|sit_diagnosis|sit_status",
+      "idx": 27,
+      "missing_labels": "introduction_patients|rec_patient_goals",
+      "pred_count": 14,
+      "pred_labels": "assess_mobility|assess_nutrition|assess_obs|assess_pain|assess_pathology|bg_fall_risk|bg_history|id_check|introduction_clinicians|invitation|rec_actions|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.8148148148,
+      "text_excerpt": "[INCOMING_NURSE]: Good Morning, Nicholas. I\u2019m Mia, I\u2019ll be looking after you today. I\u2019m just getting handover from Sam, the night nurse. Is that okay? [PATIENT]: Sure, that\u2019s fine. [OUTGOING_NURSE]: Thanks, Nicholas. So, this is Room 3, ..."
+    },
+    {
+      "error_count": 4,
+      "extra_labels": "id_check|introduction_clinicians|sit_status",
+      "fn_count": 1,
+      "fp_count": 3,
+      "gold_count": 5,
+      "gold_labels": "assess_obs|assess_pain|introduction_patients|rec_plan|sit_diagnosis",
+      "idx": 46,
+      "missing_labels": "introduction_patients",
+      "pred_count": 7,
+      "pred_labels": "assess_obs|assess_pain|id_check|introduction_clinicians|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.6666666667,
+      "text_excerpt": "[INCOMING_NURSE]: Good Morning, Alex. I\u2019m Sam, I\u2019ll be looking after you today. I\u2019m just going to get handover from Priya if that\u2019s okay. [OUTGOING_NURSE]: Hi Sam. This is Alex Nasser, who is 53 years old, in Room 1 Bed 4, under Dr. Morr..."
+    },
+    {
+      "error_count": 4,
+      "extra_labels": "assess_devices|rec_actions|rec_plan|sit_events",
+      "fn_count": 0,
+      "fp_count": 4,
+      "gold_count": 6,
+      "gold_labels": "assess_medications|assess_obs|bg_history|rec_discharge_plan|sit_diagnosis|sit_status",
+      "idx": 12,
+      "missing_labels": "",
+      "pred_count": 10,
+      "pred_labels": "assess_devices|assess_medications|assess_obs|bg_history|rec_actions|rec_discharge_plan|rec_plan|sit_diagnosis|sit_events|sit_status",
+      "score": 0.75,
+      "text_excerpt": "[NURSE]: Hi Dr. Singh, I need to speak with you about Mr. Jason Cole in bed 7. He\u2019s a 49-year-old patient admitted yesterday with a non-ST elevation myocardial infarction (NSTEMI). He\u2019s now requesting to self-discharge against medical ad..."
+    },
+    {
+      "error_count": 4,
+      "extra_labels": "id_check|invitation|rec_actions|sit_events",
+      "fn_count": 0,
+      "fp_count": 4,
+      "gold_count": 6,
+      "gold_labels": "assess_medications|assess_mobility|assess_obs|assess_pain|rec_plan|sit_diagnosis",
+      "idx": 44,
+      "missing_labels": "",
+      "pred_count": 10,
+      "pred_labels": "assess_medications|assess_mobility|assess_obs|assess_pain|id_check|invitation|rec_actions|rec_plan|sit_diagnosis|sit_events",
+      "score": 0.75,
+      "text_excerpt": "[OUTGOING_NURSE]: Bedside handover for Room 2, Bed 2. This is Shane Barnes, 48, under Dr. Wu. [INCOMING_NURSE]: Hi Shane, I\u2019m taking over your care now. Is it okay if we do your handover here? [PATIENT]: Sure, that\u2019s fine. [INCOMING_NURS..."
+    },
+    {
+      "error_count": 4,
+      "extra_labels": "assess_pain|id_check|invitation|sit_status",
+      "fn_count": 0,
+      "fp_count": 4,
+      "gold_count": 6,
+      "gold_labels": "assess_infusions|assess_medications|assess_obs|bg_fall_risk|rec_plan|sit_diagnosis",
+      "idx": 47,
+      "missing_labels": "",
+      "pred_count": 10,
+      "pred_labels": "assess_infusions|assess_medications|assess_obs|assess_pain|bg_fall_risk|id_check|invitation|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.75,
+      "text_excerpt": "[INCOMING_NURSE]: Good Morning, Hildy. I'm just here with my colleague to do bedside handover, is that okay? [OUTGOING_NURSE]: Hi there. This is Hildy Hutter in room 4, bed 6, under Dr. Forbes. [INCOMING_NURSE]: Hildy, could you tell us ..."
+    },
+    {
+      "error_count": 4,
+      "extra_labels": "assess_obs|assess_skin_integrity",
+      "fn_count": 2,
+      "fp_count": 2,
+      "gold_count": 9,
+      "gold_labels": "assess_devices|assess_fluid_balance|assess_infusions|assess_mobility|assess_nutrition|rec_plan|sit_diagnosis|sit_events|sit_status",
+      "idx": 8,
+      "missing_labels": "assess_infusions|sit_events",
+      "pred_count": 9,
+      "pred_labels": "assess_devices|assess_fluid_balance|assess_mobility|assess_nutrition|assess_obs|assess_skin_integrity|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.7777777778,
+      "text_excerpt": "[NURSE]: Hi, I\u2019m handing over Mr. David Lang in bed 11. He\u2019s a 71-year-old patient admitted yesterday following a left-sided ischemic stroke. He\u2019s currently stable but has significant right-sided weakness and difficulty with coordination..."
+    },
+    {
+      "error_count": 4,
+      "extra_labels": "assess_pain|assess_skin_integrity|bg_history|sit_events",
+      "fn_count": 0,
+      "fp_count": 4,
+      "gold_count": 7,
+      "gold_labels": "assess_fluid_balance|assess_medications|assess_obs|bg_allergies|rec_plan|sit_diagnosis|sit_status",
+      "idx": 13,
+      "missing_labels": "",
+      "pred_count": 11,
+      "pred_labels": "assess_fluid_balance|assess_medications|assess_obs|assess_pain|assess_skin_integrity|bg_allergies|bg_history|rec_plan|sit_diagnosis|sit_events|sit_status",
+      "score": 0.7777777778,
+      "text_excerpt": "[Outgoing Nurse]: Hi, I\u2019m handing over Mr. Kyle Jensen in bed 3. He\u2019s a 29-year-old male admitted through ED last night following a stab wound to the left lower abdomen. He\u2019s currently stable but requires ongoing wound care and IV medica..."
+    },
+    {
+      "error_count": 4,
+      "extra_labels": "assess_nutrition|id_check|rec_actions",
+      "fn_count": 1,
+      "fp_count": 3,
+      "gold_count": 9,
+      "gold_labels": "assess_devices|assess_infusions|assess_obs|introduction_patients|invitation|rec_patient_goals|rec_plan|sit_diagnosis|sit_status",
+      "idx": 19,
+      "missing_labels": "rec_patient_goals",
+      "pred_count": 11,
+      "pred_labels": "assess_devices|assess_infusions|assess_nutrition|assess_obs|id_check|introduction_patients|invitation|rec_actions|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.8,
+      "text_excerpt": "[INCOMING_NURSE]: Good Morning, Scott. I\u2019m Alex, I\u2019ll be looking after you today. I\u2019m just getting bedside handover from Mia, is that okay? [PATIENT]: Sure. [INCOMING_NURSE]: I\u2019ll just check your ID band. Iv Cannula and heparin infusion,..."
+    },
+    {
+      "error_count": 4,
+      "extra_labels": "assess_mobility|assess_pain|bg_fall_risk|sit_events",
+      "fn_count": 0,
+      "fp_count": 4,
+      "gold_count": 9,
+      "gold_labels": "assess_devices|assess_fluid_balance|assess_medications|assess_obs|assess_skin_integrity|bg_allergies|rec_plan|sit_diagnosis|sit_status",
+      "idx": 11,
+      "missing_labels": "",
+      "pred_count": 13,
+      "pred_labels": "assess_devices|assess_fluid_balance|assess_medications|assess_mobility|assess_obs|assess_pain|assess_skin_integrity|bg_allergies|bg_fall_risk|rec_plan|sit_diagnosis|sit_events|sit_status",
+      "score": 0.8181818182,
+      "text_excerpt": "[Outgoing Nurse]: Hi, I\u2019m handing over Mrs. Dorothy Lane in bed 5. She\u2019s an 83-year-old patient admitted with a left neck of femur fracture following a fall at home. She\u2019s post-op day 1 following internal fixation. She\u2019s currently confus..."
+    },
+    {
+      "error_count": 4,
+      "extra_labels": "assess_pain|invitation|rec_actions|sit_status",
+      "fn_count": 0,
+      "fp_count": 4,
+      "gold_count": 9,
+      "gold_labels": "assess_devices|assess_medications|assess_mobility|assess_nutrition|assess_obs|bg_allergies|bg_history|rec_plan|sit_diagnosis",
+      "idx": 42,
+      "missing_labels": "",
+      "pred_count": 13,
+      "pred_labels": "assess_devices|assess_medications|assess_mobility|assess_nutrition|assess_obs|assess_pain|bg_allergies|bg_history|invitation|rec_actions|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.8181818182,
+      "text_excerpt": "[INCOMING_NURSE]: Good Morning, Mr Hunt. I\u2019m taking over your care now. We\u2019ll just do a quick bedside handover with my colleague, okay? [OUTGOING_NURSE]: Thanks. This is Abraham Hunt, 83 years old, under Dr Jamie. [INCOMING_NURSE]: Mr Hu..."
+    },
+    {
+      "error_count": 4,
+      "extra_labels": "introduction_clinicians|rec_actions|rec_patient_goals",
+      "fn_count": 1,
+      "fp_count": 3,
+      "gold_count": 10,
+      "gold_labels": "assess_mobility|assess_nutrition|assess_obs|assess_pain|assess_pathology|introduction_patients|invitation|rec_plan|sit_diagnosis|sit_status",
+      "idx": 45,
+      "missing_labels": "introduction_patients",
+      "pred_count": 12,
+      "pred_labels": "assess_mobility|assess_nutrition|assess_obs|assess_pain|assess_pathology|introduction_clinicians|invitation|rec_actions|rec_patient_goals|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.8181818182,
+      "text_excerpt": "[INCOMING_NURSE]: Good Morning. Bed 2, Dylan Young? [OUTGOING_NURSE]: Yes. Hi Dylan, this is the day nurse taking over his name is Tom. We\u2019ll do your bedside handover now. [INCOMING_NURSE]: Hi Dylan. I\u2019ll speak clearly and take it slow. ..."
+    },
+    {
+      "error_count": 4,
+      "extra_labels": "introduction_clinicians|rec_actions",
+      "fn_count": 2,
+      "fp_count": 2,
+      "gold_count": 12,
+      "gold_labels": "assess_devices|assess_medications|assess_mobility|assess_nutrition|assess_obs|bg_allergies|bg_history|introduction_patients|rec_discharge_plan|rec_plan|sit_diagnosis|sit_status",
+      "idx": 38,
+      "missing_labels": "introduction_patients|rec_plan",
+      "pred_count": 12,
+      "pred_labels": "assess_devices|assess_medications|assess_mobility|assess_nutrition|assess_obs|bg_allergies|bg_history|introduction_clinicians|rec_actions|rec_discharge_plan|sit_diagnosis|sit_status",
+      "score": 0.8333333333,
+      "text_excerpt": "[WARD NURSE]: Hi, I\u2019m handing over Mrs. Evelyn Grant, 87 years old, being transferred to the transit lounge to await transport back to her nursing home. Evelyn, this is Nurse Tom, who\u2019ll be looking after you until your transport arrives...."
+    },
+    {
+      "error_count": 3,
+      "extra_labels": "assess_medications|rec_actions|rec_patient_goals",
+      "fn_count": 0,
+      "fp_count": 3,
+      "gold_count": 6,
+      "gold_labels": "assess_pathology|bg_allergies|rec_discharge_plan|rec_plan|sit_diagnosis|sit_status",
+      "idx": 0,
+      "missing_labels": "",
+      "pred_count": 9,
+      "pred_labels": "assess_medications|assess_pathology|bg_allergies|rec_actions|rec_discharge_plan|rec_patient_goals|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.8,
+      "text_excerpt": "[PHARMACIST]: Hi Dr. Lee, I wanted to speak with you about Mr. James Carter, who\u2019s being discharged today. He\u2019s being started on warfarin for atrial fibrillation post-op, and I\u2019m organising his discharge medications and follow-up. [DOCTO..."
+    },
+    {
+      "error_count": 3,
+      "extra_labels": "introduction_clinicians|rec_actions",
+      "fn_count": 1,
+      "fp_count": 2,
+      "gold_count": 7,
+      "gold_labels": "assess_medications|assess_obs|bg_history|introduction_patients|invitation|rec_plan|sit_diagnosis",
+      "idx": 20,
+      "missing_labels": "introduction_patients",
+      "pred_count": 8,
+      "pred_labels": "assess_medications|assess_obs|bg_history|introduction_clinicians|invitation|rec_actions|rec_plan|sit_diagnosis",
+      "score": 0.8,
+      "text_excerpt": "[INCOMING_NURSE]: Good Morning, Christina. I\u2019m the day nurse, Sam. I\u2019ll just get handover from Taylor here at your bedside if that\u2019s okay. [PATIENT]: That\u2019s fine. [OUTGOING_NURSE]: Thanks, Christina. Bed 5, Christina Davis, who is 29 yea..."
+    },
+    {
+      "error_count": 3,
+      "extra_labels": "assess_mobility|assess_nutrition|rec_actions",
+      "fn_count": 0,
+      "fp_count": 3,
+      "gold_count": 6,
+      "gold_labels": "assess_devices|assess_pain|assess_skin_integrity|bg_pi_risk|rec_plan|sit_diagnosis",
+      "idx": 30,
+      "missing_labels": "",
+      "pred_count": 9,
+      "pred_labels": "assess_devices|assess_mobility|assess_nutrition|assess_pain|assess_skin_integrity|bg_pi_risk|rec_actions|rec_plan|sit_diagnosis",
+      "score": 0.8,
+      "text_excerpt": "[Outgoing Nurse]: Hi, I\u2019m handing over Mrs. Elaine Morris in bed 6. She\u2019s an 84-year-old patient with reduced mobility following pneumonia. She has a stage 2 pressure injury on her left hip. [Incoming Nurse]: Thanks. What\u2019s the current c..."
+    },
+    {
+      "error_count": 3,
+      "extra_labels": "sit_diagnosis",
+      "fn_count": 2,
+      "fp_count": 1,
+      "gold_count": 9,
+      "gold_labels": "assess_devices|assess_medications|assess_mobility|assess_obs|assess_pain|assess_skin_integrity|bg_allergies|rec_plan|sit_status",
+      "idx": 33,
+      "missing_labels": "assess_obs|rec_plan",
+      "pred_count": 8,
+      "pred_labels": "assess_devices|assess_medications|assess_mobility|assess_pain|assess_skin_integrity|bg_allergies|sit_diagnosis|sit_status",
+      "score": 0.8235294118,
+      "text_excerpt": "[NURSE 1]: Hi, I\u2019m handing over Mr. Alan Roberts, 76 years old. He\u2019s on the ward with a Stage 2 pressure injury on his right shoulder. Wound care is ongoing. [NURSE 2]: Okay, thanks. What\u2019s the current wound management plan? [NURSE 1]: T..."
+    },
+    {
+      "error_count": 3,
+      "extra_labels": "assess_mobility|sit_events",
+      "fn_count": 1,
+      "fp_count": 2,
+      "gold_count": 9,
+      "gold_labels": "assess_devices|assess_medications|assess_obs|bg_acp|bg_allergies|bg_history|rec_plan|sit_diagnosis|sit_status",
+      "idx": 35,
+      "missing_labels": "sit_status",
+      "pred_count": 10,
+      "pred_labels": "assess_devices|assess_medications|assess_mobility|assess_obs|bg_acp|bg_allergies|bg_history|rec_plan|sit_diagnosis|sit_events",
+      "score": 0.8421052632,
+      "text_excerpt": "[AMBULANCE OFFICER]: Hi there, I\u2019m bringing in Mrs. Margaret Ellis, 87 years old, from Rosewood Nursing Home. She had a fall earlier this morning\u2014staff found her on the floor next to her bed. She\u2019s hit her head, and there\u2019s a small occip..."
+    },
+    {
+      "error_count": 3,
+      "extra_labels": "rec_actions|rec_plan",
+      "fn_count": 1,
+      "fp_count": 2,
+      "gold_count": 10,
+      "gold_labels": "assess_devices|assess_fluid_balance|assess_infusions|assess_medications|assess_obs|assess_pathology|bg_allergies|sit_diagnosis|sit_events|sit_status",
+      "idx": 5,
+      "missing_labels": "sit_status",
+      "pred_count": 11,
+      "pred_labels": "assess_devices|assess_fluid_balance|assess_infusions|assess_medications|assess_obs|assess_pathology|bg_allergies|rec_actions|rec_plan|sit_diagnosis|sit_events",
+      "score": 0.8571428571,
+      "text_excerpt": "[NURSE]: Hi Dr. Patel, thanks for coming. I\u2019d like you to review Ms. Evelyn Grant in bed 9. She\u2019s a 68-year-old admitted with a urinary tract infection, now deteriorating\u2014likely urosepsis. [DOCTOR]: What\u2019s happening? [NURSE]: Over the pa..."
+    },
+    {
+      "error_count": 3,
+      "extra_labels": "assess_medications|assess_mobility|id_check",
+      "fn_count": 0,
+      "fp_count": 3,
+      "gold_count": 9,
+      "gold_labels": "assess_obs|assess_pain|assess_pathology|bg_allergies|invitation|rec_patient_goals|rec_plan|sit_diagnosis|sit_status",
+      "idx": 25,
+      "missing_labels": "",
+      "pred_count": 12,
+      "pred_labels": "assess_medications|assess_mobility|assess_obs|assess_pain|assess_pathology|bg_allergies|id_check|invitation|rec_patient_goals|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.8571428571,
+      "text_excerpt": "[OUTGOING_NURSE]: Good Morning. This is David Adams in bed 8, he is under Dr. Wu. [INCOMING_NURSE]: Hi David, I\u2019m taking over your care now. We\u2019ll just do a quick bedside handover. [OUTGOING_NURSE]: David, could you confirm your name for..."
+    },
+    {
+      "error_count": 3,
+      "extra_labels": "introduction_patients|rec_actions",
+      "fn_count": 1,
+      "fp_count": 2,
+      "gold_count": 11,
+      "gold_labels": "assess_devices|assess_fluid_balance|assess_infusions|assess_medications|assess_obs|assess_pain|bg_history|rec_plan|sit_diagnosis|sit_events|sit_status",
+      "idx": 2,
+      "missing_labels": "assess_pain",
+      "pred_count": 12,
+      "pred_labels": "assess_devices|assess_fluid_balance|assess_infusions|assess_medications|assess_obs|bg_history|introduction_patients|rec_actions|rec_plan|sit_diagnosis|sit_events|sit_status",
+      "score": 0.8695652174,
+      "text_excerpt": "[RECOVERY_NURSE]: Hi, I\u2019m handing over Mr. Thomas Nguyen, 74 years old, just returned from theatre after a urethral dilation and bladder washout. He\u2019s stable post-procedure and ready for transfer to the ward. [WARD_NURSE]: Thanks. Can yo..."
+    },
+    {
+      "error_count": 3,
+      "extra_labels": "assess_infusions|assess_skin_integrity|rec_actions",
+      "fn_count": 0,
+      "fp_count": 3,
+      "gold_count": 10,
+      "gold_labels": "assess_devices|assess_medications|assess_mobility|assess_nutrition|assess_obs|assess_pain|bg_allergies|rec_plan|sit_diagnosis|sit_status",
+      "idx": 34,
+      "missing_labels": "",
+      "pred_count": 13,
+      "pred_labels": "assess_devices|assess_infusions|assess_medications|assess_mobility|assess_nutrition|assess_obs|assess_pain|assess_skin_integrity|bg_allergies|rec_actions|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.8695652174,
+      "text_excerpt": "[ED NURSE]: Hi, I\u2019m handing over Maria Santos, 58 years old, coming up to the ward with cellulitis on her left lower leg. She\u2019s been started on IV antibiotics and is stable for transfer. [WARD NURSE]: Thanks. What\u2019s her current status? [..."
+    },
+    {
+      "error_count": 2,
+      "extra_labels": "assess_pain|rec_actions",
+      "fn_count": 0,
+      "fp_count": 2,
+      "gold_count": 9,
+      "gold_labels": "assess_devices|assess_fluid_balance|assess_infusions|assess_medications|assess_obs|rec_plan|sit_diagnosis|sit_events|sit_status",
+      "idx": 3,
+      "missing_labels": "",
+      "pred_count": 11,
+      "pred_labels": "assess_devices|assess_fluid_balance|assess_infusions|assess_medications|assess_obs|assess_pain|rec_actions|rec_plan|sit_diagnosis|sit_events|sit_status",
+      "score": 0.9,
+      "text_excerpt": "[RECOVERY_NURSE]: Hi, I\u2019m handing over Mr. Thomas Nguyen, 74 years old, transferring to your ward post-procedure. He had a urethral dilation and bladder washout under general anaesthetic due to acute urinary retention and suspected obstr..."
+    },
+    {
+      "error_count": 2,
+      "extra_labels": "assess_skin_integrity|rec_actions",
+      "fn_count": 0,
+      "fp_count": 2,
+      "gold_count": 9,
+      "gold_labels": "assess_devices|assess_infusions|assess_medications|assess_mobility|assess_obs|bg_allergies|rec_plan|sit_diagnosis|sit_status",
+      "idx": 31,
+      "missing_labels": "",
+      "pred_count": 11,
+      "pred_labels": "assess_devices|assess_infusions|assess_medications|assess_mobility|assess_obs|assess_skin_integrity|bg_allergies|rec_actions|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.9,
+      "text_excerpt": "[NURSE]: Hi Dr. Sharma, I\u2019d like you to review Mr. David Lang in bed 11. He\u2019s a 71-year-old patient admitted yesterday with a left-sided ischemic stroke. He\u2019s currently stable but showing significant right-sided weakness and difficulty w..."
+    },
+    {
+      "error_count": 2,
+      "extra_labels": "bg_history|rec_actions",
+      "fn_count": 0,
+      "fp_count": 2,
+      "gold_count": 10,
+      "gold_labels": "assess_fluid_balance|assess_medications|assess_mobility|assess_nutrition|assess_obs|assess_skin_integrity|bg_allergies|rec_plan|sit_diagnosis|sit_status",
+      "idx": 48,
+      "missing_labels": "",
+      "pred_count": 12,
+      "pred_labels": "assess_fluid_balance|assess_medications|assess_mobility|assess_nutrition|assess_obs|assess_skin_integrity|bg_allergies|bg_history|rec_actions|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.9090909091,
+      "text_excerpt": "[OUTGOING_NURSE]: Hi, handing over Mrs. Margaret Lewis, 85 years old, admitted with Alzheimer\u2019s dementia and depression. She\u2019s under Dr. Singh, Geriatrician. [INCOMING_NURSE]: Thanks. Can you tell me about her current plan? [OUTGOING_NUR..."
+    },
+    {
+      "error_count": 1,
+      "extra_labels": "rec_actions",
+      "fn_count": 0,
+      "fp_count": 1,
+      "gold_count": 1,
+      "gold_labels": "sit_events",
+      "idx": 14,
+      "missing_labels": "",
+      "pred_count": 2,
+      "pred_labels": "rec_actions|sit_events",
+      "score": 0.6666666667,
+      "text_excerpt": "NURSE: Dr. Lee, Mr. Matthews arrested about 40 minutes ago. We initiated CPR immediately and followed the ALS protocol. He was in asystole throughout. Despite full resuscitation efforts, we were unable to regain a pulse. Time of death wa..."
+    },
+    {
+      "error_count": 1,
+      "extra_labels": "assess_medications",
+      "fn_count": 0,
+      "fp_count": 1,
+      "gold_count": 8,
+      "gold_labels": "assess_obs|assess_pain|bg_allergies|bg_history|invitation|rec_plan|sit_diagnosis|sit_status",
+      "idx": 26,
+      "missing_labels": "",
+      "pred_count": 9,
+      "pred_labels": "assess_medications|assess_obs|assess_pain|bg_allergies|bg_history|invitation|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.9411764706,
+      "text_excerpt": "[INCOMING_NURSE]: Good Morning, Ian. I\u2019m taking over your care from Sam. We\u2019ll do a quick bedside handover if that\u2019s okay. [OUTGOING_NURSE]: Hi both. This is room 1,the patient is Ian Ramsey, 40, under Dr. Morris. [OUTGOING_NURSE]: Ian, ..."
+    },
+    {
+      "error_count": 1,
+      "extra_labels": "",
+      "fn_count": 1,
+      "fp_count": 0,
+      "gold_count": 10,
+      "gold_labels": "assess_devices|assess_infusions|assess_medications|assess_mobility|assess_obs|assess_skin_integrity|bg_pi_risk|rec_plan|sit_diagnosis|sit_status",
+      "idx": 32,
+      "missing_labels": "assess_infusions",
+      "pred_count": 9,
+      "pred_labels": "assess_devices|assess_medications|assess_mobility|assess_obs|assess_skin_integrity|bg_pi_risk|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.9473684211,
+      "text_excerpt": "[Outgoing Nurse]: Hi, I\u2019m handing over Mr. David Lang in bed 11. He\u2019s a 71-year-old patient admitted yesterday following a left-sided ischemic stroke. He\u2019s currently stable but has significant right-sided weakness and requires full assis..."
+    },
+    {
+      "error_count": 1,
+      "extra_labels": "rec_actions",
+      "fn_count": 0,
+      "fp_count": 1,
+      "gold_count": 10,
+      "gold_labels": "assess_devices|assess_infusions|assess_nutrition|assess_obs|assess_pain|assess_pathology|bg_allergies|rec_plan|sit_diagnosis|sit_status",
+      "idx": 10,
+      "missing_labels": "",
+      "pred_count": 11,
+      "pred_labels": "assess_devices|assess_infusions|assess_nutrition|assess_obs|assess_pain|assess_pathology|bg_allergies|rec_actions|rec_plan|sit_diagnosis|sit_status",
+      "score": 0.9523809524,
+      "text_excerpt": "[NURSE 1]: Hey, I\u2019m handing over Sarah Nguyen, 29 years old, came into ED earlier today with acute abdominal pain \u2014 mainly in the right lower quadrant. She\u2019s currently awaiting surgical review. [NURSE 2]: Okay, thanks. What\u2019s her current..."
+    },
+    {
+      "error_count": 0,
+      "extra_labels": "",
+      "fn_count": 0,
+      "fp_count": 0,
+      "gold_count": 6,
+      "gold_labels": "assess_medications|bg_history|rec_discharge_plan|rec_plan|sit_diagnosis|sit_status",
+      "idx": 9,
+      "missing_labels": "",
+      "pred_count": 6,
+      "pred_labels": "assess_medications|bg_history|rec_discharge_plan|rec_plan|sit_diagnosis|sit_status",
+      "score": 1.0,
+      "text_excerpt": "[NURSE]: Hi, I\u2019m handing over Mrs. Emily Carter, a 38-year-old patient who was admitted three days ago following a manic episode. She\u2019s now been newly diagnosed with bipolar disorder and is being discharged today. I\u2019d like to arrange hom..."
+    }
+  ],
+  "per_label": [
+    {
+      "f1": 0.967741935483871,
+      "fn": 0,
+      "fp": 3,
+      "label": "sit_diagnosis",
+      "precision": 0.9375,
+      "pred": 48,
+      "recall": 1.0,
+      "support": 45,
+      "tp": 45
+    },
+    {
+      "f1": 0.9438202247191012,
+      "fn": 2,
+      "fp": 3,
+      "label": "rec_plan",
+      "precision": 0.9333333333333333,
+      "pred": 45,
+      "recall": 0.9545454545454546,
+      "support": 44,
+      "tp": 42
+    },
+    {
+      "f1": 0.9382716049382716,
+      "fn": 2,
+      "fp": 3,
+      "label": "assess_obs",
+      "precision": 0.926829268292683,
+      "pred": 41,
+      "recall": 0.95,
+      "support": 40,
+      "tp": 38
+    },
+    {
+      "f1": 0.7887323943661972,
+      "fn": 3,
+      "fp": 12,
+      "label": "sit_status",
+      "precision": 0.7,
+      "pred": 40,
+      "recall": 0.9032258064516129,
+      "support": 31,
+      "tp": 28
+    },
+    {
+      "f1": 0.888888888888889,
+      "fn": 1,
+      "fp": 5,
+      "label": "assess_medications",
+      "precision": 0.8275862068965517,
+      "pred": 29,
+      "recall": 0.96,
+      "support": 25,
+      "tp": 24
+    },
+    {
+      "f1": 0.9387755102040816,
+      "fn": 0,
+      "fp": 3,
+      "label": "assess_devices",
+      "precision": 0.8846153846153846,
+      "pred": 26,
+      "recall": 1.0,
+      "support": 23,
+      "tp": 23
+    },
+    {
+      "f1": 0.24999999999999997,
+      "fn": 17,
+      "fp": 1,
+      "label": "introduction_patients",
+      "precision": 0.75,
+      "pred": 4,
+      "recall": 0.15,
+      "support": 20,
+      "tp": 3
+    },
+    {
+      "f1": 0.9473684210526316,
+      "fn": 0,
+      "fp": 2,
+      "label": "bg_allergies",
+      "precision": 0.9,
+      "pred": 20,
+      "recall": 1.0,
+      "support": 18,
+      "tp": 18
+    },
+    {
+      "f1": 0.8717948717948718,
+      "fn": 0,
+      "fp": 5,
+      "label": "assess_mobility",
+      "precision": 0.7727272727272727,
+      "pred": 22,
+      "recall": 1.0,
+      "support": 17,
+      "tp": 17
+    },
+    {
+      "f1": 0.7804878048780487,
+      "fn": 1,
+      "fp": 8,
+      "label": "assess_pain",
+      "precision": 0.6666666666666666,
+      "pred": 24,
+      "recall": 0.9411764705882353,
+      "support": 17,
+      "tp": 16
+    },
+    {
+      "f1": 0.8947368421052632,
+      "fn": 0,
+      "fp": 4,
+      "label": "bg_history",
+      "precision": 0.8095238095238095,
+      "pred": 21,
+      "recall": 1.0,
+      "support": 17,
+      "tp": 17
+    },
+    {
+      "f1": 0.8,
+      "fn": 0,
+      "fp": 8,
+      "label": "invitation",
+      "precision": 0.6666666666666666,
+      "pred": 24,
+      "recall": 1.0,
+      "support": 16,
+      "tp": 16
+    },
+    {
+      "f1": 0.8000000000000002,
+      "fn": 3,
+      "fp": 3,
+      "label": "assess_infusions",
+      "precision": 0.8,
+      "pred": 15,
+      "recall": 0.8,
+      "support": 15,
+      "tp": 12
+    },
+    {
+      "f1": 0.8000000000000002,
+      "fn": 3,
+      "fp": 3,
+      "label": "assess_pathology",
+      "precision": 0.8,
+      "pred": 15,
+      "recall": 0.8,
+      "support": 15,
+      "tp": 12
+    },
+    {
+      "f1": 0.8235294117647058,
+      "fn": 0,
+      "fp": 6,
+      "label": "assess_nutrition",
+      "precision": 0.7,
+      "pred": 20,
+      "recall": 1.0,
+      "support": 14,
+      "tp": 14
+    },
+    {
+      "f1": 0.42857142857142855,
+      "fn": 4,
+      "fp": 12,
+      "label": "sit_events",
+      "precision": 0.3333333333333333,
+      "pred": 18,
+      "recall": 0.6,
+      "support": 10,
+      "tp": 6
+    },
+    {
+      "f1": 0.8571428571428571,
+      "fn": 0,
+      "fp": 3,
+      "label": "assess_fluid_balance",
+      "precision": 0.75,
+      "pred": 12,
+      "recall": 1.0,
+      "support": 9,
+      "tp": 9
+    },
+    {
+      "f1": 0.30769230769230765,
+      "fn": 7,
+      "fp": 2,
+      "label": "rec_patient_goals",
+      "precision": 0.5,
+      "pred": 4,
+      "recall": 0.2222222222222222,
+      "support": 9,
+      "tp": 2
+    },
+    {
+      "f1": 0.6666666666666666,
+      "fn": 0,
+      "fp": 6,
+      "label": "assess_skin_integrity",
+      "precision": 0.5,
+      "pred": 12,
+      "recall": 1.0,
+      "support": 6,
+      "tp": 6
+    },
+    {
+      "f1": 0.888888888888889,
+      "fn": 0,
+      "fp": 1,
+      "label": "rec_discharge_plan",
+      "precision": 0.8,
+      "pred": 5,
+      "recall": 1.0,
+      "support": 4,
+      "tp": 4
+    },
+    {
+      "f1": 0.8571428571428571,
+      "fn": 0,
+      "fp": 1,
+      "label": "bg_fall_risk",
+      "precision": 0.75,
+      "pred": 4,
+      "recall": 1.0,
+      "support": 3,
+      "tp": 3
+    },
+    {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "label": "bg_pi_risk",
+      "precision": 1.0,
+      "pred": 3,
+      "recall": 1.0,
+      "support": 3,
+      "tp": 3
+    },
+    {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "label": "bg_acp",
+      "precision": 1.0,
+      "pred": 1,
+      "recall": 1.0,
+      "support": 1,
+      "tp": 1
+    },
+    {
+      "f1": 0.10526315789473684,
+      "fn": 0,
+      "fp": 17,
+      "label": "id_check",
+      "precision": 0.05555555555555555,
+      "pred": 18,
+      "recall": 1.0,
+      "support": 1,
+      "tp": 1
+    },
+    {
+      "f1": 0.05882352941176471,
+      "fn": 0,
+      "fp": 32,
+      "label": "rec_actions",
+      "precision": 0.030303030303030304,
+      "pred": 33,
+      "recall": 1.0,
+      "support": 1,
+      "tp": 1
+    },
+    {
+      "f1": 0.0,
+      "fn": 0,
+      "fp": 5,
+      "label": "assess_monitoring",
+      "precision": 0.0,
+      "pred": 5,
+      "recall": 0.0,
+      "support": 0,
+      "tp": 0
+    },
+    {
+      "f1": 0.0,
+      "fn": 0,
+      "fp": 20,
+      "label": "introduction_clinicians",
+      "precision": 0.0,
+      "pred": 20,
+      "recall": 0.0,
+      "support": 0,
+      "tp": 0
+    }
+  ],
+  "summary": {
+    "all_gold_covered_count": 20,
+    "avg_score": 0.768585986534694,
+    "cardinality": {
+      "gold_avg": 8.244897959183673,
+      "gold_max": 13,
+      "gold_min": 1,
+      "pred_avg": 10.795918367346939,
+      "pred_max": 16,
+      "pred_min": 2
+    },
+    "error_count_distribution": {
+      "0": 1,
+      "1": 4,
+      "10": 1,
+      "2": 3,
+      "3": 9,
+      "4": 11,
+      "5": 8,
+      "6": 6,
+      "7": 4,
+      "8": 2
+    },
+    "exact_match_count": 1,
+    "extra_any_count": 47,
+    "macro": {
+      "f1": 0.6890496149484236,
+      "precision": 0.6590607602931219,
+      "recall": 0.825228516807686,
+      "weighted_f1": 0.8257766859173702
+    },
+    "micro": {
+      "f1": 0.7738478027867096,
+      "fn": 43,
+      "fp": 168,
+      "precision": 0.6824196597353497,
+      "recall": 0.8935643564356436,
+      "tp": 361
+    },
+    "missing_any_count": 29,
+    "n_examples": 49,
+    "never_in_gold": [
+      "assess_monitoring",
+      "introduction_clinicians"
+    ],
+    "never_pred": [],
+    "no_fp_count": 2,
+    "score_band_distribution": {
+      "0.70-0.799": 15,
+      "0.80-0.899": 15,
+      "0.90-0.949": 5,
+      "<0.70": 12,
+      ">=0.95": 2
+    },
+    "top_fn_fp_pairs": [
+      {
+        "count": 17,
+        "fn_label": "introduction_patients",
+        "fp_label": "introduction_clinicians"
+      },
+      {
+        "count": 14,
+        "fn_label": "introduction_patients",
+        "fp_label": "rec_actions"
+      },
+      {
+        "count": 11,
+        "fn_label": "introduction_patients",
+        "fp_label": "id_check"
+      },
+      {
+        "count": 7,
+        "fn_label": "introduction_patients",
+        "fp_label": "sit_status"
+      },
+      {
+        "count": 6,
+        "fn_label": "rec_patient_goals",
+        "fp_label": "id_check"
+      },
+      {
+        "count": 6,
+        "fn_label": "rec_patient_goals",
+        "fp_label": "introduction_clinicians"
+      },
+      {
+        "count": 6,
+        "fn_label": "rec_patient_goals",
+        "fp_label": "rec_actions"
+      },
+      {
+        "count": 4,
+        "fn_label": "introduction_patients",
+        "fp_label": "invitation"
+      },
+      {
+        "count": 4,
+        "fn_label": "introduction_patients",
+        "fp_label": "sit_events"
+      },
+      {
+        "count": 4,
+        "fn_label": "introduction_patients",
+        "fp_label": "assess_monitoring"
+      },
+      {
+        "count": 2,
+        "fn_label": "sit_events",
+        "fp_label": "assess_obs"
+      },
+      {
+        "count": 2,
+        "fn_label": "sit_events",
+        "fp_label": "rec_actions"
+      },
+      {
+        "count": 2,
+        "fn_label": "sit_status",
+        "fp_label": "assess_mobility"
+      },
+      {
+        "count": 2,
+        "fn_label": "introduction_patients",
+        "fp_label": "assess_nutrition"
+      },
+      {
+        "count": 2,
+        "fn_label": "rec_patient_goals",
+        "fp_label": "assess_nutrition"
+      },
+      {
+        "count": 2,
+        "fn_label": "rec_patient_goals",
+        "fp_label": "invitation"
+      },
+      {
+        "count": 2,
+        "fn_label": "rec_patient_goals",
+        "fp_label": "sit_events"
+      },
+      {
+        "count": 2,
+        "fn_label": "introduction_patients",
+        "fp_label": "assess_fluid_balance"
+      },
+      {
+        "count": 2,
+        "fn_label": "introduction_patients",
+        "fp_label": "assess_pathology"
+      },
+      {
+        "count": 2,
+        "fn_label": "assess_pathology",
+        "fp_label": "id_check"
+      }
+    ],
+    "top_fn_labels": [
+      [
+        "introduction_patients",
+        17
+      ],
+      [
+        "rec_patient_goals",
+        7
+      ],
+      [
+        "sit_events",
+        4
+      ],
+      [
+        "sit_status",
+        3
+      ],
+      [
+        "assess_infusions",
+        3
+      ],
+      [
+        "assess_pathology",
+        3
+      ],
+      [
+        "assess_obs",
+        2
+      ],
+      [
+        "rec_plan",
+        2
+      ],
+      [
+        "assess_medications",
+        1
+      ],
+      [
+        "assess_pain",
+        1
+      ]
+    ],
+    "top_fp_labels": [
+      [
+        "rec_actions",
+        32
+      ],
+      [
+        "introduction_clinicians",
+        20
+      ],
+      [
+        "id_check",
+        17
+      ],
+      [
+        "sit_events",
+        12
+      ],
+      [
+        "sit_status",
+        12
+      ],
+      [
+        "assess_pain",
+        8
+      ],
+      [
+        "invitation",
+        8
+      ],
+      [
+        "assess_skin_integrity",
+        6
+      ],
+      [
+        "assess_nutrition",
+        6
+      ],
+      [
+        "assess_medications",
+        5
+      ],
+      [
+        "assess_monitoring",
+        5
+      ],
+      [
+        "assess_mobility",
+        5
+      ],
+      [
+        "bg_history",
+        4
+      ],
+      [
+        "assess_fluid_balance",
+        3
+      ],
+      [
+        "assess_infusions",
+        3
+      ],
+      [
+        "assess_obs",
+        3
+      ],
+      [
+        "rec_plan",
+        3
+      ],
+      [
+        "sit_diagnosis",
+        3
+      ],
+      [
+        "assess_devices",
+        3
+      ],
+      [
+        "assess_pathology",
+        3
+      ]
+    ]
+  }
+}

@@ -1,0 +1,177 @@
+---
+title: "Evaluation of DSPy-Optimized AI Assistance for Clinical Handover"
+author:
+  - "Study Team"
+date: today
+format:
+  html:
+    toc: true
+    number-sections: true
+  docx: default
+execute:
+  echo: false
+  warning: false
+  error: false
+---
+
+## Abstract {#sec-abstract}
+
+Accurate communication during clinical handover is critical for patient safety. We evaluated a DSPy-based pipeline for extracting structured handover information under two task settings: (1) SBAR span extraction and (2) checklist label prediction. Phase 1 methods used dual independent annotation by two clinically experienced annotators followed by consensus reconciliation. Prompt optimization was performed with DSPy, and evaluation was performed on held-out consensus test partitions. For SBAR span extraction, per-label analysis on 48 test examples showed higher macro-F1 for the optimized prompt pipeline than baseline (0.733 vs 0.494). The largest F1 gains were observed for BACKGROUND (+0.403) and SITUATION (+0.251), with improved precision across all SBAR labels. For checklist prediction (49 test examples), grouped per-label analysis showed strong pooled performance (micro-F1 0.854; support-weighted F1 0.849) with variation across label groups. These results support DSPy optimization as a practical method to improve clinically relevant information extraction while preserving transparent label-level evaluation.
+
+## Introduction {#sec-introduction}
+
+Clinical handover requires concise and accurate transfer of critical patient information. Errors or omissions in handover communication can lead to delays in treatment and patient harm. This manuscript reports model evaluation results from a study workflow focused on improving structured handover extraction using DSPy-guided prompt optimization and consensus-labeled data.
+
+## Methods {#sec-methods}
+
+### Study design
+
+This manuscript reports outcomes aligned to the Phase 1 objective in `proposal.md`: development of a generative AI pipeline to produce accurate handover recommendations and structured outputs.
+
+### Data and annotation workflow
+
+Phase 1 described three sources of handover data and planned annotation of 203 transcripts. Two clinically experienced annotators independently annotated transcripts using a structured rubric, then discrepancies were reconciled through consensus meetings with the broader investigator team and consumer partner. This consensus process produced the reference labels used for downstream model development and evaluation.
+
+### Model development and optimization
+
+Model orchestration used DSPy (`dspy`) for predictor construction, configuration, and optimization. The span and checklist tasks used task-specific signatures and DSPy optimization workflows. In this report, SBAR span extraction compares:
+
+1. Baseline prompt pipeline (initial DSPy signature without trained program loading).
+2. DSPy-optimized prompt/program configuration.
+
+### Evaluation setting
+
+Evaluation scripts used held-out test partitions (default behavior without `--use-all`) from deterministic 75/25 splits in `src/data/dataset.py` (local RNG seed 339). Reported artifacts:
+
+1. SBAR baseline: `evals/eval_sbar_span_consensus_test_baseline_gpt_5.2.jsonl` (48 test examples).
+2. SBAR optimized: `evals/eval_sbar_span_gpt5-2_consensus_test.jsonl` (48 test examples).
+3. Checklist grouped per-label analysis: rendered with `analysis/render_checklist_md_table.py` from `evals/eval_checklist_consensus_gpt_5_2_test_analysis/per_label.csv` and baseline `evals/eval_baseline_checklist_consensus_gpt_5_2_test_analysis/per_label.csv`, based on `evals/eval_checklist_consensus_gpt_5_2_test.jsonl` (49 test examples).
+
+Per-label SBAR metrics were generated with `analysis/per_label_analysis.py`, reporting support, matched spans, recall, precision, F1, and mean IoU.
+
+### Data analysis
+
+For both tasks, performance was summarized with standard classification metrics:
+
+1. Precision = true positives / (true positives + false positives).
+2. Recall = true positives / (true positives + false negatives).
+3. F1 score = harmonic mean of precision and recall.
+
+For SBAR span extraction, `analysis/per_label_analysis.py` computes metrics per SBAR label using matched gold-predicted span pairs from `prediction.span_metrics.detailed`:
+
+1. `Gold`: number of reference spans for that label.
+2. `Predicted spans`: number of model-predicted spans for that label.
+3. `Recall`: proportion of gold spans that were matched.
+4. `Precision`: proportion of predicted spans that were matched.
+5. `F1`: balance between precision and recall per label.
+6. `Mean IoU`: average intersection-over-union of matched spans, quantifying boundary overlap quality.
+
+For checklist analysis, the grouped table reports per-label confusion-derived counts (`TP`, `FP`, `FN`, `TN`) and derived precision, recall, and F1. Aggregate summary metrics are:
+
+1. Micro averages: pooled counts across all labels before computing precision/recall/F1.
+2. Macro averages: unweighted mean of label-level precision/recall/F1.
+3. Support-weighted averages: label-level metrics weighted by label support.
+
+## Results {#sec-results}
+
+### Key findings {#sec-results-summary}
+
+On the SBAR span extraction task, DSPy optimization improved performance on the consensus test partition (`n=48`), increasing macro-F1 from 0.494 to 0.733 (+0.239) and macro-precision from 0.406 to 0.761. The largest per-label improvements in F1 were observed for BACKGROUND (+0.403), SITUATION (+0.251), and ASSESSMENT (+0.214), with a smaller gain for RECOMMENDATION (+0.089). Span boundary overlap quality remained high, with mean IoU values between 0.688 and 0.794 across SBAR labels. For the checklist task, pooled performance on the consensus test partition (`n=49`) was strong (micro-F1 0.854, +0.081 vs baseline; macro-F1 0.762, +0.073), while a subset of low-support labels remained challenging, including labels with F1=0.
+
+### SBAR span extraction: per-label optimized performance {#sec-sbar-optimized}
+
+@tbl-sbar-optimized summarizes per-label results for the DSPy-optimized GPT-5.2 SBAR span pipeline.
+
+::: {#tbl-sbar-optimized}
+
+| Label | Gold | Predicted spans | Recall | Precision | Mean IoU | F1 | Delta F1 (vs baseline) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| ASSESSMENT | 194 | 178 | 0.727 | 0.792 | 0.762 | 0.758 | +0.214 |
+| BACKGROUND | 47 | 56 | 0.766 | 0.643 | 0.688 | 0.699 | +0.403 |
+| RECOMMENDATION | 113 | 129 | 0.717 | 0.628 | 0.791 | 0.669 | +0.089 |
+| SITUATION | 73 | 51 | 0.685 | 0.980 | 0.794 | 0.806 | +0.251 |
+
+Per-label SBAR metrics for DSPy-optimized model output on the consensus test partition (`n=48`). `Delta F1` is optimized minus baseline F1 from the same partition.
+:::
+
+Across SBAR labels, macro-precision improved from 0.406 to 0.761, macro-recall from 0.686 to 0.724, and macro-F1 from 0.494 to 0.733.
+
+### Checklist task: grouped per-label performance {#sec-checklist}
+
+The grouped checklist per-label analysis is provided in Table @tbl-checklist-grouped.
+
+::: {#tbl-checklist-grouped}
+| Category | Label | Support | TP | FP | FN | TN | Precision | ΔPrecision vs Baseline | Recall | ΔRecall vs Baseline | F1 | ΔF1 vs Baseline |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Identification | ID check of 3 patient identifiers | 1 | 1 | 0 | 0 | 48 | 1.000 | +0.944 | 1.000 | +0.000 | 1.000 | +0.895 |
+| Situation | Primary diagnosis \| reason for admission | 45 | 45 | 2 | 0 | 2 | 0.957 | +0.020 | 1.000 | +0.000 | 0.978 | +0.011 |
+| Situation | Current status (awaiting tests/procedures, on interim orders/plan) | 31 | 22 | 8 | 9 | 10 | 0.733 | +0.033 | 0.710 | -0.194 | 0.721 | -0.067 |
+| Situation | Significant events or complications | 10 | 5 | 3 | 5 | 36 | 0.625 | +0.292 | 0.500 | -0.100 | 0.556 | +0.127 |
+| Situation | **Subtotal (Situation)** | **86** | **72** | **13** | **14** | **48** | **0.847** | **+0.102** | **0.837** | **-0.081** | **0.842** | **+0.019** |
+| Background | Alerts - allergies | 18 | 16 | 2 | 2 | 29 | 0.889 | -0.011 | 0.889 | -0.111 | 0.889 | -0.058 |
+| Background | Relevant clinical and social history \| comorbidities | 17 | 17 | 1 | 0 | 31 | 0.944 | +0.135 | 1.000 | +0.000 | 0.971 | +0.077 |
+| Background | Alerts - falls risk | 3 | 2 | 0 | 1 | 46 | 1.000 | +0.250 | 0.667 | -0.333 | 0.800 | -0.057 |
+| Background | Alerts - pressure injury risk | 3 | 2 | 0 | 1 | 46 | 1.000 | +0.000 | 0.667 | -0.333 | 0.800 | -0.200 |
+| Background | Advanced care planning | 1 | 1 | 0 | 0 | 48 | 1.000 | +0.000 | 1.000 | +0.000 | 1.000 | +0.000 |
+| Background | **Subtotal (Background)** | **42** | **38** | **3** | **4** | **200** | **0.927** | **+0.070** | **0.905** | **-0.095** | **0.916** | **-0.007** |
+| Assessment | Observations \| Q-ADDS \| recent escalations | 40 | 38 | 2 | 2 | 7 | 0.950 | +0.023 | 0.950 | +0.000 | 0.950 | +0.012 |
+| Assessment | Medication chart \| flag high risk meds | 25 | 24 | 4 | 1 | 20 | 0.857 | +0.030 | 0.960 | +0.000 | 0.906 | +0.017 |
+| Assessment | Devices \| lines \| vascular access | 23 | 23 | 3 | 0 | 23 | 0.885 | +0.000 | 1.000 | +0.000 | 0.939 | +0.000 |
+| Assessment | Mobility \| aids | 17 | 16 | 4 | 1 | 28 | 0.800 | +0.027 | 0.941 | -0.059 | 0.865 | -0.007 |
+| Assessment | Pain management | 17 | 16 | 2 | 1 | 30 | 0.889 | +0.222 | 0.941 | +0.000 | 0.914 | +0.134 |
+| Assessment | Infusions | 15 | 8 | 1 | 7 | 33 | 0.889 | +0.089 | 0.533 | -0.267 | 0.667 | -0.133 |
+| Assessment | Pathology | 15 | 14 | 5 | 1 | 29 | 0.737 | -0.063 | 0.933 | +0.133 | 0.824 | +0.024 |
+| Assessment | Nutrition \| restrictions | 14 | 14 | 6 | 0 | 29 | 0.700 | +0.000 | 1.000 | +0.000 | 0.824 | +0.000 |
+| Assessment | Fluid balance \| restrictions | 9 | 7 | 3 | 2 | 37 | 0.700 | -0.050 | 0.778 | -0.222 | 0.737 | -0.120 |
+| Assessment | Skin integrity \| interventions | 6 | 6 | 5 | 0 | 38 | 0.545 | +0.045 | 1.000 | +0.000 | 0.706 | +0.039 |
+| Assessment | Critical monitoring \| alarms | 0 | 0 | 2 | 0 | 47 | 0.000 | +0.000 | 0.000 | +0.000 | 0.000 | +0.000 |
+| Assessment | **Subtotal (Assessment)** | **181** | **166** | **37** | **15** | **321** | **0.818** | **+0.044** | **0.917** | **-0.028** | **0.865** | **+0.014** |
+| Recommendation | Care plan/pathway actions to follow up | 44 | 44 | 5 | 0 | 0 | 0.898 | -0.035 | 1.000 | +0.045 | 0.946 | +0.002 |
+| Recommendation | Asked patient/carer about goals and preferences | 9 | 0 | 1 | 9 | 39 | 0.000 | -0.500 | 0.000 | -0.222 | 0.000 | -0.308 |
+| Recommendation | Discharge plan | 4 | 4 | 1 | 0 | 44 | 0.800 | +0.000 | 1.000 | +0.000 | 0.889 | +0.000 |
+| Recommendation | Critical actions required | 1 | 1 | 4 | 0 | 44 | 0.200 | +0.170 | 1.000 | +0.000 | 0.333 | +0.275 |
+| Recommendation | **Subtotal (Recommendation)** | **58** | **49** | **11** | **9** | **127** | **0.817** | **+0.253** | **0.845** | **+0.000** | **0.831** | **+0.155** |
+| Patient Involvement | Introduction of clinicians involved in handover to patient/carer | 20 | 20 | 8 | 0 | 21 | 0.714 | -0.036 | 1.000 | +0.850 | 0.833 | +0.583 |
+| Patient Involvement | Invitation for patient/carer to participate in handover | 16 | 15 | 8 | 1 | 25 | 0.652 | -0.014 | 0.938 | -0.062 | 0.769 | -0.031 |
+| Patient Involvement | **Subtotal (Patient Involvement)** | **36** | **35** | **16** | **1** | **46** | **0.686** | **+0.290** | **0.972** | **+0.444** | **0.805** | **+0.352** |
+| **Overall (Micro)** | **All labels pooled** | **404** | **361** | **80** | **43** | **790** | **0.819** | **+0.136** | **0.894** | **+0.000** | **0.854** | **+0.081** |
+| **Overall (Macro)** | **Unweighted label mean** | **-** | **-** | **-** | **-** | **-** | **0.745** | **+0.086** | **0.823** | **-0.002** | **0.762** | **+0.073** |
+| **Overall (Support-Weighted)** | **Weighted by label support** | **404** | **-** | **-** | **-** | **-** | **0.822** | **+0.020** | **0.894** | **+0.000** | **0.849** | **+0.023** |
+
+Grouped checklist label performance on the consensus test partition (`n=49`).
+:::
+
+
+## Discussion {#sec-discussion}
+
+These results show meaningful performance gains after DSPy optimization for SBAR span extraction, especially through precision improvements in BACKGROUND and SITUATION labels. RECOMMENDATION recall decreased, indicating a remaining trade-off between reducing false positives and preserving complete capture of recommendation spans.
+
+Checklist results indicate strong aggregate discrimination on the consensus test partition, with variability concentrated in lower-support labels and categories with sparse positives. This pattern is expected in clinical label spaces where some safety-relevant signals are uncommon but high impact.
+
+## Limitations {#sec-limitations}
+
+1. Reported metrics are from a single deterministic split and should be supplemented with repeated split or external validation.
+2. Some labels have low support, which increases metric variance.
+3. This manuscript reports performance metrics only; impact on clinician workflow and patient outcomes requires prospective evaluation.
+
+## Conclusion {#sec-conclusion}
+
+Using consensus-labeled clinical handover data and DSPy-based optimization, we observed improved SBAR span extraction performance over baseline and strong checklist classification performance on held-out test data. Label-level reporting highlighted both gains and remaining gaps, supporting targeted next-step refinement.
+
+## Reproducibility appendix {#sec-reproducibility}
+
+The SBAR per-label values in this manuscript were produced with:
+
+```bash
+python3 analysis/per_label_analysis.py evals/eval_sbar_span_consensus_test_baseline_gpt_5.2.jsonl
+python3 analysis/per_label_analysis.py evals/eval_sbar_span_gpt5-2_consensus_test.jsonl
+```
+
+Checklist grouped table was rendered with:
+
+```bash
+python3 analysis/render_checklist_md_table.py \
+  evals/eval_checklist_consensus_gpt_5_2_test_analysis/per_label.csv \
+  --summary-json evals/eval_checklist_consensus_gpt_5_2_test_analysis/summary.json \
+  --baseline-per-label-csv evals/eval_baseline_checklist_consensus_gpt_5_2_test_analysis/per_label.csv
+```

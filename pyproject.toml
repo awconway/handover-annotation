@@ -8,7 +8,6 @@ dependencies = [
     "dspy-ai>=3.0.4",
     "en-core-web-sm",
     "langextract>=1.1.1",
-    "matplotlib>=3.10.8",
     "numpy>=2.3.5",
     "pytest>=9.0.1",
     "rapidfuzz>=3.14.3",
