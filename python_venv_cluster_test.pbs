@@ -26,8 +26,9 @@ TEST_LANGEXTRACT="${TEST_LANGEXTRACT:-0}" # 1 => attempt langextract install/imp
 PYTHON_MODULE="${PYTHON_MODULE:-Python/3.12.3}"
 PYTHON_MODULE_CANDIDATES="${PYTHON_MODULE_CANDIDATES:-}"
 PYTHON_MIN_MAJOR="${PYTHON_MIN_MAJOR:-3}"
-PYTHON_MIN_MINOR="${PYTHON_MIN_MINOR:-10}"
+PYTHON_MIN_MINOR="${PYTHON_MIN_MINOR:-11}"
 PYTHON_DEBUG_MODULE_LOAD="${PYTHON_DEBUG_MODULE_LOAD:-0}"
+VENV_ONLY="${VENV_ONLY:-0}"      # 1 => do not fall back to module probing
 VENV_DIR="${VENV_DIR:-$PBS_O_WORKDIR/.venv_cluster_py312}"
 PYTHON_BIN=""
 
@@ -107,6 +108,12 @@ try_python_module() {
 }
 
 if [ -z "$PYTHON_BIN" ]; then
+  if [ "$VENV_ONLY" = "1" ]; then
+    echo "VENV_ONLY=1 and existing venv interpreter is not runnable at >=${PYTHON_MIN_MAJOR}.${PYTHON_MIN_MINOR}"
+    echo "Checked: $VENV_DIR/bin/python3 and $VENV_DIR/bin/python"
+    exit 1
+  fi
+
   if ! command -v module >/dev/null 2>&1; then
     echo "Environment modules are required but 'module' command is not available."
     exit 1
