@@ -25,7 +25,8 @@ TEST_LANGEXTRACT="${TEST_LANGEXTRACT:-0}" # 1 => attempt langextract install/imp
 
 PYTHON_MODULE="${PYTHON_MODULE:-Python/3.12.3}"
 PYTHON_MODULE_CANDIDATES="${PYTHON_MODULE_CANDIDATES:-}"
-PYTHON_DEP_MODULES="${PYTHON_DEP_MODULES:-GCCcore/13.3.0}"
+PYTHON_DEP_MODULES="${PYTHON_DEP_MODULES:-}"
+PYTHON_DEP_CANDIDATES="${PYTHON_DEP_CANDIDATES:-}"
 VENV_DIR="${VENV_DIR:-$PBS_O_WORKDIR/.venv_cluster_py312}"
 
 if ! command -v module >/dev/null 2>&1; then
@@ -35,7 +36,7 @@ fi
 
 if [ -z "$PYTHON_MODULE_CANDIDATES" ]; then
   DISCOVERED_PYTHON_MODULES="$(
-    module -t avail Python 2>&1 | awk '/^Python\// {print $1}' | tr '\n' ' '
+    module -t spider Python 2>&1 | awk '/^Python\// {print $1}' | tr '\n' ' '
   )"
   if [ -n "$DISCOVERED_PYTHON_MODULES" ]; then
     PYTHON_MODULE_CANDIDATES="$PYTHON_MODULE $DISCOVERED_PYTHON_MODULES"
@@ -48,11 +49,30 @@ PYTHON_MODULE_CANDIDATES="$(
 )"
 echo "Python module candidates: $PYTHON_MODULE_CANDIDATES"
 
+if [ -z "$PYTHON_DEP_CANDIDATES" ]; then
+  DISCOVERED_DEP_MODULES="$(
+    {
+      module -t avail GCCcore 2>&1
+      module -t avail GCC 2>&1
+    } | awk '/^(GCCcore|GCC)\// {print $1}' | tr '\n' ' '
+  )"
+  if [ -n "$DISCOVERED_DEP_MODULES" ]; then
+    PYTHON_DEP_CANDIDATES="$PYTHON_DEP_MODULES $DISCOVERED_DEP_MODULES"
+  else
+    PYTHON_DEP_CANDIDATES="$PYTHON_DEP_MODULES"
+  fi
+fi
+PYTHON_DEP_CANDIDATES="$(
+  printf '%s\n' $PYTHON_DEP_CANDIDATES | awk 'NF && !seen[$0]++' | tr '\n' ' '
+)"
+echo "Python dependency candidates: ${PYTHON_DEP_CANDIDATES:-<none>} plus <none>"
+
 SELECTED_PYTHON_MODULE=""
 SELECTED_PYTHON_DEP_MODULES=""
 DEP_OPTIONS=()
-if [ -n "$PYTHON_DEP_MODULES" ]; then
-  DEP_OPTIONS+=("$PYTHON_DEP_MODULES")
+if [ -n "$PYTHON_DEP_CANDIDATES" ]; then
+  # shellcheck disable=SC2206
+  DEP_OPTIONS=($PYTHON_DEP_CANDIDATES)
 fi
 DEP_OPTIONS+=("")
 
@@ -80,7 +100,7 @@ done
 if [ -z "$SELECTED_PYTHON_MODULE" ]; then
   echo "Could not load a runnable python3 >=3.10 on this node."
   echo "Tried PYTHON_MODULE_CANDIDATES: $PYTHON_MODULE_CANDIDATES"
-  echo "Tried dep module: ${PYTHON_DEP_MODULES:-<none>} (and none)"
+  echo "Tried dep modules: ${PYTHON_DEP_CANDIDATES:-<none>} (and none)"
   exit 1
 fi
 
