@@ -36,6 +36,11 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Filter examples by _annotator_id (e.g. handover_db-user1).",
     )
+    parser.add_argument(
+        "--gepa-log-dir",
+        default=None,
+        help="Optional GEPA run directory used for checkpoint/resume.",
+    )
     return parser.parse_args()
 
 
@@ -56,7 +61,12 @@ configure_dspy(lm)
 
 predictor = build_predictor()
 optimiser_fn = load_optimiser(args.optimiser_name)
-predictor = optimiser_fn(predictor, trainset, valset)
+predictor = optimiser_fn(
+    predictor,
+    trainset,
+    valset,
+    gepa_log_dir=args.gepa_log_dir,
+)
 
 predictor.save(output_model_file)
 print("Training complete. Saved to", output_model_file)

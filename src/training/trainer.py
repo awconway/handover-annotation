@@ -4,13 +4,13 @@ from config.model_registry import load_model
 from config.optimiser_registry import load_optimiser
 
 
-def train(model_name: str, optimiser_name: str, trainset, valset):
+def train(model_name: str, optimiser_name: str, trainset, valset, gepa_log_dir: str | None = None):
     lm = load_model(model_name)
     configure_dspy(lm)
 
     predictor = build_predictor()
 
     optimiser_fn = load_optimiser(optimiser_name)
-    predictor = optimiser_fn(predictor, trainset, valset)
+    predictor = optimiser_fn(predictor, trainset, valset, gepa_log_dir=gepa_log_dir)
 
     return predictor

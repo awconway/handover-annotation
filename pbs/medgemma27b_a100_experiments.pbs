@@ -27,13 +27,18 @@ EVAL_MAX_RETRIES="${EVAL_MAX_RETRIES:-5}"
 EVAL_RETRY_DELAY_SECONDS="${EVAL_RETRY_DELAY_SECONDS:-1.5}"
 REFLECTION_MODEL="openai/gpt-5.2"
 
-STAMP="$(date +%Y%m%d_%H%M%S)"
-OUT_DIR="${OUT_DIR:-./cluster_runs/medgemma27b_${STAMP}}"
-mkdir -p "$OUT_DIR"/compiled_programs "$OUT_DIR"/evals "$OUT_DIR"/logs
+DATA_TAG="$(basename "$DATA_FILE")"
+DATA_TAG="${DATA_TAG%.*}"
+ANNOTATOR_TAG="${ANNOTATOR_ID:-all}"
+RUN_ID_DEFAULT="$(printf '%s' "medgemma27b_${MODEL_NAME}_${CHECKLIST_OPTIMISER}_${SBAR_OPTIMISER}_${DATA_TAG}_${ANNOTATOR_TAG}_train${RUN_TRAIN}_check${RUN_CHECKLIST}_sbar${RUN_SBAR}_all${USE_ALL}" | tr -c '[:alnum:]_.-' '_')"
+RUN_ID="${RUN_ID:-$RUN_ID_DEFAULT}"
+OUT_DIR="${OUT_DIR:-./cluster_runs/${RUN_ID}}"
+mkdir -p "$OUT_DIR"/compiled_programs "$OUT_DIR"/evals "$OUT_DIR"/logs "$OUT_DIR"/gepa
 exec > >(tee -a "$OUT_DIR/logs/job.log") 2>&1
 
 echo "Node: $(hostname)"
 echo "Working directory: $PWD"
+echo "Run ID: $RUN_ID"
 echo "Output directory: $OUT_DIR"
 echo "GPU info:"
 nvidia-smi
@@ -161,58 +166,88 @@ fi
 if [ "$RUN_CHECKLIST" = "1" ]; then
   CHECKLIST_MODEL_FILE="$OUT_DIR/compiled_programs/checklist_${MODEL_NAME}_${CHECKLIST_OPTIMISER}.json"
   CHECKLIST_EVAL_FILE="$OUT_DIR/evals/eval_checklist_${MODEL_NAME}_${CHECKLIST_OPTIMISER}.jsonl"
+  CHECKLIST_GEPA_LOG_DIR="$OUT_DIR/gepa/checklist_${MODEL_NAME}_${CHECKLIST_OPTIMISER}"
 
   echo "=== CHECKLIST TASK ==="
   if [ "$RUN_TRAIN" = "1" ]; then
-    "${PY_RUNNER[@]}" run_train_checklist.py \
-      "${COMMON_ARGS[@]}" \
-      --optimiser-name "$CHECKLIST_OPTIMISER" \
-      --output-model-file "$CHECKLIST_MODEL_FILE"
+    if [ -s "$CHECKLIST_MODEL_FILE" ]; then
+      echo "Checklist model exists, skipping training: $CHECKLIST_MODEL_FILE"
+    else
+      mkdir -p "$CHECKLIST_GEPA_LOG_DIR"
+      "${PY_RUNNER[@]}" run_train_checklist.py \
+        "${COMMON_ARGS[@]}" \
+        --optimiser-name "$CHECKLIST_OPTIMISER" \
+        --output-model-file "$CHECKLIST_MODEL_FILE" \
+        --gepa-log-dir "$CHECKLIST_GEPA_LOG_DIR"
+    fi
 
-    "${PY_RUNNER[@]}" run_eval_checklist.py \
-      "${COMMON_ARGS[@]}" \
-      --output-model-file "$CHECKLIST_MODEL_FILE" \
-      --eval-results-file "$CHECKLIST_EVAL_FILE" \
-      --max-retries "$EVAL_MAX_RETRIES" \
-      --retry-delay-seconds "$EVAL_RETRY_DELAY_SECONDS" \
-      "${EVAL_EXTRA_ARGS[@]}"
+    if [ -s "$CHECKLIST_EVAL_FILE" ]; then
+      echo "Checklist eval exists, skipping evaluation: $CHECKLIST_EVAL_FILE"
+    else
+      "${PY_RUNNER[@]}" run_eval_checklist.py \
+        "${COMMON_ARGS[@]}" \
+        --output-model-file "$CHECKLIST_MODEL_FILE" \
+        --eval-results-file "$CHECKLIST_EVAL_FILE" \
+        --max-retries "$EVAL_MAX_RETRIES" \
+        --retry-delay-seconds "$EVAL_RETRY_DELAY_SECONDS" \
+        "${EVAL_EXTRA_ARGS[@]}"
+    fi
   else
-    "${PY_RUNNER[@]}" run_eval_checklist.py \
-      "${COMMON_ARGS[@]}" \
-      --baseline \
-      --eval-results-file "$CHECKLIST_EVAL_FILE" \
-      --max-retries "$EVAL_MAX_RETRIES" \
-      --retry-delay-seconds "$EVAL_RETRY_DELAY_SECONDS" \
-      "${EVAL_EXTRA_ARGS[@]}"
+    if [ -s "$CHECKLIST_EVAL_FILE" ]; then
+      echo "Checklist baseline eval exists, skipping evaluation: $CHECKLIST_EVAL_FILE"
+    else
+      "${PY_RUNNER[@]}" run_eval_checklist.py \
+        "${COMMON_ARGS[@]}" \
+        --baseline \
+        --eval-results-file "$CHECKLIST_EVAL_FILE" \
+        --max-retries "$EVAL_MAX_RETRIES" \
+        --retry-delay-seconds "$EVAL_RETRY_DELAY_SECONDS" \
+        "${EVAL_EXTRA_ARGS[@]}"
+    fi
   fi
 fi
 
 if [ "$RUN_SBAR" = "1" ]; then
   SBAR_MODEL_FILE="$OUT_DIR/compiled_programs/sbar_${MODEL_NAME}_${SBAR_OPTIMISER}.json"
   SBAR_EVAL_FILE="$OUT_DIR/evals/eval_sbar_${MODEL_NAME}_${SBAR_OPTIMISER}.jsonl"
+  SBAR_GEPA_LOG_DIR="$OUT_DIR/gepa/sbar_${MODEL_NAME}_${SBAR_OPTIMISER}"
 
   echo "=== SBAR SPAN TASK ==="
   if [ "$RUN_TRAIN" = "1" ]; then
-    "${PY_RUNNER[@]}" run_train_sbar_span.py \
-      "${COMMON_ARGS[@]}" \
-      --optimiser-name "$SBAR_OPTIMISER" \
-      --output-model-file "$SBAR_MODEL_FILE"
+    if [ -s "$SBAR_MODEL_FILE" ]; then
+      echo "SBAR model exists, skipping training: $SBAR_MODEL_FILE"
+    else
+      mkdir -p "$SBAR_GEPA_LOG_DIR"
+      "${PY_RUNNER[@]}" run_train_sbar_span.py \
+        "${COMMON_ARGS[@]}" \
+        --optimiser-name "$SBAR_OPTIMISER" \
+        --output-model-file "$SBAR_MODEL_FILE" \
+        --gepa-log-dir "$SBAR_GEPA_LOG_DIR"
+    fi
 
-    "${PY_RUNNER[@]}" run_eval_sbar_span.py \
-      "${COMMON_ARGS[@]}" \
-      --output-model-file "$SBAR_MODEL_FILE" \
-      --eval-results-file "$SBAR_EVAL_FILE" \
-      --max-retries "$EVAL_MAX_RETRIES" \
-      --retry-delay-seconds "$EVAL_RETRY_DELAY_SECONDS" \
-      "${EVAL_EXTRA_ARGS[@]}"
+    if [ -s "$SBAR_EVAL_FILE" ]; then
+      echo "SBAR eval exists, skipping evaluation: $SBAR_EVAL_FILE"
+    else
+      "${PY_RUNNER[@]}" run_eval_sbar_span.py \
+        "${COMMON_ARGS[@]}" \
+        --output-model-file "$SBAR_MODEL_FILE" \
+        --eval-results-file "$SBAR_EVAL_FILE" \
+        --max-retries "$EVAL_MAX_RETRIES" \
+        --retry-delay-seconds "$EVAL_RETRY_DELAY_SECONDS" \
+        "${EVAL_EXTRA_ARGS[@]}"
+    fi
   else
-    "${PY_RUNNER[@]}" run_eval_sbar_span.py \
-      "${COMMON_ARGS[@]}" \
-      --baseline \
-      --eval-results-file "$SBAR_EVAL_FILE" \
-      --max-retries "$EVAL_MAX_RETRIES" \
-      --retry-delay-seconds "$EVAL_RETRY_DELAY_SECONDS" \
-      "${EVAL_EXTRA_ARGS[@]}"
+    if [ -s "$SBAR_EVAL_FILE" ]; then
+      echo "SBAR baseline eval exists, skipping evaluation: $SBAR_EVAL_FILE"
+    else
+      "${PY_RUNNER[@]}" run_eval_sbar_span.py \
+        "${COMMON_ARGS[@]}" \
+        --baseline \
+        --eval-results-file "$SBAR_EVAL_FILE" \
+        --max-retries "$EVAL_MAX_RETRIES" \
+        --retry-delay-seconds "$EVAL_RETRY_DELAY_SECONDS" \
+        "${EVAL_EXTRA_ARGS[@]}"
+    fi
   fi
 fi
 

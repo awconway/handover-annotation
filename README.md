@@ -9,6 +9,19 @@ The project uses:
 - modular components for models, optimisers, data loading, training and eval
 
 ============================================================
+0. Quick Restart Checklist (Cluster GEPA)
+============================================================
+
+1. Pick a stable run id (or reuse an existing one):
+   `export RUN_ID=medgemma27b_resume_001`
+2. Submit:
+   `qsub pbs/medgemma27b_a100_experiments.pbs`
+3. To resume after interruption, resubmit with the same `RUN_ID`.
+4. To force a fresh run, choose a new `RUN_ID` (or set a new `OUT_DIR`).
+5. GEPA checkpoints live under:
+   `./cluster_runs/$RUN_ID/gepa/`
+
+============================================================
 1. Project Structure
 ============================================================
 
@@ -71,6 +84,10 @@ Training flags (required):
 - `--optimiser-name`: key from `src/config/optimiser_registry.py`
 - `--output-model-file`: path to save the trained program
 
+Training flags (optional):
+- `--annotator-id`: filter examples to one annotator id
+- `--gepa-log-dir`: directory for GEPA state/checkpoints (resume support for GEPA optimisers)
+
 Evaluation flags (required):
 - `--output-model-file`: path to the trained program to load
 - `--eval-results-file`: path to write JSONL results
@@ -88,6 +105,7 @@ uv run run_train_checklist.py --model-name gpt_nano --optimiser-name gepa_heavy_
 Optional:
 
 uv run run_train_checklist.py --model-name gpt_nano --optimiser-name gepa_heavy_checklist --output-model-file ./compiled_programs/trained_gpt_nano_gepa_heavy_checklist.json --annotator-id handover_db-user1
+uv run run_train_checklist.py --model-name gpt_nano --optimiser-name gepa_heavy_checklist --output-model-file ./compiled_programs/trained_gpt_nano_gepa_heavy_checklist.json --gepa-log-dir ./cluster_runs/gepa/checklist_run1
 
 
 This:
@@ -100,6 +118,12 @@ This:
 Output example:
 
 Training complete. Saved to trained_model.json
+
+GEPA resume behavior:
+
+- For GEPA optimisers (`gepa_*`), pass a stable `--gepa-log-dir` to enable checkpoint/resume.
+- If the run is interrupted, re-run with the same `--gepa-log-dir` and GEPA resumes from `gepa_state.bin`.
+- Using a different `--gepa-log-dir` starts a fresh GEPA run.
 
 ============================================================
 5. Running Evaluation
@@ -179,7 +203,25 @@ Each JSONL row contains:
 }
 
 ============================================================
-6. Adding Models or Optimisers
+6. Cluster PBS Runs (A100)
+============================================================
+
+`pbs/medgemma27b_a100_experiments.pbs` now supports resumable/idempotent reruns:
+
+- Uses a deterministic default run directory: `./cluster_runs/$RUN_ID`
+- `RUN_ID` is derived from model/optimiser/data/annotator/run switches unless you set it explicitly.
+- GEPA checkpoint directories are under `$OUT_DIR/gepa/...` and are passed to training scripts.
+- If model/eval artifacts already exist and are non-empty, that stage is skipped.
+
+Common usage:
+
+- Resume same run (same artifacts/checkpoints):
+  `RUN_ID=my_medgemma_gepa_run qsub pbs/medgemma27b_a100_experiments.pbs`
+- Force a fresh run:
+  choose a new `RUN_ID` (or set a new `OUT_DIR`).
+
+============================================================
+7. Adding Models or Optimisers
 ============================================================
 
 To add a model:
@@ -191,7 +233,7 @@ To add an optimiser:
 Then pass it via `--model-name` or `--optimiser-name`.
 
 ============================================================
-7. Notes
+8. Notes
 ============================================================
 
 - Always run scripts via uv run for correct environment activation.
@@ -199,7 +241,7 @@ Then pass it via `--model-name` or `--optimiser-name`.
 - Trained DSPy programs are saved/loaded via .save() and .load().
 
 ============================================================
-8. Reproducible Checklist Eval Analysis
+9. Reproducible Checklist Eval Analysis
 ============================================================
 
 To generate reproducible error-analysis artifacts (summary JSON + label CSV + bucket CSV + per-example error CSV):

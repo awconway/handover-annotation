@@ -1,9 +1,25 @@
 import json
+import logging
+import os
 
 import dspy
 
 # --- import your metric ---
 from .soft_f1 import label_aware_soft_f1
+
+
+logger = logging.getLogger(__name__)
+DEBUG_LOGS_ENABLED = os.getenv("GEPA_SPAN_METRIC_DEBUG", "").strip().lower() in {
+    "1",
+    "true",
+    "yes",
+    "on",
+}
+
+
+def _debug_log(message: str) -> None:
+    if DEBUG_LOGS_ENABLED:
+        logger.info(message)
 
 
 def _extract_pred_items(pred):
@@ -151,11 +167,10 @@ def build_feedback(text, golds, preds, detailed):
         )
 
     feedback_str = "\n".join(fb)
-
-    # --- DEBUG PRINT ---
-    print("\n================ FEEDBACK DEBUG ================")
-    print(feedback_str)
-    print("================================================\n")
+    _debug_log(
+        "GEPA span metric feedback generated "
+        f"(chars={len(feedback_str)}, golds={len(detailed.get('golds', []))}, preds={len(detailed.get('preds', []))})"
+    )
 
     return feedback_str
 
@@ -181,15 +196,11 @@ def gepa_span_metric(example, pred, trace=None, pred_name=None, pred_trace=None)
     # Ensure prediction has the right structure
     pred_items = _extract_pred_items(pred)
 
-    # --- DEBUG PRINT INPUTS ---
-    print("\n========= GEPA SPAN METRIC INPUT DEBUG =========")
-    print("TEXT:")
-    print(text)
-    print("\nGOLD SPANS:")
-    print(json.dumps(gold_spans, indent=2, ensure_ascii=False))
-    print("\nPREDICTED SPANS:")
-    print(json.dumps(pred_items, indent=2, ensure_ascii=False))
-    print("================================================\n")
+    if DEBUG_LOGS_ENABLED:
+        _debug_log(
+            "GEPA span metric input: "
+            f"text_chars={len(text)}, gold_count={len(gold_spans)}, pred_count={len(pred_items)}"
+        )
 
     # Run span F1 evaluator
     out = label_aware_soft_f1(
@@ -215,12 +226,15 @@ def gepa_span_metric(example, pred, trace=None, pred_name=None, pred_trace=None)
     if not out["detailed"]["golds"] and not out["detailed"]["preds"]:
         score = 1.0
 
-    # --- DEBUG PRINT SCORE AND DETAILED ---
-    print("=========== LABEL_AWARE_SOFT_F1 OUTPUT =========")
-    print(f"F1 score: {score:.4f}")
-    print("Detailed:")
-    print(json.dumps(out["detailed"], indent=2, ensure_ascii=False))
-    print("================================================\n")
+    if DEBUG_LOGS_ENABLED:
+        detailed = out["detailed"]
+        mapped_preds = sum(1 for p in detailed["preds"] if p["span"] is not None)
+        _debug_log(
+            "GEPA span metric output: "
+            f"precision={out['precision']:.4f}, recall={out['recall']:.4f}, f1={score:.4f}, tp={out['tp']:.4f}, "
+            f"matches={len(detailed['matches'])}, mapped_preds={mapped_preds}/{len(detailed['preds'])}, "
+            f"gold_count={out['gold_count']}, pred_count={out['pred_count']}"
+        )
 
     if pred_name is None:
         # GEPA global scoring
@@ -233,12 +247,5 @@ def gepa_span_metric(example, pred, trace=None, pred_name=None, pred_trace=None)
         preds=pred_items,
         detailed=out["detailed"],
     )
-
-    # # --- DEBUG PRINT FINAL OBJECT ---
-    # print("============= DSPY PREDICTION DEBUG ============")
-    # print(f"Score to return: {score:.4f}")
-    # print("Feedback (already printed above in full):")
-    # print("Feedback:", feedback.replace("\n", "\\n"))
-    # print("================================================\n")
 
     return dspy.Prediction(score=score, feedback=feedback, metrics=out)

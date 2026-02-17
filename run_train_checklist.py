@@ -33,6 +33,11 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Filter examples by _annotator_id (e.g. handover_db-user1).",
     )
+    parser.add_argument(
+        "--gepa-log-dir",
+        default=None,
+        help="Optional GEPA run directory used for checkpoint/resume.",
+    )
     return parser.parse_args()
 
 
@@ -40,7 +45,13 @@ args = parse_args()
 trainset, valset = prepare_dataset(args.data_file, annotator_id=args.annotator_id)
 output_model_file = args.output_model_file
 
-predictor = train(args.model_name, args.optimiser_name, trainset, valset)
+predictor = train(
+    args.model_name,
+    args.optimiser_name,
+    trainset,
+    valset,
+    gepa_log_dir=args.gepa_log_dir,
+)
 predictor.save(output_model_file)
 for name, pred in predictor.named_predictors():
     print("================================")
