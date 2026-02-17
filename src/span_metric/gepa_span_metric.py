@@ -6,6 +6,26 @@ import dspy
 from .soft_f1 import label_aware_soft_f1
 
 
+def _extract_pred_items(pred):
+    items = getattr(pred, "pred_spans", None)
+    if items is None and isinstance(pred, dict):
+        items = pred.get("pred_spans")
+
+    if not isinstance(items, list):
+        return []
+
+    cleaned = []
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        label = item.get("label")
+        quote = item.get("quote")
+        if not isinstance(label, str) or not isinstance(quote, str):
+            continue
+        cleaned.append({"label": label, "quote": quote})
+    return cleaned
+
+
 def format_span(span):
     if span is None:
         return "None"
@@ -159,7 +179,7 @@ def gepa_span_metric(example, pred, trace=None, pred_name=None, pred_trace=None)
     text = example["text"]
     gold_spans = example["gold_spans"]
     # Ensure prediction has the right structure
-    pred_items = getattr(pred, "pred_spans", [])
+    pred_items = _extract_pred_items(pred)
 
     # --- DEBUG PRINT INPUTS ---
     print("\n========= GEPA SPAN METRIC INPUT DEBUG =========")

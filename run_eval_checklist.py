@@ -46,6 +46,18 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Evaluate using the initial DSPy signature (no trained program load).",
     )
+    parser.add_argument(
+        "--max-retries",
+        type=int,
+        default=3,
+        help="Maximum prediction attempts per example before scoring as 0.",
+    )
+    parser.add_argument(
+        "--retry-delay-seconds",
+        type=float,
+        default=1.0,
+        help="Base backoff delay between retries.",
+    )
     args = parser.parse_args()
 
     if args.baseline and args.output_model_file:
@@ -76,5 +88,11 @@ for name, pred in predictor.named_predictors():
     print("Prompt:")
     print(pred.signature.instructions)
     print("*********************************")
-score = evaluate_checklist(predictor, testset, eval_results_file)
+score = evaluate_checklist(
+    predictor,
+    testset,
+    eval_results_file,
+    max_retries=args.max_retries,
+    retry_delay_seconds=args.retry_delay_seconds,
+)
 print("Evaluation complete. Score:", score)

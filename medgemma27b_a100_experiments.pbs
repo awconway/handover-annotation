@@ -23,6 +23,8 @@ USE_ALL="${USE_ALL:-0}"          # 1 => evaluate on all matching examples
 RUN_TRAIN="${RUN_TRAIN:-1}"      # 1 => train then eval, 0 => baseline eval only
 RUN_CHECKLIST="${RUN_CHECKLIST:-1}"
 RUN_SBAR="${RUN_SBAR:-1}"
+EVAL_MAX_RETRIES="${EVAL_MAX_RETRIES:-5}"
+EVAL_RETRY_DELAY_SECONDS="${EVAL_RETRY_DELAY_SECONDS:-1.5}"
 REFLECTION_MODEL="openai/gpt-5.2"
 
 STAMP="$(date +%Y%m%d_%H%M%S)"
@@ -135,6 +137,8 @@ echo "  CHECKLIST_OPTIMISER=$CHECKLIST_OPTIMISER"
 echo "  SBAR_OPTIMISER=$SBAR_OPTIMISER"
 echo "  ANNOTATOR_ID=${ANNOTATOR_ID:-<all>}"
 echo "  USE_ALL=$USE_ALL"
+echo "  EVAL_MAX_RETRIES=$EVAL_MAX_RETRIES"
+echo "  EVAL_RETRY_DELAY_SECONDS=$EVAL_RETRY_DELAY_SECONDS"
 
 if [ "$RUN_TRAIN" = "1" ]; then
   NEED_REFLECTION=0
@@ -169,12 +173,16 @@ if [ "$RUN_CHECKLIST" = "1" ]; then
       "${COMMON_ARGS[@]}" \
       --output-model-file "$CHECKLIST_MODEL_FILE" \
       --eval-results-file "$CHECKLIST_EVAL_FILE" \
+      --max-retries "$EVAL_MAX_RETRIES" \
+      --retry-delay-seconds "$EVAL_RETRY_DELAY_SECONDS" \
       "${EVAL_EXTRA_ARGS[@]}"
   else
     "${PY_RUNNER[@]}" run_eval_checklist.py \
       "${COMMON_ARGS[@]}" \
       --baseline \
       --eval-results-file "$CHECKLIST_EVAL_FILE" \
+      --max-retries "$EVAL_MAX_RETRIES" \
+      --retry-delay-seconds "$EVAL_RETRY_DELAY_SECONDS" \
       "${EVAL_EXTRA_ARGS[@]}"
   fi
 fi
@@ -194,12 +202,16 @@ if [ "$RUN_SBAR" = "1" ]; then
       "${COMMON_ARGS[@]}" \
       --output-model-file "$SBAR_MODEL_FILE" \
       --eval-results-file "$SBAR_EVAL_FILE" \
+      --max-retries "$EVAL_MAX_RETRIES" \
+      --retry-delay-seconds "$EVAL_RETRY_DELAY_SECONDS" \
       "${EVAL_EXTRA_ARGS[@]}"
   else
     "${PY_RUNNER[@]}" run_eval_sbar_span.py \
       "${COMMON_ARGS[@]}" \
       --baseline \
       --eval-results-file "$SBAR_EVAL_FILE" \
+      --max-retries "$EVAL_MAX_RETRIES" \
+      --retry-delay-seconds "$EVAL_RETRY_DELAY_SECONDS" \
       "${EVAL_EXTRA_ARGS[@]}"
   fi
 fi

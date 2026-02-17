@@ -1,6 +1,32 @@
 import dspy
 
 
+def _extract_labels(obj):
+    if hasattr(obj, "toDict"):
+        try:
+            obj = obj.toDict()
+        except Exception:
+            pass
+
+    labels = None
+    if isinstance(obj, dict):
+        labels = obj.get("labels")
+    else:
+        labels = getattr(obj, "labels", None)
+
+    if labels is None:
+        return []
+    if isinstance(labels, str):
+        return [labels]
+    if isinstance(labels, (list, tuple, set)):
+        out = []
+        for item in labels:
+            if isinstance(item, str):
+                out.append(item)
+        return out
+    return []
+
+
 def feedback_multilabel(gold_labels, pred_labels):
     """
     gold_labels, pred_labels: list of strings (labels)
@@ -87,8 +113,8 @@ def multilabel_f1_with_feedback(
     - example: gold example (dspy.Example or dict)
     - pred: model prediction (dspy.Prediction-like, with .labels)
     """
-    gold_labels = example["labels"]
-    pred_labels = pred["labels"]
+    gold_labels = _extract_labels(example)
+    pred_labels = _extract_labels(pred)
 
     fb_text, score = feedback_multilabel(gold_labels, pred_labels)
 

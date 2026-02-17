@@ -41,6 +41,18 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Evaluate on all matching examples (no train/test split).",
     )
+    parser.add_argument(
+        "--max-retries",
+        type=int,
+        default=3,
+        help="Maximum prediction attempts per example before scoring as 0.",
+    )
+    parser.add_argument(
+        "--retry-delay-seconds",
+        type=float,
+        default=1.0,
+        help="Base backoff delay between retries.",
+    )
     return parser.parse_args()
 
 
@@ -57,6 +69,15 @@ lm = load_model(args.model_name)
 configure_dspy(lm)
 predictor.load(output_model_file)
 
-score = evaluate(predictor, testset, eval_results_file)
-print(predictor.inspect_history(-1))
+score = evaluate(
+    predictor,
+    testset,
+    eval_results_file,
+    max_retries=args.max_retries,
+    retry_delay_seconds=args.retry_delay_seconds,
+)
+try:
+    print(predictor.inspect_history(-1))
+except Exception:
+    pass
 print("Evaluation complete. Score:", score)
