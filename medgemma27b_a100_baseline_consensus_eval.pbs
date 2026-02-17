@@ -32,9 +32,49 @@ echo "Output directory: $OUT_DIR"
 echo "GPU info:"
 nvidia-smi
 
+PY_RUNNER=(uv run)
 if ! command -v uv >/dev/null 2>&1; then
-  echo "uv is not available on PATH."
-  exit 1
+  echo "uv is not available on PATH. Falling back to python3 + venv."
+
+  PYTHON_MODULE="${PYTHON_MODULE:-Python/3.12.3}"
+  PYTHON_DEP_MODULES="${PYTHON_DEP_MODULES:-GCCcore/13.3.0}"
+  VENV_DIR="${VENV_DIR:-$PBS_O_WORKDIR/.venv_cluster_py312}"
+
+  if ! command -v python3 >/dev/null 2>&1 && command -v module >/dev/null 2>&1; then
+    module purge || true
+    if [ -n "$PYTHON_DEP_MODULES" ]; then
+      # shellcheck disable=SC2086
+      module load $PYTHON_DEP_MODULES || true
+    fi
+    module load "$PYTHON_MODULE" || true
+  fi
+
+  if ! command -v python3 >/dev/null 2>&1; then
+    echo "python3 is not available. Try: module spider Python"
+    exit 1
+  fi
+
+  if [ ! -x "$VENV_DIR/bin/python" ]; then
+    python3 -m venv "$VENV_DIR"
+  fi
+  # shellcheck disable=SC1090
+  source "$VENV_DIR/bin/activate"
+
+  DEPS_STAMP="$VENV_DIR/.handover_deps_v1"
+  if [ ! -f "$DEPS_STAMP" ]; then
+    python -m pip install --upgrade pip setuptools wheel
+    python -m pip install \
+      "dspy-ai>=3.0.4" \
+      "langextract>=1.1.1" \
+      "numpy>=2.3.5" \
+      "rapidfuzz>=3.14.3" \
+      "spacy>=3.8.11" \
+      "thinc>=8.3.10"
+    touch "$DEPS_STAMP"
+  fi
+
+  export PYTHONPATH="$PWD/src${PYTHONPATH:+:$PYTHONPATH}"
+  PY_RUNNER=(python)
 fi
 if ! command -v ollama >/dev/null 2>&1; then
   echo "ollama is not available on PATH."
@@ -100,7 +140,7 @@ if [ "$RUN_CHECKLIST" = "1" ]; then
   CHECKLIST_EVAL_FILE="$OUT_DIR/evals/eval_baseline_checklist_${MODEL_NAME}_consensus.jsonl"
 
   echo "=== CHECKLIST BASELINE EVAL ==="
-  uv run run_eval_checklist.py \
+  "${PY_RUNNER[@]}" run_eval_checklist.py \
     "${COMMON_ARGS[@]}" \
     --baseline \
     --eval-results-file "$CHECKLIST_EVAL_FILE" \
@@ -111,7 +151,7 @@ if [ "$RUN_SBAR" = "1" ]; then
   SBAR_EVAL_FILE="$OUT_DIR/evals/eval_baseline_sbar_${MODEL_NAME}_consensus.jsonl"
 
   echo "=== SBAR BASELINE EVAL ==="
-  uv run run_eval_sbar_span.py \
+  "${PY_RUNNER[@]}" run_eval_sbar_span.py \
     "${COMMON_ARGS[@]}" \
     --baseline \
     --eval-results-file "$SBAR_EVAL_FILE" \
