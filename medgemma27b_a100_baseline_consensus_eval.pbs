@@ -34,8 +34,9 @@ nvidia-smi
 
 PYTHON_MODULE="${PYTHON_MODULE:-Python/3.12.3}"
 PYTHON_MODULE_CANDIDATES="${PYTHON_MODULE_CANDIDATES:-}"
-PYTHON_DEP_MODULES="${PYTHON_DEP_MODULES:-}"
-PYTHON_DEP_CANDIDATES="${PYTHON_DEP_CANDIDATES:-}"
+PYTHON_MIN_MAJOR="${PYTHON_MIN_MAJOR:-3}"
+PYTHON_MIN_MINOR="${PYTHON_MIN_MINOR:-10}"
+PYTHON_DEBUG_MODULE_LOAD="${PYTHON_DEBUG_MODULE_LOAD:-0}"
 VENV_DIR="${VENV_DIR:-$PBS_O_WORKDIR/.venv_cluster_py312}"
 
 if ! command -v module >/dev/null 2>&1; then
@@ -45,7 +46,7 @@ fi
 
 if [ -z "$PYTHON_MODULE_CANDIDATES" ]; then
   DISCOVERED_PYTHON_MODULES="$(
-    module -t spider Python 2>&1 | awk '/^Python\// {print $1}' | tr '\n' ' '
+    module --ignore_cache -t spider Python 2>&1 | awk '/^Python\// {print $1}' | tr '\n' ' '
   )"
   if [ -n "$DISCOVERED_PYTHON_MODULES" ]; then
     PYTHON_MODULE_CANDIDATES="$PYTHON_MODULE $DISCOVERED_PYTHON_MODULES"
@@ -58,64 +59,100 @@ PYTHON_MODULE_CANDIDATES="$(
 )"
 echo "Python module candidates: $PYTHON_MODULE_CANDIDATES"
 
-if [ -z "$PYTHON_DEP_CANDIDATES" ]; then
-  DISCOVERED_DEP_MODULES="$(
-    {
-      module -t avail GCCcore 2>&1
-      module -t avail GCC 2>&1
-    } | awk '/^(GCCcore|GCC)\// {print $1}' | tr '\n' ' '
-  )"
-  if [ -n "$DISCOVERED_DEP_MODULES" ]; then
-    PYTHON_DEP_CANDIDATES="$PYTHON_DEP_MODULES $DISCOVERED_DEP_MODULES"
-  else
-    PYTHON_DEP_CANDIDATES="$PYTHON_DEP_MODULES"
-  fi
-fi
-PYTHON_DEP_CANDIDATES="$(
-  printf '%s\n' $PYTHON_DEP_CANDIDATES | awk 'NF && !seen[$0]++' | tr '\n' ' '
-)"
-echo "Python dependency candidates: ${PYTHON_DEP_CANDIDATES:-<none>} plus <none>"
+python_is_usable() {
+  command -v python3 >/dev/null 2>&1 || return 1
+  python3 -c "import sys; raise SystemExit(0 if sys.version_info >= (${PYTHON_MIN_MAJOR}, ${PYTHON_MIN_MINOR}) else 1)" >/dev/null 2>&1
+}
+
+extract_spider_chains() {
+  local mod="$1"
+  module --ignore_cache spider "$mod" 2>&1 | awk '
+    /You will need to load all module\(s\) on any one of the lines below before the/ {capture=1; started=0; next}
+    capture {
+      if ($0 ~ /^[[:space:]]*$/) {
+        if (started) next
+        next
+      }
+      if ($0 ~ /^[[:space:]]+[[:alnum:]_.+-]+\/[[:alnum:]_.+-]+/) {
+        line=$0
+        gsub(/^[[:space:]]+/, "", line)
+        gsub(/[[:space:]]+/, " ", line)
+        print line
+        started=1
+        next
+      }
+      if (started && $0 !~ /^[[:space:]]/) exit
+    }'
+}
 
 SELECTED_PYTHON_MODULE=""
-SELECTED_PYTHON_DEP_MODULES=""
-DEP_OPTIONS=()
-if [ -n "$PYTHON_DEP_CANDIDATES" ]; then
-  # shellcheck disable=SC2206
-  DEP_OPTIONS=($PYTHON_DEP_CANDIDATES)
-fi
-DEP_OPTIONS+=("")
+SELECTED_PYTHON_CHAIN=""
 
-for dep in "${DEP_OPTIONS[@]}"; do
-  # shellcheck disable=SC2086
-  for mod in $PYTHON_MODULE_CANDIDATES; do
-    module purge || true
-    if [ -n "$dep" ]; then
-      # shellcheck disable=SC2086
-      if ! module load $dep; then
-        continue
+try_python_module() {
+  local mod="$1"
+  local chain="$2"
+
+  module purge >/dev/null 2>&1 || true
+
+  if [ -n "$chain" ]; then
+    local dep
+    for dep in $chain; do
+      if [ "$PYTHON_DEBUG_MODULE_LOAD" = "1" ]; then
+        module load "$dep" || return 1
+      else
+        module load "$dep" >/dev/null 2>&1 || return 1
       fi
-    fi
-    if ! module load "$mod"; then
-      continue
-    fi
-    if command -v python3 >/dev/null 2>&1 && python3 -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 10) else 1)" >/dev/null 2>&1; then
-      SELECTED_PYTHON_MODULE="$mod"
-      SELECTED_PYTHON_DEP_MODULES="$dep"
+    done
+  fi
+
+  if [ "$PYTHON_DEBUG_MODULE_LOAD" = "1" ]; then
+    module load "$mod" || return 1
+  else
+    module load "$mod" >/dev/null 2>&1 || return 1
+  fi
+
+  python_is_usable
+  local rc=$?
+  if [ "$rc" -eq 0 ]; then
+    SELECTED_PYTHON_MODULE="$mod"
+    SELECTED_PYTHON_CHAIN="$chain"
+    return 0
+  fi
+
+  if [ "$rc" -eq 132 ]; then
+    echo "  python3 crashed with illegal instruction for $mod ${chain:+(chain: $chain)}"
+  fi
+  return 2
+}
+
+ATTEMPT_INDEX=0
+for mod in $PYTHON_MODULE_CANDIDATES; do
+  ATTEMPT_INDEX=$((ATTEMPT_INDEX + 1))
+  echo "Trying Python module [$ATTEMPT_INDEX]: $mod"
+
+  if try_python_module "$mod" ""; then
+    break
+  fi
+
+  while IFS= read -r chain; do
+    [ -n "$chain" ] || continue
+    echo "  trying prerequisite chain: $chain"
+    if try_python_module "$mod" "$chain"; then
       break 2
     fi
-  done
+  done < <(extract_spider_chains "$mod" | awk 'NF && !seen[$0]++')
 done
 
 if [ -z "$SELECTED_PYTHON_MODULE" ]; then
-  echo "Could not load a runnable python3 >=3.10 on this node."
+  echo "Could not load a runnable python3 >=${PYTHON_MIN_MAJOR}.${PYTHON_MIN_MINOR} on this node."
   echo "Tried PYTHON_MODULE_CANDIDATES: $PYTHON_MODULE_CANDIDATES"
-  echo "Tried dep modules: ${PYTHON_DEP_CANDIDATES:-<none>} (and none)"
+  echo "Tip: set PYTHON_DEBUG_MODULE_LOAD=1 to show full module load errors."
   exit 1
 fi
 
 echo "Using Python module: $SELECTED_PYTHON_MODULE"
-if [ -n "$SELECTED_PYTHON_DEP_MODULES" ]; then
-  echo "Using dependency module(s): $SELECTED_PYTHON_DEP_MODULES"
+if [ -n "$SELECTED_PYTHON_CHAIN" ]; then
+  echo "Using prerequisite chain: $SELECTED_PYTHON_CHAIN"
 fi
 
 if [ ! -x "$VENV_DIR/bin/python3" ] && [ ! -x "$VENV_DIR/bin/python" ]; then
