@@ -8,7 +8,7 @@
 set -euo pipefail
 
 cd "$PBS_O_WORKDIR" || exit 1
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
 # Persistent model cache on HOME (Lustre-backed on cluster)
 export OLLAMA_MODELS="${OLLAMA_MODELS:-$HOME/.ollama/models}"
@@ -39,8 +39,13 @@ if ! command -v uv >/dev/null 2>&1; then
   PYTHON_MODULE="${PYTHON_MODULE:-Python/3.12.3}"
   PYTHON_DEP_MODULES="${PYTHON_DEP_MODULES:-GCCcore/13.3.0}"
   VENV_DIR="${VENV_DIR:-$PBS_O_WORKDIR/.venv_cluster_py312}"
+  PYTHON_OK=0
 
-  if ! command -v python3 >/dev/null 2>&1 && command -v module >/dev/null 2>&1; then
+  if command -v python3 >/dev/null 2>&1 && python3 -c "import sys" >/dev/null 2>&1; then
+    PYTHON_OK=1
+  fi
+
+  if [ "$PYTHON_OK" = "0" ] && command -v module >/dev/null 2>&1; then
     module purge || true
     if [ -n "$PYTHON_DEP_MODULES" ]; then
       # shellcheck disable=SC2086
@@ -49,21 +54,30 @@ if ! command -v uv >/dev/null 2>&1; then
     module load "$PYTHON_MODULE" || true
   fi
 
-  if ! command -v python3 >/dev/null 2>&1; then
-    echo "python3 is not available. Try: module spider Python"
+  if ! command -v python3 >/dev/null 2>&1 || ! python3 -c "import sys" >/dev/null 2>&1; then
+    echo "python3 is not available or not runnable. Try: module spider Python"
     exit 1
   fi
 
-  if [ ! -x "$VENV_DIR/bin/python" ]; then
+  if [ ! -x "$VENV_DIR/bin/python3" ] && [ ! -x "$VENV_DIR/bin/python" ]; then
     python3 -m venv "$VENV_DIR"
   fi
-  # shellcheck disable=SC1090
-  source "$VENV_DIR/bin/activate"
 
-  DEPS_STAMP="$VENV_DIR/.handover_deps_v1"
+  PYTHON_BIN="$VENV_DIR/bin/python3"
+  if [ ! -x "$PYTHON_BIN" ]; then
+    PYTHON_BIN="$VENV_DIR/bin/python"
+  fi
+  if ! "$PYTHON_BIN" -c "import sys" >/dev/null 2>&1; then
+    echo "Existing venv is not runnable; recreating $VENV_DIR"
+    python3 -m venv --clear "$VENV_DIR"
+    PYTHON_BIN="$VENV_DIR/bin/python3"
+    "$PYTHON_BIN" -c "import sys" >/dev/null
+  fi
+
+  DEPS_STAMP="$VENV_DIR/.handover_deps_v2"
   if [ ! -f "$DEPS_STAMP" ]; then
-    python -m pip install --upgrade pip setuptools wheel
-    python -m pip install \
+    "$PYTHON_BIN" -m pip install --upgrade pip setuptools wheel
+    "$PYTHON_BIN" -m pip install \
       "dspy-ai>=3.0.4" \
       "langextract>=1.1.1" \
       "numpy>=2.3.5" \
@@ -74,7 +88,7 @@ if ! command -v uv >/dev/null 2>&1; then
   fi
 
   export PYTHONPATH="$PWD/src${PYTHONPATH:+:$PYTHONPATH}"
-  PY_RUNNER=(python)
+  PY_RUNNER=("$PYTHON_BIN")
 fi
 if ! command -v ollama >/dev/null 2>&1; then
   echo "ollama is not available on PATH."
