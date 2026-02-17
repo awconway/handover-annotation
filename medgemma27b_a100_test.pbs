@@ -1,0 +1,63 @@
+#!/bin/bash -l
+#PBS -N medgemma27b_a100_test
+#PBS -l select=1:ncpus=4:mem=32GB:ngpus=1:gpu_model=A100:gpu_sliced=False
+#PBS -l walltime=00:30:00
+#PBS -m abe
+#PBS -j oe
+
+set -euo pipefail
+
+cd "$PBS_O_WORKDIR" || exit 1
+export PATH="$HOME/bin:$PATH"
+
+# Persistent model location (Aqua HOME is Lustre and backed up) :contentReference[oaicite:0]{index=0}
+export OLLAMA_MODELS="$HOME/.ollama/models"
+
+echo "Node: $(hostname)"
+echo "GPU info:"
+nvidia-smi
+
+# Choose random free port
+while :; do
+  PORT=$((11434 + RANDOM % 5000))
+  if ! nc -z 127.0.0.1 "$PORT" 2>/dev/null; then
+    break
+  fi
+done
+
+export OLLAMA_HOST="127.0.0.1:${PORT}"
+echo "Using OLLAMA_HOST=$OLLAMA_HOST"
+
+# Start Ollama server
+ollama serve >/dev/null 2>&1 &
+OLLAMA_PID=$!
+trap 'kill "$OLLAMA_PID" 2>/dev/null || true' EXIT
+
+# Wait until ready
+for i in {1..60}; do
+  if curl -fs "http://$OLLAMA_HOST/api/tags" >/dev/null; then
+    break
+  fi
+  sleep 1
+  if [ "$i" -eq 60 ]; then
+    echo "Ollama did not start"
+    exit 1
+  fi
+done
+
+MODEL="alibayram/medgemma:27b"
+
+echo "Available models:"
+ollama list
+
+echo "GPU memory before run:"
+nvidia-smi
+
+echo "Running test prompt..."
+ollama run "$MODEL" "In one sentence, explain what heart failure is to a patient."
+
+echo "GPU memory after run:"
+nvidia-smi
+
+echo "Done."
+

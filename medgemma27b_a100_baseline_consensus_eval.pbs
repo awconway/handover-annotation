@@ -1,0 +1,124 @@
+#!/bin/bash -l
+#PBS -N medgemma27b_baseline_consensus
+#PBS -l select=1:ncpus=8:mem=64GB:ngpus=1:gpu_model=A100:gpu_sliced=False
+#PBS -l walltime=04:00:00
+#PBS -m abe
+#PBS -j oe
+
+set -euo pipefail
+
+cd "$PBS_O_WORKDIR" || exit 1
+export PATH="$HOME/bin:$PATH"
+
+# Persistent model cache on HOME (Lustre-backed on cluster)
+export OLLAMA_MODELS="${OLLAMA_MODELS:-$HOME/.ollama/models}"
+
+MODEL_IMAGE="alibayram/medgemma:27b"
+MODEL_NAME="${MODEL_NAME:-ollama_medgemma_27b}"
+DATA_FILE="${DATA_FILE:-./annotated_data/db_20260129_tokenised_consensus.jsonl}"
+ANNOTATOR_ID="${ANNOTATOR_ID:-}"
+USE_ALL="${USE_ALL:-0}"          # 1 => evaluate on all matching examples
+RUN_CHECKLIST="${RUN_CHECKLIST:-1}"
+RUN_SBAR="${RUN_SBAR:-1}"
+
+STAMP="$(date +%Y%m%d_%H%M%S)"
+OUT_DIR="${OUT_DIR:-./cluster_runs/medgemma27b_baseline_consensus_${STAMP}}"
+mkdir -p "$OUT_DIR"/evals "$OUT_DIR"/logs
+exec > >(tee -a "$OUT_DIR/logs/job.log") 2>&1
+
+echo "Node: $(hostname)"
+echo "Working directory: $PWD"
+echo "Output directory: $OUT_DIR"
+echo "GPU info:"
+nvidia-smi
+
+if ! command -v uv >/dev/null 2>&1; then
+  echo "uv is not available on PATH."
+  exit 1
+fi
+if ! command -v ollama >/dev/null 2>&1; then
+  echo "ollama is not available on PATH."
+  exit 1
+fi
+
+# Pick a random free local port for this job's Ollama daemon.
+while :; do
+  PORT=$((11434 + RANDOM % 5000))
+  if ! nc -z 127.0.0.1 "$PORT" 2>/dev/null; then
+    break
+  fi
+done
+
+export OLLAMA_HOST="127.0.0.1:${PORT}"
+export OLLAMA_API_BASE="http://${OLLAMA_HOST}"
+echo "Using OLLAMA_HOST=${OLLAMA_HOST}"
+echo "Using OLLAMA_API_BASE=${OLLAMA_API_BASE}"
+
+ollama serve >/dev/null 2>&1 &
+OLLAMA_PID=$!
+trap 'kill "$OLLAMA_PID" 2>/dev/null || true' EXIT
+
+for i in {1..90}; do
+  if curl -fs "http://${OLLAMA_HOST}/api/tags" >/dev/null; then
+    break
+  fi
+  sleep 1
+  if [ "$i" -eq 90 ]; then
+    echo "Ollama did not start within 90 seconds."
+    exit 1
+  fi
+done
+
+if ! ollama show "$MODEL_IMAGE" >/dev/null 2>&1; then
+  echo "Pulling ${MODEL_IMAGE}..."
+  ollama pull "$MODEL_IMAGE"
+else
+  echo "Model ${MODEL_IMAGE} already available in local cache."
+fi
+
+echo "Available models:"
+ollama list
+
+COMMON_ARGS=(--data-file "$DATA_FILE" --model-name "$MODEL_NAME")
+if [ -n "$ANNOTATOR_ID" ]; then
+  COMMON_ARGS+=(--annotator-id "$ANNOTATOR_ID")
+fi
+EVAL_EXTRA_ARGS=()
+if [ "$USE_ALL" = "1" ]; then
+  EVAL_EXTRA_ARGS+=(--use-all)
+fi
+
+echo "Run configuration:"
+echo "  DATA_FILE=$DATA_FILE"
+echo "  RUN_CHECKLIST=$RUN_CHECKLIST"
+echo "  RUN_SBAR=$RUN_SBAR"
+echo "  ANNOTATOR_ID=${ANNOTATOR_ID:-<all>}"
+echo "  USE_ALL=$USE_ALL"
+echo "  Mode=baseline-eval-only"
+
+if [ "$RUN_CHECKLIST" = "1" ]; then
+  CHECKLIST_EVAL_FILE="$OUT_DIR/evals/eval_baseline_checklist_${MODEL_NAME}_consensus.jsonl"
+
+  echo "=== CHECKLIST BASELINE EVAL ==="
+  uv run run_eval_checklist.py \
+    "${COMMON_ARGS[@]}" \
+    --baseline \
+    --eval-results-file "$CHECKLIST_EVAL_FILE" \
+    "${EVAL_EXTRA_ARGS[@]}"
+fi
+
+if [ "$RUN_SBAR" = "1" ]; then
+  SBAR_EVAL_FILE="$OUT_DIR/evals/eval_baseline_sbar_${MODEL_NAME}_consensus.jsonl"
+
+  echo "=== SBAR BASELINE EVAL ==="
+  uv run run_eval_sbar_span.py \
+    "${COMMON_ARGS[@]}" \
+    --baseline \
+    --eval-results-file "$SBAR_EVAL_FILE" \
+    "${EVAL_EXTRA_ARGS[@]}"
+fi
+
+echo "Consensus baseline evaluations completed."
+echo "Artifacts:"
+echo "  Evals: $OUT_DIR/evals"
+echo "  Logs:  $OUT_DIR/logs/job.log"
