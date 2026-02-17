@@ -46,7 +46,7 @@ fi
 
 if [ -z "$PYTHON_MODULE_CANDIDATES" ]; then
   DISCOVERED_PYTHON_MODULES="$(
-    module --ignore_cache -t spider Python 2>&1 | awk '/^Python\// {print $1}' | tr '\n' ' '
+    { module --ignore_cache -t spider Python 2>&1 || true; } | awk '/^Python\// {print $1}' | tr '\n' ' '
   )"
   if [ -n "$DISCOVERED_PYTHON_MODULES" ]; then
     PYTHON_MODULE_CANDIDATES="$PYTHON_MODULE $DISCOVERED_PYTHON_MODULES"
@@ -66,7 +66,7 @@ python_is_usable() {
 
 extract_spider_chains() {
   local mod="$1"
-  module --ignore_cache spider "$mod" 2>&1 | awk '
+  { module --ignore_cache spider "$mod" 2>&1 || true; } | awk '
     /You will need to load all module\(s\) on any one of the lines below before the/ {capture=1; started=0; next}
     capture {
       if ($0 ~ /^[[:space:]]*$/) {
