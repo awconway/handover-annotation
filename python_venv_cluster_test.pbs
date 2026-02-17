@@ -1,0 +1,103 @@
+#!/bin/bash -l
+#PBS -N python_venv_test
+#PBS -l select=1:ncpus=1:mem=8GB
+#PBS -l walltime=00:20:00
+#PBS -m abe
+#PBS -j oe
+
+set -euo pipefail
+
+cd "$PBS_O_WORKDIR" || exit 1
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+export PYTHONPATH="$PWD/src${PYTHONPATH:+:$PYTHONPATH}"
+
+STAMP="$(date +%Y%m%d_%H%M%S)"
+OUT_DIR="${OUT_DIR:-./cluster_runs/python_venv_test_${STAMP}}"
+mkdir -p "$OUT_DIR"
+exec > >(tee -a "$OUT_DIR/job.log") 2>&1
+
+echo "Node: $(hostname)"
+echo "Working directory: $PWD"
+echo "Output directory: $OUT_DIR"
+echo "PATH=$PATH"
+
+TEST_LANGEXTRACT="${TEST_LANGEXTRACT:-0}" # 1 => attempt langextract install/import
+
+PYTHON_MODULE="${PYTHON_MODULE:-Python/3.12.3}"
+PYTHON_DEP_MODULES="${PYTHON_DEP_MODULES:-GCCcore/13.3.0}"
+VENV_DIR="${VENV_DIR:-$PBS_O_WORKDIR/.venv_cluster_py312}"
+
+if ! command -v module >/dev/null 2>&1; then
+  echo "Environment modules are required but 'module' command is not available."
+  exit 1
+fi
+
+module purge || true
+if [ -n "$PYTHON_DEP_MODULES" ]; then
+  # shellcheck disable=SC2086
+  module load $PYTHON_DEP_MODULES
+fi
+module load "$PYTHON_MODULE"
+
+if ! command -v python3 >/dev/null 2>&1 || ! python3 -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 10) else 1)" >/dev/null 2>&1; then
+  echo "Loaded python3 is not available/runnable at >=3.10. Check PYTHON_MODULE."
+  exit 1
+fi
+
+if [ ! -x "$VENV_DIR/bin/python3" ] && [ ! -x "$VENV_DIR/bin/python" ]; then
+  python3 -m venv "$VENV_DIR"
+fi
+
+PYTHON_BIN="$VENV_DIR/bin/python3"
+if [ ! -x "$PYTHON_BIN" ]; then
+  PYTHON_BIN="$VENV_DIR/bin/python"
+fi
+if ! "$PYTHON_BIN" -c "import sys" >/dev/null 2>&1; then
+  echo "Existing venv is not runnable; recreating $VENV_DIR"
+  python3 -m venv --clear "$VENV_DIR"
+  PYTHON_BIN="$VENV_DIR/bin/python3"
+  "$PYTHON_BIN" -c "import sys" >/dev/null
+fi
+
+DEPS_STAMP="$VENV_DIR/.handover_deps_v4"
+if [ ! -f "$DEPS_STAMP" ]; then
+  "$PYTHON_BIN" -m pip install --upgrade pip setuptools wheel
+  "$PYTHON_BIN" -m pip install \
+    "dspy-ai>=3.0.4" \
+    "numpy>=2.3.5" \
+    "rapidfuzz>=3.14.3" \
+    "spacy>=3.8.11" \
+    "thinc>=8.3.10" \
+    "srsly>=2.5.1"
+  if [ "$TEST_LANGEXTRACT" = "1" ]; then
+    "$PYTHON_BIN" -m pip install "langextract>=1.1.1"
+  fi
+  touch "$DEPS_STAMP"
+fi
+
+echo "Python command: $PYTHON_BIN"
+
+"$PYTHON_BIN" - <<'PY'
+import importlib
+import sys
+
+modules = ["dspy", "numpy", "rapidfuzz", "spacy", "thinc", "srsly"]
+print("Python executable:", sys.executable)
+print("Python version:", sys.version.replace("\n", " "))
+for name in modules:
+    mod = importlib.import_module(name)
+    version = getattr(mod, "__version__", "unknown")
+    print(f"{name}: {version}")
+
+try:
+    lx = importlib.import_module("langextract")
+    print("langextract:", getattr(lx, "__version__", "unknown"))
+except Exception as exc:
+    print("langextract: not available (optional)", repr(exc))
+
+from config.model_registry import MODEL_REGISTRY
+print("Model keys:", sorted(MODEL_REGISTRY))
+print("Environment smoke test passed.")
+PY
+
+echo "Done."
