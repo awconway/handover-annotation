@@ -24,6 +24,7 @@ echo "PATH=$PATH"
 TEST_LANGEXTRACT="${TEST_LANGEXTRACT:-0}" # 1 => attempt langextract install/import
 
 PYTHON_MODULE="${PYTHON_MODULE:-Python/3.12.3}"
+PYTHON_MODULE_CANDIDATES="${PYTHON_MODULE_CANDIDATES:-$PYTHON_MODULE Python/3.11.9 Python/3.10.14 Python/3.10.13}"
 PYTHON_DEP_MODULES="${PYTHON_DEP_MODULES:-GCCcore/13.3.0}"
 VENV_DIR="${VENV_DIR:-$PBS_O_WORKDIR/.venv_cluster_py312}"
 
@@ -32,16 +33,45 @@ if ! command -v module >/dev/null 2>&1; then
   exit 1
 fi
 
-module purge || true
+SELECTED_PYTHON_MODULE=""
+SELECTED_PYTHON_DEP_MODULES=""
+DEP_OPTIONS=()
 if [ -n "$PYTHON_DEP_MODULES" ]; then
-  # shellcheck disable=SC2086
-  module load $PYTHON_DEP_MODULES
+  DEP_OPTIONS+=("$PYTHON_DEP_MODULES")
 fi
-module load "$PYTHON_MODULE"
+DEP_OPTIONS+=("")
 
-if ! command -v python3 >/dev/null 2>&1 || ! python3 -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 10) else 1)" >/dev/null 2>&1; then
-  echo "Loaded python3 is not available/runnable at >=3.10. Check PYTHON_MODULE."
+for dep in "${DEP_OPTIONS[@]}"; do
+  # shellcheck disable=SC2086
+  for mod in $PYTHON_MODULE_CANDIDATES; do
+    module purge || true
+    if [ -n "$dep" ]; then
+      # shellcheck disable=SC2086
+      if ! module load $dep; then
+        continue
+      fi
+    fi
+    if ! module load "$mod"; then
+      continue
+    fi
+    if command -v python3 >/dev/null 2>&1 && python3 -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 10) else 1)" >/dev/null 2>&1; then
+      SELECTED_PYTHON_MODULE="$mod"
+      SELECTED_PYTHON_DEP_MODULES="$dep"
+      break 2
+    fi
+  done
+done
+
+if [ -z "$SELECTED_PYTHON_MODULE" ]; then
+  echo "Could not load a runnable python3 >=3.10 on this node."
+  echo "Tried PYTHON_MODULE_CANDIDATES: $PYTHON_MODULE_CANDIDATES"
+  echo "Tried dep module: ${PYTHON_DEP_MODULES:-<none>} (and none)"
   exit 1
+fi
+
+echo "Using Python module: $SELECTED_PYTHON_MODULE"
+if [ -n "$SELECTED_PYTHON_DEP_MODULES" ]; then
+  echo "Using dependency module(s): $SELECTED_PYTHON_DEP_MODULES"
 fi
 
 if [ ! -x "$VENV_DIR/bin/python3" ] && [ ! -x "$VENV_DIR/bin/python" ]; then
