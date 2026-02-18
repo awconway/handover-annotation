@@ -57,7 +57,7 @@ def parse_args() -> argparse.Namespace:
         "--num-threads",
         type=int,
         default=None,
-        help="Number of threads for evaluation. Defaults to DSPy settings.num_threads.",
+        help="Number of threads for evaluation. Defaults to 1 (sequential).",
     )
     parser.add_argument(
         "--no-resume",

@@ -28,6 +28,12 @@ Clinical handover requires concise and accurate transfer of critical patient inf
 
 This manuscript reports outcomes aligned to the Phase 1 objective in `proposal.md`: development of a generative AI pipeline to produce accurate handover recommendations and structured outputs.
 
+Tasks considered as potentially amenable to summarization by AI were identified as:
+
+- Extracting spans of transcripts aligned with SBAR
+- Identifying key concepts and entities in handover transcripts
+- Identifying spans of text in transcript that were communicated in uncertain terms.
+
 ### Data sources
 
 We used the publicly available NICTA Synthetic Nursing
@@ -42,20 +48,13 @@ to envision herself working in a medical ward, providing verbal
 handovers to another nurse at the patient\'s bedside during a shift
 change.^5^ We used the 100 handover samples from the training partition of this dataset in our study, but modified it from the format of a one-sided monologue into a format
 
-2) *A dataset comprising 100 transcribed recordings of a
-junior doctor reporting to a senior doctor based on documents from real
-clinical cases* related to either a medical patient with respiratory
-failure or a patient with acute abdominal injury requiring urgent
-surgery.^6^ The dataset comprises a total of 1895 sentences of English
-language text, which was produced at the Queen Elizabeth Hospital in
-Hong Kong. 3) *A 'local TPCH' synthetic dataset that we will develop
-comprising handovers depicting complex clinical handovers used in mental
-health settings and other high-risk contexts* (e.g. populations with
-complex care needs including older adults, patients with delirium and
-those transitioning between acute and community care settings)*.* The
-same processes used to create the NICTA dataset will be applied, with
-handovers created based on comprehensive and realistic profiles to be
-supported by a process of data augmentation.^7^
+- transcribed audio files using openai whisper
+- transcribed high quality educational videos depicting nursing shift to shift handover
+- used bootstrap few shot examples of the transcribed educational videos in dspy to convert 100 transcripts from the training partition of the NICTA data set to a two_sided handover
+- synthesised TPCH data set with additional 103 examples across other contexts including inter and intra-hospital transfers, post-procedural handover, emergency department and mental health interactively using gpt-5
+- total dataset was 203 synthetic handover examples.
+-
+
 
 ### Annotation
 
@@ -67,6 +66,10 @@ Model orchestration used DSPy (`dspy`) for predictor construction, configuration
 
 1. Baseline prompt pipeline (initial DSPy signature without trained program loading).
 2. DSPy-optimized prompt/program configuration.
+
+Langextract
+
+- model selection based on large model first then smaller if necessary?
 
 ### Evaluation setting
 

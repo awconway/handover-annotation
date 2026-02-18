@@ -115,9 +115,8 @@ def _run_eval(
     error_count = 0
     total = len(testset)
     out_path = Path(out_file)
-    effective_num_threads = (
-        dspy.settings.num_threads if num_threads is None else num_threads
-    )
+    # Keep legacy behavior unless callers explicitly opt into parallelism.
+    effective_num_threads = 1 if num_threads is None else num_threads
     if effective_num_threads < 1:
         raise ValueError(f"num_threads must be >= 1, got {effective_num_threads}")
 
