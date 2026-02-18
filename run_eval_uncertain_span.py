@@ -49,6 +49,17 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Evaluate using the initial DSPy signature (no trained program load).",
     )
+    parser.add_argument(
+        "--num-threads",
+        type=int,
+        default=None,
+        help="Number of threads for evaluation. Defaults to DSPy settings.num_threads.",
+    )
+    parser.add_argument(
+        "--no-resume",
+        action="store_true",
+        help="Start fresh by overwriting existing eval JSONL instead of resuming.",
+    )
     args = parser.parse_args()
 
     if args.baseline and args.output_model_file:
@@ -78,6 +89,12 @@ configure_dspy(lm)
 if not args.baseline:
     predictor.load(args.output_model_file)
 
-score = evaluate_sbar(predictor, testset, eval_results_file)
+score = evaluate_sbar(
+    predictor,
+    testset,
+    eval_results_file,
+    resume=not args.no_resume,
+    num_threads=args.num_threads,
+)
 print(predictor.inspect_history(-1))
 print("Evaluation complete. Score:", score)

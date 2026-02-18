@@ -58,6 +58,17 @@ def parse_args() -> argparse.Namespace:
         default=1.0,
         help="Base backoff delay between retries.",
     )
+    parser.add_argument(
+        "--num-threads",
+        type=int,
+        default=None,
+        help="Number of threads for evaluation. Defaults to DSPy settings.num_threads.",
+    )
+    parser.add_argument(
+        "--no-resume",
+        action="store_true",
+        help="Start fresh by overwriting existing eval JSONL instead of resuming.",
+    )
     args = parser.parse_args()
 
     if args.baseline and args.output_model_file:
@@ -91,6 +102,8 @@ score = evaluate_sbar(
     eval_results_file,
     max_retries=args.max_retries,
     retry_delay_seconds=args.retry_delay_seconds,
+    resume=not args.no_resume,
+    num_threads=args.num_threads,
 )
 try:
     print(predictor.inspect_history(-1))

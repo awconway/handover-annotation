@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import concurrent.futures
+import json
 import time
+from pathlib import Path
 from typing import Any, Callable
 
 import dspy
@@ -82,6 +84,21 @@ def _metric_score(metric: Callable[..., Any], example: Any, pred: Any) -> tuple[
         return 0.0, f"{type(exc).__name__}: {exc}"
 
 
+def _load_existing_rows(out_file: str) -> list[dict[str, Any]]:
+    path = Path(out_file)
+    if not path.exists():
+        return []
+
+    rows: list[dict[str, Any]] = []
+    for line_no, row in enumerate(srsly.read_jsonl(str(path)), start=1):
+        if not isinstance(row, dict):
+            raise ValueError(
+                f"Existing eval file has non-object JSONL row at line {line_no}: {out_file}"
+            )
+        rows.append(row)
+    return rows
+
+
 def _run_eval(
     predictor: Any,
     testset: list[Any],
@@ -91,49 +108,160 @@ def _run_eval(
     fallback_prediction_factory: Callable[[], Any],
     max_retries: int = _DEFAULT_MAX_RETRIES,
     retry_delay_seconds: float = _DEFAULT_RETRY_DELAY_SECONDS,
+    resume: bool = True,
+    num_threads: int | None = None,
 ) -> float:
-    rows: list[dict[str, Any]] = []
     scores: list[float] = []
     error_count = 0
     total = len(testset)
+    out_path = Path(out_file)
+    effective_num_threads = (
+        dspy.settings.num_threads if num_threads is None else num_threads
+    )
+    if effective_num_threads < 1:
+        raise ValueError(f"num_threads must be >= 1, got {effective_num_threads}")
 
-    for idx, example in enumerate(testset, start=1):
-        if hasattr(example, "inputs"):
-            inputs = example.inputs()
-        elif isinstance(example, dict):
-            inputs = {k: v for k, v in example.items() if k != "labels" and k != "gold_spans"}
-        else:
-            inputs = {}
+    def process_example(idx0: int, example: Any) -> tuple[int, dict[str, Any], float, bool, float]:
+        started_at = time.perf_counter()
+        try:
+            if hasattr(example, "inputs"):
+                inputs = example.inputs()
+            elif isinstance(example, dict):
+                inputs = {
+                    k: v
+                    for k, v in example.items()
+                    if k != "labels" and k != "gold_spans"
+                }
+            else:
+                inputs = {}
 
-        pred, pred_error = _predict_with_retries(
-            predictor,
-            inputs,
-            fallback_prediction_factory=fallback_prediction_factory,
-            max_retries=max_retries,
-            retry_delay_seconds=retry_delay_seconds,
-        )
-        score, metric_error = _metric_score(metric, example, pred)
-        scores.append(score)
+            pred, pred_error = _predict_with_retries(
+                predictor,
+                inputs,
+                fallback_prediction_factory=fallback_prediction_factory,
+                max_retries=max_retries,
+                retry_delay_seconds=retry_delay_seconds,
+            )
+            score, metric_error = _metric_score(metric, example, pred)
 
-        row: dict[str, Any] = {
-            "example": _to_jsonable(example),
-            "prediction": _to_jsonable(pred),
-            "score": score,
-        }
-
-        if pred_error or metric_error:
-            error_count += 1
-            row["error"] = {
-                "prediction_error": pred_error,
-                "metric_error": metric_error,
+            row: dict[str, Any] = {
+                "example": _to_jsonable(example),
+                "prediction": _to_jsonable(pred),
+                "score": score,
             }
 
-        rows.append(row)
+            has_error = pred_error is not None or metric_error is not None
+            if has_error:
+                row["error"] = {
+                    "prediction_error": pred_error,
+                    "metric_error": metric_error,
+                }
+        except Exception as exc:
+            score = 0.0
+            has_error = True
+            row = {
+                "example": _to_jsonable(example),
+                "prediction": _to_jsonable(fallback_prediction_factory()),
+                "score": score,
+                "error": {
+                    "prediction_error": (
+                        "internal_evaluator_error: "
+                        f"{type(exc).__name__}: {exc}"
+                    ),
+                    "metric_error": None,
+                },
+            }
 
-        if idx % 10 == 0 or idx == total:
-            print(f"Processed {idx}/{total} examples")
+        elapsed = time.perf_counter() - started_at
+        return idx0, row, score, has_error, elapsed
 
-    srsly.write_jsonl(out_file, rows)
+    start_idx = 0
+    if resume:
+        existing_rows = _load_existing_rows(out_file)
+        start_idx = len(existing_rows)
+        if start_idx > total:
+            raise ValueError(
+                "Existing eval file has more rows than the current test set: "
+                f"{start_idx} > {total} ({out_file})"
+            )
+
+        for row in existing_rows:
+            try:
+                scores.append(float(row.get("score", 0.0)))
+            except (TypeError, ValueError):
+                scores.append(0.0)
+            if row.get("error") is not None:
+                error_count += 1
+
+        if start_idx:
+            print(f"Resuming from {start_idx}/{total} completed examples in {out_file}")
+    elif out_path.exists():
+        print(f"Overwrite enabled; replacing existing results file: {out_file}")
+
+    if start_idx == total:
+        print("All examples are already evaluated. Skipping prediction loop.")
+    else:
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        mode = "a" if resume and start_idx > 0 else "w"
+        with out_path.open(mode, encoding="utf-8") as f:
+            if mode == "a" and out_path.stat().st_size > 0:
+                with out_path.open("rb") as check_f:
+                    check_f.seek(-1, 2)
+                    if check_f.read(1) != b"\n":
+                        f.write("\n")
+
+            pending = list(enumerate(testset[start_idx:], start=start_idx))
+            if effective_num_threads == 1:
+                for idx0, example in pending:
+                    _, row, score, has_error, elapsed = process_example(idx0, example)
+                    scores.append(score)
+                    if has_error:
+                        error_count += 1
+
+                    idx = idx0 + 1
+                    f.write(json.dumps(row, ensure_ascii=False))
+                    f.write("\n")
+                    f.flush()
+                    print(
+                        f"Processed {idx}/{total} examples in {elapsed:.2f}s "
+                        f"(score={score:.4f})"
+                    )
+            else:
+                print(f"Running evaluation with {effective_num_threads} threads.")
+                next_to_write = start_idx
+                buffered_results: dict[int, tuple[dict[str, Any], float, bool, float]] = {}
+
+                with concurrent.futures.ThreadPoolExecutor(
+                    max_workers=effective_num_threads
+                ) as executor:
+                    futures = [
+                        executor.submit(process_example, idx0, example)
+                        for idx0, example in pending
+                    ]
+                    for future in concurrent.futures.as_completed(futures):
+                        idx0, row, score, has_error, elapsed = future.result()
+                        buffered_results[idx0] = (row, score, has_error, elapsed)
+
+                        while next_to_write in buffered_results:
+                            (
+                                next_row,
+                                next_score,
+                                next_has_error,
+                                next_elapsed,
+                            ) = buffered_results.pop(next_to_write)
+                            scores.append(next_score)
+                            if next_has_error:
+                                error_count += 1
+
+                            idx = next_to_write + 1
+                            f.write(json.dumps(next_row, ensure_ascii=False))
+                            f.write("\n")
+                            f.flush()
+                            print(
+                                f"Processed {idx}/{total} examples in {next_elapsed:.2f}s "
+                                f"(score={next_score:.4f})"
+                            )
+                            next_to_write += 1
 
     avg = (sum(scores) / total) if total else 0.0
     print(f"Average Metric: {sum(scores):.6f} / {total} ({avg * 100:.1f}%)")
@@ -153,6 +281,8 @@ def evaluate_checklist(
     *,
     max_retries: int = _DEFAULT_MAX_RETRIES,
     retry_delay_seconds: float = _DEFAULT_RETRY_DELAY_SECONDS,
+    resume: bool = True,
+    num_threads: int | None = None,
 ) -> float:
     return _run_eval(
         predictor,
@@ -162,6 +292,8 @@ def evaluate_checklist(
         fallback_prediction_factory=lambda: dspy.Prediction(labels=[]),
         max_retries=max_retries,
         retry_delay_seconds=retry_delay_seconds,
+        resume=resume,
+        num_threads=num_threads,
     )
 
 
@@ -172,6 +304,8 @@ def evaluate_sbar(
     *,
     max_retries: int = _DEFAULT_MAX_RETRIES,
     retry_delay_seconds: float = _DEFAULT_RETRY_DELAY_SECONDS,
+    resume: bool = True,
+    num_threads: int | None = None,
 ) -> float:
     return _run_eval(
         predictor,
@@ -181,6 +315,8 @@ def evaluate_sbar(
         fallback_prediction_factory=lambda: dspy.Prediction(pred_spans=[]),
         max_retries=max_retries,
         retry_delay_seconds=retry_delay_seconds,
+        resume=resume,
+        num_threads=num_threads,
     )
 
 
@@ -191,6 +327,8 @@ def evaluate(
     *,
     max_retries: int = _DEFAULT_MAX_RETRIES,
     retry_delay_seconds: float = _DEFAULT_RETRY_DELAY_SECONDS,
+    resume: bool = True,
+    num_threads: int | None = None,
 ) -> float:
     """Backward-compatible alias used by run_eval.py."""
     return evaluate_checklist(
@@ -199,4 +337,6 @@ def evaluate(
         out_file,
         max_retries=max_retries,
         retry_delay_seconds=retry_delay_seconds,
+        resume=resume,
+        num_threads=num_threads,
     )

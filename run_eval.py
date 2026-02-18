@@ -44,7 +44,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--max-retries",
         type=int,
-        default=3,
+        default=2,
         help="Maximum prediction attempts per example before scoring as 0.",
     )
     parser.add_argument(
@@ -52,6 +52,17 @@ def parse_args() -> argparse.Namespace:
         type=float,
         default=1.0,
         help="Base backoff delay between retries.",
+    )
+    parser.add_argument(
+        "--num-threads",
+        type=int,
+        default=None,
+        help="Number of threads for evaluation. Defaults to DSPy settings.num_threads.",
+    )
+    parser.add_argument(
+        "--no-resume",
+        action="store_true",
+        help="Start fresh by overwriting existing eval JSONL instead of resuming.",
     )
     return parser.parse_args()
 
@@ -75,6 +86,8 @@ score = evaluate(
     eval_results_file,
     max_retries=args.max_retries,
     retry_delay_seconds=args.retry_delay_seconds,
+    resume=not args.no_resume,
+    num_threads=args.num_threads,
 )
 try:
     print(predictor.inspect_history(-1))
