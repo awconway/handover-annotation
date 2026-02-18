@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import dataclasses
 import random
+import time
 from pathlib import Path
 from typing import Any
 
@@ -262,7 +263,12 @@ def _call_extract_api(
     prompt_validation_level: Any,
     prompt_validation_strict: bool,
     show_progress: bool,
+    lm_timeout_seconds: int | None,
 ) -> Any:
+    language_model_params: dict[str, Any] = {}
+    if lm_timeout_seconds is not None:
+        language_model_params["timeout"] = int(lm_timeout_seconds)
+
     kwargs = {
         "prompt_description": prompt_description,
         "examples": examples,
@@ -273,6 +279,7 @@ def _call_extract_api(
         "prompt_validation_level": prompt_validation_level,
         "prompt_validation_strict": prompt_validation_strict,
         "show_progress": show_progress,
+        "language_model_params": language_model_params or None,
     }
     try:
         return lx.extract(text_or_documents=text, **kwargs)
@@ -384,11 +391,20 @@ def run_langextract_uncertainty_experiment(
     prompt_validation_level: str = "warning",
     prompt_validation_strict: bool = False,
     show_progress: bool = True,
+    lm_timeout_seconds: int | None = None,
+    max_retries: int = 1,
+    retry_delay_seconds: float = 1.5,
     use_dataset_test_split: bool = False,
     dry_run: bool = False,
 ) -> dict[str, float]:
     if train_examples < 1 or eval_examples < 1:
         raise ValueError("train_examples and eval_examples must both be >= 1.")
+    if lm_timeout_seconds is not None and lm_timeout_seconds < 1:
+        raise ValueError("lm_timeout_seconds must be >= 1 when provided.")
+    if max_retries < 1:
+        raise ValueError("max_retries must be >= 1.")
+    if retry_delay_seconds < 0:
+        raise ValueError("retry_delay_seconds must be >= 0.")
 
     if use_dataset_test_split:
         from data.dataset import prepare_dataset_uncertainty_span
@@ -473,19 +489,40 @@ def run_langextract_uncertainty_experiment(
         )
 
     for record in held_out_records:
-        raw_prediction = _call_extract_api(
-            lx,
-            text=record.text,
-            prompt_description=prompt_description,
-            examples=few_shot_examples,
-            model_id=model_id,
-            api_key=api_key,
-            fence_output=fence_output,
-            use_schema_constraints=use_schema_constraints,
-            prompt_validation_level=lx.prompt_validation.PromptValidationLevel.OFF,
-            prompt_validation_strict=prompt_validation_strict,
-            show_progress=show_progress,
-        )
+        last_error: Exception | None = None
+        raw_prediction: Any | None = None
+
+        for attempt in range(1, max_retries + 1):
+            try:
+                raw_prediction = _call_extract_api(
+                    lx,
+                    text=record.text,
+                    prompt_description=prompt_description,
+                    examples=few_shot_examples,
+                    model_id=model_id,
+                    api_key=api_key,
+                    fence_output=fence_output,
+                    use_schema_constraints=use_schema_constraints,
+                    prompt_validation_level=lx.prompt_validation.PromptValidationLevel.OFF,
+                    prompt_validation_strict=prompt_validation_strict,
+                    show_progress=show_progress,
+                    lm_timeout_seconds=lm_timeout_seconds,
+                )
+                break
+            except Exception as exc:
+                last_error = exc
+                if attempt < max_retries:
+                    print(
+                        "LangExtract uncertainty call failed "
+                        f"(attempt {attempt}/{max_retries}): {exc}"
+                    )
+                    if retry_delay_seconds > 0:
+                        time.sleep(retry_delay_seconds)
+
+        if raw_prediction is None:
+            assert last_error is not None
+            raise last_error
+
         pred_items = _extract_items_from_prediction(raw_prediction)
         metrics = iou_span_metrics(
             text=record.text,

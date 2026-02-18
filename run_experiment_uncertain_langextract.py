@@ -60,6 +60,24 @@ def parse_args() -> argparse.Namespace:
         help="Seed for deterministic train/eval split.",
     )
     parser.add_argument(
+        "--lm-timeout-seconds",
+        type=int,
+        default=None,
+        help="Optional LangExtract/Ollama request timeout in seconds.",
+    )
+    parser.add_argument(
+        "--max-retries",
+        type=int,
+        default=1,
+        help="Retries per eval record on extraction API errors.",
+    )
+    parser.add_argument(
+        "--retry-delay-seconds",
+        type=float,
+        default=1.5,
+        help="Delay between retries on extraction API errors.",
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Skip LangExtract API calls and write empty predictions for smoke tests.",
@@ -141,6 +159,9 @@ summary = run_langextract_uncertainty_experiment(
     eval_examples=args.eval_examples,
     annotator_id=args.annotator_id,
     seed=args.seed,
+    lm_timeout_seconds=args.lm_timeout_seconds,
+    max_retries=args.max_retries,
+    retry_delay_seconds=args.retry_delay_seconds,
     api_key=api_key,
     fence_output=args.fence_output,
     use_schema_constraints=args.use_schema_constraints,
