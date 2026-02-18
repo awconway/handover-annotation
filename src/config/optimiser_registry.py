@@ -6,13 +6,7 @@ from span_metric.gepa_span_metric import gepa_span_metric
 
 
 def build_reflection_lm() -> dspy.LM:
-    return dspy.LM(
-        model="openai/gpt-5.2",
-        model_type="responses",
-        temperature=1.0,
-        max_tokens=32000,
-        reasoning={"effort": "medium"},
-    )
+    return dspy.LM(model="openai/gpt-5.2")
 
 
 OPTIM_REGISTRY = {

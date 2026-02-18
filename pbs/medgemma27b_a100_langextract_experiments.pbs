@@ -1,0 +1,227 @@
+#!/bin/bash -l
+#PBS -N medgemma27b_langextract
+#PBS -l select=1:ncpus=8:mem=64GB:ngpus=1:gpu_model=A100:gpu_sliced=False
+#PBS -l walltime=08:00:00
+#PBS -m abe
+#PBS -j oe
+
+set -euo pipefail
+
+cd "$PBS_O_WORKDIR" || exit 1
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+
+# Persistent model cache on HOME (Lustre-backed on cluster)
+export OLLAMA_MODELS="${OLLAMA_MODELS:-$HOME/.ollama/models}"
+
+MODEL_IMAGE="${MODEL_IMAGE:-alibayram/medgemma:27b}"
+# Must match LangExtract Ollama routing and include "ollama" so OLLAMA_BASE_URL is auto-used.
+LANGEXTRACT_MODEL_ID="${LANGEXTRACT_MODEL_ID:-gemma-medgemma-27b-ollama}"
+DATA_FILE="${DATA_FILE:-./annotated_data/db_20260129_tokenised.jsonl}"
+ANNOTATOR_ID="${ANNOTATOR_ID:-}"
+RUN_SBAR="${RUN_SBAR:-1}"
+RUN_UNCERTAIN="${RUN_UNCERTAIN:-1}"
+USE_DATASET_TEST_SPLIT="${USE_DATASET_TEST_SPLIT:-1}"
+TRAIN_EXAMPLES="${TRAIN_EXAMPLES:-24}"
+EVAL_EXAMPLES="${EVAL_EXAMPLES:-20}"
+SEED="${SEED:-339}"
+PROMPT_VALIDATION_LEVEL="${PROMPT_VALIDATION_LEVEL:-warning}"
+PROMPT_VALIDATION_STRICT="${PROMPT_VALIDATION_STRICT:-0}"
+SHOW_PROGRESS="${SHOW_PROGRESS:-1}"
+FENCE_OUTPUT="${FENCE_OUTPUT:-1}"
+USE_SCHEMA_CONSTRAINTS="${USE_SCHEMA_CONSTRAINTS:-0}"
+DRY_RUN="${DRY_RUN:-0}"
+
+DATA_TAG="$(basename "$DATA_FILE")"
+DATA_TAG="${DATA_TAG%.*}"
+ANNOTATOR_TAG="${ANNOTATOR_ID:-all}"
+MODEL_TAG="$(printf '%s' "$LANGEXTRACT_MODEL_ID" | tr -c '[:alnum:]_.-' '_')"
+RUN_ID_DEFAULT="$(printf '%s' "medgemma27b_langextract_${MODEL_TAG}_${DATA_TAG}_${ANNOTATOR_TAG}_sbar${RUN_SBAR}_uncertain${RUN_UNCERTAIN}_split${USE_DATASET_TEST_SPLIT}_dry${DRY_RUN}" | tr -c '[:alnum:]_.-' '_')"
+RUN_ID="${RUN_ID:-$RUN_ID_DEFAULT}"
+OUT_DIR="${OUT_DIR:-./cluster_runs/${RUN_ID}}"
+mkdir -p "$OUT_DIR"/evals "$OUT_DIR"/logs
+exec > >(tee -a "$OUT_DIR/logs/job.log") 2>&1
+
+echo "Node: $(hostname)"
+echo "Working directory: $PWD"
+echo "Run ID: $RUN_ID"
+echo "Output directory: $OUT_DIR"
+echo "GPU info:"
+nvidia-smi
+
+VENV_DIR="${VENV_DIR:-$PBS_O_WORKDIR/.venv_cluster_gpu}"
+PYTHON_MIN_MAJOR="${PYTHON_MIN_MAJOR:-3}"
+PYTHON_MIN_MINOR="${PYTHON_MIN_MINOR:-11}"
+PYTHON_BIN="$VENV_DIR/bin/python3"
+if [ ! -x "$PYTHON_BIN" ]; then
+  PYTHON_BIN="$VENV_DIR/bin/python"
+fi
+
+if [ ! -x "$PYTHON_BIN" ]; then
+  echo "Expected virtual environment was not found at: $VENV_DIR"
+  echo "Create it first with uv (example):"
+  echo "  uv python install 3.11"
+  echo "  uv venv --python 3.11 $VENV_DIR"
+  exit 1
+fi
+
+if ! "$PYTHON_BIN" -c "import sys; raise SystemExit(0 if sys.version_info >= (${PYTHON_MIN_MAJOR}, ${PYTHON_MIN_MINOR}) else 1)" >/dev/null 2>&1; then
+  echo "Venv interpreter is not runnable at >=${PYTHON_MIN_MAJOR}.${PYTHON_MIN_MINOR}: $PYTHON_BIN"
+  "$PYTHON_BIN" -V || true
+  exit 1
+fi
+
+echo "Using venv interpreter: $PYTHON_BIN"
+
+DEPS_STAMP="$VENV_DIR/.handover_deps_v5_langextract"
+if [ ! -f "$DEPS_STAMP" ]; then
+  "$PYTHON_BIN" -m pip install --upgrade pip setuptools wheel
+  "$PYTHON_BIN" -m pip install \
+    "dspy-ai>=3.0.4" \
+    "numpy>=2.3.5" \
+    "rapidfuzz>=3.14.3" \
+    "spacy>=3.8.11" \
+    "thinc>=8.3.10" \
+    "srsly>=2.5.1" \
+    "langextract>=1.1.1"
+  touch "$DEPS_STAMP"
+fi
+
+export PYTHONPATH="$PWD/src${PYTHONPATH:+:$PYTHONPATH}"
+PY_RUNNER=("$PYTHON_BIN")
+
+if ! command -v ollama >/dev/null 2>&1; then
+  echo "ollama is not available on PATH."
+  exit 1
+fi
+
+# Pick a random free local port for this job's Ollama daemon.
+while :; do
+  PORT=$((11434 + RANDOM % 5000))
+  if ! nc -z 127.0.0.1 "$PORT" 2>/dev/null; then
+    break
+  fi
+done
+
+export OLLAMA_HOST="127.0.0.1:${PORT}"
+export OLLAMA_API_BASE="http://${OLLAMA_HOST}"
+export OLLAMA_BASE_URL="http://${OLLAMA_HOST}"
+echo "Using OLLAMA_HOST=${OLLAMA_HOST}"
+echo "Using OLLAMA_API_BASE=${OLLAMA_API_BASE}"
+echo "Using OLLAMA_BASE_URL=${OLLAMA_BASE_URL}"
+
+ollama serve >/dev/null 2>&1 &
+OLLAMA_PID=$!
+trap 'kill "$OLLAMA_PID" 2>/dev/null || true' EXIT
+
+for i in {1..90}; do
+  if curl -fs "http://${OLLAMA_HOST}/api/tags" >/dev/null; then
+    break
+  fi
+  sleep 1
+  if [ "$i" -eq 90 ]; then
+    echo "Ollama did not start within 90 seconds."
+    exit 1
+  fi
+done
+
+if ! ollama show "$MODEL_IMAGE" >/dev/null 2>&1; then
+  echo "Pulling ${MODEL_IMAGE}..."
+  ollama pull "$MODEL_IMAGE"
+else
+  echo "Model ${MODEL_IMAGE} already available in local cache."
+fi
+
+if ! ollama show "$LANGEXTRACT_MODEL_ID" >/dev/null 2>&1; then
+  echo "Creating LangExtract model alias: ${LANGEXTRACT_MODEL_ID} -> ${MODEL_IMAGE}"
+  if ! ollama cp "$MODEL_IMAGE" "$LANGEXTRACT_MODEL_ID"; then
+    echo "Failed to create alias model '${LANGEXTRACT_MODEL_ID}'."
+    echo "Set LANGEXTRACT_MODEL_ID to an Ollama model name that starts with 'gemma' (or another LangExtract Ollama pattern) and includes 'ollama'."
+    exit 1
+  fi
+fi
+
+echo "Available models:"
+ollama list
+
+COMMON_ARGS=(
+  --data-file "$DATA_FILE"
+  --model-id "$LANGEXTRACT_MODEL_ID"
+  --train-examples "$TRAIN_EXAMPLES"
+  --eval-examples "$EVAL_EXAMPLES"
+  --seed "$SEED"
+  --prompt-validation-level "$PROMPT_VALIDATION_LEVEL"
+)
+if [ -n "$ANNOTATOR_ID" ]; then
+  COMMON_ARGS+=(--annotator-id "$ANNOTATOR_ID")
+fi
+if [ "$USE_DATASET_TEST_SPLIT" = "1" ]; then
+  COMMON_ARGS+=(--use-dataset-test-split)
+fi
+if [ "$PROMPT_VALIDATION_STRICT" = "1" ]; then
+  COMMON_ARGS+=(--prompt-validation-strict)
+fi
+if [ "$SHOW_PROGRESS" = "1" ]; then
+  COMMON_ARGS+=(--show-progress)
+else
+  COMMON_ARGS+=(--no-show-progress)
+fi
+if [ "$FENCE_OUTPUT" = "1" ]; then
+  COMMON_ARGS+=(--fence-output)
+else
+  COMMON_ARGS+=(--no-fence-output)
+fi
+if [ "$USE_SCHEMA_CONSTRAINTS" = "1" ]; then
+  COMMON_ARGS+=(--use-schema-constraints)
+else
+  COMMON_ARGS+=(--no-use-schema-constraints)
+fi
+if [ "$DRY_RUN" = "1" ]; then
+  COMMON_ARGS+=(--dry-run)
+fi
+
+echo "Run configuration:"
+echo "  MODEL_IMAGE=$MODEL_IMAGE"
+echo "  LANGEXTRACT_MODEL_ID=$LANGEXTRACT_MODEL_ID"
+echo "  DATA_FILE=$DATA_FILE"
+echo "  ANNOTATOR_ID=${ANNOTATOR_ID:-<all>}"
+echo "  RUN_SBAR=$RUN_SBAR"
+echo "  RUN_UNCERTAIN=$RUN_UNCERTAIN"
+echo "  USE_DATASET_TEST_SPLIT=$USE_DATASET_TEST_SPLIT"
+echo "  TRAIN_EXAMPLES=$TRAIN_EXAMPLES"
+echo "  EVAL_EXAMPLES=$EVAL_EXAMPLES"
+echo "  SEED=$SEED"
+echo "  PROMPT_VALIDATION_LEVEL=$PROMPT_VALIDATION_LEVEL"
+echo "  PROMPT_VALIDATION_STRICT=$PROMPT_VALIDATION_STRICT"
+echo "  SHOW_PROGRESS=$SHOW_PROGRESS"
+echo "  FENCE_OUTPUT=$FENCE_OUTPUT"
+echo "  USE_SCHEMA_CONSTRAINTS=$USE_SCHEMA_CONSTRAINTS"
+echo "  DRY_RUN=$DRY_RUN"
+
+if [ "$RUN_SBAR" = "1" ]; then
+  SBAR_EVAL_FILE="$OUT_DIR/evals/eval_sbar_langextract_${MODEL_TAG}.jsonl"
+  echo "=== SBAR LANGEXTRACT ==="
+  if [ -s "$SBAR_EVAL_FILE" ]; then
+    echo "SBAR LangExtract eval exists, skipping: $SBAR_EVAL_FILE"
+  else
+    "${PY_RUNNER[@]}" run_experiment_sbar_langextract.py \
+      "${COMMON_ARGS[@]}" \
+      --output-file "$SBAR_EVAL_FILE"
+  fi
+fi
+
+if [ "$RUN_UNCERTAIN" = "1" ]; then
+  UNCERTAIN_EVAL_FILE="$OUT_DIR/evals/eval_uncertain_langextract_${MODEL_TAG}.jsonl"
+  echo "=== UNCERTAINTY LANGEXTRACT ==="
+  if [ -s "$UNCERTAIN_EVAL_FILE" ]; then
+    echo "Uncertainty LangExtract eval exists, skipping: $UNCERTAIN_EVAL_FILE"
+  else
+    "${PY_RUNNER[@]}" run_experiment_uncertain_langextract.py \
+      "${COMMON_ARGS[@]}" \
+      --output-file "$UNCERTAIN_EVAL_FILE"
+  fi
+fi
+
+echo "All requested LangExtract experiments completed."
+echo "Artifacts:"
+echo "  Evals: $OUT_DIR/evals"
+echo "  Logs:  $OUT_DIR/logs/job.log"
