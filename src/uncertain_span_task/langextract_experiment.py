@@ -263,11 +263,18 @@ def _call_extract_api(
     prompt_validation_level: Any,
     prompt_validation_strict: bool,
     show_progress: bool,
+    max_workers: int | None,
     lm_timeout_seconds: int | None,
+    lm_num_threads: int | None,
+    lm_max_output_tokens: int | None,
 ) -> Any:
     language_model_params: dict[str, Any] = {}
     if lm_timeout_seconds is not None:
         language_model_params["timeout"] = int(lm_timeout_seconds)
+    if lm_num_threads is not None:
+        language_model_params["num_threads"] = int(lm_num_threads)
+    if lm_max_output_tokens is not None:
+        language_model_params["max_output_tokens"] = int(lm_max_output_tokens)
 
     kwargs = {
         "prompt_description": prompt_description,
@@ -279,6 +286,7 @@ def _call_extract_api(
         "prompt_validation_level": prompt_validation_level,
         "prompt_validation_strict": prompt_validation_strict,
         "show_progress": show_progress,
+        "max_workers": max_workers,
         "language_model_params": language_model_params or None,
     }
     try:
@@ -391,7 +399,10 @@ def run_langextract_uncertainty_experiment(
     prompt_validation_level: str = "warning",
     prompt_validation_strict: bool = False,
     show_progress: bool = True,
+    max_workers: int | None = None,
     lm_timeout_seconds: int | None = None,
+    lm_num_threads: int | None = None,
+    lm_max_output_tokens: int | None = None,
     max_retries: int = 1,
     retry_delay_seconds: float = 1.5,
     use_dataset_test_split: bool = False,
@@ -399,8 +410,14 @@ def run_langextract_uncertainty_experiment(
 ) -> dict[str, float]:
     if train_examples < 1 or eval_examples < 1:
         raise ValueError("train_examples and eval_examples must both be >= 1.")
+    if max_workers is not None and max_workers < 1:
+        raise ValueError("max_workers must be >= 1 when provided.")
     if lm_timeout_seconds is not None and lm_timeout_seconds < 1:
         raise ValueError("lm_timeout_seconds must be >= 1 when provided.")
+    if lm_num_threads is not None and lm_num_threads < 1:
+        raise ValueError("lm_num_threads must be >= 1 when provided.")
+    if lm_max_output_tokens is not None and lm_max_output_tokens < 1:
+        raise ValueError("lm_max_output_tokens must be >= 1 when provided.")
     if max_retries < 1:
         raise ValueError("max_retries must be >= 1.")
     if retry_delay_seconds < 0:
@@ -506,7 +523,10 @@ def run_langextract_uncertainty_experiment(
                     prompt_validation_level=lx.prompt_validation.PromptValidationLevel.OFF,
                     prompt_validation_strict=prompt_validation_strict,
                     show_progress=show_progress,
+                    max_workers=max_workers,
                     lm_timeout_seconds=lm_timeout_seconds,
+                    lm_num_threads=lm_num_threads,
+                    lm_max_output_tokens=lm_max_output_tokens,
                 )
                 break
             except Exception as exc:

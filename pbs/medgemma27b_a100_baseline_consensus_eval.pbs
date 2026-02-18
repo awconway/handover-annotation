@@ -1,6 +1,6 @@
 #!/bin/bash -l
 #PBS -N medgemma27b_baseline_consensus
-#PBS -l select=1:ncpus=8:mem=64GB:ngpus=1:gpu_model=A100:gpu_sliced=False
+#PBS -l select=1:ncpus=8:mem=64GB:ngpus=1:gpu_id=A100:gpu_sliced=False
 #PBS -l walltime=04:00:00
 #PBS -m abe
 #PBS -j oe
