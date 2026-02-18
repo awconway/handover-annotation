@@ -508,6 +508,7 @@ def run_langextract_uncertainty_experiment(
     for record in held_out_records:
         last_error: Exception | None = None
         raw_prediction: Any | None = None
+        prediction_error: str | None = None
 
         for attempt in range(1, max_retries + 1):
             try:
@@ -541,9 +542,15 @@ def run_langextract_uncertainty_experiment(
 
         if raw_prediction is None:
             assert last_error is not None
-            raise last_error
+            prediction_error = f"{type(last_error).__name__}: {last_error}"
+            print(
+                "LangExtract uncertainty giving empty prediction after "
+                f"{max_retries} attempts: {prediction_error}"
+            )
+            pred_items = []
+        else:
+            pred_items = _extract_items_from_prediction(raw_prediction)
 
-        pred_items = _extract_items_from_prediction(raw_prediction)
         metrics = iou_span_metrics(
             text=record.text,
             gold_spans=record.gold_spans,
@@ -551,12 +558,16 @@ def run_langextract_uncertainty_experiment(
         )
         f1_sum += metrics["f1"]
 
+        row = _eval_row_for_record(
+            record=record,
+            pred_items=pred_items,
+            span_metrics=metrics,
+        )
+        if prediction_error is not None:
+            row["error"] = {"prediction_error": prediction_error, "metric_error": None}
+
         rows.append(
-            _eval_row_for_record(
-                record=record,
-                pred_items=pred_items,
-                span_metrics=metrics,
-            )
+            row
         )
 
     Path(output_file).parent.mkdir(parents=True, exist_ok=True)
