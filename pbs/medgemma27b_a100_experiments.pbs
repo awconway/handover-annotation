@@ -26,6 +26,8 @@ RUN_CHECKLIST="${RUN_CHECKLIST:-1}"
 RUN_SBAR="${RUN_SBAR:-1}"
 RUN_UNCERTAIN="${RUN_UNCERTAIN:-0}"
 UNCERTAIN_SIGNATURE_MODE="${UNCERTAIN_SIGNATURE_MODE:-default}"
+UNCERTAIN_ANNOTATOR_ID="${UNCERTAIN_ANNOTATOR_ID:-handover_db-user2}"
+UNCERTAIN_EVAL_SPLIT="${UNCERTAIN_EVAL_SPLIT:-train}"
 EVAL_MAX_RETRIES="${EVAL_MAX_RETRIES:-5}"
 EVAL_RETRY_DELAY_SECONDS="${EVAL_RETRY_DELAY_SECONDS:-1.5}"
 REFLECTION_MODEL="openai/gpt-5.2"
@@ -33,7 +35,8 @@ REFLECTION_MODEL="openai/gpt-5.2"
 DATA_TAG="$(basename "$DATA_FILE")"
 DATA_TAG="${DATA_TAG%.*}"
 ANNOTATOR_TAG="${ANNOTATOR_ID:-all}"
-RUN_ID_DEFAULT="$(printf '%s' "medgemma27b_${MODEL_NAME}_${CHECKLIST_OPTIMISER}_${SBAR_OPTIMISER}_${UNCERTAIN_OPTIMISER}_${DATA_TAG}_${ANNOTATOR_TAG}_train${RUN_TRAIN}_check${RUN_CHECKLIST}_sbar${RUN_SBAR}_uncertain${RUN_UNCERTAIN}_uncsig${UNCERTAIN_SIGNATURE_MODE}_all${USE_ALL}" | tr -c '[:alnum:]_.-' '_')"
+UNCERTAIN_ANNOTATOR_TAG="$(printf '%s' "${UNCERTAIN_ANNOTATOR_ID:-$ANNOTATOR_TAG}" | tr -c '[:alnum:]_.-' '_')"
+RUN_ID_DEFAULT="$(printf '%s' "medgemma27b_${MODEL_NAME}_${CHECKLIST_OPTIMISER}_${SBAR_OPTIMISER}_${UNCERTAIN_OPTIMISER}_${DATA_TAG}_${ANNOTATOR_TAG}_train${RUN_TRAIN}_check${RUN_CHECKLIST}_sbar${RUN_SBAR}_uncertain${RUN_UNCERTAIN}_uncsig${UNCERTAIN_SIGNATURE_MODE}_unannot${UNCERTAIN_ANNOTATOR_TAG}_unsplit${UNCERTAIN_EVAL_SPLIT}_all${USE_ALL}" | tr -c '[:alnum:]_.-' '_')"
 RUN_ID="${RUN_ID:-$RUN_ID_DEFAULT}"
 OUT_DIR="${OUT_DIR:-./cluster_runs/${RUN_ID}}"
 mkdir -p "$OUT_DIR"/compiled_programs "$OUT_DIR"/evals "$OUT_DIR"/logs "$OUT_DIR"/gepa
@@ -147,6 +150,8 @@ echo "  CHECKLIST_OPTIMISER=$CHECKLIST_OPTIMISER"
 echo "  SBAR_OPTIMISER=$SBAR_OPTIMISER"
 echo "  UNCERTAIN_OPTIMISER=$UNCERTAIN_OPTIMISER"
 echo "  UNCERTAIN_SIGNATURE_MODE=$UNCERTAIN_SIGNATURE_MODE"
+echo "  UNCERTAIN_ANNOTATOR_ID=${UNCERTAIN_ANNOTATOR_ID:-<inherit ANNOTATOR_ID>}"
+echo "  UNCERTAIN_EVAL_SPLIT=$UNCERTAIN_EVAL_SPLIT"
 echo "  ANNOTATOR_ID=${ANNOTATOR_ID:-<all>}"
 echo "  USE_ALL=$USE_ALL"
 echo "  EVAL_MAX_RETRIES=$EVAL_MAX_RETRIES"
@@ -262,8 +267,13 @@ if [ "$RUN_SBAR" = "1" ]; then
 fi
 
 if [ "$RUN_UNCERTAIN" = "1" ]; then
+  UNCERTAIN_ARGS=("${COMMON_ARGS[@]}")
+  if [ -n "$UNCERTAIN_ANNOTATOR_ID" ]; then
+    UNCERTAIN_ARGS+=(--annotator-id "$UNCERTAIN_ANNOTATOR_ID")
+  fi
+
   UNCERTAIN_MODEL_FILE="$OUT_DIR/compiled_programs/uncertain_${MODEL_NAME}_${UNCERTAIN_OPTIMISER}.json"
-  UNCERTAIN_EVAL_FILE="$OUT_DIR/evals/eval_uncertain_${MODEL_NAME}_${UNCERTAIN_OPTIMISER}.jsonl"
+  UNCERTAIN_EVAL_FILE="$OUT_DIR/evals/eval_uncertain_${MODEL_NAME}_${UNCERTAIN_OPTIMISER}_${UNCERTAIN_ANNOTATOR_TAG}_${UNCERTAIN_EVAL_SPLIT}.jsonl"
   UNCERTAIN_GEPA_LOG_DIR="$OUT_DIR/gepa/uncertain_${MODEL_NAME}_${UNCERTAIN_OPTIMISER}"
 
   echo "=== UNCERTAIN SPAN TASK ==="
@@ -273,7 +283,7 @@ if [ "$RUN_UNCERTAIN" = "1" ]; then
     else
       mkdir -p "$UNCERTAIN_GEPA_LOG_DIR"
       "${PY_RUNNER[@]}" run_train_uncertain_span.py \
-        "${COMMON_ARGS[@]}" \
+        "${UNCERTAIN_ARGS[@]}" \
         --optimiser-name "$UNCERTAIN_OPTIMISER" \
         --output-model-file "$UNCERTAIN_MODEL_FILE" \
         --gepa-log-dir "$UNCERTAIN_GEPA_LOG_DIR"
@@ -283,20 +293,20 @@ if [ "$RUN_UNCERTAIN" = "1" ]; then
       echo "Uncertain eval exists, skipping evaluation: $UNCERTAIN_EVAL_FILE"
     else
       "${PY_RUNNER[@]}" run_eval_uncertain_span.py \
-        "${COMMON_ARGS[@]}" \
+        "${UNCERTAIN_ARGS[@]}" \
         --output-model-file "$UNCERTAIN_MODEL_FILE" \
         --eval-results-file "$UNCERTAIN_EVAL_FILE" \
-        "${EVAL_EXTRA_ARGS[@]}"
+        --eval-split "$UNCERTAIN_EVAL_SPLIT"
     fi
   else
     if [ -s "$UNCERTAIN_EVAL_FILE" ]; then
       echo "Uncertain baseline eval exists, skipping evaluation: $UNCERTAIN_EVAL_FILE"
     else
       "${PY_RUNNER[@]}" run_eval_uncertain_span.py \
-        "${COMMON_ARGS[@]}" \
+        "${UNCERTAIN_ARGS[@]}" \
         --baseline \
         --eval-results-file "$UNCERTAIN_EVAL_FILE" \
-        "${EVAL_EXTRA_ARGS[@]}"
+        --eval-split "$UNCERTAIN_EVAL_SPLIT"
     fi
   fi
 fi

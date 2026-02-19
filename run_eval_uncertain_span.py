@@ -45,6 +45,12 @@ def parse_args() -> argparse.Namespace:
         help="Evaluate on all matching examples (no train/test split).",
     )
     parser.add_argument(
+        "--eval-split",
+        choices=("train", "test", "all"),
+        default="test",
+        help="Dataset split to evaluate: train, test, or all.",
+    )
+    parser.add_argument(
         "--baseline",
         action="store_true",
         help="Evaluate using the initial DSPy signature (no trained program load).",
@@ -66,19 +72,25 @@ def parse_args() -> argparse.Namespace:
         parser.error("Use either --baseline or --output-model-file, not both.")
     if not args.baseline and not args.output_model_file:
         parser.error("--output-model-file is required unless --baseline is set.")
+    if args.use_all:
+        if args.eval_split != "test":
+            parser.error("Use either --use-all or --eval-split, not both.")
+        args.eval_split = "all"
 
     return args
 
 
 args = parse_args()
-if args.use_all:
-    testset = prepare_dataset_uncertainty_span_all(
-        args.data_file, annotator_id=args.annotator_id
+if args.eval_split == "all":
+    evalset = prepare_dataset_uncertainty_span_all(
+        args.data_file,
+        annotator_id=args.annotator_id,
     )
 else:
-    _, testset = prepare_dataset_uncertainty_span(
+    trainset, testset = prepare_dataset_uncertainty_span(
         args.data_file, annotator_id=args.annotator_id
     )
+    evalset = trainset if args.eval_split == "train" else testset
 eval_results_file = args.eval_results_file
 
 predictor = build_predictor()
@@ -91,7 +103,7 @@ if not args.baseline:
 
 score = evaluate_sbar(
     predictor,
-    testset,
+    evalset,
     eval_results_file,
     resume=not args.no_resume,
     num_threads=args.num_threads,
