@@ -31,6 +31,8 @@ UNCERTAIN_EVAL_SPLIT="${UNCERTAIN_EVAL_SPLIT:-train}"
 EVAL_MAX_RETRIES="${EVAL_MAX_RETRIES:-5}"
 EVAL_RETRY_DELAY_SECONDS="${EVAL_RETRY_DELAY_SECONDS:-1.5}"
 REFLECTION_MODEL="openai/gpt-5.2"
+GPU_MONITOR_ENABLED="${GPU_MONITOR_ENABLED:-1}"
+GPU_MONITOR_INTERVAL_SECONDS="${GPU_MONITOR_INTERVAL_SECONDS:-120}"
 
 DATA_TAG="$(basename "$DATA_FILE")"
 DATA_TAG="${DATA_TAG%.*}"
@@ -41,6 +43,18 @@ RUN_ID="${RUN_ID:-$RUN_ID_DEFAULT}"
 OUT_DIR="${OUT_DIR:-./cluster_runs/${RUN_ID}}"
 mkdir -p "$OUT_DIR"/compiled_programs "$OUT_DIR"/evals "$OUT_DIR"/logs "$OUT_DIR"/gepa
 exec > >(tee -a "$OUT_DIR/logs/job.log") 2>&1
+
+OLLAMA_PID=""
+GPU_MONITOR_PID=""
+cleanup() {
+  if [ -n "${GPU_MONITOR_PID:-}" ]; then
+    kill "$GPU_MONITOR_PID" 2>/dev/null || true
+  fi
+  if [ -n "${OLLAMA_PID:-}" ]; then
+    kill "$OLLAMA_PID" 2>/dev/null || true
+  fi
+}
+trap cleanup EXIT
 
 echo "Node: $(hostname)"
 echo "Working directory: $PWD"
@@ -93,6 +107,25 @@ if ! command -v ollama >/dev/null 2>&1; then
   exit 1
 fi
 
+GPU_UTIL_FILE="$OUT_DIR/logs/gpu_util.csv"
+if [ "$GPU_MONITOR_ENABLED" = "1" ]; then
+  if command -v nvidia-smi >/dev/null 2>&1; then
+    {
+      echo "timestamp,index,name,utilization_gpu_pct,utilization_mem_pct,memory_used_mib,memory_total_mib,temperature_c,power_draw_w"
+      while :; do
+        nvidia-smi \
+          --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.used,memory.total,temperature.gpu,power.draw \
+          --format=csv,noheader,nounits || true
+        sleep "$GPU_MONITOR_INTERVAL_SECONDS"
+      done
+    } >> "$GPU_UTIL_FILE" &
+    GPU_MONITOR_PID=$!
+    echo "GPU monitoring enabled: ${GPU_UTIL_FILE} (interval=${GPU_MONITOR_INTERVAL_SECONDS}s)"
+  else
+    echo "GPU monitoring requested but nvidia-smi is unavailable; skipping."
+  fi
+fi
+
 # Pick a random free local port for this job's Ollama daemon.
 while :; do
   PORT=$((11434 + RANDOM % 5000))
@@ -109,7 +142,6 @@ echo "Using OLLAMA_API_BASE=${OLLAMA_API_BASE}"
 
 ollama serve >/dev/null 2>&1 &
 OLLAMA_PID=$!
-trap 'kill "$OLLAMA_PID" 2>/dev/null || true' EXIT
 
 for i in {1..90}; do
   if curl -fs "http://${OLLAMA_HOST}/api/tags" >/dev/null; then
@@ -156,6 +188,8 @@ echo "  ANNOTATOR_ID=${ANNOTATOR_ID:-<all>}"
 echo "  USE_ALL=$USE_ALL"
 echo "  EVAL_MAX_RETRIES=$EVAL_MAX_RETRIES"
 echo "  EVAL_RETRY_DELAY_SECONDS=$EVAL_RETRY_DELAY_SECONDS"
+echo "  GPU_MONITOR_ENABLED=$GPU_MONITOR_ENABLED"
+echo "  GPU_MONITOR_INTERVAL_SECONDS=$GPU_MONITOR_INTERVAL_SECONDS"
 
 if [ "$RUN_TRAIN" = "1" ]; then
   NEED_REFLECTION=0
