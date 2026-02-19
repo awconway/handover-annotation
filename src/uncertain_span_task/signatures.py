@@ -1,3 +1,4 @@
+import os
 from typing import Literal
 
 from typing_extensions import TypedDict
@@ -46,5 +47,44 @@ class LabelHandover(dspy.Signature):
     pred_spans: list[LabelQuote] = dspy.OutputField()
 
 
-def build_predictor():
-    return dspy.Predict(LabelHandover)
+class LabelHandoverGepaMedgemma(dspy.Signature):
+    """
+    Extract uncertain statements from a clinical handover transcript.
+
+    Allowed labels (must match exactly):
+    - Vagueness
+    - Hedging
+    - Unknown fact
+    - Indefinite timing
+    - Source uncertainty
+    - Procedural uncertainty
+    - Responsibility uncertainty
+
+    Instructions
+    - Return `pred_spans` as a list of JSON objects with exactly two fields: `label` and `quote`.
+    - `quote` must be an exact substring from the source text (no paraphrasing, no corrections).
+    - Use one item per uncertain statement; do not merge different text segments.
+    - If one quote matches multiple uncertainty categories, repeat the quote with different labels.
+    - If there is no uncertainty, return an empty list.
+    """
+
+    text: str = dspy.InputField()
+    pred_spans: list[LabelQuote] = dspy.OutputField()
+
+
+_SIGNATURE_REGISTRY = {
+    "default": LabelHandover,
+    "gepa_medgemma": LabelHandoverGepaMedgemma,
+    "gepa": LabelHandoverGepaMedgemma,
+}
+
+
+def build_predictor(signature_mode: str | None = None):
+    mode = (signature_mode or os.getenv("UNCERTAIN_SIGNATURE_MODE", "default")).strip().lower()
+    if mode not in _SIGNATURE_REGISTRY:
+        allowed = ", ".join(sorted(_SIGNATURE_REGISTRY))
+        raise ValueError(
+            f"Unknown uncertainty signature mode: {mode!r}. "
+            f"Expected one of: {allowed}."
+        )
+    return dspy.Predict(_SIGNATURE_REGISTRY[mode])
