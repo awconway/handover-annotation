@@ -132,3 +132,57 @@ def test_use_dataset_test_split_matches_prepare_dataset_test_split(tmp_path):
 
     assert int(summary["num_eval_examples"]) == len(expected_test_texts)
     assert out_texts == expected_test_texts
+
+
+def test_langextract_sbar_resume_from_existing_partial_jsonl(tmp_path):
+    from data.dataset import prepare_dataset_sbar_span
+
+    rows = []
+    for i in range(20):
+        text = f"resume_sample_{i}"
+        rows.append(
+            {
+                "text": text,
+                "spans": [{"start": 0, "end": len(text), "label": "SITUATION"}],
+            }
+        )
+
+    data_file = tmp_path / "data_resume.jsonl"
+    output_file = tmp_path / "out_resume.jsonl"
+    srsly.write_jsonl(data_file, rows)
+
+    _, testset = prepare_dataset_sbar_span(str(data_file))
+    expected_test_texts = [ex.text for ex in testset][:2]
+    assert len(expected_test_texts) == 2
+
+    run_langextract_sbar_experiment(
+        data_file=str(data_file),
+        output_file=str(output_file),
+        model_id="gpt-5.2",
+        train_examples=3,
+        eval_examples=2,
+        use_dataset_test_split=True,
+        dry_run=True,
+    )
+    first_pass_rows = list(srsly.read_jsonl(output_file))
+    assert len(first_pass_rows) == 2
+
+    # Simulate an interrupted run with one completed row on disk.
+    srsly.write_jsonl(output_file, first_pass_rows[:1])
+
+    summary = run_langextract_sbar_experiment(
+        data_file=str(data_file),
+        output_file=str(output_file),
+        model_id="gpt-5.2",
+        train_examples=3,
+        eval_examples=2,
+        use_dataset_test_split=True,
+        dry_run=True,
+    )
+
+    resumed_rows = list(srsly.read_jsonl(output_file))
+    resumed_texts = [row["example"]["text"] for row in resumed_rows]
+
+    assert len(resumed_rows) == 2
+    assert resumed_texts == expected_test_texts
+    assert int(summary["num_eval_examples"]) == 2

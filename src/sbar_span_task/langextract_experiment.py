@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import dataclasses
+import json
 import random
 import time
 from pathlib import Path
@@ -350,6 +351,22 @@ def _eval_row_for_record(
     }
 
 
+def _load_existing_rows(out_file: str) -> list[dict[str, Any]]:
+    path = Path(out_file)
+    if not path.exists():
+        return []
+
+    rows: list[dict[str, Any]] = []
+    for line_no, row in enumerate(srsly.read_jsonl(str(path)), start=1):
+        if not isinstance(row, dict):
+            raise ValueError(
+                "Existing eval file has non-object JSONL row "
+                f"at line {line_no}: {out_file}"
+            )
+        rows.append(row)
+    return rows
+
+
 def iou_span_metrics(
     *, text: str, gold_spans: list[dict[str, Any]], pred_items: list[SbarItem]
 ) -> dict[str, Any]:
@@ -449,115 +466,150 @@ def run_langextract_sbar_experiment(
         training_records = pool[:train_count]
         held_out_records = pool[train_count : train_count + eval_count]
 
-    rows: list[dict[str, Any]] = []
-    f1_sum = 0.0
+    output_path = Path(output_file)
+    existing_rows = _load_existing_rows(output_file)
+    start_idx = len(existing_rows)
+    if start_idx > eval_count:
+        raise ValueError(
+            "Existing eval file has more rows than current eval set: "
+            f"{start_idx} > {eval_count} ({output_file})"
+        )
 
-    if dry_run:
-        for record in held_out_records:
-            metrics = iou_span_metrics(
-                text=record.text,
-                gold_spans=record.gold_spans,
-                pred_items=[],
-            )
-            rows.append(
-                _eval_row_for_record(
+    f1_sum = 0.0
+    for row in existing_rows:
+        try:
+            f1_sum += float(row.get("score", 0.0))
+        except (TypeError, ValueError):
+            pass
+
+    if start_idx:
+        print(f"Resuming from {start_idx}/{eval_count} completed records in {output_file}")
+    if start_idx == eval_count:
+        print("All records already evaluated. Skipping extraction loop.")
+        return {
+            "num_train_examples": float(train_count),
+            "num_eval_examples": float(eval_count),
+            "average_f1": f1_sum / eval_count,
+        }
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    mode = "a" if start_idx > 0 else "w"
+    with output_path.open(mode, encoding="utf-8") as out_f:
+        if mode == "a" and output_path.stat().st_size > 0:
+            with output_path.open("rb") as check_f:
+                check_f.seek(-1, 2)
+                if check_f.read(1) != b"\n":
+                    out_f.write("\n")
+
+        if dry_run:
+            for idx0, record in enumerate(held_out_records[start_idx:], start=start_idx):
+                metrics = iou_span_metrics(
+                    text=record.text,
+                    gold_spans=record.gold_spans,
+                    pred_items=[],
+                )
+                f1_sum += metrics["f1"]
+                row = _eval_row_for_record(
                     record=record,
                     pred_items=[],
                     span_metrics=metrics,
                 )
+                out_f.write(json.dumps(row, ensure_ascii=False))
+                out_f.write("\n")
+                out_f.flush()
+                print(f"Processed {idx0 + 1}/{eval_count} records (dry run)")
+            return {
+                "num_train_examples": float(train_count),
+                "num_eval_examples": float(eval_count),
+                "average_f1": f1_sum / eval_count,
+            }
+
+        lx = _require_langextract()
+        few_shot_examples = [
+            _to_langextract_example(lx, record) for record in training_records
+        ]
+        requested_validation_level = _parse_prompt_validation_level(
+            lx, prompt_validation_level
+        )
+        if requested_validation_level != lx.prompt_validation.PromptValidationLevel.OFF:
+            report = lx.prompt_validation.validate_prompt_alignment(
+                examples=few_shot_examples,
+                aligner=lx.resolver.WordAligner(),
             )
-        Path(output_file).parent.mkdir(parents=True, exist_ok=True)
-        srsly.write_jsonl(output_file, rows)
-        return {
-            "num_train_examples": float(train_count),
-            "num_eval_examples": float(eval_count),
-            "average_f1": 0.0,
-        }
+            lx.prompt_validation.handle_alignment_report(
+                report,
+                level=requested_validation_level,
+                strict_non_exact=prompt_validation_strict,
+            )
 
-    lx = _require_langextract()
-    few_shot_examples = [
-        _to_langextract_example(lx, record) for record in training_records
-    ]
-    requested_validation_level = _parse_prompt_validation_level(
-        lx, prompt_validation_level
-    )
-    if requested_validation_level != lx.prompt_validation.PromptValidationLevel.OFF:
-        report = lx.prompt_validation.validate_prompt_alignment(
-            examples=few_shot_examples,
-            aligner=lx.resolver.WordAligner(),
-        )
-        lx.prompt_validation.handle_alignment_report(
-            report,
-            level=requested_validation_level,
-            strict_non_exact=prompt_validation_strict,
-        )
+        for idx0, record in enumerate(held_out_records[start_idx:], start=start_idx):
+            last_error: Exception | None = None
+            raw_prediction: Any | None = None
+            prediction_error: str | None = None
 
-    for record in held_out_records:
-        last_error: Exception | None = None
-        raw_prediction: Any | None = None
-        prediction_error: str | None = None
-
-        for attempt in range(1, max_retries + 1):
-            try:
-                raw_prediction = _call_extract_api(
-                    lx,
-                    text=record.text,
-                    prompt_description=prompt_description,
-                    examples=few_shot_examples,
-                    model_id=model_id,
-                    api_key=api_key,
-                    fence_output=fence_output,
-                    use_schema_constraints=use_schema_constraints,
-                    prompt_validation_level=lx.prompt_validation.PromptValidationLevel.OFF,
-                    prompt_validation_strict=prompt_validation_strict,
-                    show_progress=show_progress,
-                    max_workers=max_workers,
-                    lm_timeout_seconds=lm_timeout_seconds,
-                    lm_num_threads=lm_num_threads,
-                    lm_max_output_tokens=lm_max_output_tokens,
-                )
-                break
-            except Exception as exc:
-                last_error = exc
-                if attempt < max_retries:
-                    print(
-                        f"LangExtract SBAR call failed (attempt {attempt}/{max_retries}): {exc}"
+            for attempt in range(1, max_retries + 1):
+                try:
+                    raw_prediction = _call_extract_api(
+                        lx,
+                        text=record.text,
+                        prompt_description=prompt_description,
+                        examples=few_shot_examples,
+                        model_id=model_id,
+                        api_key=api_key,
+                        fence_output=fence_output,
+                        use_schema_constraints=use_schema_constraints,
+                        prompt_validation_level=lx.prompt_validation.PromptValidationLevel.OFF,
+                        prompt_validation_strict=prompt_validation_strict,
+                        show_progress=show_progress,
+                        max_workers=max_workers,
+                        lm_timeout_seconds=lm_timeout_seconds,
+                        lm_num_threads=lm_num_threads,
+                        lm_max_output_tokens=lm_max_output_tokens,
                     )
-                    if retry_delay_seconds > 0:
-                        time.sleep(retry_delay_seconds)
+                    break
+                except Exception as exc:
+                    last_error = exc
+                    if attempt < max_retries:
+                        print(
+                            "LangExtract SBAR call failed "
+                            f"(attempt {attempt}/{max_retries}): {exc}"
+                        )
+                        if retry_delay_seconds > 0:
+                            time.sleep(retry_delay_seconds)
 
-        if raw_prediction is None:
-            assert last_error is not None
-            prediction_error = f"{type(last_error).__name__}: {last_error}"
-            print(
-                "LangExtract SBAR giving empty prediction after "
-                f"{max_retries} attempts: {prediction_error}"
+            if raw_prediction is None:
+                assert last_error is not None
+                prediction_error = f"{type(last_error).__name__}: {last_error}"
+                print(
+                    "LangExtract SBAR giving empty prediction after "
+                    f"{max_retries} attempts: {prediction_error}"
+                )
+                pred_items = []
+            else:
+                pred_items = _extract_items_from_prediction(raw_prediction)
+
+            metrics = iou_span_metrics(
+                text=record.text,
+                gold_spans=record.gold_spans,
+                pred_items=pred_items,
             )
-            pred_items = []
-        else:
-            pred_items = _extract_items_from_prediction(raw_prediction)
+            f1_sum += metrics["f1"]
 
-        metrics = iou_span_metrics(
-            text=record.text,
-            gold_spans=record.gold_spans,
-            pred_items=pred_items,
-        )
-        f1_sum += metrics["f1"]
+            row = _eval_row_for_record(
+                record=record,
+                pred_items=pred_items,
+                span_metrics=metrics,
+            )
+            if prediction_error is not None:
+                row["error"] = {"prediction_error": prediction_error, "metric_error": None}
 
-        row = _eval_row_for_record(
-            record=record,
-            pred_items=pred_items,
-            span_metrics=metrics,
-        )
-        if prediction_error is not None:
-            row["error"] = {"prediction_error": prediction_error, "metric_error": None}
-
-        rows.append(
-            row
-        )
-
-    Path(output_file).parent.mkdir(parents=True, exist_ok=True)
-    srsly.write_jsonl(output_file, rows)
+            out_f.write(json.dumps(row, ensure_ascii=False))
+            out_f.write("\n")
+            out_f.flush()
+            print(
+                f"Processed {idx0 + 1}/{eval_count} records "
+                f"(score={metrics['f1']:.4f})"
+            )
 
     return {
         "num_train_examples": float(train_count),
