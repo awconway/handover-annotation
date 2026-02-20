@@ -5,6 +5,7 @@ from config.model_registry import load_model
 from config.optimiser_registry import OPTIM_REGISTRY, load_optimiser
 from data.dataset import prepare_dataset_sbar_span
 from sbar_span_task.signatures import build_predictor
+from training.run_logging import enable_local_training_file_logging
 
 DATA_FILE = "./annotated_data/db_20260129_tokenised.jsonl"
 
@@ -54,6 +55,7 @@ def parse_args() -> argparse.Namespace:
 
 
 args = parse_args()
+enable_local_training_file_logging(__file__)
 allowed_span_optimisers = {name for name in OPTIM_REGISTRY if name == "none" or name.endswith("_span")}
 if args.optimiser_name not in allowed_span_optimisers:
     raise ValueError(

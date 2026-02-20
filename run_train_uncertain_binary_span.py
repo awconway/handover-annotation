@@ -4,6 +4,7 @@ from config.dspy_settings import configure_dspy
 from config.model_registry import load_model
 from config.optimiser_registry import OPTIM_REGISTRY, load_optimiser
 from data.dataset import prepare_dataset_uncertainty_binary_span
+from training.run_logging import enable_local_training_file_logging
 from uncertain_binary_span_task.signatures import build_predictor
 
 DATA_FILE = "./annotated_data/db_20260129_tokenised.jsonl"
@@ -54,6 +55,7 @@ def parse_args() -> argparse.Namespace:
 
 
 args = parse_args()
+enable_local_training_file_logging(__file__)
 allowed_span_optimisers = {
     name for name in OPTIM_REGISTRY if name == "none" or name.endswith("_span")
 }

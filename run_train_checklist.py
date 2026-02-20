@@ -1,6 +1,7 @@
 import argparse
 
 from data.dataset import prepare_dataset
+from training.run_logging import enable_local_training_file_logging
 from training.trainer import train
 
 DATA_FILE = "./annotated_data/db_20260129_tokenised.jsonl"
@@ -51,6 +52,7 @@ def parse_args() -> argparse.Namespace:
 
 
 args = parse_args()
+enable_local_training_file_logging(__file__)
 trainset, valset = prepare_dataset(args.data_file, annotator_id=args.annotator_id)
 output_model_file = args.output_model_file
 if args.reasoning_effort is not None:
