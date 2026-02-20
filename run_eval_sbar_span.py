@@ -69,6 +69,34 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Start fresh by overwriting existing eval JSONL instead of resuming.",
     )
+    parser.add_argument(
+        "--fast-eval",
+        action="store_true",
+        help=(
+            "Use minimal reasoning effort for OpenAI GPT models to reduce latency "
+            "during evaluation."
+        ),
+    )
+    parser.add_argument(
+        "--timing-log",
+        action="store_true",
+        help="Print detailed per-example timing breakdowns.",
+    )
+    parser.add_argument(
+        "--timing-log-every",
+        type=int,
+        default=1,
+        help="Emit timing logs every N examples (default: 1).",
+    )
+    parser.add_argument(
+        "--timing-slow-threshold-seconds",
+        type=float,
+        default=None,
+        help=(
+            "Always emit timing logs when an example takes at least this many seconds; "
+            "disabled when omitted."
+        ),
+    )
     args = parser.parse_args()
 
     if args.baseline and args.output_model_file:
@@ -90,7 +118,10 @@ eval_results_file = args.eval_results_file
 
 predictor = build_predictor()
 
-lm = load_model(args.model_name)
+reasoning_effort = "minimal" if args.fast_eval else None
+if args.fast_eval:
+    print("Fast eval enabled: reasoning effort=minimal.")
+lm = load_model(args.model_name, reasoning_effort=reasoning_effort)
 configure_dspy(lm)
 
 if not args.baseline:
@@ -104,6 +135,9 @@ score = evaluate_sbar(
     retry_delay_seconds=args.retry_delay_seconds,
     resume=not args.no_resume,
     num_threads=args.num_threads,
+    timing_logs=args.timing_log,
+    timing_log_every=args.timing_log_every,
+    timing_slow_threshold_seconds=args.timing_slow_threshold_seconds,
 )
 try:
     print(predictor.inspect_history(-1))
