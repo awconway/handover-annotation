@@ -4,8 +4,15 @@ from config.model_registry import load_model
 from config.optimiser_registry import load_optimiser
 
 
-def train(model_name: str, optimiser_name: str, trainset, valset, gepa_log_dir: str | None = None):
-    lm = load_model(model_name)
+def train(
+    model_name: str,
+    optimiser_name: str,
+    trainset,
+    valset,
+    gepa_log_dir: str | None = None,
+    reasoning_effort: str | None = None,
+):
+    lm = load_model(model_name, reasoning_effort=reasoning_effort)
     configure_dspy(lm)
 
     predictor = build_predictor()

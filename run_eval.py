@@ -27,6 +27,15 @@ def parse_args() -> argparse.Namespace:
         help="Model registry key (see src/config/model_registry.py).",
     )
     parser.add_argument(
+        "--reasoning-effort",
+        choices=["none", "minimal", "low", "medium", "high"],
+        default=None,
+        help=(
+            "Optional reasoning effort for OpenAI GPT models. "
+            "When omitted, model defaults are used."
+        ),
+    )
+    parser.add_argument(
         "--eval-results-file",
         required=True,
         help="Path to write eval JSONL results.",
@@ -76,7 +85,9 @@ output_model_file = args.output_model_file
 eval_results_file = args.eval_results_file
 
 predictor = build_predictor()
-lm = load_model(args.model_name)
+if args.reasoning_effort is not None:
+    print(f"Reasoning effort override enabled: {args.reasoning_effort}.")
+lm = load_model(args.model_name, reasoning_effort=args.reasoning_effort)
 configure_dspy(lm)
 predictor.load(output_model_file)
 

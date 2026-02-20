@@ -70,11 +70,12 @@ def parse_args() -> argparse.Namespace:
         help="Start fresh by overwriting existing eval JSONL instead of resuming.",
     )
     parser.add_argument(
-        "--fast-eval",
-        action="store_true",
+        "--reasoning-effort",
+        choices=["none", "minimal", "low", "medium", "high"],
+        default=None,
         help=(
-            "Use minimal reasoning effort for OpenAI GPT models to reduce latency "
-            "during evaluation."
+            "Optional reasoning effort for OpenAI GPT models. "
+            "When omitted, model defaults are used."
         ),
     )
     parser.add_argument(
@@ -118,10 +119,9 @@ eval_results_file = args.eval_results_file
 
 predictor = build_predictor()
 
-reasoning_effort = "minimal" if args.fast_eval else None
-if args.fast_eval:
-    print("Fast eval enabled: reasoning effort=minimal.")
-lm = load_model(args.model_name, reasoning_effort=reasoning_effort)
+if args.reasoning_effort is not None:
+    print(f"Reasoning effort override enabled: {args.reasoning_effort}.")
+lm = load_model(args.model_name, reasoning_effort=args.reasoning_effort)
 configure_dspy(lm)
 
 if not args.baseline:
