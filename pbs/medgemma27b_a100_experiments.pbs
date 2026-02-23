@@ -30,6 +30,10 @@ CHECKLIST_TEMPERATURE="${CHECKLIST_TEMPERATURE:-0.3}"
 UNCERTAIN_SIGNATURE_MODE="${UNCERTAIN_SIGNATURE_MODE:-default}"
 UNCERTAIN_ANNOTATOR_ID="${UNCERTAIN_ANNOTATOR_ID:-handover_db-user2}"
 UNCERTAIN_EVAL_SPLIT="${UNCERTAIN_EVAL_SPLIT:-train}"
+# Training/eval rerun controls.
+FORCE_TRAIN="${FORCE_TRAIN:-0}"  # 1 => retrain even when model file exists
+FORCE_EVAL="${FORCE_EVAL:-0}"    # 1 => rerun eval even when EVAL_RESUME=0 and eval file exists
+EVAL_RESUME="${EVAL_RESUME:-1}"  # 1 => always run eval and resume from existing rows
 EVAL_MAX_RETRIES="${EVAL_MAX_RETRIES:-5}"
 EVAL_RETRY_DELAY_SECONDS="${EVAL_RETRY_DELAY_SECONDS:-1.5}"
 REFLECTION_MODEL="openai/gpt-5.2"
@@ -174,6 +178,10 @@ EVAL_EXTRA_ARGS=()
 if [ "$USE_ALL" = "1" ]; then
   EVAL_EXTRA_ARGS+=(--use-all)
 fi
+EVAL_RESUME_ARGS=()
+if [ "$EVAL_RESUME" = "0" ]; then
+  EVAL_RESUME_ARGS+=(--no-resume)
+fi
 
 echo "Run configuration:"
 echo "  RUN_CHECKLIST=$RUN_CHECKLIST"
@@ -191,6 +199,9 @@ echo "  ANNOTATOR_ID=${ANNOTATOR_ID:-<all>}"
 echo "  USE_ALL=$USE_ALL"
 echo "  EVAL_MAX_RETRIES=$EVAL_MAX_RETRIES"
 echo "  EVAL_RETRY_DELAY_SECONDS=$EVAL_RETRY_DELAY_SECONDS"
+echo "  FORCE_TRAIN=$FORCE_TRAIN"
+echo "  FORCE_EVAL=$FORCE_EVAL"
+echo "  EVAL_RESUME=$EVAL_RESUME"
 echo "  GPU_MONITOR_ENABLED=$GPU_MONITOR_ENABLED"
 echo "  GPU_MONITOR_INTERVAL_SECONDS=$GPU_MONITOR_INTERVAL_SECONDS"
 
@@ -222,7 +233,7 @@ if [ "$RUN_CHECKLIST" = "1" ]; then
 
   echo "=== CHECKLIST TASK ==="
   if [ "$RUN_TRAIN" = "1" ]; then
-    if [ -s "$CHECKLIST_MODEL_FILE" ]; then
+    if [ -s "$CHECKLIST_MODEL_FILE" ] && [ "$FORCE_TRAIN" != "1" ]; then
       echo "Checklist model exists, skipping training: $CHECKLIST_MODEL_FILE"
     else
       mkdir -p "$CHECKLIST_GEPA_LOG_DIR"
@@ -233,7 +244,7 @@ if [ "$RUN_CHECKLIST" = "1" ]; then
         --gepa-log-dir "$CHECKLIST_GEPA_LOG_DIR"
     fi
 
-    if [ -s "$CHECKLIST_EVAL_FILE" ]; then
+    if [ "$FORCE_EVAL" != "1" ] && [ "$EVAL_RESUME" = "0" ] && [ -s "$CHECKLIST_EVAL_FILE" ]; then
       echo "Checklist eval exists, skipping evaluation: $CHECKLIST_EVAL_FILE"
     else
       OLLAMA_MEDGEMMA_27B_TEMPERATURE="$CHECKLIST_TEMPERATURE" "${PY_RUNNER[@]}" run_eval_checklist.py \
@@ -242,10 +253,11 @@ if [ "$RUN_CHECKLIST" = "1" ]; then
         --eval-results-file "$CHECKLIST_EVAL_FILE" \
         --max-retries "$EVAL_MAX_RETRIES" \
         --retry-delay-seconds "$EVAL_RETRY_DELAY_SECONDS" \
+        "${EVAL_RESUME_ARGS[@]}" \
         "${EVAL_EXTRA_ARGS[@]}"
     fi
   else
-    if [ -s "$CHECKLIST_EVAL_FILE" ]; then
+    if [ "$FORCE_EVAL" != "1" ] && [ "$EVAL_RESUME" = "0" ] && [ -s "$CHECKLIST_EVAL_FILE" ]; then
       echo "Checklist baseline eval exists, skipping evaluation: $CHECKLIST_EVAL_FILE"
     else
       OLLAMA_MEDGEMMA_27B_TEMPERATURE="$CHECKLIST_TEMPERATURE" "${PY_RUNNER[@]}" run_eval_checklist.py \
@@ -254,6 +266,7 @@ if [ "$RUN_CHECKLIST" = "1" ]; then
         --eval-results-file "$CHECKLIST_EVAL_FILE" \
         --max-retries "$EVAL_MAX_RETRIES" \
         --retry-delay-seconds "$EVAL_RETRY_DELAY_SECONDS" \
+        "${EVAL_RESUME_ARGS[@]}" \
         "${EVAL_EXTRA_ARGS[@]}"
     fi
   fi
@@ -266,7 +279,7 @@ if [ "$RUN_SBAR" = "1" ]; then
 
   echo "=== SBAR SPAN TASK ==="
   if [ "$RUN_TRAIN" = "1" ]; then
-    if [ -s "$SBAR_MODEL_FILE" ]; then
+    if [ -s "$SBAR_MODEL_FILE" ] && [ "$FORCE_TRAIN" != "1" ]; then
       echo "SBAR model exists, skipping training: $SBAR_MODEL_FILE"
     else
       mkdir -p "$SBAR_GEPA_LOG_DIR"
@@ -277,7 +290,7 @@ if [ "$RUN_SBAR" = "1" ]; then
         --gepa-log-dir "$SBAR_GEPA_LOG_DIR"
     fi
 
-    if [ -s "$SBAR_EVAL_FILE" ]; then
+    if [ "$FORCE_EVAL" != "1" ] && [ "$EVAL_RESUME" = "0" ] && [ -s "$SBAR_EVAL_FILE" ]; then
       echo "SBAR eval exists, skipping evaluation: $SBAR_EVAL_FILE"
     else
       "${PY_RUNNER[@]}" run_eval_sbar_span.py \
@@ -286,10 +299,11 @@ if [ "$RUN_SBAR" = "1" ]; then
         --eval-results-file "$SBAR_EVAL_FILE" \
         --max-retries "$EVAL_MAX_RETRIES" \
         --retry-delay-seconds "$EVAL_RETRY_DELAY_SECONDS" \
+        "${EVAL_RESUME_ARGS[@]}" \
         "${EVAL_EXTRA_ARGS[@]}"
     fi
   else
-    if [ -s "$SBAR_EVAL_FILE" ]; then
+    if [ "$FORCE_EVAL" != "1" ] && [ "$EVAL_RESUME" = "0" ] && [ -s "$SBAR_EVAL_FILE" ]; then
       echo "SBAR baseline eval exists, skipping evaluation: $SBAR_EVAL_FILE"
     else
       "${PY_RUNNER[@]}" run_eval_sbar_span.py \
@@ -298,6 +312,7 @@ if [ "$RUN_SBAR" = "1" ]; then
         --eval-results-file "$SBAR_EVAL_FILE" \
         --max-retries "$EVAL_MAX_RETRIES" \
         --retry-delay-seconds "$EVAL_RETRY_DELAY_SECONDS" \
+        "${EVAL_RESUME_ARGS[@]}" \
         "${EVAL_EXTRA_ARGS[@]}"
     fi
   fi
@@ -315,7 +330,7 @@ if [ "$RUN_UNCERTAIN" = "1" ]; then
 
   echo "=== UNCERTAIN SPAN TASK ==="
   if [ "$RUN_TRAIN" = "1" ]; then
-    if [ -s "$UNCERTAIN_MODEL_FILE" ]; then
+    if [ -s "$UNCERTAIN_MODEL_FILE" ] && [ "$FORCE_TRAIN" != "1" ]; then
       echo "Uncertain model exists, skipping training: $UNCERTAIN_MODEL_FILE"
     else
       mkdir -p "$UNCERTAIN_GEPA_LOG_DIR"
@@ -326,23 +341,25 @@ if [ "$RUN_UNCERTAIN" = "1" ]; then
         --gepa-log-dir "$UNCERTAIN_GEPA_LOG_DIR"
     fi
 
-    if [ -s "$UNCERTAIN_EVAL_FILE" ]; then
+    if [ "$FORCE_EVAL" != "1" ] && [ "$EVAL_RESUME" = "0" ] && [ -s "$UNCERTAIN_EVAL_FILE" ]; then
       echo "Uncertain eval exists, skipping evaluation: $UNCERTAIN_EVAL_FILE"
     else
       "${PY_RUNNER[@]}" run_eval_uncertain_span.py \
         "${UNCERTAIN_ARGS[@]}" \
         --output-model-file "$UNCERTAIN_MODEL_FILE" \
         --eval-results-file "$UNCERTAIN_EVAL_FILE" \
+        "${EVAL_RESUME_ARGS[@]}" \
         --eval-split "$UNCERTAIN_EVAL_SPLIT"
     fi
   else
-    if [ -s "$UNCERTAIN_EVAL_FILE" ]; then
+    if [ "$FORCE_EVAL" != "1" ] && [ "$EVAL_RESUME" = "0" ] && [ -s "$UNCERTAIN_EVAL_FILE" ]; then
       echo "Uncertain baseline eval exists, skipping evaluation: $UNCERTAIN_EVAL_FILE"
     else
       "${PY_RUNNER[@]}" run_eval_uncertain_span.py \
         "${UNCERTAIN_ARGS[@]}" \
         --baseline \
         --eval-results-file "$UNCERTAIN_EVAL_FILE" \
+        "${EVAL_RESUME_ARGS[@]}" \
         --eval-split "$UNCERTAIN_EVAL_SPLIT"
     fi
   fi

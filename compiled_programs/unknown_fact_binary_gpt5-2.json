@@ -1,0 +1,26 @@
+{
+  "traces": [],
+  "train": [],
+  "demos": [],
+  "signature": {
+    "instructions": "text\nTask: Extract “Unknown fact” statements from a clinical handover transcript.\n\nInput\n- A single field: text\n- text is a clinical handover transcript with speaker tags like [INCOMING_NURSE], [OUTGOING_NURSE], [PATIENT], etc.\n\nWhat to extract (HIGH PRECISION; STRICT)\nExtract ONLY when a speaker explicitly states that a care-relevant clinical/administrative FACT is unknown / not known / not available / not obtained / not communicated.\n\nTo qualify, the quote MUST contain an explicit lack-of-information cue such as:\n- “I don’t know…”, “We don’t know…”\n- “Not sure…”, “Unsure…”\n- “Can’t remember/recall…”\n- “Haven’t been told…”, “No one told me…”\n- “No information…”, “No details…”\n- “Unknown …” ONLY when it clearly means the staff/team lacks the information (not a diagnosis label)\n\nThe unknown must be relevant to handover/care, e.g. allergies, meds, past history, diagnosis details, test results, timing (when something happened), plans, orders, responsible team, consent status, etc.\n\nWhat NOT to extract (common pitfalls)\n- Do NOT extract “waiting for results”, “awaiting results”, or “results pending” unless the speaker explicitly frames it as lack of knowledge (e.g., “I don’t know the results yet”). Merely stating pending tests is usually status/plan, not an explicit knowledge gap.\n  - Example pitfall: “we are still waiting for the results” → do NOT extract.\n- Do NOT extract diagnosis-style phrases like “unknown cause” / “of unknown etiology” when used as a clinical descriptor (e.g., “AKI of unknown cause”) unless the speaker explicitly says they personally/team do not know the cause (e.g., “we don’t know the cause”).\n- Do NOT extract generic uncertainty/hedging without explicit missing-info language: “might”, “maybe”, “probably”, “query”, “at risk”, “monitor”, “aiming to”.\n- Do NOT extract patient disorientation/confusion or inability to answer orientation/identity questions (e.g., patient says “I’m not sure” to name/DOB; “where am I?”). These are excluded even though they contain “not sure”.\n\nSpan/quote extraction rules (VERY IMPORTANT)\n- Output each qualifying unknown-fact statement as its own separate quote.\n- Quotes must match the source text EXACTLY character-for-character (punctuation, casing, spacing, fillers, typos).\n- Extract the minimal self-contained contiguous span that includes the explicit unknown-information cue.\n- Do not paraphrase, normalize, correct grammar, or merge non-contiguous parts.\n- If nothing qualifies, output an empty list [].\n\nOutput format\n- Return a JSON-like list of objects:\n  - { \"label\": \"Unknown fact\", \"quote\": \"<exact quote>\" }\n- If none: []\n\nDecision rule\n- When in doubt, DO NOT extract. Prefer precision over recall.",
+    "fields": [
+      {
+        "prefix": "Text:",
+        "description": "${text}"
+      },
+      {
+        "prefix": "Pred Spans:",
+        "description": "${pred_spans}"
+      }
+    ]
+  },
+  "lm": null,
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.0.4",
+      "cloudpickle": "3.1"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "traces": [],
+  "train": [],
+  "demos": [],
+  "signature": {
+    "instructions": "text\nTask: Extract “Unknown fact” statements from a clinical handover transcript.\n\nInput:\n- One field: `text` containing a transcript (may include speaker tags like [INCOMING_NURSE], [OUTGOING_NURSE], [DOCTOR], [PARAMEDIC], [PATIENT], etc.).\n\nWhat to output:\n- Output ONLY explicit statements where the SPEAKER is directly indicating they do NOT know / are unsure / cannot recall a specific concrete fact.\n- If there are no such statements, output [].\n\nDefinition — what counts as an “Unknown fact” (MUST satisfy both):\n1) Explicit missing-knowledge marker, e.g.:\n   - “I don’t know …”, “We don’t know …”\n   - “I’m not sure …”, “Not sure …”, “Unsure …”\n   - “I can’t recall …”, “I don’t remember …”\n   - “Unknown …”, “I have no idea …”\n   - “I haven’t been told … / I haven’t heard …” (only when it clearly asserts lack of knowledge)\n2) The marker must be tied to a specific, concrete fact (timing, result, whether something was done, presence/absence, identity, dose, plan detail, etc.).\n\nCritical exclusions (these caused errors before):\n- Do NOT extract “pending/awaiting/no exact time yet/no update yet/hasn’t been done yet” unless the speaker ALSO explicitly states not-knowing.\n  - Example to EXCLUDE: “there is no exact time yet” (this is not itself “I don’t know when”).\n  - Include only if phrased like: “I don’t know what time it is yet” / “I’m not sure when it’s booked”.\n- Do NOT extract hedged beliefs that are not explicit not-knowing:\n  - Exclude: “I don’t think…”, “probably…”, “seems…”, “appears…”, “reportedly…”, “query…”, vague guesses.\n- Do NOT extract descriptions of the PATIENT being unsure/hesitant (e.g., “he’s unsure about pressing the button”).\n- Do NOT treat routine qualifiers like “none that I know of” as unknowns unless the clinician clearly states uncertainty (e.g., “I’m not sure about allergies”).\n\nSpan extraction rules (boundary precision is critical):\n- Each unknown-fact statement must be its own output object; do NOT merge multiple unknowns into one quote.\n- Quotes MUST be exact verbatim substrings from the transcript (exact characters/case/spacing/typos).\n- Do NOT stitch together non-contiguous text.\n- Minimal span policy: extract the shortest contiguous substring that still contains:\n  (a) the explicit not-knowing marker AND\n  (b) the specific fact that is unknown.\n- Do NOT include extra lead-in or unrelated context.\n- Do NOT include trailing punctuation (like a final period) unless it is necessary to preserve the exact minimal substring.\n\nOutput format (strict JSON only):\nReturn ONLY a JSON list of objects exactly like:\n[\n  {\"label\": \"Unknown fact\", \"quote\": \"<exact quote>\"}\n]\nIf none, return:\n[]\n\nFinal checklist:\n- Every quote contains an explicit not-knowing marker.\n- The not-knowing is about a concrete fact.\n- Not merely “pending/no exact time yet” without “I don’t know / not sure”.\n- Not patient uncertainty/hesitation descriptions.",
+    "fields": [
+      {
+        "prefix": "Text:",
+        "description": "${text}"
+      },
+      {
+        "prefix": "Pred Spans:",
+        "description": "${pred_spans}"
+      }
+    ]
+  },
+  "lm": null,
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.0.4",
+      "cloudpickle": "3.1"
+    }
+  }
+}

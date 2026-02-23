@@ -129,15 +129,18 @@ UNCERTAINTY_ALLOWED_LABELS = {
     "Procedural uncertainty",
     "Responsibility uncertainty",
 }
+UNKNOWN_FACT_LABEL = "Unknown fact"
 UNCERTAINTY_COLLAPSED_LABEL = "UNCERTAIN"
 
 
-def _collapse_uncertainty_spans(spans: list[dict]) -> list[dict]:
+def _collapse_spans_to_label(
+    spans: list[dict], *, source_labels: set[str], target_label: str
+) -> list[dict]:
     collapsed = []
     seen = set()
 
     for span in spans:
-        if span.get("label") not in UNCERTAINTY_ALLOWED_LABELS:
+        if span.get("label") not in source_labels:
             continue
 
         key = (span.get("start"), span.get("end"))
@@ -146,10 +149,26 @@ def _collapse_uncertainty_spans(spans: list[dict]) -> list[dict]:
         seen.add(key)
 
         new_span = dict(span)
-        new_span["label"] = UNCERTAINTY_COLLAPSED_LABEL
+        new_span["label"] = target_label
         collapsed.append(new_span)
 
     return collapsed
+
+
+def _collapse_uncertainty_spans(spans: list[dict]) -> list[dict]:
+    return _collapse_spans_to_label(
+        spans,
+        source_labels=UNCERTAINTY_ALLOWED_LABELS,
+        target_label=UNCERTAINTY_COLLAPSED_LABEL,
+    )
+
+
+def _collapse_unknown_fact_spans(spans: list[dict]) -> list[dict]:
+    return _collapse_spans_to_label(
+        spans,
+        source_labels={UNKNOWN_FACT_LABEL},
+        target_label=UNKNOWN_FACT_LABEL,
+    )
 
 
 def prepare_dataset_uncertainty_span(path: str, annotator_id: str | None = None):
@@ -259,6 +278,72 @@ def prepare_dataset_uncertainty_binary_span_all(
         spans = _collapse_uncertainty_spans(line.get("spans") or [])
         if not spans:
             continue
+
+        ex = dspy.Example(
+            text=line.get("text"),
+            gold_spans=spans,
+        ).with_inputs("text")
+
+        examples.append(ex)
+
+    return examples
+
+
+def prepare_dataset_unknown_fact_binary_span(
+    path: str, annotator_id: str | None = None
+):
+    rng = random.Random(339)  # local, deterministic RNG
+    train, test = [], []
+
+    for line in srsly.read_jsonl(path):
+        if not isinstance(line, dict):
+            continue
+        if not _matches_annotator(line, annotator_id):
+            continue
+
+        uncertainty_spans = [
+            span
+            for span in (line.get("spans") or [])
+            if span.get("label") in UNCERTAINTY_ALLOWED_LABELS
+        ]
+        if not uncertainty_spans:
+            continue
+
+        spans = _collapse_unknown_fact_spans(uncertainty_spans)
+
+        ex = dspy.Example(
+            text=line.get("text"),
+            gold_spans=spans,
+        ).with_inputs("text")
+
+        if rng.random() < 0.75:
+            train.append(ex)
+        else:
+            test.append(ex)
+
+    return train, test
+
+
+def prepare_dataset_unknown_fact_binary_span_all(
+    path: str, annotator_id: str | None = None
+):
+    examples = []
+
+    for line in srsly.read_jsonl(path):
+        if not isinstance(line, dict):
+            continue
+        if not _matches_annotator(line, annotator_id):
+            continue
+
+        uncertainty_spans = [
+            span
+            for span in (line.get("spans") or [])
+            if span.get("label") in UNCERTAINTY_ALLOWED_LABELS
+        ]
+        if not uncertainty_spans:
+            continue
+
+        spans = _collapse_unknown_fact_spans(uncertainty_spans)
 
         ex = dspy.Example(
             text=line.get("text"),

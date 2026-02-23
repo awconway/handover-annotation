@@ -1,0 +1,47 @@
+{
+    "pred_spans": [
+        {
+            "label": "Unknown fact",
+            "quote": "Not really sure we haven't tried to get him up"
+        }
+    ],
+    "span_metrics": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 1.0,
+        "pred_count": 1,
+        "gold_count": 1,
+        "detailed": {
+            "preds": [
+                {
+                    "idx": 0,
+                    "label": "Unknown fact",
+                    "quote": "Not really sure we haven't tried to get him up",
+                    "span": [
+                        1347,
+                        1393
+                    ]
+                }
+            ],
+            "golds": [
+                {
+                    "idx": 0,
+                    "label": "Unknown fact",
+                    "span": [
+                        1347,
+                        1393
+                    ]
+                }
+            ],
+            "matches": [
+                {
+                    "pred_idx": 0,
+                    "gold_idx": 0,
+                    "iou": 1.0,
+                    "credit": 1.0
+                }
+            ]
+        }
+    }
+}

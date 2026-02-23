@@ -1,0 +1,122 @@
+{
+    "pred_spans": [
+        {
+            "label": "Unknown fact",
+            "quote": "He\u2019s had several episodes of diarrhoea overnight \u2014 not sure how many."
+        },
+        {
+            "label": "Unknown fact",
+            "quote": "No vomiting that I\u2019m aware of."
+        },
+        {
+            "label": "Unknown fact",
+            "quote": "I\u2019m not completely sure if they\u2019ve been through yet."
+        },
+        {
+            "label": "Unknown fact",
+            "quote": "I\u2019m not sure of the exact time yet."
+        }
+    ],
+    "span_metrics": {
+        "precision": 0.7316787941787942,
+        "recall": 0.7316787941787942,
+        "f1": 0.7316787941787943,
+        "tp": 2.926715176715177,
+        "pred_count": 4,
+        "gold_count": 4,
+        "detailed": {
+            "preds": [
+                {
+                    "idx": 0,
+                    "label": "Unknown fact",
+                    "quote": "He\u2019s had several episodes of diarrhoea overnight \u2014 not sure how many.",
+                    "span": [
+                        982,
+                        1051
+                    ]
+                },
+                {
+                    "idx": 1,
+                    "label": "Unknown fact",
+                    "quote": "No vomiting that I\u2019m aware of.",
+                    "span": [
+                        1097,
+                        1127
+                    ]
+                },
+                {
+                    "idx": 2,
+                    "label": "Unknown fact",
+                    "quote": "I\u2019m not completely sure if they\u2019ve been through yet.",
+                    "span": [
+                        1505,
+                        1557
+                    ]
+                },
+                {
+                    "idx": 3,
+                    "label": "Unknown fact",
+                    "quote": "I\u2019m not sure of the exact time yet.",
+                    "span": [
+                        2003,
+                        2038
+                    ]
+                }
+            ],
+            "golds": [
+                {
+                    "idx": 0,
+                    "label": "Unknown fact",
+                    "span": [
+                        1097,
+                        1127
+                    ]
+                },
+                {
+                    "idx": 1,
+                    "label": "Unknown fact",
+                    "span": [
+                        1246,
+                        1425
+                    ]
+                },
+                {
+                    "idx": 2,
+                    "label": "Unknown fact",
+                    "span": [
+                        1505,
+                        1556
+                    ]
+                },
+                {
+                    "idx": 3,
+                    "label": "Unknown fact",
+                    "span": [
+                        2001,
+                        2038
+                    ]
+                }
+            ],
+            "matches": [
+                {
+                    "pred_idx": 1,
+                    "gold_idx": 0,
+                    "iou": 1.0,
+                    "credit": 1.0
+                },
+                {
+                    "pred_idx": 2,
+                    "gold_idx": 2,
+                    "iou": 0.9807692307692307,
+                    "credit": 0.9807692307692307
+                },
+                {
+                    "pred_idx": 3,
+                    "gold_idx": 3,
+                    "iou": 0.9459459459459459,
+                    "credit": 0.9459459459459459
+                }
+            ]
+        }
+    }
+}
