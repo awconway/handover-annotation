@@ -1,0 +1,218 @@
+#!/bin/bash -l
+#PBS -N medgemma27b_unknown_fact
+#PBS -l select=1:ncpus=8:mem=64GB:ngpus=1:gpu_model=A100:gpu_sliced=False
+#PBS -l walltime=08:00:00
+#PBS -m abe
+#PBS -j oe
+
+set -euo pipefail
+
+cd "$PBS_O_WORKDIR" || exit 1
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+
+# Persistent model cache on HOME (Lustre-backed on cluster)
+export OLLAMA_MODELS="${OLLAMA_MODELS:-$HOME/.ollama/models}"
+
+MODEL_IMAGE="${MODEL_IMAGE:-alibayram/medgemma:27b}"
+MODEL_NAME="${MODEL_NAME:-ollama_medgemma_27b}"
+TEMPERATURE="${TEMPERATURE:-0.8}"
+DATA_FILE="${DATA_FILE:-./annotated_data/db_20260129_tokenised.jsonl}"
+OPTIMISER_NAME="${OPTIMISER_NAME:-gepa_light_span}"
+ANNOTATOR_ID="${ANNOTATOR_ID:-handover_db-user2}"
+RUN_TRAIN="${RUN_TRAIN:-1}"
+RUN_EVAL="${RUN_EVAL:-0}"          # 1 => run eval stage after/without train
+USE_ALL="${USE_ALL:-0}"            # 1 => evaluate on all matching examples
+FORCE_TRAIN="${FORCE_TRAIN:-0}"    # 1 => retrain even when model file exists
+FORCE_EVAL="${FORCE_EVAL:-0}"      # 1 => rerun eval even when EVAL_RESUME=0 and eval file exists
+EVAL_RESUME="${EVAL_RESUME:-1}"    # 1 => resume eval JSONL if it exists
+NUM_THREADS="${NUM_THREADS:-1}"
+
+DATA_TAG="$(basename "$DATA_FILE")"
+DATA_TAG="${DATA_TAG%.*}"
+ANNOTATOR_TAG="${ANNOTATOR_ID:-all}"
+RUN_ID_DEFAULT="$(printf '%s' "medgemma27b_unknown_fact_${MODEL_NAME}_${OPTIMISER_NAME}_${DATA_TAG}_${ANNOTATOR_TAG}_temp${TEMPERATURE}_train${RUN_TRAIN}_eval${RUN_EVAL}_all${USE_ALL}" | tr -c '[:alnum:]_.-' '_')"
+RUN_ID="${RUN_ID:-$RUN_ID_DEFAULT}"
+OUT_DIR="${OUT_DIR:-./cluster_runs/${RUN_ID}}"
+
+OUTPUT_MODEL_FILE="${OUTPUT_MODEL_FILE:-$OUT_DIR/compiled_programs/unknown_fact_binary_${MODEL_NAME}_${OPTIMISER_NAME}.json}"
+GEPA_LOG_DIR="${GEPA_LOG_DIR:-$OUT_DIR/gepa/unknown_fact_binary_${MODEL_NAME}_${OPTIMISER_NAME}}"
+EVAL_RESULTS_FILE="${EVAL_RESULTS_FILE:-$OUT_DIR/evals/eval_unknown_fact_binary_${MODEL_NAME}_${OPTIMISER_NAME}.jsonl}"
+
+mkdir -p "$OUT_DIR"/compiled_programs "$OUT_DIR"/evals "$OUT_DIR"/logs "$OUT_DIR"/gepa
+mkdir -p "$(dirname "$OUTPUT_MODEL_FILE")" "$(dirname "$EVAL_RESULTS_FILE")" "$GEPA_LOG_DIR"
+exec > >(tee -a "$OUT_DIR/logs/job.log") 2>&1
+
+OLLAMA_PID=""
+cleanup() {
+  if [ -n "${OLLAMA_PID:-}" ]; then
+    kill "$OLLAMA_PID" 2>/dev/null || true
+  fi
+}
+trap cleanup EXIT
+
+echo "Node: $(hostname)"
+echo "Working directory: $PWD"
+echo "Run ID: $RUN_ID"
+echo "Output directory: $OUT_DIR"
+echo "GPU info:"
+nvidia-smi
+
+VENV_DIR="${VENV_DIR:-$PBS_O_WORKDIR/.venv_cluster_gpu}"
+PYTHON_MIN_MAJOR="${PYTHON_MIN_MAJOR:-3}"
+PYTHON_MIN_MINOR="${PYTHON_MIN_MINOR:-11}"
+PYTHON_BIN="$VENV_DIR/bin/python3"
+if [ ! -x "$PYTHON_BIN" ]; then
+  PYTHON_BIN="$VENV_DIR/bin/python"
+fi
+
+if [ ! -x "$PYTHON_BIN" ]; then
+  echo "Expected virtual environment was not found at: $VENV_DIR"
+  echo "Create it first with uv (example):"
+  echo "  uv python install 3.11"
+  echo "  uv venv --python 3.11 $VENV_DIR"
+  exit 1
+fi
+
+if ! "$PYTHON_BIN" -c "import sys; raise SystemExit(0 if sys.version_info >= (${PYTHON_MIN_MAJOR}, ${PYTHON_MIN_MINOR}) else 1)" >/dev/null 2>&1; then
+  echo "Venv interpreter is not runnable at >=${PYTHON_MIN_MAJOR}.${PYTHON_MIN_MINOR}: $PYTHON_BIN"
+  "$PYTHON_BIN" -V || true
+  exit 1
+fi
+
+echo "Using venv interpreter: $PYTHON_BIN"
+
+DEPS_STAMP="$VENV_DIR/.handover_deps_v4"
+if [ ! -f "$DEPS_STAMP" ]; then
+  "$PYTHON_BIN" -m pip install --upgrade pip setuptools wheel
+  "$PYTHON_BIN" -m pip install \
+    "dspy-ai>=3.0.4" \
+    "numpy>=2.3.5" \
+    "rapidfuzz>=3.14.3" \
+    "spacy>=3.8.11" \
+    "thinc>=8.3.10" \
+    "srsly>=2.5.1"
+  touch "$DEPS_STAMP"
+fi
+
+export PYTHONPATH="$PWD/src${PYTHONPATH:+:$PYTHONPATH}"
+PY_RUNNER=("$PYTHON_BIN")
+
+if ! command -v ollama >/dev/null 2>&1; then
+  echo "ollama is not available on PATH."
+  exit 1
+fi
+
+# Pick a random free local port for this job's Ollama daemon.
+while :; do
+  PORT=$((11434 + RANDOM % 5000))
+  if ! nc -z 127.0.0.1 "$PORT" 2>/dev/null; then
+    break
+  fi
+done
+
+export OLLAMA_HOST="127.0.0.1:${PORT}"
+export OLLAMA_API_BASE="http://${OLLAMA_HOST}"
+echo "Using OLLAMA_HOST=${OLLAMA_HOST}"
+echo "Using OLLAMA_API_BASE=${OLLAMA_API_BASE}"
+
+ollama serve >/dev/null 2>&1 &
+OLLAMA_PID=$!
+
+for i in {1..90}; do
+  if curl -fs "http://${OLLAMA_HOST}/api/tags" >/dev/null; then
+    break
+  fi
+  sleep 1
+  if [ "$i" -eq 90 ]; then
+    echo "Ollama did not start within 90 seconds."
+    exit 1
+  fi
+done
+
+if ! ollama show "$MODEL_IMAGE" >/dev/null 2>&1; then
+  echo "Pulling ${MODEL_IMAGE}..."
+  ollama pull "$MODEL_IMAGE"
+else
+  echo "Model ${MODEL_IMAGE} already available in local cache."
+fi
+
+echo "Available models:"
+ollama list
+
+if [ "$RUN_TRAIN" = "1" ] && [[ "$OPTIMISER_NAME" == gepa_* ]] && [ -z "${OPENAI_API_KEY:-}" ]; then
+  echo "OPENAI_API_KEY is required for GEPA reflection (reflection model: openai/gpt-5.2)."
+  exit 1
+fi
+
+echo "Run configuration:"
+echo "  DATA_FILE=$DATA_FILE"
+echo "  MODEL_NAME=$MODEL_NAME"
+echo "  TEMPERATURE=$TEMPERATURE"
+echo "  OPTIMISER_NAME=$OPTIMISER_NAME"
+echo "  ANNOTATOR_ID=${ANNOTATOR_ID:-<none>}"
+echo "  RUN_TRAIN=$RUN_TRAIN"
+echo "  RUN_EVAL=$RUN_EVAL"
+echo "  USE_ALL=$USE_ALL"
+echo "  FORCE_TRAIN=$FORCE_TRAIN"
+echo "  FORCE_EVAL=$FORCE_EVAL"
+echo "  EVAL_RESUME=$EVAL_RESUME"
+echo "  NUM_THREADS=$NUM_THREADS"
+echo "  OUTPUT_MODEL_FILE=$OUTPUT_MODEL_FILE"
+echo "  GEPA_LOG_DIR=$GEPA_LOG_DIR"
+echo "  EVAL_RESULTS_FILE=$EVAL_RESULTS_FILE"
+
+COMMON_ARGS=(
+  --data-file "$DATA_FILE"
+  --model-name "$MODEL_NAME"
+)
+if [ -n "$ANNOTATOR_ID" ]; then
+  COMMON_ARGS+=(--annotator-id "$ANNOTATOR_ID")
+fi
+
+if [ "$RUN_TRAIN" = "1" ]; then
+  echo "=== UNKNOWN-FACT BINARY SPAN TRAIN ==="
+  if [ -s "$OUTPUT_MODEL_FILE" ] && [ "$FORCE_TRAIN" != "1" ]; then
+    echo "Model exists, skipping training: $OUTPUT_MODEL_FILE"
+  else
+    OLLAMA_MEDGEMMA_27B_TEMPERATURE="$TEMPERATURE" "${PY_RUNNER[@]}" run_train_unknown_fact_binary_span.py \
+      "${COMMON_ARGS[@]}" \
+      --optimiser-name "$OPTIMISER_NAME" \
+      --output-model-file "$OUTPUT_MODEL_FILE" \
+      --gepa-log-dir "$GEPA_LOG_DIR"
+  fi
+fi
+
+if [ "$RUN_EVAL" = "1" ]; then
+  echo "=== UNKNOWN-FACT BINARY SPAN EVAL ==="
+  if [ ! -s "$OUTPUT_MODEL_FILE" ]; then
+    echo "Cannot run eval: model file not found: $OUTPUT_MODEL_FILE"
+    exit 1
+  fi
+
+  EVAL_ARGS=(
+    --output-model-file "$OUTPUT_MODEL_FILE"
+    --eval-results-file "$EVAL_RESULTS_FILE"
+    --num-threads "$NUM_THREADS"
+  )
+  if [ "$USE_ALL" = "1" ]; then
+    EVAL_ARGS+=(--use-all)
+  fi
+  if [ "$EVAL_RESUME" = "0" ]; then
+    EVAL_ARGS+=(--no-resume)
+  fi
+
+  if [ "$FORCE_EVAL" != "1" ] && [ "$EVAL_RESUME" = "0" ] && [ -s "$EVAL_RESULTS_FILE" ]; then
+    echo "Eval file exists, skipping evaluation: $EVAL_RESULTS_FILE"
+  else
+    OLLAMA_MEDGEMMA_27B_TEMPERATURE="$TEMPERATURE" "${PY_RUNNER[@]}" run_eval_unknown_fact_binary_span.py \
+      "${COMMON_ARGS[@]}" \
+      "${EVAL_ARGS[@]}"
+  fi
+fi
+
+echo "Unknown-fact binary span stages completed."
+echo "Artifacts:"
+echo "  Models: $OUT_DIR/compiled_programs"
+echo "  Evals:  $OUT_DIR/evals"
+echo "  Logs:   $OUT_DIR/logs/job.log"
+echo "  GEPA:   $OUT_DIR/gepa"
