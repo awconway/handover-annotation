@@ -1,0 +1,7 @@
+label,gold,total_pred_spans,matched_gold,matched_pred,recall,precision,f1,mean_iou
+Hedging,18,0,0,0,0.000000,0.000000,0.000000,0.000000
+Indefinite timing,33,39,14,14,0.424242,0.358974,0.388889,0.645853
+Procedural uncertainty,2,51,0,0,0.000000,0.000000,0.000000,0.000000
+Responsibility uncertainty,1,0,0,0,0.000000,0.000000,0.000000,0.000000
+Unknown fact,10,8,5,5,0.500000,0.625000,0.555556,0.926251
+Vagueness,32,0,0,0,0.000000,0.000000,0.000000,0.000000

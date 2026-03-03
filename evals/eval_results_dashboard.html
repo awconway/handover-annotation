@@ -1,0 +1,929 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Evaluation Results Dashboard</title>
+    <style>
+      :root {
+        --bg: #f4f5f8;
+        --panel: #ffffff;
+        --ink: #192038;
+        --muted: #4d5770;
+        --line: #d8dcef;
+        --accent: #1f6feb;
+      }
+      body {
+        margin: 0;
+        padding: 1.2rem;
+        font-family: Inter, "Segoe UI", Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+      }
+      h1, h2, h3, h4 { margin: 0 0 .5rem 0; }
+      .panel {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 0.8rem 0;
+      }
+      .chart-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 1rem;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 0.5rem;
+        margin: .5rem 0 1rem;
+      }
+      .stat {
+        padding: .6rem;
+        border-radius: 6px;
+        background: #f9faff;
+        border: 1px solid var(--line);
+      }
+      .bar-row {
+        display: grid;
+        grid-template-columns: minmax(180px, 1fr) 1fr auto;
+        gap: 0.5rem;
+        align-items: center;
+        margin: 0.45rem 0;
+      }
+      .bar-label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 0.9rem;
+      }
+      .bar-track {
+        height: 1rem;
+        border-radius: 999px;
+        border: 1px solid #ccc;
+        background: #ebedf3;
+        overflow: hidden;
+      }
+      .bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #3b82f6, #2563eb);
+      }
+      .bar-value {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: .6rem 0 1rem;
+        font-size: 0.85rem;
+      }
+      th, td {
+        text-align: left;
+        padding: 0.45rem 0.5rem;
+        border-bottom: 1px solid var(--line);
+      }
+      th {
+        background: #eef1fb;
+        position: sticky;
+        top: 0;
+      }
+      .eval-block {
+        padding: 0.6rem 0;
+        border-top: 1px solid #dee3f2;
+      }
+      details > summary {
+        cursor: pointer;
+        font-weight: 600;
+        margin: 0.5rem 0;
+      }
+      a { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <h1>Evaluation Results Dashboard</h1>
+    <p>Generated from <code>/Users/ac/handover-annotation/evals</code>. All figures are derived from saved eval outputs.</p>
+
+    <div class="panel">
+      <h2>Overview</h2>
+      <table><thead><tr><th>task</th><th>eval</th><th>n_examples</th><th>avg_score</th><th>micro_p</th><th>micro_r</th><th>micro_f1</th><th>macro_f1</th><th>weighted_f1</th><th>exact_match</th></tr></thead><tbody><tr><td>checklist</td><td>checklist_baseline_consensus_gpt_5_2_test</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>checklist</td><td>checklist_baseline_gemma3_1b_consensus_test</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>checklist</td><td>checklist_baseline_gpt_nano_consensus</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>checklist</td><td>checklist_baseline_ollama_medgemma_27b_consensus</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>checklist</td><td>checklist_consensus_gpt_5_2_test</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>checklist</td><td>checklist_gpt_nano_gepa_checklist_consensus</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>checklist</td><td>checklist_ollama_medgemma_27b_checklist</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>checklist</td><td>checklist_ollama_medgemma_27b_checklist_temp06</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>sbar</td><td>sbar_baseline_gpt5-2_reasoning-medium_consensus_test</td><td>48</td><td>0.3544</td><td>0.4075</td><td>0.6862</td><td>0.5113</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_baseline_gpt_5.2_consensus</td><td>48</td><td>0.3621</td><td>0.4088</td><td>0.6721</td><td>0.5084</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_baseline_gpt_nano_consensus</td><td>48</td><td>0.3487</td><td>0.4339</td><td>0.5691</td><td>0.4924</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_baseline_ollama_medgemma_27b_consensus</td><td>48</td><td>0.3607</td><td>0.5689</td><td>0.4543</td><td>0.5052</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_langextract_gpt5-2_consensus_testsplit_10train</td><td>48</td><td>0.4168</td><td>0.4810</td><td>0.7705</td><td>0.5923</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_langextract_ollama_medgemma_27b_consensus</td><td>48</td><td>0.3260</td><td>0.5472</td><td>0.3934</td><td>0.4578</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_span_gpt5-2_consensus_test_default_reasoning</td><td>48</td><td>0.5619</td><td>0.7440</td><td>0.7213</td><td>0.7325</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_span_gpt_5-2_consensus_reasoning_none</td><td>48</td><td>0.5867</td><td>0.7632</td><td>0.7471</td><td>0.7550</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_span_gpt_nano_consensus_default_reasoning</td><td>48</td><td>0.5258</td><td>0.6726</td><td>0.7119</td><td>0.6917</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_span_gpt_nano_consensus_minimal_reasoning</td><td>48</td><td>0.3743</td><td>0.5348</td><td>0.5222</td><td>0.5284</td><td></td><td></td><td></td></tr><tr><td>uncertain</td><td>uncertain_baseline_gpt5-2_user2_on_user2_test</td><td>37</td><td>0.2022</td><td>0.2366</td><td>0.6458</td><td>0.3464</td><td></td><td></td><td></td></tr><tr><td>uncertain</td><td>uncertain_baseline_medgemma_user2_on_user2_test</td><td>37</td><td>0.0601</td><td>0.1194</td><td>0.1667</td><td>0.1391</td><td></td><td></td><td></td></tr><tr><td>uncertain</td><td>uncertain_gpt5-2_user2_on_user2_test</td><td>37</td><td>0.3341</td><td>0.3234</td><td>0.5625</td><td>0.4106</td><td></td><td></td><td></td></tr><tr><td>uncertain</td><td>uncertain_langextract_gpt5-2_user2_train10_testall</td><td>37</td><td>0.0381</td><td>0.3500</td><td>0.0729</td><td>0.1207</td><td></td><td></td><td></td></tr><tr><td>uncertain</td><td>uncertain_langextract_medgemma_user2_train10_testall</td><td>37</td><td>0.1666</td><td>0.2174</td><td>0.2604</td><td>0.2370</td><td></td><td></td><td></td></tr><tr><td>uncertain</td><td>uncertain_ollama_medgemma_27b_gepa_user2_test</td><td>37</td><td>0.1713</td><td>0.1939</td><td>0.1979</td><td>0.1959</td><td></td><td></td><td></td></tr><tr><td>unknown_fact</td><td>unknown_fact_binary_baseline_gpt5-2_user2_test</td><td>37</td><td>0.9415</td><td>0.7273</td><td>0.8000</td><td>0.7619</td><td></td><td></td><td></td></tr><tr><td>unknown_fact</td><td>unknown_fact_binary_baseline_gpt_nano_minimal_user2_test</td><td>37</td><td>0.0385</td><td>0.0769</td><td>0.4000</td><td>0.1290</td><td></td><td></td><td></td></tr><tr><td>unknown_fact</td><td>unknown_fact_binary_gpt5-2_user2_v2_gepa</td><td>37</td><td>0.9736</td><td>0.8889</td><td>0.8000</td><td>0.8421</td><td></td><td></td><td></td></tr><tr><td>unknown_fact</td><td>unknown_fact_binary_gpt_nano_user2</td><td>37</td><td>0.9757</td><td>0.8889</td><td>0.8000</td><td>0.8421</td><td></td><td></td><td></td></tr><tr><td>unknown_fact</td><td>unknown_fact_binary_ollama_medgemma_27b_gepa_light_span</td><td>37</td><td>0.9666</td><td>0.8000</td><td>0.8000</td><td>0.8000</td><td></td><td></td><td></td></tr></tbody></table>
+    </div>
+
+    <div class="chart-grid">
+      <section class="panel chart"><h3>Checklist micro F1</h3>
+            <div class="bar-row">
+              <div class="bar-label" title="eval_checklist_baseline_consensus_gpt_5_2_test">eval_checklist_baseline_consensus_gpt_5_2_test</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 0.0%;"></div>
+              </div>
+              <div class="bar-value">0.000</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_checklist_baseline_gemma3_1b_consensus_test">eval_checklist_baseline_gemma3_1b_consensus_test</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 0.0%;"></div>
+              </div>
+              <div class="bar-value">0.000</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_checklist_baseline_gpt_nano_consensus">eval_checklist_baseline_gpt_nano_consensus</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 0.0%;"></div>
+              </div>
+              <div class="bar-value">0.000</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_checklist_baseline_ollama_medgemma_27b_consensus">eval_checklist_baseline_ollama_medgemma_27b_consensus</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 0.0%;"></div>
+              </div>
+              <div class="bar-value">0.000</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_checklist_consensus_gpt_5_2_test">eval_checklist_consensus_gpt_5_2_test</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 0.0%;"></div>
+              </div>
+              <div class="bar-value">0.000</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_checklist_gpt_nano_gepa_checklist_consensus">eval_checklist_gpt_nano_gepa_checklist_consensus</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 0.0%;"></div>
+              </div>
+              <div class="bar-value">0.000</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_checklist_ollama_medgemma_27b_checklist">eval_checklist_ollama_medgemma_27b_checklist</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 0.0%;"></div>
+              </div>
+              <div class="bar-value">0.000</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_checklist_ollama_medgemma_27b_checklist_temp06">eval_checklist_ollama_medgemma_27b_checklist_temp06</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 0.0%;"></div>
+              </div>
+              <div class="bar-value">0.000</div>
+            </div>
+            </section>
+      <section class="panel chart"><h3>Checklist macro F1</h3>
+            <div class="bar-row">
+              <div class="bar-label" title="eval_checklist_baseline_consensus_gpt_5_2_test">eval_checklist_baseline_consensus_gpt_5_2_test</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 0.0%;"></div>
+              </div>
+              <div class="bar-value">0.000</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_checklist_baseline_gemma3_1b_consensus_test">eval_checklist_baseline_gemma3_1b_consensus_test</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 0.0%;"></div>
+              </div>
+              <div class="bar-value">0.000</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_checklist_baseline_gpt_nano_consensus">eval_checklist_baseline_gpt_nano_consensus</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 0.0%;"></div>
+              </div>
+              <div class="bar-value">0.000</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_checklist_baseline_ollama_medgemma_27b_consensus">eval_checklist_baseline_ollama_medgemma_27b_consensus</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 0.0%;"></div>
+              </div>
+              <div class="bar-value">0.000</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_checklist_consensus_gpt_5_2_test">eval_checklist_consensus_gpt_5_2_test</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 0.0%;"></div>
+              </div>
+              <div class="bar-value">0.000</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_checklist_gpt_nano_gepa_checklist_consensus">eval_checklist_gpt_nano_gepa_checklist_consensus</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 0.0%;"></div>
+              </div>
+              <div class="bar-value">0.000</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_checklist_ollama_medgemma_27b_checklist">eval_checklist_ollama_medgemma_27b_checklist</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 0.0%;"></div>
+              </div>
+              <div class="bar-value">0.000</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_checklist_ollama_medgemma_27b_checklist_temp06">eval_checklist_ollama_medgemma_27b_checklist_temp06</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 0.0%;"></div>
+              </div>
+              <div class="bar-value">0.000</div>
+            </div>
+            </section>
+      <section class="panel chart"><h3>SBAR micro F1</h3>
+            <div class="bar-row">
+              <div class="bar-label" title="eval_sbar_span_gpt_5-2_consensus_reasoning_none">eval_sbar_span_gpt_5-2_consensus_reasoning_none</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 75.5%;"></div>
+              </div>
+              <div class="bar-value">0.755</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_sbar_span_gpt5-2_consensus_test_default_reasoning">eval_sbar_span_gpt5-2_consensus_test_default_reasoning</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 73.2%;"></div>
+              </div>
+              <div class="bar-value">0.732</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_sbar_span_gpt_nano_consensus_default_reasoning">eval_sbar_span_gpt_nano_consensus_default_reasoning</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 69.2%;"></div>
+              </div>
+              <div class="bar-value">0.692</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_sbar_langextract_gpt5-2_consensus_testsplit_10train">eval_sbar_langextract_gpt5-2_consensus_testsplit_10train</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 59.2%;"></div>
+              </div>
+              <div class="bar-value">0.592</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_sbar_span_gpt_nano_consensus_minimal_reasoning">eval_sbar_span_gpt_nano_consensus_minimal_reasoning</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 52.8%;"></div>
+              </div>
+              <div class="bar-value">0.528</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_sbar_baseline_gpt5-2_reasoning-medium_consensus_test">eval_sbar_baseline_gpt5-2_reasoning-medium_consensus_test</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 51.1%;"></div>
+              </div>
+              <div class="bar-value">0.511</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_sbar_baseline_gpt_5.2_consensus">eval_sbar_baseline_gpt_5.2_consensus</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 50.8%;"></div>
+              </div>
+              <div class="bar-value">0.508</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_sbar_baseline_ollama_medgemma_27b_consensus">eval_sbar_baseline_ollama_medgemma_27b_consensus</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 50.5%;"></div>
+              </div>
+              <div class="bar-value">0.505</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_sbar_baseline_gpt_nano_consensus">eval_sbar_baseline_gpt_nano_consensus</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 49.2%;"></div>
+              </div>
+              <div class="bar-value">0.492</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_sbar_langextract_ollama_medgemma_27b_consensus">eval_sbar_langextract_ollama_medgemma_27b_consensus</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 45.8%;"></div>
+              </div>
+              <div class="bar-value">0.458</div>
+            </div>
+            </section>
+      <section class="panel chart"><h3>Uncertain micro F1</h3>
+            <div class="bar-row">
+              <div class="bar-label" title="eval_uncertain_gpt5-2_user2_on_user2_test">eval_uncertain_gpt5-2_user2_on_user2_test</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 41.1%;"></div>
+              </div>
+              <div class="bar-value">0.411</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_uncertain_baseline_gpt5-2_user2_on_user2_test">eval_uncertain_baseline_gpt5-2_user2_on_user2_test</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 34.6%;"></div>
+              </div>
+              <div class="bar-value">0.346</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_uncertain_langextract_medgemma_user2_train10_testall">eval_uncertain_langextract_medgemma_user2_train10_testall</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 23.7%;"></div>
+              </div>
+              <div class="bar-value">0.237</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_uncertain_ollama_medgemma_27b_gepa_user2_test">eval_uncertain_ollama_medgemma_27b_gepa_user2_test</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 19.6%;"></div>
+              </div>
+              <div class="bar-value">0.196</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_uncertain_baseline_medgemma_user2_on_user2_test">eval_uncertain_baseline_medgemma_user2_on_user2_test</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 13.9%;"></div>
+              </div>
+              <div class="bar-value">0.139</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_uncertain_langextract_gpt5-2_user2_train10_testall">eval_uncertain_langextract_gpt5-2_user2_train10_testall</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 12.1%;"></div>
+              </div>
+              <div class="bar-value">0.121</div>
+            </div>
+            </section>
+      <section class="panel chart"><h3>Unknown-fact micro F1</h3>
+            <div class="bar-row">
+              <div class="bar-label" title="eval_unknown_fact_binary_gpt5-2_user2_v2_gepa">eval_unknown_fact_binary_gpt5-2_user2_v2_gepa</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 84.2%;"></div>
+              </div>
+              <div class="bar-value">0.842</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_unknown_fact_binary_gpt_nano_user2">eval_unknown_fact_binary_gpt_nano_user2</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 84.2%;"></div>
+              </div>
+              <div class="bar-value">0.842</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_unknown_fact_binary_ollama_medgemma_27b_gepa_light_span">eval_unknown_fact_binary_ollama_medgemma_27b_gepa_light_span</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 80.0%;"></div>
+              </div>
+              <div class="bar-value">0.800</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_unknown_fact_binary_baseline_gpt5-2_user2_test">eval_unknown_fact_binary_baseline_gpt5-2_user2_test</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 76.2%;"></div>
+              </div>
+              <div class="bar-value">0.762</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="eval_unknown_fact_binary_baseline_gpt_nano_minimal_user2_test">eval_unknown_fact_binary_baseline_gpt_nano_minimal_user2_test</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 12.9%;"></div>
+              </div>
+              <div class="bar-value">0.129</div>
+            </div>
+            </section>
+    </div>
+
+    
+
+    <section class="panel">
+      <h2>Checklist task evaluations</h2>
+      
+            <details class="eval-block">
+              <summary>checklist_baseline_consensus_gpt_5_2_test</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>0</strong></div>
+                <div class="stat">Avg score: <strong>0.0000</strong></div>
+                <div class="stat">Micro F1: <strong>0.0000</strong></div>
+                <div class="stat">Macro F1: <strong>0.0000</strong></div>
+              </div>
+              <p>Top FN labels: <br/>
+              Top FP labels: </p>
+              <p>
+                Sources:
+                <a href="eval_baseline_checklist_consensus_gpt_5_2_test_analysis/summary.json">summary.json</a>,
+                <a href="eval_baseline_checklist_consensus_gpt_5_2_test_analysis/per_label.csv">per_label.csv</a>,
+                <a href="eval_baseline_checklist_consensus_gpt_5_2_test_analysis/per_bucket.csv">per_bucket.csv</a>
+              </p>
+              <h4>Per-bucket</h4>
+              <table><thead><tr><th>bucket</th><th>support</th><th>pred</th><th>tp</th><th>fp</th><th>fn</th><th>precision</th><th>recall</th><th>f1</th></tr></thead><tbody><tr><td>assessment</td><td>181</td><td>221</td><td>171</td><td>50</td><td>10</td><td>0.7738</td><td>0.9448</td><td>0.8507</td></tr><tr><td>background</td><td>42</td><td>49</td><td>42</td><td>7</td><td>0</td><td>0.8571</td><td>1.0000</td><td>0.9231</td></tr><tr><td>id</td><td>1</td><td>18</td><td>1</td><td>17</td><td>0</td><td>0.0556</td><td>1.0000</td><td>0.1053</td></tr><tr><td>patient_involvement</td><td>36</td><td>48</td><td>19</td><td>29</td><td>17</td><td>0.3958</td><td>0.5278</td><td>0.4524</td></tr><tr><td>recommendation</td><td>58</td><td>87</td><td>49</td><td>38</td><td>9</td><td>0.5632</td><td>0.8448</td><td>0.6759</td></tr><tr><td>situation</td><td>86</td><td>106</td><td>79</td><td>27</td><td>7</td><td>0.7453</td><td>0.9186</td><td>0.8229</td></tr></tbody></table>
+              <h4>Top per-label (support-ordered)</h4>
+              <table><thead><tr><th>label</th><th>support</th><th>pred</th><th>tp</th><th>fp</th><th>fn</th><th>precision</th><th>recall</th><th>f1</th></tr></thead><tbody><tr><td>sit_diagnosis</td><td>45</td><td>48</td><td>45</td><td>3</td><td>0</td><td>0.9375</td><td>1.0000</td><td>0.9677</td></tr><tr><td>rec_plan</td><td>44</td><td>45</td><td>42</td><td>3</td><td>2</td><td>0.9333</td><td>0.9545</td><td>0.9438</td></tr><tr><td>assess_obs</td><td>40</td><td>41</td><td>38</td><td>3</td><td>2</td><td>0.9268</td><td>0.9500</td><td>0.9383</td></tr><tr><td>sit_status</td><td>31</td><td>40</td><td>28</td><td>12</td><td>3</td><td>0.7000</td><td>0.9032</td><td>0.7887</td></tr><tr><td>assess_medications</td><td>25</td><td>29</td><td>24</td><td>5</td><td>1</td><td>0.8276</td><td>0.9600</td><td>0.8889</td></tr><tr><td>assess_devices</td><td>23</td><td>26</td><td>23</td><td>3</td><td>0</td><td>0.8846</td><td>1.0000</td><td>0.9388</td></tr><tr><td>introduction_patients</td><td>20</td><td>4</td><td>3</td><td>1</td><td>17</td><td>0.7500</td><td>0.1500</td><td>0.2500</td></tr><tr><td>bg_allergies</td><td>18</td><td>20</td><td>18</td><td>2</td><td>0</td><td>0.9000</td><td>1.0000</td><td>0.9474</td></tr><tr><td>bg_history</td><td>17</td><td>21</td><td>17</td><td>4</td><td>0</td><td>0.8095</td><td>1.0000</td><td>0.8947</td></tr><tr><td>assess_pain</td><td>17</td><td>24</td><td>16</td><td>8</td><td>1</td><td>0.6667</td><td>0.9412</td><td>0.7805</td></tr><tr><td>assess_mobility</td><td>17</td><td>22</td><td>17</td><td>5</td><td>0</td><td>0.7727</td><td>1.0000</td><td>0.8718</td></tr><tr><td>invitation</td><td>16</td><td>24</td><td>16</td><td>8</td><td>0</td><td>0.6667</td><td>1.0000</td><td>0.8000</td></tr><tr><td>assess_pathology</td><td>15</td><td>15</td><td>12</td><td>3</td><td>3</td><td>0.8000</td><td>0.8000</td><td>0.8000</td></tr><tr><td>assess_infusions</td><td>15</td><td>15</td><td>12</td><td>3</td><td>3</td><td>0.8000</td><td>0.8000</td><td>0.8000</td></tr><tr><td>assess_nutrition</td><td>14</td><td>20</td><td>14</td><td>6</td><td>0</td><td>0.7000</td><td>1.0000</td><td>0.8235</td></tr><tr><td>sit_events</td><td>10</td><td>18</td><td>6</td><td>12</td><td>4</td><td>0.3333</td><td>0.6000</td><td>0.4286</td></tr><tr><td>rec_patient_goals</td><td>9</td><td>4</td><td>2</td><td>2</td><td>7</td><td>0.5000</td><td>0.2222</td><td>0.3077</td></tr><tr><td>assess_fluid_balance</td><td>9</td><td>12</td><td>9</td><td>3</td><td>0</td><td>0.7500</td><td>1.0000</td><td>0.8571</td></tr><tr><td>assess_skin_integrity</td><td>6</td><td>12</td><td>6</td><td>6</td><td>0</td><td>0.5000</td><td>1.0000</td><td>0.6667</td></tr><tr><td>rec_discharge_plan</td><td>4</td><td>5</td><td>4</td><td>1</td><td>0</td><td>0.8000</td><td>1.0000</td><td>0.8889</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>checklist_baseline_gemma3_1b_consensus_test</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>0</strong></div>
+                <div class="stat">Avg score: <strong>0.0000</strong></div>
+                <div class="stat">Micro F1: <strong>0.0000</strong></div>
+                <div class="stat">Macro F1: <strong>0.0000</strong></div>
+              </div>
+              <p>Top FN labels: <br/>
+              Top FP labels: </p>
+              <p>
+                Sources:
+                <a href="eval_baseline_checklist_consensus_gpt_5_2_test_analysis/summary.json">summary.json</a>,
+                <a href="eval_baseline_checklist_consensus_gpt_5_2_test_analysis/per_label.csv">per_label.csv</a>,
+                <a href="eval_baseline_checklist_consensus_gpt_5_2_test_analysis/per_bucket.csv">per_bucket.csv</a>
+              </p>
+              <h4>Per-bucket</h4>
+              <table><thead><tr><th>bucket</th><th>support</th><th>pred</th><th>tp</th><th>fp</th><th>fn</th><th>precision</th><th>recall</th><th>f1</th></tr></thead><tbody><tr><td>assessment</td><td>181</td><td>221</td><td>171</td><td>50</td><td>10</td><td>0.7738</td><td>0.9448</td><td>0.8507</td></tr><tr><td>background</td><td>42</td><td>49</td><td>42</td><td>7</td><td>0</td><td>0.8571</td><td>1.0000</td><td>0.9231</td></tr><tr><td>id</td><td>1</td><td>18</td><td>1</td><td>17</td><td>0</td><td>0.0556</td><td>1.0000</td><td>0.1053</td></tr><tr><td>patient_involvement</td><td>36</td><td>48</td><td>19</td><td>29</td><td>17</td><td>0.3958</td><td>0.5278</td><td>0.4524</td></tr><tr><td>recommendation</td><td>58</td><td>87</td><td>49</td><td>38</td><td>9</td><td>0.5632</td><td>0.8448</td><td>0.6759</td></tr><tr><td>situation</td><td>86</td><td>106</td><td>79</td><td>27</td><td>7</td><td>0.7453</td><td>0.9186</td><td>0.8229</td></tr></tbody></table>
+              <h4>Top per-label (support-ordered)</h4>
+              <table><thead><tr><th>label</th><th>support</th><th>pred</th><th>tp</th><th>fp</th><th>fn</th><th>precision</th><th>recall</th><th>f1</th></tr></thead><tbody><tr><td>sit_diagnosis</td><td>45</td><td>48</td><td>45</td><td>3</td><td>0</td><td>0.9375</td><td>1.0000</td><td>0.9677</td></tr><tr><td>rec_plan</td><td>44</td><td>45</td><td>42</td><td>3</td><td>2</td><td>0.9333</td><td>0.9545</td><td>0.9438</td></tr><tr><td>assess_obs</td><td>40</td><td>41</td><td>38</td><td>3</td><td>2</td><td>0.9268</td><td>0.9500</td><td>0.9383</td></tr><tr><td>sit_status</td><td>31</td><td>40</td><td>28</td><td>12</td><td>3</td><td>0.7000</td><td>0.9032</td><td>0.7887</td></tr><tr><td>assess_medications</td><td>25</td><td>29</td><td>24</td><td>5</td><td>1</td><td>0.8276</td><td>0.9600</td><td>0.8889</td></tr><tr><td>assess_devices</td><td>23</td><td>26</td><td>23</td><td>3</td><td>0</td><td>0.8846</td><td>1.0000</td><td>0.9388</td></tr><tr><td>introduction_patients</td><td>20</td><td>4</td><td>3</td><td>1</td><td>17</td><td>0.7500</td><td>0.1500</td><td>0.2500</td></tr><tr><td>bg_allergies</td><td>18</td><td>20</td><td>18</td><td>2</td><td>0</td><td>0.9000</td><td>1.0000</td><td>0.9474</td></tr><tr><td>bg_history</td><td>17</td><td>21</td><td>17</td><td>4</td><td>0</td><td>0.8095</td><td>1.0000</td><td>0.8947</td></tr><tr><td>assess_pain</td><td>17</td><td>24</td><td>16</td><td>8</td><td>1</td><td>0.6667</td><td>0.9412</td><td>0.7805</td></tr><tr><td>assess_mobility</td><td>17</td><td>22</td><td>17</td><td>5</td><td>0</td><td>0.7727</td><td>1.0000</td><td>0.8718</td></tr><tr><td>invitation</td><td>16</td><td>24</td><td>16</td><td>8</td><td>0</td><td>0.6667</td><td>1.0000</td><td>0.8000</td></tr><tr><td>assess_pathology</td><td>15</td><td>15</td><td>12</td><td>3</td><td>3</td><td>0.8000</td><td>0.8000</td><td>0.8000</td></tr><tr><td>assess_infusions</td><td>15</td><td>15</td><td>12</td><td>3</td><td>3</td><td>0.8000</td><td>0.8000</td><td>0.8000</td></tr><tr><td>assess_nutrition</td><td>14</td><td>20</td><td>14</td><td>6</td><td>0</td><td>0.7000</td><td>1.0000</td><td>0.8235</td></tr><tr><td>sit_events</td><td>10</td><td>18</td><td>6</td><td>12</td><td>4</td><td>0.3333</td><td>0.6000</td><td>0.4286</td></tr><tr><td>rec_patient_goals</td><td>9</td><td>4</td><td>2</td><td>2</td><td>7</td><td>0.5000</td><td>0.2222</td><td>0.3077</td></tr><tr><td>assess_fluid_balance</td><td>9</td><td>12</td><td>9</td><td>3</td><td>0</td><td>0.7500</td><td>1.0000</td><td>0.8571</td></tr><tr><td>assess_skin_integrity</td><td>6</td><td>12</td><td>6</td><td>6</td><td>0</td><td>0.5000</td><td>1.0000</td><td>0.6667</td></tr><tr><td>rec_discharge_plan</td><td>4</td><td>5</td><td>4</td><td>1</td><td>0</td><td>0.8000</td><td>1.0000</td><td>0.8889</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>checklist_baseline_gpt_nano_consensus</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>0</strong></div>
+                <div class="stat">Avg score: <strong>0.0000</strong></div>
+                <div class="stat">Micro F1: <strong>0.0000</strong></div>
+                <div class="stat">Macro F1: <strong>0.0000</strong></div>
+              </div>
+              <p>Top FN labels: <br/>
+              Top FP labels: </p>
+              <p>
+                Sources:
+                <a href="eval_baseline_checklist_gpt_nano_consensus_analysis/summary.json">summary.json</a>,
+                <a href="eval_baseline_checklist_gpt_nano_consensus_analysis/per_label.csv">per_label.csv</a>,
+                <a href="eval_baseline_checklist_gpt_nano_consensus_analysis/per_bucket.csv">per_bucket.csv</a>
+              </p>
+              <h4>Per-bucket</h4>
+              <table><thead><tr><th>bucket</th><th>support</th><th>pred</th><th>tp</th><th>fp</th><th>fn</th><th>precision</th><th>recall</th><th>f1</th></tr></thead><tbody><tr><td>assessment</td><td>181</td><td>246</td><td>160</td><td>86</td><td>21</td><td>0.6504</td><td>0.8840</td><td>0.7494</td></tr><tr><td>background</td><td>42</td><td>44</td><td>39</td><td>5</td><td>3</td><td>0.8864</td><td>0.9286</td><td>0.9070</td></tr><tr><td>id</td><td>1</td><td>13</td><td>1</td><td>12</td><td>0</td><td>0.0769</td><td>1.0000</td><td>0.1429</td></tr><tr><td>patient_involvement</td><td>36</td><td>42</td><td>22</td><td>20</td><td>14</td><td>0.5238</td><td>0.6111</td><td>0.5641</td></tr><tr><td>recommendation</td><td>58</td><td>54</td><td>28</td><td>26</td><td>30</td><td>0.5185</td><td>0.4828</td><td>0.5000</td></tr><tr><td>situation</td><td>86</td><td>113</td><td>80</td><td>33</td><td>6</td><td>0.7080</td><td>0.9302</td><td>0.8040</td></tr></tbody></table>
+              <h4>Top per-label (support-ordered)</h4>
+              <table><thead><tr><th>label</th><th>support</th><th>pred</th><th>tp</th><th>fp</th><th>fn</th><th>precision</th><th>recall</th><th>f1</th></tr></thead><tbody><tr><td>sit_diagnosis</td><td>45</td><td>46</td><td>43</td><td>3</td><td>2</td><td>0.9348</td><td>0.9556</td><td>0.9451</td></tr><tr><td>rec_plan</td><td>44</td><td>26</td><td>23</td><td>3</td><td>21</td><td>0.8846</td><td>0.5227</td><td>0.6571</td></tr><tr><td>assess_obs</td><td>40</td><td>39</td><td>37</td><td>2</td><td>3</td><td>0.9487</td><td>0.9250</td><td>0.9367</td></tr><tr><td>sit_status</td><td>31</td><td>45</td><td>29</td><td>16</td><td>2</td><td>0.6444</td><td>0.9355</td><td>0.7632</td></tr><tr><td>assess_medications</td><td>25</td><td>33</td><td>23</td><td>10</td><td>2</td><td>0.6970</td><td>0.9200</td><td>0.7931</td></tr><tr><td>assess_devices</td><td>23</td><td>30</td><td>22</td><td>8</td><td>1</td><td>0.7333</td><td>0.9565</td><td>0.8302</td></tr><tr><td>introduction_patients</td><td>20</td><td>18</td><td>16</td><td>2</td><td>4</td><td>0.8889</td><td>0.8000</td><td>0.8421</td></tr><tr><td>bg_allergies</td><td>18</td><td>20</td><td>18</td><td>2</td><td>0</td><td>0.9000</td><td>1.0000</td><td>0.9474</td></tr><tr><td>bg_history</td><td>17</td><td>15</td><td>14</td><td>1</td><td>3</td><td>0.9333</td><td>0.8235</td><td>0.8750</td></tr><tr><td>assess_pain</td><td>17</td><td>25</td><td>16</td><td>9</td><td>1</td><td>0.6400</td><td>0.9412</td><td>0.7619</td></tr><tr><td>assess_mobility</td><td>17</td><td>18</td><td>16</td><td>2</td><td>1</td><td>0.8889</td><td>0.9412</td><td>0.9143</td></tr><tr><td>invitation</td><td>16</td><td>10</td><td>6</td><td>4</td><td>10</td><td>0.6000</td><td>0.3750</td><td>0.4615</td></tr><tr><td>assess_pathology</td><td>15</td><td>11</td><td>8</td><td>3</td><td>7</td><td>0.7273</td><td>0.5333</td><td>0.6154</td></tr><tr><td>assess_infusions</td><td>15</td><td>17</td><td>11</td><td>6</td><td>4</td><td>0.6471</td><td>0.7333</td><td>0.6875</td></tr><tr><td>assess_nutrition</td><td>14</td><td>17</td><td>13</td><td>4</td><td>1</td><td>0.7647</td><td>0.9286</td><td>0.8387</td></tr><tr><td>sit_events</td><td>10</td><td>22</td><td>8</td><td>14</td><td>2</td><td>0.3636</td><td>0.8000</td><td>0.5000</td></tr><tr><td>rec_patient_goals</td><td>9</td><td>0</td><td>0</td><td>0</td><td>9</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>assess_fluid_balance</td><td>9</td><td>13</td><td>8</td><td>5</td><td>1</td><td>0.6154</td><td>0.8889</td><td>0.7273</td></tr><tr><td>assess_skin_integrity</td><td>6</td><td>10</td><td>6</td><td>4</td><td>0</td><td>0.6000</td><td>1.0000</td><td>0.7500</td></tr><tr><td>rec_discharge_plan</td><td>4</td><td>4</td><td>4</td><td>0</td><td>0</td><td>1.0000</td><td>1.0000</td><td>1.0000</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>checklist_baseline_ollama_medgemma_27b_consensus</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>0</strong></div>
+                <div class="stat">Avg score: <strong>0.0000</strong></div>
+                <div class="stat">Micro F1: <strong>0.0000</strong></div>
+                <div class="stat">Macro F1: <strong>0.0000</strong></div>
+              </div>
+              <p>Top FN labels: <br/>
+              Top FP labels: </p>
+              <p>
+                Sources:
+                <a href="eval_baseline_checklist_ollama_medgemma_27b_consensus_analysis/summary.json">summary.json</a>,
+                <a href="eval_baseline_checklist_ollama_medgemma_27b_consensus_analysis/per_label.csv">per_label.csv</a>,
+                <a href="eval_baseline_checklist_ollama_medgemma_27b_consensus_analysis/per_bucket.csv">per_bucket.csv</a>
+              </p>
+              <h4>Per-bucket</h4>
+              <table><thead><tr><th>bucket</th><th>support</th><th>pred</th><th>tp</th><th>fp</th><th>fn</th><th>precision</th><th>recall</th><th>f1</th></tr></thead><tbody><tr><td>assessment</td><td>181</td><td>169</td><td>130</td><td>39</td><td>51</td><td>0.7692</td><td>0.7182</td><td>0.7429</td></tr><tr><td>background</td><td>42</td><td>29</td><td>24</td><td>5</td><td>18</td><td>0.8276</td><td>0.5714</td><td>0.6761</td></tr><tr><td>id</td><td>1</td><td>23</td><td>1</td><td>22</td><td>0</td><td>0.0435</td><td>1.0000</td><td>0.0833</td></tr><tr><td>patient_involvement</td><td>36</td><td>64</td><td>19</td><td>45</td><td>17</td><td>0.2969</td><td>0.5278</td><td>0.3800</td></tr><tr><td>recommendation</td><td>58</td><td>43</td><td>27</td><td>16</td><td>31</td><td>0.6279</td><td>0.4655</td><td>0.5347</td></tr><tr><td>situation</td><td>86</td><td>109</td><td>72</td><td>37</td><td>14</td><td>0.6606</td><td>0.8372</td><td>0.7385</td></tr></tbody></table>
+              <h4>Top per-label (support-ordered)</h4>
+              <table><thead><tr><th>label</th><th>support</th><th>pred</th><th>tp</th><th>fp</th><th>fn</th><th>precision</th><th>recall</th><th>f1</th></tr></thead><tbody><tr><td>sit_diagnosis</td><td>45</td><td>44</td><td>43</td><td>1</td><td>2</td><td>0.9773</td><td>0.9556</td><td>0.9663</td></tr><tr><td>rec_plan</td><td>44</td><td>23</td><td>22</td><td>1</td><td>22</td><td>0.9565</td><td>0.5000</td><td>0.6567</td></tr><tr><td>assess_obs</td><td>40</td><td>37</td><td>35</td><td>2</td><td>5</td><td>0.9459</td><td>0.8750</td><td>0.9091</td></tr><tr><td>sit_status</td><td>31</td><td>38</td><td>22</td><td>16</td><td>9</td><td>0.5789</td><td>0.7097</td><td>0.6377</td></tr><tr><td>assess_medications</td><td>25</td><td>31</td><td>24</td><td>7</td><td>1</td><td>0.7742</td><td>0.9600</td><td>0.8571</td></tr><tr><td>assess_devices</td><td>23</td><td>22</td><td>22</td><td>0</td><td>1</td><td>1.0000</td><td>0.9565</td><td>0.9778</td></tr><tr><td>introduction_patients</td><td>20</td><td>25</td><td>19</td><td>6</td><td>1</td><td>0.7600</td><td>0.9500</td><td>0.8444</td></tr><tr><td>bg_allergies</td><td>18</td><td>9</td><td>8</td><td>1</td><td>10</td><td>0.8889</td><td>0.4444</td><td>0.5926</td></tr><tr><td>bg_history</td><td>17</td><td>19</td><td>15</td><td>4</td><td>2</td><td>0.7895</td><td>0.8824</td><td>0.8333</td></tr><tr><td>assess_pain</td><td>17</td><td>19</td><td>16</td><td>3</td><td>1</td><td>0.8421</td><td>0.9412</td><td>0.8889</td></tr><tr><td>assess_mobility</td><td>17</td><td>16</td><td>13</td><td>3</td><td>4</td><td>0.8125</td><td>0.7647</td><td>0.7879</td></tr><tr><td>invitation</td><td>16</td><td>1</td><td>0</td><td>1</td><td>16</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>assess_pathology</td><td>15</td><td>2</td><td>1</td><td>1</td><td>14</td><td>0.5000</td><td>0.0667</td><td>0.1176</td></tr><tr><td>assess_infusions</td><td>15</td><td>3</td><td>1</td><td>2</td><td>14</td><td>0.3333</td><td>0.0667</td><td>0.1111</td></tr><tr><td>assess_nutrition</td><td>14</td><td>7</td><td>7</td><td>0</td><td>7</td><td>1.0000</td><td>0.5000</td><td>0.6667</td></tr><tr><td>sit_events</td><td>10</td><td>27</td><td>7</td><td>20</td><td>3</td><td>0.2593</td><td>0.7000</td><td>0.3784</td></tr><tr><td>rec_patient_goals</td><td>9</td><td>2</td><td>1</td><td>1</td><td>8</td><td>0.5000</td><td>0.1111</td><td>0.1818</td></tr><tr><td>assess_fluid_balance</td><td>9</td><td>9</td><td>5</td><td>4</td><td>4</td><td>0.5556</td><td>0.5556</td><td>0.5556</td></tr><tr><td>assess_skin_integrity</td><td>6</td><td>9</td><td>6</td><td>3</td><td>0</td><td>0.6667</td><td>1.0000</td><td>0.8000</td></tr><tr><td>rec_discharge_plan</td><td>4</td><td>4</td><td>3</td><td>1</td><td>1</td><td>0.7500</td><td>0.7500</td><td>0.7500</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>checklist_consensus_gpt_5_2_test</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>0</strong></div>
+                <div class="stat">Avg score: <strong>0.0000</strong></div>
+                <div class="stat">Micro F1: <strong>0.0000</strong></div>
+                <div class="stat">Macro F1: <strong>0.0000</strong></div>
+              </div>
+              <p>Top FN labels: <br/>
+              Top FP labels: </p>
+              <p>
+                Sources:
+                <a href="eval_checklist_consensus_gpt_5_2_test_analysis/summary.json">summary.json</a>,
+                <a href="eval_checklist_consensus_gpt_5_2_test_analysis/per_label.csv">per_label.csv</a>,
+                <a href="eval_checklist_consensus_gpt_5_2_test_analysis/per_bucket.csv">per_bucket.csv</a>
+              </p>
+              <h4>Per-bucket</h4>
+              <table><thead><tr><th>bucket</th><th>support</th><th>pred</th><th>tp</th><th>fp</th><th>fn</th><th>precision</th><th>recall</th><th>f1</th></tr></thead><tbody><tr><td>assessment</td><td>181</td><td>203</td><td>166</td><td>37</td><td>15</td><td>0.8177</td><td>0.9171</td><td>0.8646</td></tr><tr><td>background</td><td>42</td><td>41</td><td>38</td><td>3</td><td>4</td><td>0.9268</td><td>0.9048</td><td>0.9157</td></tr><tr><td>id</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.0000</td><td>1.0000</td><td>1.0000</td></tr><tr><td>patient_involvement</td><td>36</td><td>51</td><td>35</td><td>16</td><td>1</td><td>0.6863</td><td>0.9722</td><td>0.8046</td></tr><tr><td>recommendation</td><td>58</td><td>60</td><td>49</td><td>11</td><td>9</td><td>0.8167</td><td>0.8448</td><td>0.8305</td></tr><tr><td>situation</td><td>86</td><td>85</td><td>72</td><td>13</td><td>14</td><td>0.8471</td><td>0.8372</td><td>0.8421</td></tr></tbody></table>
+              <h4>Top per-label (support-ordered)</h4>
+              <table><thead><tr><th>label</th><th>support</th><th>pred</th><th>tp</th><th>fp</th><th>fn</th><th>precision</th><th>recall</th><th>f1</th></tr></thead><tbody><tr><td>sit_diagnosis</td><td>45</td><td>47</td><td>45</td><td>2</td><td>0</td><td>0.9574</td><td>1.0000</td><td>0.9783</td></tr><tr><td>rec_plan</td><td>44</td><td>49</td><td>44</td><td>5</td><td>0</td><td>0.8980</td><td>1.0000</td><td>0.9462</td></tr><tr><td>assess_obs</td><td>40</td><td>40</td><td>38</td><td>2</td><td>2</td><td>0.9500</td><td>0.9500</td><td>0.9500</td></tr><tr><td>sit_status</td><td>31</td><td>30</td><td>22</td><td>8</td><td>9</td><td>0.7333</td><td>0.7097</td><td>0.7213</td></tr><tr><td>assess_medications</td><td>25</td><td>28</td><td>24</td><td>4</td><td>1</td><td>0.8571</td><td>0.9600</td><td>0.9057</td></tr><tr><td>assess_devices</td><td>23</td><td>26</td><td>23</td><td>3</td><td>0</td><td>0.8846</td><td>1.0000</td><td>0.9388</td></tr><tr><td>introduction_patients</td><td>20</td><td>28</td><td>20</td><td>8</td><td>0</td><td>0.7143</td><td>1.0000</td><td>0.8333</td></tr><tr><td>bg_allergies</td><td>18</td><td>18</td><td>16</td><td>2</td><td>2</td><td>0.8889</td><td>0.8889</td><td>0.8889</td></tr><tr><td>bg_history</td><td>17</td><td>18</td><td>17</td><td>1</td><td>0</td><td>0.9444</td><td>1.0000</td><td>0.9714</td></tr><tr><td>assess_pain</td><td>17</td><td>18</td><td>16</td><td>2</td><td>1</td><td>0.8889</td><td>0.9412</td><td>0.9143</td></tr><tr><td>assess_mobility</td><td>17</td><td>20</td><td>16</td><td>4</td><td>1</td><td>0.8000</td><td>0.9412</td><td>0.8649</td></tr><tr><td>invitation</td><td>16</td><td>23</td><td>15</td><td>8</td><td>1</td><td>0.6522</td><td>0.9375</td><td>0.7692</td></tr><tr><td>assess_pathology</td><td>15</td><td>19</td><td>14</td><td>5</td><td>1</td><td>0.7368</td><td>0.9333</td><td>0.8235</td></tr><tr><td>assess_infusions</td><td>15</td><td>9</td><td>8</td><td>1</td><td>7</td><td>0.8889</td><td>0.5333</td><td>0.6667</td></tr><tr><td>assess_nutrition</td><td>14</td><td>20</td><td>14</td><td>6</td><td>0</td><td>0.7000</td><td>1.0000</td><td>0.8235</td></tr><tr><td>sit_events</td><td>10</td><td>8</td><td>5</td><td>3</td><td>5</td><td>0.6250</td><td>0.5000</td><td>0.5556</td></tr><tr><td>rec_patient_goals</td><td>9</td><td>1</td><td>0</td><td>1</td><td>9</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>assess_fluid_balance</td><td>9</td><td>10</td><td>7</td><td>3</td><td>2</td><td>0.7000</td><td>0.7778</td><td>0.7368</td></tr><tr><td>assess_skin_integrity</td><td>6</td><td>11</td><td>6</td><td>5</td><td>0</td><td>0.5455</td><td>1.0000</td><td>0.7059</td></tr><tr><td>rec_discharge_plan</td><td>4</td><td>5</td><td>4</td><td>1</td><td>0</td><td>0.8000</td><td>1.0000</td><td>0.8889</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>checklist_gpt_nano_gepa_checklist_consensus</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>0</strong></div>
+                <div class="stat">Avg score: <strong>0.0000</strong></div>
+                <div class="stat">Micro F1: <strong>0.0000</strong></div>
+                <div class="stat">Macro F1: <strong>0.0000</strong></div>
+              </div>
+              <p>Top FN labels: <br/>
+              Top FP labels: </p>
+              <p>
+                Sources:
+                <a href="eval_checklist_gpt_nano_gepa_light_checklist_consensus_analysis/summary.json">summary.json</a>,
+                <a href="eval_checklist_gpt_nano_gepa_light_checklist_consensus_analysis/per_label.csv">per_label.csv</a>,
+                <a href="eval_checklist_gpt_nano_gepa_light_checklist_consensus_analysis/per_bucket.csv">per_bucket.csv</a>
+              </p>
+              <h4>Per-bucket</h4>
+              <table><thead><tr><th>bucket</th><th>support</th><th>pred</th><th>tp</th><th>fp</th><th>fn</th><th>precision</th><th>recall</th><th>f1</th></tr></thead><tbody><tr><td>assessment</td><td>181</td><td>205</td><td>162</td><td>43</td><td>19</td><td>0.7902</td><td>0.8950</td><td>0.8394</td></tr><tr><td>background</td><td>42</td><td>37</td><td>35</td><td>2</td><td>7</td><td>0.9459</td><td>0.8333</td><td>0.8861</td></tr><tr><td>id</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1.0000</td><td>1.0000</td><td>1.0000</td></tr><tr><td>patient_involvement</td><td>36</td><td>42</td><td>30</td><td>12</td><td>6</td><td>0.7143</td><td>0.8333</td><td>0.7692</td></tr><tr><td>recommendation</td><td>58</td><td>44</td><td>37</td><td>7</td><td>21</td><td>0.8409</td><td>0.6379</td><td>0.7255</td></tr><tr><td>situation</td><td>86</td><td>86</td><td>68</td><td>18</td><td>18</td><td>0.7907</td><td>0.7907</td><td>0.7907</td></tr></tbody></table>
+              <h4>Top per-label (support-ordered)</h4>
+              <table><thead><tr><th>label</th><th>support</th><th>pred</th><th>tp</th><th>fp</th><th>fn</th><th>precision</th><th>recall</th><th>f1</th></tr></thead><tbody><tr><td>sit_diagnosis</td><td>45</td><td>44</td><td>41</td><td>3</td><td>4</td><td>0.9318</td><td>0.9111</td><td>0.9213</td></tr><tr><td>rec_plan</td><td>44</td><td>36</td><td>33</td><td>3</td><td>11</td><td>0.9167</td><td>0.7500</td><td>0.8250</td></tr><tr><td>assess_obs</td><td>40</td><td>40</td><td>38</td><td>2</td><td>2</td><td>0.9500</td><td>0.9500</td><td>0.9500</td></tr><tr><td>sit_status</td><td>31</td><td>33</td><td>23</td><td>10</td><td>8</td><td>0.6970</td><td>0.7419</td><td>0.7188</td></tr><tr><td>assess_medications</td><td>25</td><td>26</td><td>22</td><td>4</td><td>3</td><td>0.8462</td><td>0.8800</td><td>0.8627</td></tr><tr><td>assess_devices</td><td>23</td><td>28</td><td>22</td><td>6</td><td>1</td><td>0.7857</td><td>0.9565</td><td>0.8627</td></tr><tr><td>introduction_patients</td><td>20</td><td>24</td><td>19</td><td>5</td><td>1</td><td>0.7917</td><td>0.9500</td><td>0.8636</td></tr><tr><td>bg_allergies</td><td>18</td><td>20</td><td>18</td><td>2</td><td>0</td><td>0.9000</td><td>1.0000</td><td>0.9474</td></tr><tr><td>bg_history</td><td>17</td><td>11</td><td>11</td><td>0</td><td>6</td><td>1.0000</td><td>0.6471</td><td>0.7857</td></tr><tr><td>assess_pain</td><td>17</td><td>23</td><td>16</td><td>7</td><td>1</td><td>0.6957</td><td>0.9412</td><td>0.8000</td></tr><tr><td>assess_mobility</td><td>17</td><td>21</td><td>17</td><td>4</td><td>0</td><td>0.8095</td><td>1.0000</td><td>0.8947</td></tr><tr><td>invitation</td><td>16</td><td>17</td><td>11</td><td>6</td><td>5</td><td>0.6471</td><td>0.6875</td><td>0.6667</td></tr><tr><td>assess_pathology</td><td>15</td><td>14</td><td>12</td><td>2</td><td>3</td><td>0.8571</td><td>0.8000</td><td>0.8276</td></tr><tr><td>assess_infusions</td><td>15</td><td>10</td><td>7</td><td>3</td><td>8</td><td>0.7000</td><td>0.4667</td><td>0.5600</td></tr><tr><td>assess_nutrition</td><td>14</td><td>18</td><td>13</td><td>5</td><td>1</td><td>0.7222</td><td>0.9286</td><td>0.8125</td></tr><tr><td>sit_events</td><td>10</td><td>9</td><td>4</td><td>5</td><td>6</td><td>0.4444</td><td>0.4000</td><td>0.4211</td></tr><tr><td>rec_patient_goals</td><td>9</td><td>0</td><td>0</td><td>0</td><td>9</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>assess_fluid_balance</td><td>9</td><td>10</td><td>9</td><td>1</td><td>0</td><td>0.9000</td><td>1.0000</td><td>0.9474</td></tr><tr><td>assess_skin_integrity</td><td>6</td><td>12</td><td>6</td><td>6</td><td>0</td><td>0.5000</td><td>1.0000</td><td>0.6667</td></tr><tr><td>rec_discharge_plan</td><td>4</td><td>3</td><td>3</td><td>0</td><td>1</td><td>1.0000</td><td>0.7500</td><td>0.8571</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>checklist_ollama_medgemma_27b_checklist</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>0</strong></div>
+                <div class="stat">Avg score: <strong>0.0000</strong></div>
+                <div class="stat">Micro F1: <strong>0.0000</strong></div>
+                <div class="stat">Macro F1: <strong>0.0000</strong></div>
+              </div>
+              <p>Top FN labels: <br/>
+              Top FP labels: </p>
+              <p>
+                Sources:
+                <a href="eval_checklist_ollama_medgemma_27b_gepa_light_checklist_analysis/summary.json">summary.json</a>,
+                <a href="eval_checklist_ollama_medgemma_27b_gepa_light_checklist_analysis/per_label.csv">per_label.csv</a>,
+                <a href="eval_checklist_ollama_medgemma_27b_gepa_light_checklist_analysis/per_bucket.csv">per_bucket.csv</a>
+              </p>
+              <h4>Per-bucket</h4>
+              <table><thead><tr><th>bucket</th><th>support</th><th>pred</th><th>tp</th><th>fp</th><th>fn</th><th>precision</th><th>recall</th><th>f1</th></tr></thead><tbody><tr><td>assessment</td><td>181</td><td>171</td><td>142</td><td>29</td><td>39</td><td>0.8304</td><td>0.7845</td><td>0.8068</td></tr><tr><td>background</td><td>42</td><td>41</td><td>33</td><td>8</td><td>9</td><td>0.8049</td><td>0.7857</td><td>0.7952</td></tr><tr><td>id</td><td>1</td><td>18</td><td>1</td><td>17</td><td>0</td><td>0.0556</td><td>1.0000</td><td>0.1053</td></tr><tr><td>patient_involvement</td><td>36</td><td>47</td><td>30</td><td>17</td><td>6</td><td>0.6383</td><td>0.8333</td><td>0.7229</td></tr><tr><td>recommendation</td><td>58</td><td>46</td><td>40</td><td>6</td><td>18</td><td>0.8696</td><td>0.6897</td><td>0.7692</td></tr><tr><td>situation</td><td>86</td><td>95</td><td>68</td><td>27</td><td>18</td><td>0.7158</td><td>0.7907</td><td>0.7514</td></tr></tbody></table>
+              <h4>Top per-label (support-ordered)</h4>
+              <table><thead><tr><th>label</th><th>support</th><th>pred</th><th>tp</th><th>fp</th><th>fn</th><th>precision</th><th>recall</th><th>f1</th></tr></thead><tbody><tr><td>sit_diagnosis</td><td>45</td><td>45</td><td>43</td><td>2</td><td>2</td><td>0.9556</td><td>0.9556</td><td>0.9556</td></tr><tr><td>rec_plan</td><td>44</td><td>39</td><td>36</td><td>3</td><td>8</td><td>0.9231</td><td>0.8182</td><td>0.8675</td></tr><tr><td>assess_obs</td><td>40</td><td>37</td><td>36</td><td>1</td><td>4</td><td>0.9730</td><td>0.9000</td><td>0.9351</td></tr><tr><td>sit_status</td><td>31</td><td>33</td><td>19</td><td>14</td><td>12</td><td>0.5758</td><td>0.6129</td><td>0.5938</td></tr><tr><td>assess_medications</td><td>25</td><td>23</td><td>20</td><td>3</td><td>5</td><td>0.8696</td><td>0.8000</td><td>0.8333</td></tr><tr><td>assess_devices</td><td>23</td><td>22</td><td>22</td><td>0</td><td>1</td><td>1.0000</td><td>0.9565</td><td>0.9778</td></tr><tr><td>introduction_patients</td><td>20</td><td>26</td><td>20</td><td>6</td><td>0</td><td>0.7692</td><td>1.0000</td><td>0.8696</td></tr><tr><td>bg_allergies</td><td>18</td><td>16</td><td>14</td><td>2</td><td>4</td><td>0.8750</td><td>0.7778</td><td>0.8235</td></tr><tr><td>bg_history</td><td>17</td><td>22</td><td>17</td><td>5</td><td>0</td><td>0.7727</td><td>1.0000</td><td>0.8718</td></tr><tr><td>assess_pain</td><td>17</td><td>19</td><td>16</td><td>3</td><td>1</td><td>0.8421</td><td>0.9412</td><td>0.8889</td></tr><tr><td>assess_mobility</td><td>17</td><td>16</td><td>15</td><td>1</td><td>2</td><td>0.9375</td><td>0.8824</td><td>0.9091</td></tr><tr><td>invitation</td><td>16</td><td>16</td><td>10</td><td>6</td><td>6</td><td>0.6250</td><td>0.6250</td><td>0.6250</td></tr><tr><td>assess_pathology</td><td>15</td><td>14</td><td>11</td><td>3</td><td>4</td><td>0.7857</td><td>0.7333</td><td>0.7586</td></tr><tr><td>assess_infusions</td><td>15</td><td>3</td><td>2</td><td>1</td><td>13</td><td>0.6667</td><td>0.1333</td><td>0.2222</td></tr><tr><td>assess_nutrition</td><td>14</td><td>10</td><td>9</td><td>1</td><td>5</td><td>0.9000</td><td>0.6429</td><td>0.7500</td></tr><tr><td>sit_events</td><td>10</td><td>17</td><td>6</td><td>11</td><td>4</td><td>0.3529</td><td>0.6000</td><td>0.4444</td></tr><tr><td>rec_patient_goals</td><td>9</td><td>1</td><td>0</td><td>1</td><td>9</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>assess_fluid_balance</td><td>9</td><td>7</td><td>5</td><td>2</td><td>4</td><td>0.7143</td><td>0.5556</td><td>0.6250</td></tr><tr><td>assess_skin_integrity</td><td>6</td><td>8</td><td>6</td><td>2</td><td>0</td><td>0.7500</td><td>1.0000</td><td>0.8571</td></tr><tr><td>rec_discharge_plan</td><td>4</td><td>5</td><td>4</td><td>1</td><td>0</td><td>0.8000</td><td>1.0000</td><td>0.8889</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>checklist_ollama_medgemma_27b_checklist_temp06</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>0</strong></div>
+                <div class="stat">Avg score: <strong>0.0000</strong></div>
+                <div class="stat">Micro F1: <strong>0.0000</strong></div>
+                <div class="stat">Macro F1: <strong>0.0000</strong></div>
+              </div>
+              <p>Top FN labels: <br/>
+              Top FP labels: </p>
+              <p>
+                Sources:
+                <a href="eval_checklist_ollama_medgemma_27b_gepa_light_checklist_analysis/summary.json">summary.json</a>,
+                <a href="eval_checklist_ollama_medgemma_27b_gepa_light_checklist_analysis/per_label.csv">per_label.csv</a>,
+                <a href="eval_checklist_ollama_medgemma_27b_gepa_light_checklist_analysis/per_bucket.csv">per_bucket.csv</a>
+              </p>
+              <h4>Per-bucket</h4>
+              <table><thead><tr><th>bucket</th><th>support</th><th>pred</th><th>tp</th><th>fp</th><th>fn</th><th>precision</th><th>recall</th><th>f1</th></tr></thead><tbody><tr><td>assessment</td><td>181</td><td>171</td><td>142</td><td>29</td><td>39</td><td>0.8304</td><td>0.7845</td><td>0.8068</td></tr><tr><td>background</td><td>42</td><td>41</td><td>33</td><td>8</td><td>9</td><td>0.8049</td><td>0.7857</td><td>0.7952</td></tr><tr><td>id</td><td>1</td><td>18</td><td>1</td><td>17</td><td>0</td><td>0.0556</td><td>1.0000</td><td>0.1053</td></tr><tr><td>patient_involvement</td><td>36</td><td>47</td><td>30</td><td>17</td><td>6</td><td>0.6383</td><td>0.8333</td><td>0.7229</td></tr><tr><td>recommendation</td><td>58</td><td>46</td><td>40</td><td>6</td><td>18</td><td>0.8696</td><td>0.6897</td><td>0.7692</td></tr><tr><td>situation</td><td>86</td><td>95</td><td>68</td><td>27</td><td>18</td><td>0.7158</td><td>0.7907</td><td>0.7514</td></tr></tbody></table>
+              <h4>Top per-label (support-ordered)</h4>
+              <table><thead><tr><th>label</th><th>support</th><th>pred</th><th>tp</th><th>fp</th><th>fn</th><th>precision</th><th>recall</th><th>f1</th></tr></thead><tbody><tr><td>sit_diagnosis</td><td>45</td><td>45</td><td>43</td><td>2</td><td>2</td><td>0.9556</td><td>0.9556</td><td>0.9556</td></tr><tr><td>rec_plan</td><td>44</td><td>39</td><td>36</td><td>3</td><td>8</td><td>0.9231</td><td>0.8182</td><td>0.8675</td></tr><tr><td>assess_obs</td><td>40</td><td>37</td><td>36</td><td>1</td><td>4</td><td>0.9730</td><td>0.9000</td><td>0.9351</td></tr><tr><td>sit_status</td><td>31</td><td>33</td><td>19</td><td>14</td><td>12</td><td>0.5758</td><td>0.6129</td><td>0.5938</td></tr><tr><td>assess_medications</td><td>25</td><td>23</td><td>20</td><td>3</td><td>5</td><td>0.8696</td><td>0.8000</td><td>0.8333</td></tr><tr><td>assess_devices</td><td>23</td><td>22</td><td>22</td><td>0</td><td>1</td><td>1.0000</td><td>0.9565</td><td>0.9778</td></tr><tr><td>introduction_patients</td><td>20</td><td>26</td><td>20</td><td>6</td><td>0</td><td>0.7692</td><td>1.0000</td><td>0.8696</td></tr><tr><td>bg_allergies</td><td>18</td><td>16</td><td>14</td><td>2</td><td>4</td><td>0.8750</td><td>0.7778</td><td>0.8235</td></tr><tr><td>bg_history</td><td>17</td><td>22</td><td>17</td><td>5</td><td>0</td><td>0.7727</td><td>1.0000</td><td>0.8718</td></tr><tr><td>assess_pain</td><td>17</td><td>19</td><td>16</td><td>3</td><td>1</td><td>0.8421</td><td>0.9412</td><td>0.8889</td></tr><tr><td>assess_mobility</td><td>17</td><td>16</td><td>15</td><td>1</td><td>2</td><td>0.9375</td><td>0.8824</td><td>0.9091</td></tr><tr><td>invitation</td><td>16</td><td>16</td><td>10</td><td>6</td><td>6</td><td>0.6250</td><td>0.6250</td><td>0.6250</td></tr><tr><td>assess_pathology</td><td>15</td><td>14</td><td>11</td><td>3</td><td>4</td><td>0.7857</td><td>0.7333</td><td>0.7586</td></tr><tr><td>assess_infusions</td><td>15</td><td>3</td><td>2</td><td>1</td><td>13</td><td>0.6667</td><td>0.1333</td><td>0.2222</td></tr><tr><td>assess_nutrition</td><td>14</td><td>10</td><td>9</td><td>1</td><td>5</td><td>0.9000</td><td>0.6429</td><td>0.7500</td></tr><tr><td>sit_events</td><td>10</td><td>17</td><td>6</td><td>11</td><td>4</td><td>0.3529</td><td>0.6000</td><td>0.4444</td></tr><tr><td>rec_patient_goals</td><td>9</td><td>1</td><td>0</td><td>1</td><td>9</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>assess_fluid_balance</td><td>9</td><td>7</td><td>5</td><td>2</td><td>4</td><td>0.7143</td><td>0.5556</td><td>0.6250</td></tr><tr><td>assess_skin_integrity</td><td>6</td><td>8</td><td>6</td><td>2</td><td>0</td><td>0.7500</td><td>1.0000</td><td>0.8571</td></tr><tr><td>rec_discharge_plan</td><td>4</td><td>5</td><td>4</td><td>1</td><td>0</td><td>0.8000</td><td>1.0000</td><td>0.8889</td></tr></tbody></table>
+            </details>
+            
+    </section>
+
+    <section class="panel">
+      <h2>SBAR span task evaluations</h2>
+      
+            <details class="eval-block">
+              <summary>sbar_baseline_gpt5-2_reasoning-medium_consensus_test</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>48</strong></div>
+                <div class="stat">Avg score: <strong>0.3544</strong></div>
+                <div class="stat">Micro F1: <strong>0.5113</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.7080</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_sbar_baseline_gpt5-2_reasoning-medium_consensus_test_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>RECOMMENDATION</td><td>113</td><td>213</td><td>97</td><td>97</td><td>0.4554</td><td>0.8584</td><td>0.5951</td><td>0.7508</td></tr><tr><td>ASSESSMENT</td><td>194</td><td>255</td><td>120</td><td>120</td><td>0.4706</td><td>0.6186</td><td>0.5345</td><td>0.6879</td></tr><tr><td>SITUATION</td><td>73</td><td>102</td><td>46</td><td>46</td><td>0.4510</td><td>0.6301</td><td>0.5257</td><td>0.6247</td></tr><tr><td>BACKGROUND</td><td>47</td><td>149</td><td>30</td><td>30</td><td>0.2013</td><td>0.6383</td><td>0.3061</td><td>0.7778</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>sbar_baseline_gpt_5.2_consensus</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>48</strong></div>
+                <div class="stat">Avg score: <strong>0.3621</strong></div>
+                <div class="stat">Micro F1: <strong>0.5084</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.7187</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_sbar_baseline_gpt_5.2_consensus_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>RECOMMENDATION</td><td>113</td><td>204</td><td>92</td><td>92</td><td>0.4510</td><td>0.8142</td><td>0.5804</td><td>0.7650</td></tr><tr><td>SITUATION</td><td>73</td><td>100</td><td>48</td><td>48</td><td>0.4800</td><td>0.6575</td><td>0.5549</td><td>0.6501</td></tr><tr><td>ASSESSMENT</td><td>194</td><td>229</td><td>115</td><td>115</td><td>0.5022</td><td>0.5928</td><td>0.5437</td><td>0.6988</td></tr><tr><td>BACKGROUND</td><td>47</td><td>169</td><td>32</td><td>32</td><td>0.1893</td><td>0.6809</td><td>0.2963</td><td>0.7601</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>sbar_baseline_gpt_nano_consensus</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>48</strong></div>
+                <div class="stat">Avg score: <strong>0.3487</strong></div>
+                <div class="stat">Micro F1: <strong>0.4924</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.7147</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_sbar_baseline_gpt_nano_consensus_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>RECOMMENDATION</td><td>113</td><td>145</td><td>82</td><td>82</td><td>0.5655</td><td>0.7257</td><td>0.6357</td><td>0.7691</td></tr><tr><td>SITUATION</td><td>73</td><td>76</td><td>39</td><td>39</td><td>0.5132</td><td>0.5342</td><td>0.5235</td><td>0.5639</td></tr><tr><td>ASSESSMENT</td><td>194</td><td>151</td><td>88</td><td>88</td><td>0.5828</td><td>0.4536</td><td>0.5101</td><td>0.7194</td></tr><tr><td>BACKGROUND</td><td>47</td><td>188</td><td>34</td><td>34</td><td>0.1809</td><td>0.7234</td><td>0.2894</td><td>0.7441</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>sbar_baseline_ollama_medgemma_27b_consensus</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>48</strong></div>
+                <div class="stat">Avg score: <strong>0.3607</strong></div>
+                <div class="stat">Micro F1: <strong>0.5052</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.7122</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_sbar_baseline_ollama_medgemma_27b_consensus_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>SITUATION</td><td>73</td><td>50</td><td>38</td><td>38</td><td>0.7600</td><td>0.5205</td><td>0.6179</td><td>0.6534</td></tr><tr><td>ASSESSMENT</td><td>194</td><td>121</td><td>88</td><td>88</td><td>0.7273</td><td>0.4536</td><td>0.5587</td><td>0.7214</td></tr><tr><td>RECOMMENDATION</td><td>113</td><td>74</td><td>49</td><td>49</td><td>0.6622</td><td>0.4336</td><td>0.5241</td><td>0.7940</td></tr><tr><td>BACKGROUND</td><td>47</td><td>96</td><td>19</td><td>19</td><td>0.1979</td><td>0.4043</td><td>0.2657</td><td>0.5766</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>sbar_langextract_gpt5-2_consensus_testsplit_10train</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>48</strong></div>
+                <div class="stat">Avg score: <strong>0.4168</strong></div>
+                <div class="stat">Micro F1: <strong>0.5923</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.7145</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_sbar_langextract_gpt5-2_consensus_testsplit_10train_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>SITUATION</td><td>73</td><td>88</td><td>54</td><td>54</td><td>0.6136</td><td>0.7397</td><td>0.6708</td><td>0.6214</td></tr><tr><td>RECOMMENDATION</td><td>113</td><td>220</td><td>100</td><td>100</td><td>0.4545</td><td>0.8850</td><td>0.6006</td><td>0.7499</td></tr><tr><td>ASSESSMENT</td><td>194</td><td>280</td><td>139</td><td>139</td><td>0.4964</td><td>0.7165</td><td>0.5865</td><td>0.7109</td></tr><tr><td>BACKGROUND</td><td>47</td><td>96</td><td>36</td><td>36</td><td>0.3750</td><td>0.7660</td><td>0.5035</td><td>0.7701</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>sbar_langextract_ollama_medgemma_27b_consensus</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>48</strong></div>
+                <div class="stat">Avg score: <strong>0.3260</strong></div>
+                <div class="stat">Micro F1: <strong>0.4578</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.7099</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_sbar_langextract_ollama_medgemma_27b_consensus_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>SITUATION</td><td>73</td><td>100</td><td>48</td><td>48</td><td>0.4800</td><td>0.6575</td><td>0.5549</td><td>0.6405</td></tr><tr><td>ASSESSMENT</td><td>194</td><td>160</td><td>92</td><td>92</td><td>0.5750</td><td>0.4742</td><td>0.5198</td><td>0.7259</td></tr><tr><td>BACKGROUND</td><td>47</td><td>22</td><td>15</td><td>15</td><td>0.6818</td><td>0.3191</td><td>0.4348</td><td>0.7908</td></tr><tr><td>RECOMMENDATION</td><td>113</td><td>25</td><td>13</td><td>13</td><td>0.5200</td><td>0.1150</td><td>0.1884</td><td>0.7596</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>sbar_span_gpt5-2_consensus_test_default_reasoning</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>48</strong></div>
+                <div class="stat">Avg score: <strong>0.5619</strong></div>
+                <div class="stat">Micro F1: <strong>0.7325</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.7662</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_sbar_span_gpt5-2_consensus_test_default_reasoning_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>SITUATION</td><td>73</td><td>51</td><td>50</td><td>50</td><td>0.9804</td><td>0.6849</td><td>0.8065</td><td>0.7945</td></tr><tr><td>ASSESSMENT</td><td>194</td><td>178</td><td>141</td><td>141</td><td>0.7921</td><td>0.7268</td><td>0.7581</td><td>0.7622</td></tr><tr><td>BACKGROUND</td><td>47</td><td>56</td><td>36</td><td>36</td><td>0.6429</td><td>0.7660</td><td>0.6990</td><td>0.6875</td></tr><tr><td>RECOMMENDATION</td><td>113</td><td>129</td><td>81</td><td>81</td><td>0.6279</td><td>0.7168</td><td>0.6694</td><td>0.7905</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>sbar_span_gpt_5-2_consensus_reasoning_none</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>48</strong></div>
+                <div class="stat">Avg score: <strong>0.5867</strong></div>
+                <div class="stat">Micro F1: <strong>0.7550</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.7667</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_sbar_span_gpt_5-2_consensus_reasoning_none_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>SITUATION</td><td>73</td><td>52</td><td>50</td><td>50</td><td>0.9615</td><td>0.6849</td><td>0.8000</td><td>0.8198</td></tr><tr><td>ASSESSMENT</td><td>194</td><td>192</td><td>149</td><td>149</td><td>0.7760</td><td>0.7680</td><td>0.7720</td><td>0.7652</td></tr><tr><td>RECOMMENDATION</td><td>113</td><td>124</td><td>86</td><td>86</td><td>0.6935</td><td>0.7611</td><td>0.7257</td><td>0.7807</td></tr><tr><td>BACKGROUND</td><td>47</td><td>50</td><td>34</td><td>34</td><td>0.6800</td><td>0.7234</td><td>0.7010</td><td>0.6600</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>sbar_span_gpt_nano_consensus_default_reasoning</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>48</strong></div>
+                <div class="stat">Avg score: <strong>0.5258</strong></div>
+                <div class="stat">Micro F1: <strong>0.6917</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.7620</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_sbar_span_gpt_nano_consensus_default_reasoning_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>SITUATION</td><td>73</td><td>48</td><td>47</td><td>47</td><td>0.9792</td><td>0.6438</td><td>0.7769</td><td>0.7557</td></tr><tr><td>BACKGROUND</td><td>47</td><td>65</td><td>43</td><td>43</td><td>0.6615</td><td>0.9149</td><td>0.7679</td><td>0.8122</td></tr><tr><td>ASSESSMENT</td><td>194</td><td>200</td><td>135</td><td>135</td><td>0.6750</td><td>0.6959</td><td>0.6853</td><td>0.7535</td></tr><tr><td>RECOMMENDATION</td><td>113</td><td>139</td><td>79</td><td>79</td><td>0.5683</td><td>0.6991</td><td>0.6270</td><td>0.7529</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>sbar_span_gpt_nano_consensus_minimal_reasoning</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>48</strong></div>
+                <div class="stat">Avg score: <strong>0.3743</strong></div>
+                <div class="stat">Micro F1: <strong>0.5284</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.7187</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_sbar_span_gpt_nano_consensus_minimal_reasoning_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>SITUATION</td><td>73</td><td>63</td><td>44</td><td>44</td><td>0.6984</td><td>0.6027</td><td>0.6471</td><td>0.6568</td></tr><tr><td>RECOMMENDATION</td><td>113</td><td>101</td><td>59</td><td>59</td><td>0.5842</td><td>0.5221</td><td>0.5514</td><td>0.6972</td></tr><tr><td>ASSESSMENT</td><td>194</td><td>152</td><td>93</td><td>93</td><td>0.6118</td><td>0.4794</td><td>0.5376</td><td>0.7337</td></tr><tr><td>BACKGROUND</td><td>47</td><td>101</td><td>27</td><td>27</td><td>0.2673</td><td>0.5745</td><td>0.3649</td><td>0.8149</td></tr></tbody></table>
+            </details>
+            
+    </section>
+
+    <section class="panel">
+      <h2>Uncertain span task evaluations</h2>
+      
+            <details class="eval-block">
+              <summary>uncertain_baseline_gpt5-2_user2_on_user2_test</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>37</strong></div>
+                <div class="stat">Avg score: <strong>0.2022</strong></div>
+                <div class="stat">Micro F1: <strong>0.3464</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.6197</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_uncertain_baseline_gpt5-2_user2_on_user2_test_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>Unknown fact</td><td>10</td><td>20</td><td>8</td><td>8</td><td>0.4000</td><td>0.8000</td><td>0.5333</td><td>0.7140</td></tr><tr><td>Hedging</td><td>18</td><td>39</td><td>15</td><td>15</td><td>0.3846</td><td>0.8333</td><td>0.5263</td><td>0.7551</td></tr><tr><td>Indefinite timing</td><td>33</td><td>67</td><td>22</td><td>22</td><td>0.3284</td><td>0.6667</td><td>0.4400</td><td>0.5261</td></tr><tr><td>Vagueness</td><td>32</td><td>66</td><td>16</td><td>16</td><td>0.2424</td><td>0.5000</td><td>0.3265</td><td>0.5725</td></tr><tr><td>Procedural uncertainty</td><td>2</td><td>43</td><td>1</td><td>1</td><td>0.0233</td><td>0.5000</td><td>0.0444</td><td>0.6512</td></tr><tr><td>Responsibility uncertainty</td><td>1</td><td>16</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Source uncertainty</td><td>0</td><td>11</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>uncertain_baseline_medgemma_user2_on_user2_test</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>37</strong></div>
+                <div class="stat">Avg score: <strong>0.0601</strong></div>
+                <div class="stat">Micro F1: <strong>0.1391</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.5599</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_uncertain_baseline_medgemma_user2_on_user2_test_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>Unknown fact</td><td>10</td><td>12</td><td>6</td><td>6</td><td>0.5000</td><td>0.6000</td><td>0.5455</td><td>0.8829</td></tr><tr><td>Indefinite timing</td><td>33</td><td>41</td><td>9</td><td>9</td><td>0.2195</td><td>0.2727</td><td>0.2432</td><td>0.3344</td></tr><tr><td>Procedural uncertainty</td><td>2</td><td>47</td><td>1</td><td>1</td><td>0.0213</td><td>0.5000</td><td>0.0408</td><td>0.6512</td></tr><tr><td>Vagueness</td><td>32</td><td>0</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Hedging</td><td>18</td><td>0</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Responsibility uncertainty</td><td>1</td><td>32</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Source uncertainty</td><td>0</td><td>2</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>uncertain_gpt5-2_user2_on_user2_test</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>37</strong></div>
+                <div class="stat">Avg score: <strong>0.3341</strong></div>
+                <div class="stat">Micro F1: <strong>0.4106</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.8332</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_uncertain_gpt5-2_user2_on_user2_test_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>Unknown fact</td><td>10</td><td>14</td><td>9</td><td>9</td><td>0.6429</td><td>0.9000</td><td>0.7500</td><td>0.9742</td></tr><tr><td>Hedging</td><td>18</td><td>32</td><td>15</td><td>15</td><td>0.4688</td><td>0.8333</td><td>0.6000</td><td>0.7925</td></tr><tr><td>Indefinite timing</td><td>33</td><td>89</td><td>26</td><td>26</td><td>0.2921</td><td>0.7879</td><td>0.4262</td><td>0.8508</td></tr><tr><td>Vagueness</td><td>32</td><td>20</td><td>4</td><td>4</td><td>0.2000</td><td>0.1250</td><td>0.1538</td><td>0.5545</td></tr><tr><td>Procedural uncertainty</td><td>2</td><td>9</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Responsibility uncertainty</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Source uncertainty</td><td>0</td><td>2</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>uncertain_langextract_gpt5-2_user2_train10_testall</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>37</strong></div>
+                <div class="stat">Avg score: <strong>0.0381</strong></div>
+                <div class="stat">Micro F1: <strong>0.1207</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.3520</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_uncertain_langextract_gpt5-2_user2_train10_testall_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>Indefinite timing</td><td>33</td><td>17</td><td>7</td><td>7</td><td>0.4118</td><td>0.2121</td><td>0.2800</td><td>0.3520</td></tr><tr><td>Vagueness</td><td>32</td><td>0</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Hedging</td><td>18</td><td>0</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Unknown fact</td><td>10</td><td>0</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Procedural uncertainty</td><td>2</td><td>0</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Responsibility uncertainty</td><td>1</td><td>3</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>uncertain_langextract_medgemma_user2_train10_testall</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>37</strong></div>
+                <div class="stat">Avg score: <strong>0.1666</strong></div>
+                <div class="stat">Micro F1: <strong>0.2370</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.6901</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_uncertain_langextract_medgemma_user2_train10_testall_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>Indefinite timing</td><td>33</td><td>88</td><td>20</td><td>20</td><td>0.2273</td><td>0.6061</td><td>0.3306</td><td>0.6626</td></tr><tr><td>Vagueness</td><td>32</td><td>27</td><td>5</td><td>5</td><td>0.1852</td><td>0.1562</td><td>0.1695</td><td>0.8004</td></tr><tr><td>Hedging</td><td>18</td><td>0</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Unknown fact</td><td>10</td><td>0</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Procedural uncertainty</td><td>2</td><td>0</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Responsibility uncertainty</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>uncertain_ollama_medgemma_27b_gepa_user2_test</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>37</strong></div>
+                <div class="stat">Avg score: <strong>0.1713</strong></div>
+                <div class="stat">Micro F1: <strong>0.1959</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.7196</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_uncertain_ollama_medgemma_27b_gepa_user2_test_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>Unknown fact</td><td>10</td><td>8</td><td>5</td><td>5</td><td>0.6250</td><td>0.5000</td><td>0.5556</td><td>0.9263</td></tr><tr><td>Indefinite timing</td><td>33</td><td>39</td><td>14</td><td>14</td><td>0.3590</td><td>0.4242</td><td>0.3889</td><td>0.6459</td></tr><tr><td>Vagueness</td><td>32</td><td>0</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Hedging</td><td>18</td><td>0</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Procedural uncertainty</td><td>2</td><td>51</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Responsibility uncertainty</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr></tbody></table>
+            </details>
+            
+    </section>
+
+    <section class="panel">
+      <h2>Unknown-fact span task evaluations</h2>
+      
+            <details class="eval-block">
+              <summary>unknown_fact_binary_baseline_gpt5-2_user2_test</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>37</strong></div>
+                <div class="stat">Avg score: <strong>0.9415</strong></div>
+                <div class="stat">Micro F1: <strong>0.7619</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.8598</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_unknown_fact_binary_baseline_gpt5-2_user2_test_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>Unknown fact</td><td>10</td><td>11</td><td>8</td><td>8</td><td>0.7273</td><td>0.8000</td><td>0.7619</td><td>0.8598</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>unknown_fact_binary_baseline_gpt_nano_minimal_user2_test</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>37</strong></div>
+                <div class="stat">Avg score: <strong>0.0385</strong></div>
+                <div class="stat">Micro F1: <strong>0.1290</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.7428</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_unknown_fact_binary_baseline_gpt_nano_minimal_user2_test_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>Unknown fact</td><td>10</td><td>52</td><td>4</td><td>4</td><td>0.0769</td><td>0.4000</td><td>0.1290</td><td>0.7428</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>unknown_fact_binary_gpt5-2_user2_v2_gepa</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>37</strong></div>
+                <div class="stat">Avg score: <strong>0.9736</strong></div>
+                <div class="stat">Micro F1: <strong>0.8421</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.9186</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_unknown_fact_binary_gpt5-2_user2_v2_gepa_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>Unknown fact</td><td>10</td><td>9</td><td>8</td><td>8</td><td>0.8889</td><td>0.8000</td><td>0.8421</td><td>0.9186</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>unknown_fact_binary_gpt_nano_user2</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>37</strong></div>
+                <div class="stat">Avg score: <strong>0.9757</strong></div>
+                <div class="stat">Micro F1: <strong>0.8421</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.8918</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_unknown_fact_binary_gpt_nano_user2_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>Unknown fact</td><td>10</td><td>9</td><td>8</td><td>8</td><td>0.8889</td><td>0.8000</td><td>0.8421</td><td>0.8918</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>unknown_fact_binary_ollama_medgemma_27b_gepa_light_span</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>37</strong></div>
+                <div class="stat">Avg score: <strong>0.9666</strong></div>
+                <div class="stat">Micro F1: <strong>0.8000</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.9024</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_unknown_fact_binary_ollama_medgemma_27b_gepa_light_span_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>Unknown fact</td><td>10</td><td>10</td><td>8</td><td>8</td><td>0.8000</td><td>0.8000</td><td>0.8000</td><td>0.9024</td></tr></tbody></table>
+            </details>
+            
+    </section>
+  </body>
+</html>
