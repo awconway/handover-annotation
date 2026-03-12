@@ -106,143 +106,78 @@
 
     <div class="panel">
       <h2>Overview</h2>
-      <table><thead><tr><th>task</th><th>eval</th><th>n_examples</th><th>avg_score</th><th>micro_p</th><th>micro_r</th><th>micro_f1</th><th>macro_f1</th><th>weighted_f1</th><th>exact_match</th></tr></thead><tbody><tr><td>checklist</td><td>checklist_baseline_consensus_gpt_5_2_test</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>checklist</td><td>checklist_baseline_gemma3_1b_consensus_test</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>checklist</td><td>checklist_baseline_gpt_nano_consensus</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>checklist</td><td>checklist_baseline_ollama_medgemma_27b_consensus</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>checklist</td><td>checklist_consensus_gpt_5_2_test</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>checklist</td><td>checklist_gpt_nano_gepa_checklist_consensus</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>checklist</td><td>checklist_ollama_medgemma_27b_checklist</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>checklist</td><td>checklist_ollama_medgemma_27b_checklist_temp06</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>sbar</td><td>sbar_baseline_gpt5-2_reasoning-medium_consensus_test</td><td>48</td><td>0.3544</td><td>0.4075</td><td>0.6862</td><td>0.5113</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_baseline_gpt_5.2_consensus</td><td>48</td><td>0.3621</td><td>0.4088</td><td>0.6721</td><td>0.5084</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_baseline_gpt_nano_consensus</td><td>48</td><td>0.3487</td><td>0.4339</td><td>0.5691</td><td>0.4924</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_baseline_ollama_medgemma_27b_consensus</td><td>48</td><td>0.3607</td><td>0.5689</td><td>0.4543</td><td>0.5052</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_langextract_gpt5-2_consensus_testsplit_10train</td><td>48</td><td>0.4168</td><td>0.4810</td><td>0.7705</td><td>0.5923</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_langextract_ollama_medgemma_27b_consensus</td><td>48</td><td>0.3260</td><td>0.5472</td><td>0.3934</td><td>0.4578</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_span_gpt5-2_consensus_test_default_reasoning</td><td>48</td><td>0.5619</td><td>0.7440</td><td>0.7213</td><td>0.7325</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_span_gpt_5-2_consensus_reasoning_none</td><td>48</td><td>0.5867</td><td>0.7632</td><td>0.7471</td><td>0.7550</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_span_gpt_nano_consensus_default_reasoning</td><td>48</td><td>0.5258</td><td>0.6726</td><td>0.7119</td><td>0.6917</td><td></td><td></td><td></td></tr><tr><td>sbar</td><td>sbar_span_gpt_nano_consensus_minimal_reasoning</td><td>48</td><td>0.3743</td><td>0.5348</td><td>0.5222</td><td>0.5284</td><td></td><td></td><td></td></tr><tr><td>uncertain</td><td>uncertain_baseline_gpt5-2_user2_on_user2_test</td><td>37</td><td>0.2022</td><td>0.2366</td><td>0.6458</td><td>0.3464</td><td></td><td></td><td></td></tr><tr><td>uncertain</td><td>uncertain_baseline_medgemma_user2_on_user2_test</td><td>37</td><td>0.0601</td><td>0.1194</td><td>0.1667</td><td>0.1391</td><td></td><td></td><td></td></tr><tr><td>uncertain</td><td>uncertain_gpt5-2_user2_on_user2_test</td><td>37</td><td>0.3341</td><td>0.3234</td><td>0.5625</td><td>0.4106</td><td></td><td></td><td></td></tr><tr><td>uncertain</td><td>uncertain_langextract_gpt5-2_user2_train10_testall</td><td>37</td><td>0.0381</td><td>0.3500</td><td>0.0729</td><td>0.1207</td><td></td><td></td><td></td></tr><tr><td>uncertain</td><td>uncertain_langextract_medgemma_user2_train10_testall</td><td>37</td><td>0.1666</td><td>0.2174</td><td>0.2604</td><td>0.2370</td><td></td><td></td><td></td></tr><tr><td>uncertain</td><td>uncertain_ollama_medgemma_27b_gepa_user2_test</td><td>37</td><td>0.1713</td><td>0.1939</td><td>0.1979</td><td>0.1959</td><td></td><td></td><td></td></tr><tr><td>unknown_fact</td><td>unknown_fact_binary_baseline_gpt5-2_user2_test</td><td>37</td><td>0.9415</td><td>0.7273</td><td>0.8000</td><td>0.7619</td><td></td><td></td><td></td></tr><tr><td>unknown_fact</td><td>unknown_fact_binary_baseline_gpt_nano_minimal_user2_test</td><td>37</td><td>0.0385</td><td>0.0769</td><td>0.4000</td><td>0.1290</td><td></td><td></td><td></td></tr><tr><td>unknown_fact</td><td>unknown_fact_binary_gpt5-2_user2_v2_gepa</td><td>37</td><td>0.9736</td><td>0.8889</td><td>0.8000</td><td>0.8421</td><td></td><td></td><td></td></tr><tr><td>unknown_fact</td><td>unknown_fact_binary_gpt_nano_user2</td><td>37</td><td>0.9757</td><td>0.8889</td><td>0.8000</td><td>0.8421</td><td></td><td></td><td></td></tr><tr><td>unknown_fact</td><td>unknown_fact_binary_ollama_medgemma_27b_gepa_light_span</td><td>37</td><td>0.9666</td><td>0.8000</td><td>0.8000</td><td>0.8000</td><td></td><td></td><td></td></tr></tbody></table>
+      <table><thead><tr><th>eval</th><th>n_examples</th><th>avg_score</th><th>micro_p</th><th>micro_r</th><th>micro_f1</th></tr></thead><tbody><tr><td>checklist baseline gpt-5.2</td><td>49</td><td>0.7686</td><td>0.6824</td><td>0.8936</td><td>0.7738</td></tr><tr><td>checklist baseline gemma3-1b</td><td>49</td><td>0.7686</td><td>0.6824</td><td>0.8936</td><td>0.7738</td></tr><tr><td>checklist baseline gpt-nano</td><td>49</td><td>0.7086</td><td>0.6445</td><td>0.8168</td><td>0.7205</td></tr><tr><td>checklist baseline medgemma</td><td>49</td><td>0.6475</td><td>0.6247</td><td>0.6757</td><td>0.6492</td></tr><tr><td>checklist gpt-5.2</td><td>49</td><td>0.8519</td><td>0.8186</td><td>0.8936</td><td>0.8544</td></tr><tr><td>checklist gpt-nano gepa</td><td>49</td><td>0.8107</td><td>0.8024</td><td>0.8243</td><td>0.8132</td></tr><tr><td>checklist medgemma</td><td>49</td><td>0.7629</td><td>0.7512</td><td>0.7772</td><td>0.7640</td></tr><tr><td>checklist medgemma</td><td>49</td><td>0.7629</td><td>0.7512</td><td>0.7772</td><td>0.7640</td></tr><tr><td>sbar baseline gpt-5.2</td><td>48</td><td>0.3544</td><td>0.4075</td><td>0.6862</td><td>0.5113</td></tr><tr><td>sbar baseline gpt-5.2</td><td>48</td><td>0.3621</td><td>0.4088</td><td>0.6721</td><td>0.5084</td></tr><tr><td>sbar baseline gpt-nano</td><td>48</td><td>0.3487</td><td>0.4339</td><td>0.5691</td><td>0.4924</td></tr><tr><td>sbar baseline medgemma</td><td>48</td><td>0.3607</td><td>0.5689</td><td>0.4543</td><td>0.5052</td></tr><tr><td>sbar langextract gpt-5.2</td><td>48</td><td>0.4168</td><td>0.4810</td><td>0.7705</td><td>0.5923</td></tr><tr><td>sbar langextract medgemma</td><td>48</td><td>0.3260</td><td>0.5472</td><td>0.3934</td><td>0.4578</td></tr><tr><td>sbar gpt-5.2</td><td>48</td><td>0.5619</td><td>0.7440</td><td>0.7213</td><td>0.7325</td></tr><tr><td>sbar gpt-5.2</td><td>48</td><td>0.5867</td><td>0.7632</td><td>0.7471</td><td>0.7550</td></tr><tr><td>sbar gpt-nano</td><td>48</td><td>0.5258</td><td>0.6726</td><td>0.7119</td><td>0.6917</td></tr><tr><td>sbar gpt-nano</td><td>48</td><td>0.3743</td><td>0.5348</td><td>0.5222</td><td>0.5284</td></tr><tr><td>uncertain baseline gpt-5.2</td><td>37</td><td>0.2022</td><td>0.2366</td><td>0.6458</td><td>0.3464</td></tr><tr><td>uncertain baseline medgemma</td><td>37</td><td>0.0601</td><td>0.1194</td><td>0.1667</td><td>0.1391</td></tr><tr><td>uncertain gpt-5.2</td><td>37</td><td>0.3341</td><td>0.3234</td><td>0.5625</td><td>0.4106</td></tr><tr><td>uncertain langextract</td><td>2</td><td>0.1204</td><td>0.1429</td><td>0.2000</td><td>0.1667</td></tr><tr><td>uncertain langextract gpt-5.2</td><td>37</td><td>0.0381</td><td>0.3500</td><td>0.0729</td><td>0.1207</td></tr><tr><td>uncertain langextract medgemma</td><td>37</td><td>0.1666</td><td>0.2174</td><td>0.2604</td><td>0.2370</td></tr><tr><td>uncertain medgemma gepa</td><td>37</td><td>0.1713</td><td>0.1939</td><td>0.1979</td><td>0.1959</td></tr><tr><td>unknown-fact gpt-5.2</td><td>37</td><td>0.9415</td><td>0.7273</td><td>0.8000</td><td>0.7619</td></tr><tr><td>unknown-fact gpt-nano</td><td>37</td><td>0.0385</td><td>0.0769</td><td>0.4000</td><td>0.1290</td></tr><tr><td>unknown-fact gpt-5.2 gepa</td><td>37</td><td>0.9736</td><td>0.8889</td><td>0.8000</td><td>0.8421</td></tr><tr><td>unknown-fact gpt-nano</td><td>37</td><td>0.9757</td><td>0.8889</td><td>0.8000</td><td>0.8421</td></tr><tr><td>unknown-fact medgemma gepa-light</td><td>37</td><td>0.9666</td><td>0.8000</td><td>0.8000</td><td>0.8000</td></tr><tr><td>unknown-fact langextract gpt-5.2</td><td>37</td><td>0.7530</td><td>0.4091</td><td>0.9000</td><td>0.5625</td></tr></tbody></table>
     </div>
 
-    <div class="chart-grid">
+      <div class="chart-grid">
       <section class="panel chart"><h3>Checklist micro F1</h3>
             <div class="bar-row">
-              <div class="bar-label" title="eval_checklist_baseline_consensus_gpt_5_2_test">eval_checklist_baseline_consensus_gpt_5_2_test</div>
+              <div class="bar-label" title="gpt-5.2">gpt-5.2</div>
               <div class="bar-track">
-                <div class="bar-fill" style="width: 0.0%;"></div>
+                <div class="bar-fill" style="width: 85.4%;"></div>
               </div>
-              <div class="bar-value">0.000</div>
+              <div class="bar-value">0.854</div>
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_checklist_baseline_gemma3_1b_consensus_test">eval_checklist_baseline_gemma3_1b_consensus_test</div>
+              <div class="bar-label" title="gpt-nano gepa">gpt-nano gepa</div>
               <div class="bar-track">
-                <div class="bar-fill" style="width: 0.0%;"></div>
+                <div class="bar-fill" style="width: 81.3%;"></div>
               </div>
-              <div class="bar-value">0.000</div>
+              <div class="bar-value">0.813</div>
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_checklist_baseline_gpt_nano_consensus">eval_checklist_baseline_gpt_nano_consensus</div>
+              <div class="bar-label" title="baseline gpt-5.2">baseline gpt-5.2</div>
               <div class="bar-track">
-                <div class="bar-fill" style="width: 0.0%;"></div>
+                <div class="bar-fill" style="width: 77.4%;"></div>
               </div>
-              <div class="bar-value">0.000</div>
+              <div class="bar-value">0.774</div>
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_checklist_baseline_ollama_medgemma_27b_consensus">eval_checklist_baseline_ollama_medgemma_27b_consensus</div>
+              <div class="bar-label" title="baseline gemma3-1b">baseline gemma3-1b</div>
               <div class="bar-track">
-                <div class="bar-fill" style="width: 0.0%;"></div>
+                <div class="bar-fill" style="width: 77.4%;"></div>
               </div>
-              <div class="bar-value">0.000</div>
+              <div class="bar-value">0.774</div>
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_checklist_consensus_gpt_5_2_test">eval_checklist_consensus_gpt_5_2_test</div>
+              <div class="bar-label" title="medgemma">medgemma</div>
               <div class="bar-track">
-                <div class="bar-fill" style="width: 0.0%;"></div>
+                <div class="bar-fill" style="width: 76.4%;"></div>
               </div>
-              <div class="bar-value">0.000</div>
+              <div class="bar-value">0.764</div>
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_checklist_gpt_nano_gepa_checklist_consensus">eval_checklist_gpt_nano_gepa_checklist_consensus</div>
+              <div class="bar-label" title="medgemma">medgemma</div>
               <div class="bar-track">
-                <div class="bar-fill" style="width: 0.0%;"></div>
+                <div class="bar-fill" style="width: 76.4%;"></div>
               </div>
-              <div class="bar-value">0.000</div>
+              <div class="bar-value">0.764</div>
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_checklist_ollama_medgemma_27b_checklist">eval_checklist_ollama_medgemma_27b_checklist</div>
+              <div class="bar-label" title="baseline gpt-nano">baseline gpt-nano</div>
               <div class="bar-track">
-                <div class="bar-fill" style="width: 0.0%;"></div>
+                <div class="bar-fill" style="width: 72.1%;"></div>
               </div>
-              <div class="bar-value">0.000</div>
+              <div class="bar-value">0.721</div>
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_checklist_ollama_medgemma_27b_checklist_temp06">eval_checklist_ollama_medgemma_27b_checklist_temp06</div>
+              <div class="bar-label" title="baseline medgemma">baseline medgemma</div>
               <div class="bar-track">
-                <div class="bar-fill" style="width: 0.0%;"></div>
+                <div class="bar-fill" style="width: 64.9%;"></div>
               </div>
-              <div class="bar-value">0.000</div>
-            </div>
-            </section>
-      <section class="panel chart"><h3>Checklist macro F1</h3>
-            <div class="bar-row">
-              <div class="bar-label" title="eval_checklist_baseline_consensus_gpt_5_2_test">eval_checklist_baseline_consensus_gpt_5_2_test</div>
-              <div class="bar-track">
-                <div class="bar-fill" style="width: 0.0%;"></div>
-              </div>
-              <div class="bar-value">0.000</div>
-            </div>
-            
-            <div class="bar-row">
-              <div class="bar-label" title="eval_checklist_baseline_gemma3_1b_consensus_test">eval_checklist_baseline_gemma3_1b_consensus_test</div>
-              <div class="bar-track">
-                <div class="bar-fill" style="width: 0.0%;"></div>
-              </div>
-              <div class="bar-value">0.000</div>
-            </div>
-            
-            <div class="bar-row">
-              <div class="bar-label" title="eval_checklist_baseline_gpt_nano_consensus">eval_checklist_baseline_gpt_nano_consensus</div>
-              <div class="bar-track">
-                <div class="bar-fill" style="width: 0.0%;"></div>
-              </div>
-              <div class="bar-value">0.000</div>
-            </div>
-            
-            <div class="bar-row">
-              <div class="bar-label" title="eval_checklist_baseline_ollama_medgemma_27b_consensus">eval_checklist_baseline_ollama_medgemma_27b_consensus</div>
-              <div class="bar-track">
-                <div class="bar-fill" style="width: 0.0%;"></div>
-              </div>
-              <div class="bar-value">0.000</div>
-            </div>
-            
-            <div class="bar-row">
-              <div class="bar-label" title="eval_checklist_consensus_gpt_5_2_test">eval_checklist_consensus_gpt_5_2_test</div>
-              <div class="bar-track">
-                <div class="bar-fill" style="width: 0.0%;"></div>
-              </div>
-              <div class="bar-value">0.000</div>
-            </div>
-            
-            <div class="bar-row">
-              <div class="bar-label" title="eval_checklist_gpt_nano_gepa_checklist_consensus">eval_checklist_gpt_nano_gepa_checklist_consensus</div>
-              <div class="bar-track">
-                <div class="bar-fill" style="width: 0.0%;"></div>
-              </div>
-              <div class="bar-value">0.000</div>
-            </div>
-            
-            <div class="bar-row">
-              <div class="bar-label" title="eval_checklist_ollama_medgemma_27b_checklist">eval_checklist_ollama_medgemma_27b_checklist</div>
-              <div class="bar-track">
-                <div class="bar-fill" style="width: 0.0%;"></div>
-              </div>
-              <div class="bar-value">0.000</div>
-            </div>
-            
-            <div class="bar-row">
-              <div class="bar-label" title="eval_checklist_ollama_medgemma_27b_checklist_temp06">eval_checklist_ollama_medgemma_27b_checklist_temp06</div>
-              <div class="bar-track">
-                <div class="bar-fill" style="width: 0.0%;"></div>
-              </div>
-              <div class="bar-value">0.000</div>
+              <div class="bar-value">0.649</div>
             </div>
             </section>
       <section class="panel chart"><h3>SBAR micro F1</h3>
             <div class="bar-row">
-              <div class="bar-label" title="eval_sbar_span_gpt_5-2_consensus_reasoning_none">eval_sbar_span_gpt_5-2_consensus_reasoning_none</div>
+              <div class="bar-label" title="gpt-5.2">gpt-5.2</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 75.5%;"></div>
               </div>
@@ -250,7 +185,7 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_sbar_span_gpt5-2_consensus_test_default_reasoning">eval_sbar_span_gpt5-2_consensus_test_default_reasoning</div>
+              <div class="bar-label" title="gpt-5.2">gpt-5.2</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 73.2%;"></div>
               </div>
@@ -258,7 +193,7 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_sbar_span_gpt_nano_consensus_default_reasoning">eval_sbar_span_gpt_nano_consensus_default_reasoning</div>
+              <div class="bar-label" title="gpt-nano">gpt-nano</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 69.2%;"></div>
               </div>
@@ -266,7 +201,7 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_sbar_langextract_gpt5-2_consensus_testsplit_10train">eval_sbar_langextract_gpt5-2_consensus_testsplit_10train</div>
+              <div class="bar-label" title="langextract gpt-5.2">langextract gpt-5.2</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 59.2%;"></div>
               </div>
@@ -274,7 +209,7 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_sbar_span_gpt_nano_consensus_minimal_reasoning">eval_sbar_span_gpt_nano_consensus_minimal_reasoning</div>
+              <div class="bar-label" title="gpt-nano">gpt-nano</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 52.8%;"></div>
               </div>
@@ -282,7 +217,7 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_sbar_baseline_gpt5-2_reasoning-medium_consensus_test">eval_sbar_baseline_gpt5-2_reasoning-medium_consensus_test</div>
+              <div class="bar-label" title="baseline gpt-5.2">baseline gpt-5.2</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 51.1%;"></div>
               </div>
@@ -290,7 +225,7 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_sbar_baseline_gpt_5.2_consensus">eval_sbar_baseline_gpt_5.2_consensus</div>
+              <div class="bar-label" title="baseline gpt-5.2">baseline gpt-5.2</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 50.8%;"></div>
               </div>
@@ -298,7 +233,7 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_sbar_baseline_ollama_medgemma_27b_consensus">eval_sbar_baseline_ollama_medgemma_27b_consensus</div>
+              <div class="bar-label" title="baseline medgemma">baseline medgemma</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 50.5%;"></div>
               </div>
@@ -306,7 +241,7 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_sbar_baseline_gpt_nano_consensus">eval_sbar_baseline_gpt_nano_consensus</div>
+              <div class="bar-label" title="baseline gpt-nano">baseline gpt-nano</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 49.2%;"></div>
               </div>
@@ -314,7 +249,7 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_sbar_langextract_ollama_medgemma_27b_consensus">eval_sbar_langextract_ollama_medgemma_27b_consensus</div>
+              <div class="bar-label" title="langextract medgemma">langextract medgemma</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 45.8%;"></div>
               </div>
@@ -323,7 +258,7 @@
             </section>
       <section class="panel chart"><h3>Uncertain micro F1</h3>
             <div class="bar-row">
-              <div class="bar-label" title="eval_uncertain_gpt5-2_user2_on_user2_test">eval_uncertain_gpt5-2_user2_on_user2_test</div>
+              <div class="bar-label" title="gpt-5.2">gpt-5.2</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 41.1%;"></div>
               </div>
@@ -331,7 +266,7 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_uncertain_baseline_gpt5-2_user2_on_user2_test">eval_uncertain_baseline_gpt5-2_user2_on_user2_test</div>
+              <div class="bar-label" title="baseline gpt-5.2">baseline gpt-5.2</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 34.6%;"></div>
               </div>
@@ -339,7 +274,7 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_uncertain_langextract_medgemma_user2_train10_testall">eval_uncertain_langextract_medgemma_user2_train10_testall</div>
+              <div class="bar-label" title="langextract medgemma">langextract medgemma</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 23.7%;"></div>
               </div>
@@ -347,7 +282,7 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_uncertain_ollama_medgemma_27b_gepa_user2_test">eval_uncertain_ollama_medgemma_27b_gepa_user2_test</div>
+              <div class="bar-label" title="medgemma gepa">medgemma gepa</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 19.6%;"></div>
               </div>
@@ -355,7 +290,15 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_uncertain_baseline_medgemma_user2_on_user2_test">eval_uncertain_baseline_medgemma_user2_on_user2_test</div>
+              <div class="bar-label" title="langextract">langextract</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 16.7%;"></div>
+              </div>
+              <div class="bar-value">0.167</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="baseline medgemma">baseline medgemma</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 13.9%;"></div>
               </div>
@@ -363,7 +306,7 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_uncertain_langextract_gpt5-2_user2_train10_testall">eval_uncertain_langextract_gpt5-2_user2_train10_testall</div>
+              <div class="bar-label" title="langextract gpt-5.2">langextract gpt-5.2</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 12.1%;"></div>
               </div>
@@ -372,7 +315,7 @@
             </section>
       <section class="panel chart"><h3>Unknown-fact micro F1</h3>
             <div class="bar-row">
-              <div class="bar-label" title="eval_unknown_fact_binary_gpt5-2_user2_v2_gepa">eval_unknown_fact_binary_gpt5-2_user2_v2_gepa</div>
+              <div class="bar-label" title="gpt-5.2 gepa">gpt-5.2 gepa</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 84.2%;"></div>
               </div>
@@ -380,7 +323,7 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_unknown_fact_binary_gpt_nano_user2">eval_unknown_fact_binary_gpt_nano_user2</div>
+              <div class="bar-label" title="gpt-nano">gpt-nano</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 84.2%;"></div>
               </div>
@@ -388,7 +331,7 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_unknown_fact_binary_ollama_medgemma_27b_gepa_light_span">eval_unknown_fact_binary_ollama_medgemma_27b_gepa_light_span</div>
+              <div class="bar-label" title="medgemma gepa-light">medgemma gepa-light</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 80.0%;"></div>
               </div>
@@ -396,7 +339,7 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_unknown_fact_binary_baseline_gpt5-2_user2_test">eval_unknown_fact_binary_baseline_gpt5-2_user2_test</div>
+              <div class="bar-label" title="gpt-5.2">gpt-5.2</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 76.2%;"></div>
               </div>
@@ -404,7 +347,15 @@
             </div>
             
             <div class="bar-row">
-              <div class="bar-label" title="eval_unknown_fact_binary_baseline_gpt_nano_minimal_user2_test">eval_unknown_fact_binary_baseline_gpt_nano_minimal_user2_test</div>
+              <div class="bar-label" title="langextract gpt-5.2">langextract gpt-5.2</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 56.3%;"></div>
+              </div>
+              <div class="bar-value">0.563</div>
+            </div>
+            
+            <div class="bar-row">
+              <div class="bar-label" title="gpt-nano">gpt-nano</div>
               <div class="bar-track">
                 <div class="bar-fill" style="width: 12.9%;"></div>
               </div>
@@ -419,15 +370,14 @@
       <h2>Checklist task evaluations</h2>
       
             <details class="eval-block">
-              <summary>checklist_baseline_consensus_gpt_5_2_test</summary>
+              <summary>checklist baseline gpt-5.2</summary>
               <div class="stats-grid">
-                <div class="stat">N examples: <strong>0</strong></div>
-                <div class="stat">Avg score: <strong>0.0000</strong></div>
-                <div class="stat">Micro F1: <strong>0.0000</strong></div>
-                <div class="stat">Macro F1: <strong>0.0000</strong></div>
+                <div class="stat">N examples: <strong>49</strong></div>
+                <div class="stat">Avg score: <strong>0.7686</strong></div>
+                <div class="stat">Micro F1: <strong>0.7738</strong></div>
               </div>
-              <p>Top FN labels: <br/>
-              Top FP labels: </p>
+              <p>Top FN labels: introduction_patients (17), rec_patient_goals (7), sit_events (4), sit_status (3), assess_infusions (3), assess_pathology (3), assess_obs (2), rec_plan (2), assess_medications (1), assess_pain (1)<br/>
+              Top FP labels: rec_actions (32), introduction_clinicians (20), id_check (17), sit_events (12), sit_status (12), assess_pain (8), invitation (8), assess_skin_integrity (6), assess_nutrition (6), assess_medications (5)</p>
               <p>
                 Sources:
                 <a href="eval_baseline_checklist_consensus_gpt_5_2_test_analysis/summary.json">summary.json</a>,
@@ -441,15 +391,14 @@
             </details>
             
             <details class="eval-block">
-              <summary>checklist_baseline_gemma3_1b_consensus_test</summary>
+              <summary>checklist baseline gemma3-1b</summary>
               <div class="stats-grid">
-                <div class="stat">N examples: <strong>0</strong></div>
-                <div class="stat">Avg score: <strong>0.0000</strong></div>
-                <div class="stat">Micro F1: <strong>0.0000</strong></div>
-                <div class="stat">Macro F1: <strong>0.0000</strong></div>
+                <div class="stat">N examples: <strong>49</strong></div>
+                <div class="stat">Avg score: <strong>0.7686</strong></div>
+                <div class="stat">Micro F1: <strong>0.7738</strong></div>
               </div>
-              <p>Top FN labels: <br/>
-              Top FP labels: </p>
+              <p>Top FN labels: introduction_patients (17), rec_patient_goals (7), sit_events (4), sit_status (3), assess_infusions (3), assess_pathology (3), assess_obs (2), rec_plan (2), assess_medications (1), assess_pain (1)<br/>
+              Top FP labels: rec_actions (32), introduction_clinicians (20), id_check (17), sit_events (12), sit_status (12), assess_pain (8), invitation (8), assess_skin_integrity (6), assess_nutrition (6), assess_medications (5)</p>
               <p>
                 Sources:
                 <a href="eval_baseline_checklist_consensus_gpt_5_2_test_analysis/summary.json">summary.json</a>,
@@ -463,15 +412,14 @@
             </details>
             
             <details class="eval-block">
-              <summary>checklist_baseline_gpt_nano_consensus</summary>
+              <summary>checklist baseline gpt-nano</summary>
               <div class="stats-grid">
-                <div class="stat">N examples: <strong>0</strong></div>
-                <div class="stat">Avg score: <strong>0.0000</strong></div>
-                <div class="stat">Micro F1: <strong>0.0000</strong></div>
-                <div class="stat">Macro F1: <strong>0.0000</strong></div>
+                <div class="stat">N examples: <strong>49</strong></div>
+                <div class="stat">Avg score: <strong>0.7086</strong></div>
+                <div class="stat">Micro F1: <strong>0.7205</strong></div>
               </div>
-              <p>Top FN labels: <br/>
-              Top FP labels: </p>
+              <p>Top FN labels: rec_plan (21), invitation (10), rec_patient_goals (9), assess_pathology (7), assess_infusions (4), introduction_patients (4), assess_obs (3), bg_history (3), sit_events (2), sit_status (2)<br/>
+              Top FP labels: assess_monitoring (33), rec_actions (23), sit_status (16), sit_events (14), introduction_clinicians (14), id_check (12), assess_medications (10), assess_pain (9), assess_devices (8), assess_infusions (6)</p>
               <p>
                 Sources:
                 <a href="eval_baseline_checklist_gpt_nano_consensus_analysis/summary.json">summary.json</a>,
@@ -485,15 +433,14 @@
             </details>
             
             <details class="eval-block">
-              <summary>checklist_baseline_ollama_medgemma_27b_consensus</summary>
+              <summary>checklist baseline medgemma</summary>
               <div class="stats-grid">
-                <div class="stat">N examples: <strong>0</strong></div>
-                <div class="stat">Avg score: <strong>0.0000</strong></div>
-                <div class="stat">Micro F1: <strong>0.0000</strong></div>
-                <div class="stat">Macro F1: <strong>0.0000</strong></div>
+                <div class="stat">N examples: <strong>49</strong></div>
+                <div class="stat">Avg score: <strong>0.6475</strong></div>
+                <div class="stat">Micro F1: <strong>0.6492</strong></div>
               </div>
-              <p>Top FN labels: <br/>
-              Top FP labels: </p>
+              <p>Top FN labels: rec_plan (22), invitation (16), assess_pathology (14), assess_infusions (14), bg_allergies (10), sit_status (9), rec_patient_goals (8), assess_nutrition (7), assess_obs (5), assess_mobility (4)<br/>
+              Top FP labels: introduction_clinicians (38), id_check (22), sit_events (20), sit_status (16), assess_monitoring (14), rec_actions (13), assess_medications (7), introduction_patients (6), assess_fluid_balance (4), bg_history (4)</p>
               <p>
                 Sources:
                 <a href="eval_baseline_checklist_ollama_medgemma_27b_consensus_analysis/summary.json">summary.json</a>,
@@ -507,15 +454,14 @@
             </details>
             
             <details class="eval-block">
-              <summary>checklist_consensus_gpt_5_2_test</summary>
+              <summary>checklist gpt-5.2</summary>
               <div class="stats-grid">
-                <div class="stat">N examples: <strong>0</strong></div>
-                <div class="stat">Avg score: <strong>0.0000</strong></div>
-                <div class="stat">Micro F1: <strong>0.0000</strong></div>
-                <div class="stat">Macro F1: <strong>0.0000</strong></div>
+                <div class="stat">N examples: <strong>49</strong></div>
+                <div class="stat">Avg score: <strong>0.8519</strong></div>
+                <div class="stat">Micro F1: <strong>0.8544</strong></div>
               </div>
-              <p>Top FN labels: <br/>
-              Top FP labels: </p>
+              <p>Top FN labels: sit_status (9), rec_patient_goals (9), assess_infusions (7), sit_events (5), assess_fluid_balance (2), assess_obs (2), bg_allergies (2), assess_medications (1), assess_pain (1), assess_pathology (1)<br/>
+              Top FP labels: introduction_patients (8), sit_status (8), invitation (8), assess_nutrition (6), assess_skin_integrity (5), rec_plan (5), assess_pathology (5), assess_medications (4), rec_actions (4), assess_mobility (4)</p>
               <p>
                 Sources:
                 <a href="eval_checklist_consensus_gpt_5_2_test_analysis/summary.json">summary.json</a>,
@@ -529,15 +475,14 @@
             </details>
             
             <details class="eval-block">
-              <summary>checklist_gpt_nano_gepa_checklist_consensus</summary>
+              <summary>checklist gpt-nano gepa</summary>
               <div class="stats-grid">
-                <div class="stat">N examples: <strong>0</strong></div>
-                <div class="stat">Avg score: <strong>0.0000</strong></div>
-                <div class="stat">Micro F1: <strong>0.0000</strong></div>
-                <div class="stat">Macro F1: <strong>0.0000</strong></div>
+                <div class="stat">N examples: <strong>49</strong></div>
+                <div class="stat">Avg score: <strong>0.8107</strong></div>
+                <div class="stat">Micro F1: <strong>0.8132</strong></div>
               </div>
-              <p>Top FN labels: <br/>
-              Top FP labels: </p>
+              <p>Top FN labels: rec_plan (11), rec_patient_goals (9), assess_infusions (8), sit_status (8), sit_events (6), bg_history (6), invitation (5), sit_diagnosis (4), assess_medications (3), assess_pathology (3)<br/>
+              Top FP labels: sit_status (10), assess_pain (7), assess_skin_integrity (6), assess_devices (6), invitation (6), introduction_patients (5), assess_nutrition (5), sit_events (5), assess_medications (4), rec_actions (4)</p>
               <p>
                 Sources:
                 <a href="eval_checklist_gpt_nano_gepa_light_checklist_consensus_analysis/summary.json">summary.json</a>,
@@ -551,15 +496,14 @@
             </details>
             
             <details class="eval-block">
-              <summary>checklist_ollama_medgemma_27b_checklist</summary>
+              <summary>checklist medgemma</summary>
               <div class="stats-grid">
-                <div class="stat">N examples: <strong>0</strong></div>
-                <div class="stat">Avg score: <strong>0.0000</strong></div>
-                <div class="stat">Micro F1: <strong>0.0000</strong></div>
-                <div class="stat">Macro F1: <strong>0.0000</strong></div>
+                <div class="stat">N examples: <strong>49</strong></div>
+                <div class="stat">Avg score: <strong>0.7629</strong></div>
+                <div class="stat">Micro F1: <strong>0.7640</strong></div>
               </div>
-              <p>Top FN labels: <br/>
-              Top FP labels: </p>
+              <p>Top FN labels: assess_infusions (13), sit_status (12), rec_patient_goals (9), rec_plan (8), invitation (6), assess_nutrition (5), assess_medications (5), assess_pathology (4), bg_allergies (4), assess_fluid_balance (4)<br/>
+              Top FP labels: id_check (17), sit_status (14), assess_monitoring (12), sit_events (11), introduction_patients (6), invitation (6), bg_history (5), introduction_clinicians (5), assess_medications (3), rec_plan (3)</p>
               <p>
                 Sources:
                 <a href="eval_checklist_ollama_medgemma_27b_gepa_light_checklist_analysis/summary.json">summary.json</a>,
@@ -573,15 +517,14 @@
             </details>
             
             <details class="eval-block">
-              <summary>checklist_ollama_medgemma_27b_checklist_temp06</summary>
+              <summary>checklist medgemma</summary>
               <div class="stats-grid">
-                <div class="stat">N examples: <strong>0</strong></div>
-                <div class="stat">Avg score: <strong>0.0000</strong></div>
-                <div class="stat">Micro F1: <strong>0.0000</strong></div>
-                <div class="stat">Macro F1: <strong>0.0000</strong></div>
+                <div class="stat">N examples: <strong>49</strong></div>
+                <div class="stat">Avg score: <strong>0.7629</strong></div>
+                <div class="stat">Micro F1: <strong>0.7640</strong></div>
               </div>
-              <p>Top FN labels: <br/>
-              Top FP labels: </p>
+              <p>Top FN labels: assess_infusions (13), sit_status (12), rec_patient_goals (9), rec_plan (8), invitation (6), assess_nutrition (5), assess_medications (5), assess_pathology (4), bg_allergies (4), assess_fluid_balance (4)<br/>
+              Top FP labels: id_check (17), sit_status (14), assess_monitoring (12), sit_events (11), introduction_patients (6), invitation (6), bg_history (5), introduction_clinicians (5), assess_medications (3), rec_plan (3)</p>
               <p>
                 Sources:
                 <a href="eval_checklist_ollama_medgemma_27b_gepa_light_checklist_analysis/summary.json">summary.json</a>,
@@ -600,7 +543,7 @@
       <h2>SBAR span task evaluations</h2>
       
             <details class="eval-block">
-              <summary>sbar_baseline_gpt5-2_reasoning-medium_consensus_test</summary>
+              <summary>sbar baseline gpt-5.2</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>48</strong></div>
                 <div class="stat">Avg score: <strong>0.3544</strong></div>
@@ -615,7 +558,7 @@
             </details>
             
             <details class="eval-block">
-              <summary>sbar_baseline_gpt_5.2_consensus</summary>
+              <summary>sbar baseline gpt-5.2</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>48</strong></div>
                 <div class="stat">Avg score: <strong>0.3621</strong></div>
@@ -630,7 +573,7 @@
             </details>
             
             <details class="eval-block">
-              <summary>sbar_baseline_gpt_nano_consensus</summary>
+              <summary>sbar baseline gpt-nano</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>48</strong></div>
                 <div class="stat">Avg score: <strong>0.3487</strong></div>
@@ -645,7 +588,7 @@
             </details>
             
             <details class="eval-block">
-              <summary>sbar_baseline_ollama_medgemma_27b_consensus</summary>
+              <summary>sbar baseline medgemma</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>48</strong></div>
                 <div class="stat">Avg score: <strong>0.3607</strong></div>
@@ -660,7 +603,7 @@
             </details>
             
             <details class="eval-block">
-              <summary>sbar_langextract_gpt5-2_consensus_testsplit_10train</summary>
+              <summary>sbar langextract gpt-5.2</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>48</strong></div>
                 <div class="stat">Avg score: <strong>0.4168</strong></div>
@@ -675,7 +618,7 @@
             </details>
             
             <details class="eval-block">
-              <summary>sbar_langextract_ollama_medgemma_27b_consensus</summary>
+              <summary>sbar langextract medgemma</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>48</strong></div>
                 <div class="stat">Avg score: <strong>0.3260</strong></div>
@@ -690,7 +633,7 @@
             </details>
             
             <details class="eval-block">
-              <summary>sbar_span_gpt5-2_consensus_test_default_reasoning</summary>
+              <summary>sbar gpt-5.2</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>48</strong></div>
                 <div class="stat">Avg score: <strong>0.5619</strong></div>
@@ -705,7 +648,7 @@
             </details>
             
             <details class="eval-block">
-              <summary>sbar_span_gpt_5-2_consensus_reasoning_none</summary>
+              <summary>sbar gpt-5.2</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>48</strong></div>
                 <div class="stat">Avg score: <strong>0.5867</strong></div>
@@ -720,7 +663,7 @@
             </details>
             
             <details class="eval-block">
-              <summary>sbar_span_gpt_nano_consensus_default_reasoning</summary>
+              <summary>sbar gpt-nano</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>48</strong></div>
                 <div class="stat">Avg score: <strong>0.5258</strong></div>
@@ -735,7 +678,7 @@
             </details>
             
             <details class="eval-block">
-              <summary>sbar_span_gpt_nano_consensus_minimal_reasoning</summary>
+              <summary>sbar gpt-nano</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>48</strong></div>
                 <div class="stat">Avg score: <strong>0.3743</strong></div>
@@ -755,7 +698,7 @@
       <h2>Uncertain span task evaluations</h2>
       
             <details class="eval-block">
-              <summary>uncertain_baseline_gpt5-2_user2_on_user2_test</summary>
+              <summary>uncertain baseline gpt-5.2</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>37</strong></div>
                 <div class="stat">Avg score: <strong>0.2022</strong></div>
@@ -770,7 +713,7 @@
             </details>
             
             <details class="eval-block">
-              <summary>uncertain_baseline_medgemma_user2_on_user2_test</summary>
+              <summary>uncertain baseline medgemma</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>37</strong></div>
                 <div class="stat">Avg score: <strong>0.0601</strong></div>
@@ -785,7 +728,7 @@
             </details>
             
             <details class="eval-block">
-              <summary>uncertain_gpt5-2_user2_on_user2_test</summary>
+              <summary>uncertain gpt-5.2</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>37</strong></div>
                 <div class="stat">Avg score: <strong>0.3341</strong></div>
@@ -800,7 +743,22 @@
             </details>
             
             <details class="eval-block">
-              <summary>uncertain_langextract_gpt5-2_user2_train10_testall</summary>
+              <summary>uncertain langextract</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>2</strong></div>
+                <div class="stat">Avg score: <strong>0.1204</strong></div>
+                <div class="stat">Micro F1: <strong>0.1667</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.9630</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_uncertain_langextract_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>Vagueness</td><td>2</td><td>6</td><td>1</td><td>1</td><td>0.1667</td><td>0.5000</td><td>0.2500</td><td>0.9630</td></tr><tr><td>Indefinite timing</td><td>2</td><td>0</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Responsibility uncertainty</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr><tr><td>Unknown fact</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>uncertain langextract gpt-5.2</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>37</strong></div>
                 <div class="stat">Avg score: <strong>0.0381</strong></div>
@@ -815,7 +773,7 @@
             </details>
             
             <details class="eval-block">
-              <summary>uncertain_langextract_medgemma_user2_train10_testall</summary>
+              <summary>uncertain langextract medgemma</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>37</strong></div>
                 <div class="stat">Avg score: <strong>0.1666</strong></div>
@@ -830,7 +788,7 @@
             </details>
             
             <details class="eval-block">
-              <summary>uncertain_ollama_medgemma_27b_gepa_user2_test</summary>
+              <summary>uncertain medgemma gepa</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>37</strong></div>
                 <div class="stat">Avg score: <strong>0.1713</strong></div>
@@ -850,7 +808,7 @@
       <h2>Unknown-fact span task evaluations</h2>
       
             <details class="eval-block">
-              <summary>unknown_fact_binary_baseline_gpt5-2_user2_test</summary>
+              <summary>unknown-fact gpt-5.2</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>37</strong></div>
                 <div class="stat">Avg score: <strong>0.9415</strong></div>
@@ -865,7 +823,7 @@
             </details>
             
             <details class="eval-block">
-              <summary>unknown_fact_binary_baseline_gpt_nano_minimal_user2_test</summary>
+              <summary>unknown-fact gpt-nano</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>37</strong></div>
                 <div class="stat">Avg score: <strong>0.0385</strong></div>
@@ -880,7 +838,7 @@
             </details>
             
             <details class="eval-block">
-              <summary>unknown_fact_binary_gpt5-2_user2_v2_gepa</summary>
+              <summary>unknown-fact gpt-5.2 gepa</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>37</strong></div>
                 <div class="stat">Avg score: <strong>0.9736</strong></div>
@@ -895,7 +853,7 @@
             </details>
             
             <details class="eval-block">
-              <summary>unknown_fact_binary_gpt_nano_user2</summary>
+              <summary>unknown-fact gpt-nano</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>37</strong></div>
                 <div class="stat">Avg score: <strong>0.9757</strong></div>
@@ -910,7 +868,7 @@
             </details>
             
             <details class="eval-block">
-              <summary>unknown_fact_binary_ollama_medgemma_27b_gepa_light_span</summary>
+              <summary>unknown-fact medgemma gepa-light</summary>
               <div class="stats-grid">
                 <div class="stat">N examples: <strong>37</strong></div>
                 <div class="stat">Avg score: <strong>0.9666</strong></div>
@@ -922,6 +880,21 @@
               </p>
               <h4>Top per-label</h4>
               <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>Unknown fact</td><td>10</td><td>10</td><td>8</td><td>8</td><td>0.8000</td><td>0.8000</td><td>0.8000</td><td>0.9024</td></tr></tbody></table>
+            </details>
+            
+            <details class="eval-block">
+              <summary>unknown-fact langextract gpt-5.2</summary>
+              <div class="stats-grid">
+                <div class="stat">N examples: <strong>37</strong></div>
+                <div class="stat">Avg score: <strong>0.7530</strong></div>
+                <div class="stat">Micro F1: <strong>0.5625</strong></div>
+                <div class="stat">Mean IoU (matched): <strong>0.6791</strong></div>
+              </div>
+              <p>
+                Per-label CSV: <a href="eval_unknown_fact_langextract_gpt5-2_per_label_analysis.csv">download</a>
+              </p>
+              <h4>Top per-label</h4>
+              <table><thead><tr><th>label</th><th>gold</th><th>total_pred_spans</th><th>matched_gold</th><th>matched_pred</th><th>precision</th><th>recall</th><th>f1</th><th>mean_iou</th></tr></thead><tbody><tr><td>Unknown fact</td><td>10</td><td>22</td><td>9</td><td>9</td><td>0.4091</td><td>0.9000</td><td>0.5625</td><td>0.6791</td></tr></tbody></table>
             </details>
             
     </section>

@@ -15,6 +15,7 @@ import argparse
 import csv
 import html
 import json
+import re
 import subprocess
 import sys
 from collections import defaultdict
@@ -135,7 +136,8 @@ def _load_checklist_analysis(
             "summary.json, per_label.csv, per_bucket.csv"
         )
 
-    summary = json.loads(summary_path.read_text())
+    payload = json.loads(summary_path.read_text())
+    summary = payload.get("summary", payload)
     per_label = _load_csv_rows(
         per_label_path,
         numeric_fields={"support", "pred", "tp", "fp", "fn"},
@@ -474,9 +476,108 @@ def _format_num(value: float, *, percent=False, digits: int = 4) -> str:
 
 
 def _short_name(name: str) -> str:
-    if name.startswith("eval_"):
-        return name[len("eval_"):]
-    return name
+    base = name.lower()
+    if base.startswith("eval_"):
+        base = base.removeprefix("eval_")
+    base = base.removesuffix(".jsonl")
+    base = base.removesuffix("_analysis")
+
+    base = re.sub(r"_user\d+(?:_on_user\d+)?", "", base)
+    base = re.sub(r"_on_user\d+", "", base)
+    base = re.sub(r"_tests?plit_\d+train", "", base)
+    base = re.sub(r"_train\d+", "", base)
+    base = re.sub(r"_test(?:all)?", "", base)
+    base = base.replace("_consensus", "")
+
+    base = re.sub(r"_+", "_", base).strip("_")
+    tokens = [tok for tok in base.split("_") if tok]
+    if not tokens:
+        return base
+
+    parts: list[str] = []
+    task = tokens[0]
+    idx = 1
+
+    if task == "sbar":
+        parts.append("sbar")
+        if idx < len(tokens) and tokens[idx] in {"baseline", "langextract"}:
+            if tokens[idx] != "span":
+                parts.append(tokens[idx])
+            idx += 1
+        elif idx < len(tokens) and tokens[idx] == "span":
+            idx += 1
+        if idx < len(tokens) and tokens[idx] == "baseline":
+            parts.append("baseline")
+            idx += 1
+    elif task == "checklist":
+        parts.append("checklist")
+        if idx < len(tokens) and tokens[idx] == "baseline":
+            parts.append("baseline")
+            idx += 1
+    elif task == "uncertain":
+        parts.append("uncertain")
+        if idx < len(tokens) and tokens[idx] == "baseline":
+            parts.append("baseline")
+            idx += 1
+    elif task == "unknown" and len(tokens) > 1 and tokens[1] == "fact":
+        parts.append("unknown-fact")
+        idx = 2
+        if idx < len(tokens) and tokens[idx] == "binary":
+            idx += 1
+    else:
+        parts.append(task)
+
+    skip_exact = {
+        "consensus",
+        "checklist",
+        "span",
+        "test",
+        "tests",
+        "train",
+        "all",
+        "default",
+        "minimal",
+        "none",
+        "analysis",
+        "baseline",
+        "raw",
+        "v2",
+        "ollama",
+    }
+
+    extra_tokens: list[str] = []
+    for tok in tokens[idx:]:
+        if tok in skip_exact:
+            continue
+        if tok.startswith("reasoning"):
+            continue
+        if tok.startswith("temp"):
+            continue
+        if re.fullmatch(r"v\d+", tok):
+            continue
+        if re.fullmatch(r"user\d+", tok):
+            continue
+        extra_tokens.append(tok)
+
+    parts.extend(extra_tokens)
+
+    if task == "unknown":
+        if "baseline" in parts:
+            parts.remove("baseline")
+            parts.insert(1, "baseline")
+
+    label = " ".join(parts)
+    label = re.sub(r"\bgpt[_\s-]*5\.2\b", "gpt-5.2", label)
+    label = re.sub(r"\bgpt[_\s-]*5[_\s-]*2\b", "gpt-5.2", label)
+    label = re.sub(r"\bgpt[_\s-]*nano\b", "gpt-nano", label)
+    label = re.sub(r"\bmedgemma[_\s-]*27b\b", "medgemma-27b", label)
+    label = re.sub(r"\bmedgemma[-_\s]*27b\b", "medgemma", label)
+    label = re.sub(r"\bmedgemma\s*27b\b", "medgemma", label)
+    label = re.sub(r"\bmedgemma\b", "medgemma", label)
+    label = re.sub(r"\bgemma3[_\s-]*1b\b", "gemma3-1b", label)
+    label = re.sub(r"\bgepa[_\s-]*light\b", "gepa-light", label)
+    label = re.sub(r"\s+", " ", label).strip()
+    return label
 
 
 def _rel(path: Path, out_path: Path) -> str:
@@ -555,7 +656,6 @@ def _render_checklist_sections(results: list[dict[str, Any]], top_labels: int) -
     for item in results:
         summary = item["summary"]
         micro = summary.get("micro", {})
-        macro = summary.get("macro", {})
         top_pairs_fn = summary.get("top_fn_labels", [])
         top_pairs_fp = summary.get("top_fp_labels", [])
         bucket_rows = item["per_bucket"]
@@ -594,7 +694,6 @@ def _render_checklist_sections(results: list[dict[str, Any]], top_labels: int) -
                 <div class="stat">N examples: <strong>{summary.get('n_examples', 0)}</strong></div>
                 <div class="stat">Avg score: <strong>{_format_num(summary.get('avg_score', 0.0), digits=4)}</strong></div>
                 <div class="stat">Micro F1: <strong>{_format_num(micro.get('f1', 0.0), digits=4)}</strong></div>
-                <div class="stat">Macro F1: <strong>{_format_num(macro.get('f1', 0.0), digits=4)}</strong></div>
               </div>
               <p>Top FN labels: {_join_top_pairs(top_pairs_fn)}<br/>
               Top FP labels: {_join_top_pairs(top_pairs_fp)}</p>
@@ -682,36 +781,27 @@ def _render_span_sections(
 def _summary_rows_for_table(entries: list[dict[str, Any]], task_label: str) -> tuple[list[dict[str, Any]], list[tuple[str, float]], list[tuple[str, float]]]:
     rows: list[dict[str, Any]] = []
     chart_micro: list[tuple[str, float]] = []
-    chart_macro: list[tuple[str, float]] = []
     for item in entries:
         summary = item["summary"]
         micro = summary.get("micro", {})
-        macro = summary.get("macro", {})
         rows.append(
             {
-                "task": task_label,
                 "eval": _short_name(item["name"]),
                 "n_examples": summary.get("n_examples", 0),
                 "avg_score": _format_num(summary.get("avg_score", 0.0), digits=4),
                 "micro_p": _format_num(micro.get("precision", 0.0), digits=4),
                 "micro_r": _format_num(micro.get("recall", 0.0), digits=4),
                 "micro_f1": _format_num(micro.get("f1", 0.0), digits=4),
-                "macro_f1": _format_num(macro.get("f1", 0.0), digits=4),
-                "weighted_f1": _format_num(macro.get("weighted_f1", macro.get("f1", 0.0)), digits=4),
-                "exact_match": _format_num(
-                    summary.get("exact_match_count", 0)
-                    / summary.get("n_examples", 1),
-                    digits=4,
-                ),
             }
         )
         try:
-            chart_micro.append((item["name"], safe_float(micro.get("f1", 0.0))))
-            chart_macro.append((item["name"], safe_float(macro.get("f1", 0.0))))
+            short_name = _short_name(item["name"])
+            chart_label = _strip_task_prefix(short_name)
+            chart_micro.append((chart_label, safe_float(micro.get("f1", 0.0))))
         except Exception:
             continue
 
-    return rows, chart_micro, chart_macro
+    return rows, chart_micro, []
 
 
 def _span_summary_rows(entries: list[dict[str, Any]], task_label: str) -> tuple[list[dict[str, Any]], list[tuple[str, float]]]:
@@ -722,7 +812,6 @@ def _span_summary_rows(entries: list[dict[str, Any]], task_label: str) -> tuple[
         micro = summary.get("micro", {})
         rows.append(
             {
-                "task": task_label,
                 "eval": _short_name(item["name"]),
                 "n_examples": summary.get("n_examples", 0),
                 "avg_score": _format_num(summary.get("avg_score", 0.0), digits=4),
@@ -732,9 +821,26 @@ def _span_summary_rows(entries: list[dict[str, Any]], task_label: str) -> tuple[
                 "mean_iou": _format_num(micro.get("mean_iou", 0.0), digits=4),
             }
         )
-        chart_micro.append((item["name"], safe_float(micro.get("f1", 0.0))))
+        short_name = _short_name(item["name"])
+        chart_label = _strip_task_prefix(short_name)
+        chart_micro.append((chart_label, safe_float(micro.get("f1", 0.0))))
 
     return rows, chart_micro
+
+
+def _strip_task_prefix(label: str) -> str:
+    if not label:
+        return label
+
+    if label.startswith("unknown-fact"):
+        return label[len("unknown-fact"):].lstrip()
+
+    known = {"checklist", "sbar", "uncertain"}
+    parts = label.split(maxsplit=1)
+    if len(parts) == 2 and parts[0] in known:
+        return parts[1]
+
+    return label
 
 
 def _build_page(
@@ -745,7 +851,7 @@ def _build_page(
     notes: list[str],
     top_labels: int,
 ) -> str:
-    checklist_summary_rows, checklist_chart_micro, checklist_chart_macro = _summary_rows_for_table(
+    checklist_summary_rows, checklist_chart_micro, _ = _summary_rows_for_table(
         checklist_rows,
         "checklist",
     )
@@ -762,16 +868,12 @@ def _build_page(
 
     checklist_summary_table = _table_html(
         [
-            "task",
             "eval",
             "n_examples",
             "avg_score",
             "micro_p",
             "micro_r",
             "micro_f1",
-            "macro_f1",
-            "weighted_f1",
-            "exact_match",
         ],
         all_rows,
     )
@@ -900,9 +1002,8 @@ def _build_page(
       {checklist_summary_table}
     </div>
 
-    <div class="chart-grid">
+      <div class="chart-grid">
       {_bar_chart_html("Checklist micro F1", checklist_chart_micro)}
-      {_bar_chart_html("Checklist macro F1", checklist_chart_macro)}
       {_bar_chart_html("SBAR micro F1", sbar_chart)}
       {_bar_chart_html("Uncertain micro F1", uncertain_chart)}
       {_bar_chart_html("Unknown-fact micro F1", unknown_chart)}
@@ -964,7 +1065,7 @@ def main() -> None:
     )
     unknown_rows, unknown_notes = _collect_span_results(
         eval_dir=eval_dir,
-        task_prefix="unknown_fact_binary",
+        task_prefix="unknown_fact",
         top_labels=args.top_labels,
         include_unknown_fact=True,
     )

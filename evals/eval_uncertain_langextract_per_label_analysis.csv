@@ -1,0 +1,5 @@
+label,gold,total_pred_spans,matched_gold,matched_pred,recall,precision,f1,mean_iou
+Indefinite timing,2,0,0,0,0.000000,0.000000,0.000000,0.000000
+Responsibility uncertainty,1,0,0,0,0.000000,0.000000,0.000000,0.000000
+Unknown fact,0,1,0,0,0.000000,0.000000,0.000000,0.000000
+Vagueness,2,6,1,1,0.500000,0.166667,0.250000,0.962963
