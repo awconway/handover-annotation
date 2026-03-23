@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Study Team">
-<meta name="dcterms.date" content="2026-02-13">
+<meta name="dcterms.date" content="2026-03-23">
 
 <title>Evaluation of DSPy-Optimized AI Assistance for Clinical Handover</title>
 <style>
@@ -85,9 +85,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-introduction" id="toc-sec-introduction" class="nav-link" data-scroll-target="#sec-introduction"><span class="header-section-number">2</span> Introduction</a></li>
   <li><a href="#sec-methods" id="toc-sec-methods" class="nav-link" data-scroll-target="#sec-methods"><span class="header-section-number">3</span> Methods</a>
   <ul class="collapse">
-  <li><a href="#study-design" id="toc-study-design" class="nav-link" data-scroll-target="#study-design"><span class="header-section-number">3.1</span> Study design</a></li>
-  <li><a href="#data-and-annotation-workflow" id="toc-data-and-annotation-workflow" class="nav-link" data-scroll-target="#data-and-annotation-workflow"><span class="header-section-number">3.2</span> Data and annotation workflow</a></li>
-  <li><a href="#model-development-and-optimization" id="toc-model-development-and-optimization" class="nav-link" data-scroll-target="#model-development-and-optimization"><span class="header-section-number">3.3</span> Model development and optimization</a></li>
+  <li><a href="#data-sources" id="toc-data-sources" class="nav-link" data-scroll-target="#data-sources"><span class="header-section-number">3.1</span> Data sources</a></li>
+  <li><a href="#annotation" id="toc-annotation" class="nav-link" data-scroll-target="#annotation"><span class="header-section-number">3.2</span> Annotation</a></li>
+  <li><a href="#large-language-model-prompt-optimisation-methods" id="toc-large-language-model-prompt-optimisation-methods" class="nav-link" data-scroll-target="#large-language-model-prompt-optimisation-methods"><span class="header-section-number">3.3</span> Large language model prompt optimisation methods</a></li>
   <li><a href="#evaluation-setting" id="toc-evaluation-setting" class="nav-link" data-scroll-target="#evaluation-setting"><span class="header-section-number">3.4</span> Evaluation setting</a></li>
   <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis"><span class="header-section-number">3.5</span> Data analysis</a></li>
   </ul></li>
@@ -102,7 +102,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion"><span class="header-section-number">7</span> Conclusion</a></li>
   <li><a href="#sec-reproducibility" id="toc-sec-reproducibility" class="nav-link" data-scroll-target="#sec-reproducibility"><span class="header-section-number">8</span> Reproducibility appendix</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="manuscript.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
+</nav>
 </div>
 <main class="content" id="quarto-document-content">
 
@@ -125,7 +125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 13, 2026</p>
+      <p class="date">March 23, 2026</p>
     </div>
   </div>
   
@@ -147,21 +147,163 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-methods" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="sec-methods"><span class="header-section-number">3</span> Methods</h2>
-<section id="study-design" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="study-design"><span class="header-section-number">3.1</span> Study design</h3>
-<p>This manuscript reports outcomes aligned to the Phase 1 objective in <code>proposal.md</code>: development of a generative AI pipeline to produce accurate handover recommendations and structured outputs.</p>
+<p>Tasks considered as potentially amenable to summarization by AI were identified as:</p>
+<ul>
+<li><p>Extracting spans of transcripts aligned with SBAR</p></li>
+<li><p>Identifying key concepts and entities in handover transcripts. In this study, this task was operationalised as a checklist of items recommended for nursing clinical handover at our institution as part of quality-improvement initiatives. The checklist items are summarised in Table <a href="#tbl-checklist-items" class="quarto-xref">Table&nbsp;1</a>.</p></li>
+<li><p>Identifying spans of text in transcript that were communicated in uncertain terms.</p></li>
+</ul>
+<div id="tbl-checklist-items" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-checklist-items-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Checklist items used to operationalise identification of key concepts and entities in handover transcripts.
+</figcaption>
+<div aria-describedby="tbl-checklist-items-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Checklist item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Patient Involvement</td>
+<td>Clinician introductions</td>
+</tr>
+<tr class="even">
+<td>Patient Involvement</td>
+<td>Introduction of clinicians to the patient or carer</td>
+</tr>
+<tr class="odd">
+<td>Patient Involvement</td>
+<td>Invitation for the patient or carer to participate in handover</td>
+</tr>
+<tr class="even">
+<td>Identification</td>
+<td>Verification of three patient identifiers</td>
+</tr>
+<tr class="odd">
+<td>Situation</td>
+<td>Primary diagnosis or reason for admission</td>
+</tr>
+<tr class="even">
+<td>Situation</td>
+<td>Significant events or complications</td>
+</tr>
+<tr class="odd">
+<td>Situation</td>
+<td>Current status, including pending tests/procedures and interim plans/orders</td>
+</tr>
+<tr class="even">
+<td>Background</td>
+<td>Relevant clinical and social history, including comorbidities</td>
+</tr>
+<tr class="odd">
+<td>Background</td>
+<td>Falls risk</td>
+</tr>
+<tr class="even">
+<td>Background</td>
+<td>Pressure injury risk</td>
+</tr>
+<tr class="odd">
+<td>Background</td>
+<td>Allergies</td>
+</tr>
+<tr class="even">
+<td>Background</td>
+<td>Advance care planning</td>
+</tr>
+<tr class="odd">
+<td>Assessment</td>
+<td>Observations, Q-ADDS score, and recent escalations</td>
+</tr>
+<tr class="even">
+<td>Assessment</td>
+<td>Pain management</td>
+</tr>
+<tr class="odd">
+<td>Assessment</td>
+<td>Devices, lines, and vascular access</td>
+</tr>
+<tr class="even">
+<td>Assessment</td>
+<td>Critical monitoring and alarms</td>
+</tr>
+<tr class="odd">
+<td>Assessment</td>
+<td>Nutrition and dietary restrictions</td>
+</tr>
+<tr class="even">
+<td>Assessment</td>
+<td>Fluid balance and fluid restrictions</td>
+</tr>
+<tr class="odd">
+<td>Assessment</td>
+<td>Infusions</td>
+</tr>
+<tr class="even">
+<td>Assessment</td>
+<td>Medication chart review, including high-risk medicines</td>
+</tr>
+<tr class="odd">
+<td>Assessment</td>
+<td>Pathology results or pending investigations</td>
+</tr>
+<tr class="even">
+<td>Assessment</td>
+<td>Mobility and use of aids</td>
+</tr>
+<tr class="odd">
+<td>Assessment</td>
+<td>Skin integrity and related interventions</td>
+</tr>
+<tr class="even">
+<td>Recommendation</td>
+<td>Discharge plan</td>
+</tr>
+<tr class="odd">
+<td>Recommendation</td>
+<td>Critical actions required</td>
+</tr>
+<tr class="even">
+<td>Recommendation</td>
+<td>Follow-up care plan or pathway actions</td>
+</tr>
+<tr class="odd">
+<td>Recommendation</td>
+<td>Patient or carer goals and preferences</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<section id="data-sources" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="data-sources"><span class="header-section-number">3.1</span> Data sources</h3>
+<p>We used the publicly available NICTA Synthetic Nursing Handover Dataset, which contains realistic recordings of clinical handovers delivered by a registered nurse based on patient profiles with cardiovascular, neurological, renal, and respiratory conditions.<sup>5</sup> In this dataset, handover monologues were generated from comprehensive patient profiles that included information such as the patient’s name, age, admission history, inpatient duration, and the familiarity between the nurses giving and receiving the handover. The nurse was instructed to simulate a bedside shift-to-shift handover within a medical ward setting.<sup>5</sup> For our study, we used 100 handover samples from the training partition of the NICTA dataset. First, audio recordings from the NICTA dataset were transcribed using the OpenAI Whisper speech-to-text model. Second, three high-quality videos depicting conversational nursing shift-to-shift handovers, which were developed at the authors’ institution for educational purposes, were transcribed in a similar manner to provide examples of interactive handover dialogue. These transcripts were then used as few-shot examples within the DSPy framework using the <code>BootstrapFewShot</code> optimizer to guide the transformation of the 100 NICTA monologue transcripts into two-sided conversational handovers to better reflect real-world contemporary clinical handover interactions. To broaden the range of clinical contexts represented in the dataset, we further synthesised 103 additional handover examples using the GPT-5 model interactively in a chat interface. These scenarios included inter- and intra-hospital transfers, post-procedural handovers, emergency department transitions, and handovers that involved patients with complex mental health care needs. The final dataset comprised 203 synthetic handover transcripts used for subsequent annotation and model development. It is available at [URL to dataset repository].</p>
 </section>
-<section id="data-and-annotation-workflow" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="data-and-annotation-workflow"><span class="header-section-number">3.2</span> Data and annotation workflow</h3>
-<p>Phase 1 described three sources of handover data and planned annotation of 203 transcripts. Two clinically experienced annotators independently annotated transcripts using a structured rubric, then discrepancies were reconciled through consensus meetings with the broader investigator team and consumer partner. This consensus process produced the reference labels used for downstream model development and evaluation.</p>
+<section id="annotation" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="annotation"><span class="header-section-number">3.2</span> Annotation</h3>
+<p>Two experienced annotators, who are clinically active Registered Nurses, independently annotated transcripts using a structured rubric. Labelled annotations that met consensus between reviewers were used as the reference labels used for downstream model development and evaluation.</p>
 </section>
-<section id="model-development-and-optimization" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="model-development-and-optimization"><span class="header-section-number">3.3</span> Model development and optimization</h3>
-<p>Model orchestration used DSPy (<code>dspy</code>) for predictor construction, configuration, and optimization. The span and checklist tasks used task-specific signatures and DSPy optimization workflows. In this report, SBAR span extraction compares:</p>
+<section id="large-language-model-prompt-optimisation-methods" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="large-language-model-prompt-optimisation-methods"><span class="header-section-number">3.3</span> Large language model prompt optimisation methods</h3>
+<p>Annotated handover records were first partitioned deterministically into optimisation (75%) and evaluation (25%) subsets using a fixed random split. Model orchestration used DSPy (<code>dspy</code>) for predictor construction, configuration, and optimization.</p>
+<p>We defined initial prompts as DSPy signature that described the intent of each task. The DSPy signature specified the input and output schema for the tasks, as well as the constraints and evaluation metrics to guide optimization. The span and checklist tasks used task-specific signatures and DSPy optimization workflows. In this report, SBAR span extraction compares:</p>
 <ol type="1">
 <li>Baseline prompt pipeline (initial DSPy signature without trained program loading).</li>
 <li>DSPy-optimized prompt/program configuration.</li>
 </ol>
+<p>Langextract</p>
+<ul>
+<li>model selection based on large model first then smaller if necessary?</li>
+</ul>
 </section>
 <section id="evaluation-setting" class="level3" data-number="3.4">
 <h3 data-number="3.4" class="anchored" data-anchor-id="evaluation-setting"><span class="header-section-number">3.4</span> Evaluation setting</h3>
@@ -175,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="data-analysis" class="level3" data-number="3.5">
 <h3 data-number="3.5" class="anchored" data-anchor-id="data-analysis"><span class="header-section-number">3.5</span> Data analysis</h3>
-<p>For both tasks, performance was summarized with standard classification metrics:</p>
+<p>Performance was summarized with standard classification metrics for all tasks:</p>
 <ol type="1">
 <li>Precision = true positives / (true positives + false positives).</li>
 <li>Recall = true positives / (true positives + false negatives).</li>
@@ -206,11 +348,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-sbar-optimized" class="level3" data-number="4.2">
 <h3 data-number="4.2" class="anchored" data-anchor-id="sec-sbar-optimized"><span class="header-section-number">4.2</span> SBAR span extraction: per-label optimized performance</h3>
-<p><a href="#tbl-sbar-optimized" class="quarto-xref">Table&nbsp;1</a> summarizes per-label results for the DSPy-optimized GPT-5.2 SBAR span pipeline.</p>
+<p><a href="#tbl-sbar-optimized" class="quarto-xref">Table&nbsp;2</a> summarizes per-label results for the DSPy-optimized GPT-5.2 SBAR span pipeline.</p>
 <div id="tbl-sbar-optimized" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sbar-optimized-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Per-label SBAR metrics for DSPy-optimized model output on the consensus test partition (<code>n=48</code>). <code>Delta F1</code> is optimized minus baseline F1 from the same partition.
+Table&nbsp;2: Per-label SBAR metrics for DSPy-optimized model output on the consensus test partition (<code>n=48</code>). <code>Delta F1</code> is optimized minus baseline F1 from the same partition.
 </figcaption>
 <div aria-describedby="tbl-sbar-optimized-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -286,11 +428,11 @@ Table&nbsp;1: Per-label SBAR metrics for DSPy-optimized model output on the cons
 </section>
 <section id="sec-checklist" class="level3" data-number="4.3">
 <h3 data-number="4.3" class="anchored" data-anchor-id="sec-checklist"><span class="header-section-number">4.3</span> Checklist task: grouped per-label performance</h3>
-<p>The grouped checklist per-label analysis is provided in Table <a href="#tbl-checklist-grouped" class="quarto-xref">Table&nbsp;2</a>.</p>
+<p>The grouped checklist per-label analysis is provided in Table <a href="#tbl-checklist-grouped" class="quarto-xref">Table&nbsp;3</a>.</p>
 <div id="tbl-checklist-grouped" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-checklist-grouped-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2: Grouped checklist label performance on the consensus test partition (<code>n=49</code>).
+Table&nbsp;3: Grouped checklist label performance on the consensus test partition (<code>n=49</code>).
 </figcaption>
 <div aria-describedby="tbl-checklist-grouped-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">

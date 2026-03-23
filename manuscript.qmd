@@ -7,7 +7,6 @@ format:
   html:
     toc: true
     number-sections: true
-  docx: default
 execute:
   echo: false
   warning: false
@@ -24,45 +23,63 @@ Clinical handover requires concise and accurate transfer of critical patient inf
 
 ## Methods {#sec-methods}
 
-### Study design
 
-This manuscript reports outcomes aligned to the Phase 1 objective in `proposal.md`: development of a generative AI pipeline to produce accurate handover recommendations and structured outputs.
 
 Tasks considered as potentially amenable to summarization by AI were identified as:
 
 - Extracting spans of transcripts aligned with SBAR
-- Identifying key concepts and entities in handover transcripts
+- Identifying key concepts and entities in handover transcripts. In this study, this task was operationalised as a checklist of items recommended for nursing clinical handover at our institution as part of quality-improvement initiatives. The checklist items are summarised in Table @tbl-checklist-items.
+
 - Identifying spans of text in transcript that were communicated in uncertain terms.
+
+::: {#tbl-checklist-items}
+| Category | Checklist item |
+| --- | --- |
+| Patient Involvement | Clinician introductions |
+| Patient Involvement | Introduction of clinicians to the patient or carer |
+| Patient Involvement | Invitation for the patient or carer to participate in handover |
+| Identification | Verification of three patient identifiers |
+| Situation | Primary diagnosis or reason for admission |
+| Situation | Significant events or complications |
+| Situation | Current status, including pending tests/procedures and interim plans/orders |
+| Background | Relevant clinical and social history, including comorbidities |
+| Background | Falls risk |
+| Background | Pressure injury risk |
+| Background | Allergies |
+| Background | Advance care planning |
+| Assessment | Observations, Q-ADDS score, and recent escalations |
+| Assessment | Pain management |
+| Assessment | Devices, lines, and vascular access |
+| Assessment | Critical monitoring and alarms |
+| Assessment | Nutrition and dietary restrictions |
+| Assessment | Fluid balance and fluid restrictions |
+| Assessment | Infusions |
+| Assessment | Medication chart review, including high-risk medicines |
+| Assessment | Pathology results or pending investigations |
+| Assessment | Mobility and use of aids |
+| Assessment | Skin integrity and related interventions |
+| Recommendation | Discharge plan |
+| Recommendation | Critical actions required |
+| Recommendation | Follow-up care plan or pathway actions |
+| Recommendation | Patient or carer goals and preferences |
+
+Checklist items used to operationalise identification of key concepts and entities in handover transcripts.
+:::
 
 ### Data sources
 
-We used the publicly available NICTA Synthetic Nursing
-Handover Dataset,^5^ which includes 300 realistic recordings of
-clinical handovers made by a Registered Nurse (RN) based on patient
-profiles with cardiovascular, neurological, renal and respiratory
-conditions. In this dataset, handover monologues recorded by the RN were created from
-comprehensive patient profiles that included information on the
-patient's name, age, admission story, in-patient time, and familiarity
-to the nurses giving and receiving the handover. The RN was encouraged
-to envision herself working in a medical ward, providing verbal
-handovers to another nurse at the patient\'s bedside during a shift
-change.^5^ We used the 100 handover samples from the training partition of this dataset in our study, but modified it from the format of a one-sided monologue into a format
-
-- transcribed audio files using openai whisper
-- transcribed high quality educational videos depicting nursing shift to shift handover
-- used bootstrap few shot examples of the transcribed educational videos in dspy to convert 100 transcripts from the training partition of the NICTA data set to a two_sided handover
-- synthesised TPCH data set with additional 103 examples across other contexts including inter and intra-hospital transfers, post-procedural handover, emergency department and mental health interactively using gpt-5
-- total dataset was 203 synthetic handover examples.
--
-
+We used the publicly available NICTA Synthetic Nursing Handover Dataset, which contains realistic recordings of clinical handovers delivered by a registered nurse based on patient profiles with cardiovascular, neurological, renal, and respiratory conditions.^5^ In this dataset, handover monologues were generated from comprehensive patient profiles that included information such as the patient’s name, age, admission history, inpatient duration, and the familiarity between the nurses giving and receiving the handover. The nurse was instructed to simulate a bedside shift-to-shift handover within a medical ward setting.^5^
+For our study, we used 100 handover samples from the training partition of the NICTA dataset. First, audio recordings from the NICTA dataset were transcribed using the OpenAI Whisper speech-to-text model. Second, three high-quality videos depicting conversational nursing shift-to-shift handovers, which were developed at the authors’ institution for educational purposes, were transcribed in a similar manner to provide examples of interactive handover dialogue. These transcripts were then used as few-shot examples within the DSPy framework using the `BootstrapFewShot` optimizer to guide the transformation of the 100 NICTA monologue transcripts into two-sided conversational handovers to better reflect real-world contemporary clinical handover interactions. To broaden the range of clinical contexts represented in the dataset, we further synthesised 103 additional handover examples using the GPT-5 model interactively in a chat interface. These scenarios included inter- and intra-hospital transfers, post-procedural handovers, emergency department transitions, and handovers that involved patients with complex mental health care needs. The final dataset comprised 203 synthetic handover transcripts used for subsequent annotation and model development. It is available at [URL to dataset repository]. 
 
 ### Annotation
 
-Phase 1 described three sources of handover data and planned annotation of 203 transcripts. Two clinically experienced annotators independently annotated transcripts using a structured rubric, then discrepancies were reconciled through consensus meetings with the broader investigator team and consumer partner. This consensus process produced the reference labels used for downstream model development and evaluation.
+Two experienced annotators, who are clinically active Registered Nurses, independently annotated transcripts using a structured rubric. Labelled annotations that met consensus between reviewers were used as the reference labels used for downstream model development and evaluation.
 
-### Model development and optimization
+### Large language model prompt optimisation methods
 
-Model orchestration used DSPy (`dspy`) for predictor construction, configuration, and optimization. The span and checklist tasks used task-specific signatures and DSPy optimization workflows. In this report, SBAR span extraction compares:
+Annotated handover records were first partitioned deterministically into optimisation (75%) and evaluation (25%) subsets using a fixed random split. Model orchestration used DSPy (`dspy`) for predictor construction, configuration, and optimization.
+
+We defined initial prompts as DSPy signature that described the intent of each task. The DSPy signature specified the input and output schema for the tasks, as well as the constraints and evaluation metrics to guide optimization. The span and checklist tasks used task-specific signatures and DSPy optimization workflows. In this report, SBAR span extraction compares:
 
 1. Baseline prompt pipeline (initial DSPy signature without trained program loading).
 2. DSPy-optimized prompt/program configuration.
@@ -83,7 +100,7 @@ Per-label SBAR metrics were generated with `analysis/per_label_analysis.py`, rep
 
 ### Data analysis
 
-For both tasks, performance was summarized with standard classification metrics:
+Performance was summarized with standard classification metrics for all tasks:
 
 1. Precision = true positives / (true positives + false positives).
 2. Recall = true positives / (true positives + false negatives).
