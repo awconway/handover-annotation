@@ -3,6 +3,7 @@ title: "Evaluation of DSPy-Optimized AI Assistance for Clinical Handover"
 author:
   - "Study Team"
 date: today
+bibliography: references.bib
 format:
   html:
     toc: true
@@ -24,13 +25,11 @@ Clinical handover requires concise and accurate transfer of critical patient inf
 ## Methods {#sec-methods}
 
 
+Tasks related to clinical handover communication that were considered as potentially augmentable with AI assistance were evaluated in this study:
 
-Tasks considered as potentially amenable to summarization by AI were identified as:
-
-- Extracting spans of transcripts aligned with SBAR
-- Identifying key concepts and entities in handover transcripts. In this study, this task was operationalised as a checklist of items recommended for nursing clinical handover at our institution as part of quality-improvement initiatives. The checklist items are summarised in Table @tbl-checklist-items.
-
-- Identifying spans of text in transcript that were communicated in uncertain terms.
+- Extracting spans of text from transcripts that aligned with the SBAR (Situation, Background, Assessment, Recommendation) framework for structuring clinical handover. In this study, SBAR span extraction was operationalised as a sequence-labeling task to identify contiguous spans of text in handover transcripts that corresponded to each SBAR category.
+- Identifying key concepts and entities in handover transcripts. In this study, this task was operationalised as a checklist of items that are recommended to be addressed during nursing clinical handover, which were developed as part of quality-improvement processes. The checklist items are summarised in Table @tbl-checklist-items.
+- Identifying spans of text in transcripts that were communicated in uncertain terms. In this study, this task was operationalised as span annotation of utterances during handover that conveyed incomplete knowledge, vague or hedged wording, imprecise timing, second-hand sourcing, unclear procedures, or unclear responsibility for follow-up actions. These forms of uncertainty were treated as potentially clinically important because they may indicate information that requires clarification or verification by the receiving clinician. The uncertainty categories and example guidance provided to annotators are summarised in Table @tbl-uncertainty-items.
 
 ::: {#tbl-checklist-items}
 | Category | Checklist item |
@@ -66,66 +65,53 @@ Tasks considered as potentially amenable to summarization by AI were identified 
 Checklist items used to operationalise identification of key concepts and entities in handover transcripts.
 :::
 
+::: {#tbl-uncertainty-items}
+| Category | Definition / when to use | Example from handover speech |
+| --- | --- | --- |
+| Hedge / Probability Language | The speaker indicates partial confidence or doubt about information. | “I think ENT reviewed him.”<br>“He should be going to theatre soon.” |
+| Vague / Qualitative Expression | Information is described using imprecise or subjective language. | “He looks fine now.”<br>“Seems okay.” |
+| Unknown Fact / Explicit Lack of Knowledge | The speaker openly states missing knowledge or incomplete data. | “Not sure if consent’s been signed.”<br>“I don’t know his allergies.” |
+| Indefinite Timing | Timing or schedule for an event is vague or lacks precision. | “Later today.”<br>“After the round.” |
+| Source Uncertainty | Information relies on a second-hand or unverifiable source. | “ENT said he’s on the list.”<br>“Night nurse told me.” |
+| Procedural Uncertainty | The next step in care is unclear or the plan is not explicitly stated. | “We’ll see how he goes.”<br>“You might want to check his IV.” |
+| Responsibility Uncertainty | A required task or follow-up is mentioned, but it is unclear who is responsible for performing it. | “Bloods to be checked later.”<br>“Needs review this afternoon.” |
+
+Uncertainty categories used to support annotator identification of uncertainty-related spans in handover transcripts.
+:::
+
 ### Data sources
 
-We used the publicly available NICTA Synthetic Nursing Handover Dataset, which contains realistic recordings of clinical handovers delivered by a registered nurse based on patient profiles with cardiovascular, neurological, renal, and respiratory conditions.^5^ In this dataset, handover monologues were generated from comprehensive patient profiles that included information such as the patient’s name, age, admission history, inpatient duration, and the familiarity between the nurses giving and receiving the handover. The nurse was instructed to simulate a bedside shift-to-shift handover within a medical ward setting.^5^
+We used the publicly available NICTA Synthetic Nursing Handover Dataset, which contains realistic recordings of clinical handovers delivered by a registered nurse based on patient profiles with cardiovascular, neurological, renal, and respiratory conditions.@suominen2015benchmarking In this dataset, handover monologues were generated from comprehensive patient profiles that included information such as the patient’s name, age, admission history, inpatient duration, and the familiarity between the nurses giving and receiving the handover. The nurse was instructed to simulate a bedside shift-to-shift handover within a medical ward setting.@suominen2015benchmarking
+
 For our study, we used 100 handover samples from the training partition of the NICTA dataset. First, audio recordings from the NICTA dataset were transcribed using the OpenAI Whisper speech-to-text model. Second, three high-quality videos depicting conversational nursing shift-to-shift handovers, which were developed at the authors’ institution for educational purposes, were transcribed in a similar manner to provide examples of interactive handover dialogue. These transcripts were then used as few-shot examples within the DSPy framework using the `BootstrapFewShot` optimizer to guide the transformation of the 100 NICTA monologue transcripts into two-sided conversational handovers to better reflect real-world contemporary clinical handover interactions. To broaden the range of clinical contexts represented in the dataset, we further synthesised 103 additional handover examples using the GPT-5 model interactively in a chat interface. These scenarios included inter- and intra-hospital transfers, post-procedural handovers, emergency department transitions, and handovers that involved patients with complex mental health care needs. The final dataset comprised 203 synthetic handover transcripts used for subsequent annotation and model development. It is available at [URL to dataset repository]. 
 
 ### Annotation
 
 Two experienced annotators, who are clinically active Registered Nurses, independently annotated transcripts using a structured rubric. Labelled annotations that met consensus between reviewers were used as the reference labels used for downstream model development and evaluation.
 
+Annotation was performed using Prodigy annotation software using a custom interface that presented each transcript in three components.@montani2018prodigy First, annotators highlighted relevant spans of text and assigned labels corresponding to the SBAR framework together with markers of communicative uncertainty, including vagueness, hedging, unknown facts, indefinite timing, source uncertainty, procedural uncertainty, and uncertainty regarding responsibility. Overlapping span labels were permitted where a passage served more than one communicative function. Second, annotators completed a multiple-response checklist indicating whether predefined handover elements were present in the transcript. Third, annotators recorded up to three additional questions that a receiving clinician might reasonably ask before concluding the handover, together with a brief rationale for each question, in order to capture perceived information gaps.
+
+Both annotators reviewed all transcripts independently within the same annotation environment and were supported by written guidance and examples to promote consistent interpretation of the coding framework. For creation of the reference standard, a consensus dataset was derived by retaining only those span annotations and checklist items for which both annotators agreed. In practical terms, this meant that only text segments assigned the same label by both reviewers, and only checklist items selected by both reviewers, were carried forward for downstream model development and evaluation.
+
 ### Large language model prompt optimisation methods
 
-Annotated handover records were first partitioned deterministically into optimisation (75%) and evaluation (25%) subsets using a fixed random split. Model orchestration used DSPy (`dspy`) for predictor construction, configuration, and optimization.
+Annotated handover transcripts were first partitioned deterministically into optimisation (75%) and evaluation (25%) subsets using a fixed random split. Prompt optimisation was performed within DSPy,@khattab2023dspy which is a Python framework that can be used for prompt optimisation using feedback from model outputs to improve task performance. For each task, we defined a task-specific DSPy signature that specified the transcript as input and a constrained structured output. Checklist prediction was formulated as multilabel classification, whereas SBAR and uncertainty-related tasks were formulated as span extraction, requiring the model to return verbatim text segments from the transcript together with the appropriate label.
 
-We defined initial prompts as DSPy signature that described the intent of each task. The DSPy signature specified the input and output schema for the tasks, as well as the constraints and evaluation metrics to guide optimization. The span and checklist tasks used task-specific signatures and DSPy optimization workflows. In this report, SBAR span extraction compares:
+Baseline performance was obtained by evaluating the initial DSPy signatures. Optimised performance was obtained by compiling the same predictors on the optimisation partition. For checklist prediction, optimisation targeted example-level multilabel F1 against the labels. A prompt optimisation method called GEPA, was used to optimise the prompts.@agrawal2025gepa GEPA is a reflection-based evolutionary prompt optimiser within DSPy.@agrawal2025gepa This approach involves iteratively proposing revised task instructions and retains variants that improve task-specific performance. The optimisation was conducted over 576 scoring calls of the full program, which is equivalent to about 3 complete scoring passes over the combined training and validation examples used during prompt search. GEPA was supplied with both a scalar score and natural-language error feedback. For checklist prediction, feedback identified which labels had been correctly included, incorrectly added, or omitted. For span-extraction tasks, feedback described the reference spans, predicted spans, matched and unmatched spans, and the extent of span-boundary overlap. This feedback was then used by a separate reflection model (GPT-5.2) to generate revised instructions for the predictor. We used the best performing foundational model available at the time, which was GPT 5.2, for the reflection model.  For SBAR and other span-extraction tasks, GEPA optimisation was driven by the same span metric used at evaluation. Predicted quotes were mapped back to their location in the transcript and scored according to label agreement and span overlap with the reference annotations. This design encouraged the optimiser to improve not only label selection but also extraction boundaries. The final compiled programs were then fixed and evaluated on the held-out test partition.
 
-1. Baseline prompt pipeline (initial DSPy signature without trained program loading).
-2. DSPy-optimized prompt/program configuration.
-
-Langextract
-
-- model selection based on large model first then smaller if necessary?
-
-### Evaluation setting
-
-Evaluation scripts used held-out test partitions (default behavior without `--use-all`) from deterministic 75/25 splits in `src/data/dataset.py` (local RNG seed 339). Reported artifacts:
-
-1. SBAR baseline: `evals/eval_sbar_span_consensus_test_baseline_gpt_5.2.jsonl` (48 test examples).
-2. SBAR optimized: `evals/eval_sbar_span_gpt5-2_consensus_test.jsonl` (48 test examples).
-3. Checklist grouped per-label analysis: rendered with `analysis/render_checklist_md_table.py` from `evals/eval_checklist_consensus_gpt_5_2_test_analysis/per_label.csv` and baseline `evals/eval_baseline_checklist_consensus_gpt_5_2_test_analysis/per_label.csv`, based on `evals/eval_checklist_consensus_gpt_5_2_test.jsonl` (49 test examples).
-
-Per-label SBAR metrics were generated with `analysis/per_label_analysis.py`, reporting support, matched spans, recall, precision, F1, and mean IoU.
+In addition to DSPy prompt optimisations, we conducted separate evaluations using the LangExtract framework, as a prompt-based few-shot extraction approach for the SBAR, uncertainty-span, and unknown-fact span tasks.@goel_2026_langextract These experiments used task-specific prompt descriptions together with annotated in-context examples derived from the reference data. We used 10 annotated examples from the training partition as few-shot exemplars, and inference was then performed on the full held-out test partition for each task. Few-shot examples were validated to ensure alignment between the quoted extraction and the source transcript before inference. LangExtract outputs were normalised to the same label-and-verbatim-quote representation used for the DSPy span tasks and were scored with the same overlap-based span metric, allowing direct comparison across methods. For the binary unknown-fact experiments, the few-shot example set was additionally constrained to include positive examples of the target label.
 
 ### Data analysis
 
-Performance was summarized with standard classification metrics for all tasks:
+Performance was measured with standard classification metrics for the checklist task. At the level of individual labels, we calculated counts of true positives, false positives, false negatives, and true negatives, together with precision, recall, and F1. Aggregate performance was summarised using micro-averaged (pooled), macro-averaged (unweighted mean), and support-weighted precision, recall, and F1 across labels.
 
-1. Precision = true positives / (true positives + false positives).
-2. Recall = true positives / (true positives + false negatives).
-3. F1 score = harmonic mean of precision and recall.
-
-For SBAR span extraction, `analysis/per_label_analysis.py` computes metrics per SBAR label using matched gold-predicted span pairs from `prediction.span_metrics.detailed`:
-
-1. `Gold`: number of reference spans for that label.
-2. `Predicted spans`: number of model-predicted spans for that label.
-3. `Recall`: proportion of gold spans that were matched.
-4. `Precision`: proportion of predicted spans that were matched.
-5. `F1`: balance between precision and recall per label.
-6. `Mean IoU`: average intersection-over-union of matched spans, quantifying boundary overlap quality.
-
-For checklist analysis, the grouped table reports per-label confusion-derived counts (`TP`, `FP`, `FN`, `TN`) and derived precision, recall, and F1. Aggregate summary metrics are:
-
-1. Micro averages: pooled counts across all labels before computing precision/recall/F1.
-2. Macro averages: unweighted mean of label-level precision/recall/F1.
-3. Support-weighted averages: label-level metrics weighted by label support.
+For span-extraction tasks, each transcript was scored using a label-aware soft span F1 metric. Model outputs were represented as label-and-quote pairs, and each predicted quote was mapped back to a character span in the source transcript using exact string matching, with approximate matching used only when an exact match was unavailable. Predicted spans were then matched one-to-one with reference spans of the same label according to highest overlap. Match quality was quantified by intersection over union, and soft true-positive credit was defined as the summed intersection over union across matched pairs. In practical terms, intersection over union measures how much the predicted text span overlaps the annotated text span relative to the total text covered by either span, so higher values indicate closer agreement on the start and end boundaries of the extracted passage. Precision was calculated as this summed overlap divided by the number of predicted spans, recall as the summed overlap divided by the number of reference spans, and F1 as the harmonic mean of precision and recall. When neither reference nor predicted spans were present, the score was set to 1.0. This metric was used both as the objective function for GEPA optimisation of span tasks and as the primary evaluation metric for individual transcripts. We additionally calculated per-label descriptive metrics derived from matched gold and predicted spans, including the number of reference spans, the number of predicted spans, precision, recall, F1, and mean IoU.
 
 ## Results {#sec-results}
 
 ### Key findings {#sec-results-summary}
 
-On the SBAR span extraction task, DSPy optimization improved performance on the consensus test partition (`n=48`), increasing macro-F1 from 0.494 to 0.733 (+0.239) and macro-precision from 0.406 to 0.761. The largest per-label improvements in F1 were observed for BACKGROUND (+0.403), SITUATION (+0.251), and ASSESSMENT (+0.214), with a smaller gain for RECOMMENDATION (+0.089). Span boundary overlap quality remained high, with mean IoU values between 0.688 and 0.794 across SBAR labels. For the checklist task, pooled performance on the consensus test partition (`n=49`) was strong (micro-F1 0.854, +0.081 vs baseline; macro-F1 0.762, +0.073), while a subset of low-support labels remained challenging, including labels with F1=0.
+On the SBAR span extraction task, DSPy optimization improved performance on the test partition (`n=48`), increasing macro-F1 from 0.494 to 0.733 (+0.239) and macro-precision from 0.406 to 0.761. The largest per-label improvements in F1 were observed for BACKGROUND (+0.403), SITUATION (+0.251), and ASSESSMENT (+0.214), with a smaller gain for RECOMMENDATION (+0.089). Span boundary overlap quality remained high, with mean IoU values between 0.688 and 0.794 across SBAR labels. For the checklist task, pooled performance on the consensus test partition (`n=49`) was strong (micro-F1 0.854, +0.081 vs baseline; macro-F1 0.762, +0.073), while a subset of low-support labels remained challenging, including labels with F1=0.
 
 ### SBAR span extraction: per-label optimized performance {#sec-sbar-optimized}
 
