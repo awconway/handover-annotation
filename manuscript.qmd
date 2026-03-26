@@ -4,10 +4,12 @@ author:
   - "Study Team"
 date: today
 bibliography: references.bib
+jupyter: python3
 format:
   html:
     toc: true
     number-sections: true
+    embed-resources: true
 execute:
   echo: false
   warning: false
@@ -73,7 +75,7 @@ Checklist items used to operationalise identification of key concepts and entiti
 | Unknown Fact / Explicit Lack of Knowledge | The speaker openly states missing knowledge or incomplete data. | “Not sure if consent’s been signed.”<br>“I don’t know his allergies.” |
 | Indefinite Timing | Timing or schedule for an event is vague or lacks precision. | “Later today.”<br>“After the round.” |
 | Source Uncertainty | Information relies on a second-hand or unverifiable source. | “ENT said he’s on the list.”<br>“Night nurse told me.” |
-| Procedural Uncertainty | The next step in care is unclear or the plan is not explicitly stated. | “We’ll see how he goes.”<br>“You might want to check his IV.” |
+| Procedural Uncertainty | The next step in care is unclear or the plan is not explicitly stated. | “You might want to check his IV.” |
 | Responsibility Uncertainty | A required task or follow-up is mentioned, but it is unclear who is responsible for performing it. | “Bloods to be checked later.”<br>“Needs review this afternoon.” |
 
 Uncertainty categories used to support annotator identification of uncertainty-related spans in handover transcripts.
@@ -81,7 +83,7 @@ Uncertainty categories used to support annotator identification of uncertainty-r
 
 ### Data sources
 
-We used the publicly available NICTA Synthetic Nursing Handover Dataset, which contains realistic recordings of clinical handovers delivered by a registered nurse based on patient profiles with cardiovascular, neurological, renal, and respiratory conditions.@suominen2015benchmarking In this dataset, handover monologues were generated from comprehensive patient profiles that included information such as the patient’s name, age, admission history, inpatient duration, and the familiarity between the nurses giving and receiving the handover. The nurse was instructed to simulate a bedside shift-to-shift handover within a medical ward setting.@suominen2015benchmarking
+We used the publicly available NICTA Synthetic Nursing Handover Dataset, which contains realistic recordings of clinical handovers delivered by a registered nurse based on patient profiles with cardiovascular, neurological, renal, and respiratory conditions [@suominen2015benchmarking]. In this dataset, handover monologues were generated from comprehensive patient profiles that included information such as the patient’s name, age, admission history, inpatient duration, and the familiarity between the nurses giving and receiving the handover. The nurse was instructed to simulate a bedside shift-to-shift handover within a medical ward setting [@suominen2015benchmarking].
 
 For our study, we used 100 handover samples from the training partition of the NICTA dataset. First, audio recordings from the NICTA dataset were transcribed using the OpenAI Whisper speech-to-text model. Second, three high-quality videos depicting conversational nursing shift-to-shift handovers, which were developed at the authors’ institution for educational purposes, were transcribed in a similar manner to provide examples of interactive handover dialogue. These transcripts were then used as few-shot examples within the DSPy framework using the `BootstrapFewShot` optimizer to guide the transformation of the 100 NICTA monologue transcripts into two-sided conversational handovers to better reflect real-world contemporary clinical handover interactions. To broaden the range of clinical contexts represented in the dataset, we further synthesised 103 additional handover examples using the GPT-5 model interactively in a chat interface. These scenarios included inter- and intra-hospital transfers, post-procedural handovers, emergency department transitions, and handovers that involved patients with complex mental health care needs. The final dataset comprised 203 synthetic handover transcripts used for subsequent annotation and model development. It is available at [URL to dataset repository]. 
 
@@ -89,17 +91,19 @@ For our study, we used 100 handover samples from the training partition of the N
 
 Two experienced annotators, who are clinically active Registered Nurses, independently annotated transcripts using a structured rubric. Labelled annotations that met consensus between reviewers were used as the reference labels used for downstream model development and evaluation.
 
-Annotation was performed using Prodigy annotation software using a custom interface that presented each transcript in three components.@montani2018prodigy First, annotators highlighted relevant spans of text and assigned labels corresponding to the SBAR framework together with markers of communicative uncertainty, including vagueness, hedging, unknown facts, indefinite timing, source uncertainty, procedural uncertainty, and uncertainty regarding responsibility. Overlapping span labels were permitted where a passage served more than one communicative function. Second, annotators completed a multiple-response checklist indicating whether predefined handover elements were present in the transcript. Third, annotators recorded up to three additional questions that a receiving clinician might reasonably ask before concluding the handover, together with a brief rationale for each question, in order to capture perceived information gaps.
+Annotation was performed using Prodigy annotation software using a custom interface that presented each transcript in three components [@montani2018prodigy]. First, annotators highlighted relevant spans of text and assigned labels corresponding to the SBAR framework together with markers of communicative uncertainty, including vagueness, hedging, unknown facts, indefinite timing, source uncertainty, procedural uncertainty, and uncertainty regarding responsibility. Overlapping span labels were permitted where a passage served more than one communicative function. Second, annotators completed a multiple-response checklist indicating whether predefined handover elements were present in the transcript. Third, annotators recorded up to three additional questions that a receiving clinician might reasonably ask before concluding the handover, together with a brief rationale for each question, in order to capture perceived information gaps.
 
 Both annotators reviewed all transcripts independently within the same annotation environment and were supported by written guidance and examples to promote consistent interpretation of the coding framework. For creation of the reference standard, a consensus dataset was derived by retaining only those span annotations and checklist items for which both annotators agreed. In practical terms, this meant that only text segments assigned the same label by both reviewers, and only checklist items selected by both reviewers, were carried forward for downstream model development and evaluation.
 
 ### Large language model prompt optimisation methods
 
-Annotated handover transcripts were first partitioned deterministically into optimisation (75%) and evaluation (25%) subsets using a fixed random split. Prompt optimisation was performed within DSPy,@khattab2023dspy which is a Python framework that can be used for prompt optimisation using feedback from model outputs to improve task performance. For each task, we defined a task-specific DSPy signature that specified the transcript as input and a constrained structured output. Checklist prediction was formulated as multilabel classification, whereas SBAR and uncertainty-related tasks were formulated as span extraction, requiring the model to return verbatim text segments from the transcript together with the appropriate label.
+Annotated handover transcripts were first partitioned deterministically into optimisation (75%) and evaluation (25%) subsets using a fixed random split. Prompt optimisation was performed within DSPy [@khattab2023dspy], which is a Python framework that can be used for prompt optimisation using feedback from model outputs to improve task performance. For each task, we defined a task-specific DSPy signature that specified the transcript as input and a constrained structured output. Checklist prediction was formulated as multilabel classification, whereas SBAR and uncertainty-related tasks were formulated as span extraction, requiring the model to return verbatim text segments from the transcript together with the appropriate label.
 
-Baseline performance was obtained by evaluating the initial DSPy signatures. Optimised performance was obtained by compiling the same predictors on the optimisation partition. For checklist prediction, optimisation targeted example-level multilabel F1 against the labels. A prompt optimisation method called GEPA, was used to optimise the prompts.@agrawal2025gepa GEPA is a reflection-based evolutionary prompt optimiser within DSPy.@agrawal2025gepa This approach involves iteratively proposing revised task instructions and retains variants that improve task-specific performance. The optimisation was conducted over 576 scoring calls of the full program, which is equivalent to about 3 complete scoring passes over the combined training and validation examples used during prompt search. GEPA was supplied with both a scalar score and natural-language error feedback. For checklist prediction, feedback identified which labels had been correctly included, incorrectly added, or omitted. For span-extraction tasks, feedback described the reference spans, predicted spans, matched and unmatched spans, and the extent of span-boundary overlap. This feedback was then used by a separate reflection model (GPT-5.2) to generate revised instructions for the predictor. We used the best performing foundational model available at the time, which was GPT 5.2, for the reflection model.  For SBAR and other span-extraction tasks, GEPA optimisation was driven by the same span metric used at evaluation. Predicted quotes were mapped back to their location in the transcript and scored according to label agreement and span overlap with the reference annotations. This design encouraged the optimiser to improve not only label selection but also extraction boundaries. The final compiled programs were then fixed and evaluated on the held-out test partition.
+Across the baseline DSPy evaluations, GEPA-based DSPy optimisation experiments, and LangExtract experiments, we evaluated three underlying language models: OpenAI GPT-5-nano, which served as a smaller lower-cost comparison model; OpenAI GPT-5.2, which served as the highest-capacity proprietary model evaluated in this study; and MedGemma 27B, a 27-billion-parameter open-weight model developed by Google for medical tasks. For DSPy baseline and GEPA runs, the same task model was used before and after compilation so that differences reflected prompt optimisation rather than a change in the underlying model.
 
-In addition to DSPy prompt optimisations, we conducted separate evaluations using the LangExtract framework, as a prompt-based few-shot extraction approach for the SBAR, uncertainty-span, and unknown-fact span tasks.@goel_2026_langextract These experiments used task-specific prompt descriptions together with annotated in-context examples derived from the reference data. We used 10 annotated examples from the training partition as few-shot exemplars, and inference was then performed on the full held-out test partition for each task. Few-shot examples were validated to ensure alignment between the quoted extraction and the source transcript before inference. LangExtract outputs were normalised to the same label-and-verbatim-quote representation used for the DSPy span tasks and were scored with the same overlap-based span metric, allowing direct comparison across methods. For the binary unknown-fact experiments, the few-shot example set was additionally constrained to include positive examples of the target label.
+Baseline performance was obtained by evaluating the initial DSPy signatures. Optimised performance was obtained by compiling the same predictors on the optimisation partition. For checklist prediction, optimisation targeted example-level multilabel F1 against the labels. A prompt optimisation method called GEPA was used to optimise the prompts [@agrawal2025gepa]. GEPA is a reflection-based evolutionary prompt optimiser within DSPy [@agrawal2025gepa]. This approach involves iteratively proposing revised task instructions and retains variants that improve task-specific performance. The optimisation was conducted over 576 scoring calls of the full program, which is equivalent to about 3 complete scoring passes over the combined training and validation examples used during prompt search. GEPA was supplied with both a scalar score and natural-language error feedback. For checklist prediction, feedback identified which labels had been correctly included, incorrectly added, or omitted. For span-extraction tasks, feedback described the reference spans, predicted spans, matched and unmatched spans, and the extent of span-boundary overlap. This feedback was then used by a separate reflection model (GPT-5.2) to generate revised instructions for the predictor. GPT-5.2 was selected as the reflection model because it was the strongest performing model available within our evaluation framework at the time. For SBAR and other span-extraction tasks, GEPA optimisation was driven by the same span metric used at evaluation. Predicted quotes were mapped back to their location in the transcript and scored according to label agreement and span overlap with the reference annotations. This design encouraged the optimiser to improve not only label selection but also extraction boundaries. The final compiled programs were then fixed and evaluated on the held-out test partition.
+
+In addition to DSPy prompt optimisations, we conducted separate evaluations using the LangExtract framework, as a prompt-based few-shot extraction approach for the SBAR, uncertainty-span, and unknown-fact span tasks [@goel_2026_langextract]. Within this framework, extraction experiments were run with GPT-5.2 and MedGemma 27B; GPT-5-nano was evaluated within the DSPy baseline and GEPA workflows rather than the LangExtract experiments. These experiments used task-specific prompt descriptions together with annotated in-context examples derived from the reference data. We used 10 annotated examples from the training partition as few-shot exemplars, and inference was then performed on the full held-out test partition for each task. Few-shot examples were validated to ensure alignment between the quoted extraction and the source transcript before inference. LangExtract outputs were normalised to the same label-and-verbatim-quote representation used for the DSPy span tasks and were scored with the same overlap-based span metric, allowing direct comparison across methods. For the binary unknown-fact experiments, the few-shot example set was additionally constrained to include positive examples of the target label.
 
 ### Data analysis
 
@@ -107,81 +111,182 @@ Performance was measured with standard classification metrics for the checklist 
 
 For span-extraction tasks, each transcript was scored using a label-aware soft span F1 metric. Model outputs were represented as label-and-quote pairs, and each predicted quote was mapped back to a character span in the source transcript using exact string matching, with approximate matching used only when an exact match was unavailable. Predicted spans were then matched one-to-one with reference spans of the same label according to highest overlap. Match quality was quantified by intersection over union, and soft true-positive credit was defined as the summed intersection over union across matched pairs. In practical terms, intersection over union measures how much the predicted text span overlaps the annotated text span relative to the total text covered by either span, so higher values indicate closer agreement on the start and end boundaries of the extracted passage. Precision was calculated as this summed overlap divided by the number of predicted spans, recall as the summed overlap divided by the number of reference spans, and F1 as the harmonic mean of precision and recall. When neither reference nor predicted spans were present, the score was set to 1.0. This metric was used both as the objective function for GEPA optimisation of span tasks and as the primary evaluation metric for individual transcripts. We additionally calculated per-label descriptive metrics derived from matched gold and predicted spans, including the number of reference spans, the number of predicted spans, precision, recall, F1, and mean IoU.
 
+```{python}
+#| label: results-setup
+#| include: false
+
+from pathlib import Path
+from analysis.manuscript_results import (
+    TASK_LABELS,
+    checklist_category_markdown_table,
+    comparison_plot_svg,
+    curated_results,
+    fmt3,
+    fmt_signed3,
+    load_all_results,
+    load_checklist_main_tables,
+    load_sbar_main_tables,
+    main_overview_lookup,
+    main_overview_markdown_table,
+    main_overview_table,
+    manuscript_scope_results,
+    sbar_main_markdown_table,
+)
+
+
+ROOT = Path(".")
+
+all_results_df = load_all_results(ROOT)
+scoped_results_df = manuscript_scope_results(all_results_df)
+curated_results_df = curated_results(all_results_df)
+results_overview_df = main_overview_table(curated_results_df)
+results_overview_md = main_overview_markdown_table(results_overview_df)
+results_overview_svg = comparison_plot_svg(results_overview_df, width=980)
+results_overview_lookup = main_overview_lookup(results_overview_df)
+
+
+def best_row(task: str, approach: str | None = None):
+    subset = curated_results_df[curated_results_df["task"] == task]
+    if approach is not None:
+        subset = subset[subset["approach"] == approach]
+    if subset.empty:
+        return None
+    return subset.sort_values("micro_f1", ascending=False).iloc[0]
+
+
+sbar_best_baseline = best_row(TASK_LABELS["sbar"], "Baseline")
+sbar_best_dspy = best_row(TASK_LABELS["sbar"], "DSPy/GEPA")
+sbar_best_langextract = best_row(TASK_LABELS["sbar"], "LangExtract")
+sbar_gpt_nano_dspy = curated_results_df[
+    (curated_results_df["task"] == TASK_LABELS["sbar"])
+    & (curated_results_df["approach"] == "DSPy/GEPA")
+    & (curated_results_df["model"] == "GPT-5-nano")
+].iloc[0]
+uncertain_best_baseline = best_row(TASK_LABELS["uncertain"], "Baseline")
+uncertain_best_dspy = best_row(TASK_LABELS["uncertain"], "DSPy/GEPA")
+uncertain_best_langextract = best_row(TASK_LABELS["uncertain"], "LangExtract")
+unknown_best_baseline = best_row(TASK_LABELS["unknown-fact"], "Baseline")
+unknown_best_dspy = best_row(TASK_LABELS["unknown-fact"], "DSPy/GEPA")
+unknown_best_langextract = best_row(TASK_LABELS["unknown-fact"], "LangExtract")
+checklist_gpt_nano_dspy = curated_results_df[
+    (curated_results_df["task"] == TASK_LABELS["checklist"])
+    & (curated_results_df["approach"] == "DSPy/GEPA")
+    & (curated_results_df["model"] == "GPT-5-nano")
+].iloc[0]
+checklist_medgemma_dspy = curated_results_df[
+    (curated_results_df["task"] == TASK_LABELS["checklist"])
+    & (curated_results_df["approach"] == "DSPy/GEPA")
+    & (curated_results_df["model"] == "MedGemma 27B")
+].iloc[0]
+
+sbar_results = load_sbar_main_tables(ROOT)
+sbar_comp_df = sbar_results["comp_df"]
+sbar_table_md = sbar_main_markdown_table(sbar_comp_df)
+sbar_by_label = sbar_comp_df.set_index("label").to_dict("index")
+sbar_base_n = sbar_results["base_n"]
+sbar_opt_n = sbar_results["opt_n"]
+sbar_base_macro_precision = sbar_results["base_macro_precision"]
+sbar_base_macro_recall = sbar_results["base_macro_recall"]
+sbar_base_macro_f1 = sbar_results["base_macro_f1"]
+sbar_opt_macro_precision = sbar_results["opt_macro_precision"]
+sbar_opt_macro_recall = sbar_results["opt_macro_recall"]
+sbar_opt_macro_f1 = sbar_results["opt_macro_f1"]
+sbar_macro_precision_delta = sbar_opt_macro_precision - sbar_base_macro_precision
+sbar_macro_recall_delta = sbar_opt_macro_recall - sbar_base_macro_recall
+sbar_macro_f1_delta = sbar_opt_macro_f1 - sbar_base_macro_f1
+sbar_mean_iou_min = sbar_results["mean_iou_min"]
+sbar_mean_iou_max = sbar_results["mean_iou_max"]
+
+checklist_results = load_checklist_main_tables(ROOT)
+checklist_summary = checklist_results["summary"]
+checklist_baseline_summary = checklist_results["baseline_summary"]
+checklist_category_md = checklist_category_markdown_table(
+    checklist_results["per_bucket_df"],
+    checklist_results["overall_df"],
+)
+checklist_grouped_table_md = checklist_results["full_grouped_md"]
+checklist_n = int(checklist_summary["n_examples"])
+checklist_micro_f1 = float(checklist_summary["micro"]["f1"])
+checklist_macro_f1 = float(checklist_summary["macro"]["f1"])
+checklist_support_weighted_f1 = float(checklist_summary["macro"]["weighted_f1"])
+checklist_baseline_micro_f1 = float(checklist_baseline_summary["micro"]["f1"])
+checklist_baseline_macro_f1 = float(checklist_baseline_summary["macro"]["f1"])
+checklist_micro_f1_delta = checklist_micro_f1 - checklist_baseline_micro_f1
+checklist_macro_f1_delta = checklist_macro_f1 - checklist_baseline_macro_f1
+checklist_zero_f1_count = checklist_results["zero_f1_count"]
+
+comparison_checklist_gpt52 = results_overview_lookup[(TASK_LABELS["checklist"], "GPT-5.2")]
+comparison_checklist_gptnano = results_overview_lookup[(TASK_LABELS["checklist"], "GPT-5-nano")]
+comparison_checklist_medgemma = results_overview_lookup[(TASK_LABELS["checklist"], "MedGemma 27B")]
+comparison_sbar_gpt52 = results_overview_lookup[(TASK_LABELS["sbar"], "GPT-5.2")]
+comparison_sbar_gptnano = results_overview_lookup[(TASK_LABELS["sbar"], "GPT-5-nano")]
+comparison_sbar_medgemma = results_overview_lookup[(TASK_LABELS["sbar"], "MedGemma 27B")]
+comparison_uncertain_gpt52 = results_overview_lookup[(TASK_LABELS["uncertain"], "GPT-5.2")]
+comparison_uncertain_medgemma = results_overview_lookup[(TASK_LABELS["uncertain"], "MedGemma 27B")]
+comparison_unknown_gpt52 = results_overview_lookup[(TASK_LABELS["unknown-fact"], "GPT-5.2")]
+comparison_unknown_gptnano = results_overview_lookup[(TASK_LABELS["unknown-fact"], "GPT-5-nano")]
+comparison_unknown_medgemma = results_overview_lookup[(TASK_LABELS["unknown-fact"], "MedGemma 27B")]
+```
+
 ## Results {#sec-results}
 
 ### Key findings {#sec-results-summary}
 
-On the SBAR span extraction task, DSPy optimization improved performance on the test partition (`n=48`), increasing macro-F1 from 0.494 to 0.733 (+0.239) and macro-precision from 0.406 to 0.761. The largest per-label improvements in F1 were observed for BACKGROUND (+0.403), SITUATION (+0.251), and ASSESSMENT (+0.214), with a smaller gain for RECOMMENDATION (+0.089). Span boundary overlap quality remained high, with mean IoU values between 0.688 and 0.794 across SBAR labels. For the checklist task, pooled performance on the consensus test partition (`n=49`) was strong (micro-F1 0.854, +0.081 vs baseline; macro-F1 0.762, +0.073), while a subset of low-support labels remained challenging, including labels with F1=0.
+Within-model comparisons showed consistent gains with DSPy/GEPA over matched baselines wherever both were available. For GPT-5.2, DSPy/GEPA improved micro-F1 by `{python} fmt_signed3(comparison_checklist_gpt52["Delta DSPy/GEPA vs baseline"])` for checklist prediction, `{python} fmt_signed3(comparison_sbar_gpt52["Delta DSPy/GEPA vs baseline"])` for SBAR span extraction, `{python} fmt_signed3(comparison_uncertain_gpt52["Delta DSPy/GEPA vs baseline"])` for uncertainty span extraction, and `{python} fmt_signed3(comparison_unknown_gpt52["Delta DSPy/GEPA vs baseline"])` for unknown-fact extraction. GPT-5-nano also improved over baseline for checklist prediction (`{python} fmt_signed3(comparison_checklist_gptnano["Delta DSPy/GEPA vs baseline"])`), SBAR span extraction (`{python} fmt_signed3(comparison_sbar_gptnano["Delta DSPy/GEPA vs baseline"])`), and unknown-fact extraction (`{python} fmt_signed3(comparison_unknown_gptnano["Delta DSPy/GEPA vs baseline"])`). MedGemma 27B improved for checklist prediction (`{python} fmt_signed3(comparison_checklist_medgemma["Delta DSPy/GEPA vs baseline"])`) and uncertainty span extraction (`{python} fmt_signed3(comparison_uncertain_medgemma["Delta DSPy/GEPA vs baseline"])`), although matched baseline comparisons were not available for every task-model combination. Across span tasks, LangExtract generally performed below the corresponding best DSPy/GEPA configuration.
 
-### SBAR span extraction: per-label optimized performance {#sec-sbar-optimized}
+### Comparative performance across tasks and prompting approaches {#sec-results-overview}
 
-@tbl-sbar-optimized summarizes per-label results for the DSPy-optimized GPT-5.2 SBAR span pipeline.
+Figure @fig-results-overview summarizes matched within-model comparisons across tasks for the three models evaluated in the main study. Where more than one saved run existed for the same task, model, and approach, the highest observed micro-F1 for that combination is shown.
+
+::: {#fig-results-overview}
+```{python}
+#| output: asis
+
+print(results_overview_svg)
+```
+
+Within-model comparison of saved evaluation runs within manuscript scope. Horizontal bars show micro-F1 for baseline, DSPy/GEPA, and LangExtract runs for each model within each task. Missing bars indicate that a given task-model-approach combination was not evaluated or was not available as a saved run; in particular, LangExtract was not evaluated for the checklist task.
+:::
+
+### SBAR span extraction {#sec-sbar-optimized}
+
+Among SBAR configurations, the highest overall score was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 `{python} fmt3(sbar_best_dspy["micro_f1"])`), followed by DSPy/GEPA-optimised GPT-5-nano (micro-F1 `{python} fmt3(sbar_gpt_nano_dspy["micro_f1"])`) and LangExtract GPT-5.2 (micro-F1 `{python} fmt3(sbar_best_langextract["micro_f1"])`). Table @tbl-sbar-optimized provides label-level results for the best-performing GPT-5.2 DSPy/GEPA SBAR configuration, compared with its corresponding GPT-5.2 baseline run.
 
 ::: {#tbl-sbar-optimized}
 
-| Label | Gold | Predicted spans | Recall | Precision | Mean IoU | F1 | Delta F1 (vs baseline) |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| ASSESSMENT | 194 | 178 | 0.727 | 0.792 | 0.762 | 0.758 | +0.214 |
-| BACKGROUND | 47 | 56 | 0.766 | 0.643 | 0.688 | 0.699 | +0.403 |
-| RECOMMENDATION | 113 | 129 | 0.717 | 0.628 | 0.791 | 0.669 | +0.089 |
-| SITUATION | 73 | 51 | 0.685 | 0.980 | 0.794 | 0.806 | +0.251 |
+```{python}
+#| output: asis
 
-Per-label SBAR metrics for DSPy-optimized model output on the consensus test partition (`n=48`). `Delta F1` is optimized minus baseline F1 from the same partition.
+print(sbar_table_md)
+```
+
+Per-label SBAR metrics for the best-performing GPT-5.2 DSPy/GEPA model output on the consensus evaluation partition (`{python} f"n={sbar_opt_n}"`). `Delta F1` is the difference from the corresponding GPT-5.2 baseline run on the same partition.
 :::
 
-Across SBAR labels, macro-precision improved from 0.406 to 0.761, macro-recall from 0.686 to 0.724, and macro-F1 from 0.494 to 0.733.
+Within this GPT-5.2 SBAR comparison, macro-precision improved from `{python} fmt3(sbar_base_macro_precision)` to `{python} fmt3(sbar_opt_macro_precision)`, macro-recall from `{python} fmt3(sbar_base_macro_recall)` to `{python} fmt3(sbar_opt_macro_recall)`, and macro-F1 from `{python} fmt3(sbar_base_macro_f1)` to `{python} fmt3(sbar_opt_macro_f1)`. The largest per-label improvements in F1 were observed for BACKGROUND (`{python} fmt_signed3(sbar_by_label["BACKGROUND"]["delta_f1"])`), SITUATION (`{python} fmt_signed3(sbar_by_label["SITUATION"]["delta_f1"])`), and ASSESSMENT (`{python} fmt_signed3(sbar_by_label["ASSESSMENT"]["delta_f1"])`), with a smaller improvement for RECOMMENDATION (`{python} fmt_signed3(sbar_by_label["RECOMMENDATION"]["delta_f1"])`). Span-boundary agreement among matched predictions remained high, with mean IoU values between `{python} fmt3(sbar_mean_iou_min)` and `{python} fmt3(sbar_mean_iou_max)` across SBAR labels.
 
-### Checklist task: grouped per-label performance {#sec-checklist}
+### Checklist task {#sec-checklist}
 
-The grouped checklist per-label analysis is provided in Table @tbl-checklist-grouped.
+For checklist prediction, the best overall result was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 `{python} fmt3(checklist_micro_f1)`, macro-F1 `{python} fmt3(checklist_macro_f1)`, support-weighted F1 `{python} fmt3(checklist_support_weighted_f1)`). This exceeded the matched GPT-5.2 baseline by `{python} fmt_signed3(checklist_micro_f1_delta)` on micro-F1 and `{python} fmt_signed3(checklist_macro_f1_delta)` on macro-F1. DSPy/GEPA-optimised GPT-5-nano also performed competitively (micro-F1 `{python} fmt3(checklist_gpt_nano_dspy["micro_f1"])`), while MedGemma 27B reached micro-F1 `{python} fmt3(checklist_medgemma_dspy["micro_f1"])`). Table @tbl-checklist-grouped presents grouped per-label performance for the best-performing GPT-5.2 checklist model. The largest improvements over baseline were observed for patient involvement items and several recommendation-related labels, while `{python} checklist_zero_f1_count` low-support labels still had F1 equal to zero.
 
 ::: {#tbl-checklist-grouped}
-| Category | Label | Support | TP | FP | FN | TN | Precision | ΔPrecision vs Baseline | Recall | ΔRecall vs Baseline | F1 | ΔF1 vs Baseline |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Identification | ID check of 3 patient identifiers | 1 | 1 | 0 | 0 | 48 | 1.000 | +0.944 | 1.000 | +0.000 | 1.000 | +0.895 |
-| Situation | Primary diagnosis \| reason for admission | 45 | 45 | 2 | 0 | 2 | 0.957 | +0.020 | 1.000 | +0.000 | 0.978 | +0.011 |
-| Situation | Current status (awaiting tests/procedures, on interim orders/plan) | 31 | 22 | 8 | 9 | 10 | 0.733 | +0.033 | 0.710 | -0.194 | 0.721 | -0.067 |
-| Situation | Significant events or complications | 10 | 5 | 3 | 5 | 36 | 0.625 | +0.292 | 0.500 | -0.100 | 0.556 | +0.127 |
-| Situation | **Subtotal (Situation)** | **86** | **72** | **13** | **14** | **48** | **0.847** | **+0.102** | **0.837** | **-0.081** | **0.842** | **+0.019** |
-| Background | Alerts - allergies | 18 | 16 | 2 | 2 | 29 | 0.889 | -0.011 | 0.889 | -0.111 | 0.889 | -0.058 |
-| Background | Relevant clinical and social history \| comorbidities | 17 | 17 | 1 | 0 | 31 | 0.944 | +0.135 | 1.000 | +0.000 | 0.971 | +0.077 |
-| Background | Alerts - falls risk | 3 | 2 | 0 | 1 | 46 | 1.000 | +0.250 | 0.667 | -0.333 | 0.800 | -0.057 |
-| Background | Alerts - pressure injury risk | 3 | 2 | 0 | 1 | 46 | 1.000 | +0.000 | 0.667 | -0.333 | 0.800 | -0.200 |
-| Background | Advanced care planning | 1 | 1 | 0 | 0 | 48 | 1.000 | +0.000 | 1.000 | +0.000 | 1.000 | +0.000 |
-| Background | **Subtotal (Background)** | **42** | **38** | **3** | **4** | **200** | **0.927** | **+0.070** | **0.905** | **-0.095** | **0.916** | **-0.007** |
-| Assessment | Observations \| Q-ADDS \| recent escalations | 40 | 38 | 2 | 2 | 7 | 0.950 | +0.023 | 0.950 | +0.000 | 0.950 | +0.012 |
-| Assessment | Medication chart \| flag high risk meds | 25 | 24 | 4 | 1 | 20 | 0.857 | +0.030 | 0.960 | +0.000 | 0.906 | +0.017 |
-| Assessment | Devices \| lines \| vascular access | 23 | 23 | 3 | 0 | 23 | 0.885 | +0.000 | 1.000 | +0.000 | 0.939 | +0.000 |
-| Assessment | Mobility \| aids | 17 | 16 | 4 | 1 | 28 | 0.800 | +0.027 | 0.941 | -0.059 | 0.865 | -0.007 |
-| Assessment | Pain management | 17 | 16 | 2 | 1 | 30 | 0.889 | +0.222 | 0.941 | +0.000 | 0.914 | +0.134 |
-| Assessment | Infusions | 15 | 8 | 1 | 7 | 33 | 0.889 | +0.089 | 0.533 | -0.267 | 0.667 | -0.133 |
-| Assessment | Pathology | 15 | 14 | 5 | 1 | 29 | 0.737 | -0.063 | 0.933 | +0.133 | 0.824 | +0.024 |
-| Assessment | Nutrition \| restrictions | 14 | 14 | 6 | 0 | 29 | 0.700 | +0.000 | 1.000 | +0.000 | 0.824 | +0.000 |
-| Assessment | Fluid balance \| restrictions | 9 | 7 | 3 | 2 | 37 | 0.700 | -0.050 | 0.778 | -0.222 | 0.737 | -0.120 |
-| Assessment | Skin integrity \| interventions | 6 | 6 | 5 | 0 | 38 | 0.545 | +0.045 | 1.000 | +0.000 | 0.706 | +0.039 |
-| Assessment | Critical monitoring \| alarms | 0 | 0 | 2 | 0 | 47 | 0.000 | +0.000 | 0.000 | +0.000 | 0.000 | +0.000 |
-| Assessment | **Subtotal (Assessment)** | **181** | **166** | **37** | **15** | **321** | **0.818** | **+0.044** | **0.917** | **-0.028** | **0.865** | **+0.014** |
-| Recommendation | Care plan/pathway actions to follow up | 44 | 44 | 5 | 0 | 0 | 0.898 | -0.035 | 1.000 | +0.045 | 0.946 | +0.002 |
-| Recommendation | Asked patient/carer about goals and preferences | 9 | 0 | 1 | 9 | 39 | 0.000 | -0.500 | 0.000 | -0.222 | 0.000 | -0.308 |
-| Recommendation | Discharge plan | 4 | 4 | 1 | 0 | 44 | 0.800 | +0.000 | 1.000 | +0.000 | 0.889 | +0.000 |
-| Recommendation | Critical actions required | 1 | 1 | 4 | 0 | 44 | 0.200 | +0.170 | 1.000 | +0.000 | 0.333 | +0.275 |
-| Recommendation | **Subtotal (Recommendation)** | **58** | **49** | **11** | **9** | **127** | **0.817** | **+0.253** | **0.845** | **+0.000** | **0.831** | **+0.155** |
-| Patient Involvement | Introduction of clinicians involved in handover to patient/carer | 20 | 20 | 8 | 0 | 21 | 0.714 | -0.036 | 1.000 | +0.850 | 0.833 | +0.583 |
-| Patient Involvement | Invitation for patient/carer to participate in handover | 16 | 15 | 8 | 1 | 25 | 0.652 | -0.014 | 0.938 | -0.062 | 0.769 | -0.031 |
-| Patient Involvement | **Subtotal (Patient Involvement)** | **36** | **35** | **16** | **1** | **46** | **0.686** | **+0.290** | **0.972** | **+0.444** | **0.805** | **+0.352** |
-| **Overall (Micro)** | **All labels pooled** | **404** | **361** | **80** | **43** | **790** | **0.819** | **+0.136** | **0.894** | **+0.000** | **0.854** | **+0.081** |
-| **Overall (Macro)** | **Unweighted label mean** | **-** | **-** | **-** | **-** | **-** | **0.745** | **+0.086** | **0.823** | **-0.002** | **0.762** | **+0.073** |
-| **Overall (Support-Weighted)** | **Weighted by label support** | **404** | **-** | **-** | **-** | **-** | **0.822** | **+0.020** | **0.894** | **+0.000** | **0.849** | **+0.023** |
+```{python}
+#| output: asis
 
-Grouped checklist label performance on the consensus test partition (`n=49`).
+print(checklist_grouped_table_md)
+```
+
+Grouped per-label checklist performance for the best-performing GPT-5.2 DSPy/GEPA model on the consensus evaluation partition (`{python} f"n={checklist_n}"`). `Delta F1` is the difference from the corresponding GPT-5.2 baseline run.
 :::
 
 
 ## Discussion {#sec-discussion}
 
-These results show meaningful performance gains after DSPy optimization for SBAR span extraction, especially through precision improvements in BACKGROUND and SITUATION labels. RECOMMENDATION recall decreased, indicating a remaining trade-off between reducing false positives and preserving complete capture of recommendation spans.
+- SBAR span extraction lower f1 than checklist, which is expected given the more complex nature of span extraction and the need for accurate boundary detection, whereas checklist prediction is a simpler binary classification task for each item.
 
-Checklist results indicate strong aggregate discrimination on the consensus test partition, with variability concentrated in lower-support labels and categories with sparse positives. This pattern is expected in clinical label spaces where some safety-relevant signals are uncommon but high impact.
+These results show meaningful performance gains after DSPy optimisation for structured handover extraction, with the largest absolute improvement observed for SBAR span extraction and strong aggregate performance for checklist prediction. In the SBAR task, gains were driven primarily by improved precision, particularly for BACKGROUND and SITUATION spans, while RECOMMENDATION extraction remained somewhat more difficult.
+
+Performance on uncertainty span extraction was lower across all approaches, suggesting that diffuse or context-dependent communicative uncertainty remains challenging to identify reliably from transcript text alone. By contrast, the narrower unknown-fact span task achieved substantially higher scores, indicating that task definition and label specificity were important determinants of extractive performance. Checklist results continued to show variability concentrated in lower-support labels and categories with sparse positives, which is expected in clinical label spaces where some safety-relevant signals are uncommon but high impact.
 
 ## Limitations {#sec-limitations}
 
@@ -191,22 +296,4 @@ Checklist results indicate strong aggregate discrimination on the consensus test
 
 ## Conclusion {#sec-conclusion}
 
-Using consensus-labeled clinical handover data and DSPy-based optimization, we observed improved SBAR span extraction performance over baseline and strong checklist classification performance on held-out test data. Label-level reporting highlighted both gains and remaining gaps, supporting targeted next-step refinement.
-
-## Reproducibility appendix {#sec-reproducibility}
-
-The SBAR per-label values in this manuscript were produced with:
-
-```bash
-python3 analysis/per_label_analysis.py evals/eval_sbar_span_consensus_test_baseline_gpt_5.2.jsonl
-python3 analysis/per_label_analysis.py evals/eval_sbar_span_gpt5-2_consensus_test.jsonl
-```
-
-Checklist grouped table was rendered with:
-
-```bash
-python3 analysis/render_checklist_md_table.py \
-  evals/eval_checklist_consensus_gpt_5_2_test_analysis/per_label.csv \
-  --summary-json evals/eval_checklist_consensus_gpt_5_2_test_analysis/summary.json \
-  --baseline-per-label-csv evals/eval_baseline_checklist_consensus_gpt_5_2_test_analysis/per_label.csv
-```
+Using consensus-labeled clinical handover data, we found that DSPy/GEPA prompt optimisation, particularly with GPT-5.2, consistently improved performance over baseline across the main evaluated tasks. The largest gains were observed for SBAR span extraction, checklist prediction remained strong at aggregate level, uncertainty extraction was the most difficult task, and unknown-fact extraction performed well when the target phenomenon was narrowly defined. Label-level and category-level reporting highlighted both gains and remaining gaps, supporting targeted next-step refinement.

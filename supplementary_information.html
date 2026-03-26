@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Study Team">
-<meta name="dcterms.date" content="2026-03-27">
+<meta name="dcterms.date" content="2026-03-26">
 
-<title>Evaluation of DSPy-Optimized AI Assistance for Clinical Handover</title>
+<title>Supplementary Information</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,26 +22,40 @@ width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
 }
 
-div.csl-bib-body { }
-div.csl-entry {
-clear: both;
-margin-bottom: 0em;
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging-indent div.csl-entry {
-margin-left:2em;
-text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-min-width:2em;
-float:left;
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
 }
-div.csl-right-inline {
-margin-left:2em;
-padding-left:1em;
+pre.numberSource { margin-left: 3em; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-indent {
-margin-left: 2em;
-}</style>
+</style>
 
 
 <script>/*!
@@ -3075,25 +3089,12 @@ vertical-align: -.125em;
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-abstract" id="toc-sec-abstract" class="nav-link active" data-scroll-target="#sec-abstract"><span class="header-section-number">1</span> Abstract</a></li>
-  <li><a href="#sec-introduction" id="toc-sec-introduction" class="nav-link" data-scroll-target="#sec-introduction"><span class="header-section-number">2</span> Introduction</a></li>
-  <li><a href="#sec-methods" id="toc-sec-methods" class="nav-link" data-scroll-target="#sec-methods"><span class="header-section-number">3</span> Methods</a>
-  <ul class="collapse">
-  <li><a href="#data-sources" id="toc-data-sources" class="nav-link" data-scroll-target="#data-sources"><span class="header-section-number">3.1</span> Data sources</a></li>
-  <li><a href="#annotation" id="toc-annotation" class="nav-link" data-scroll-target="#annotation"><span class="header-section-number">3.2</span> Annotation</a></li>
-  <li><a href="#large-language-model-prompt-optimisation-methods" id="toc-large-language-model-prompt-optimisation-methods" class="nav-link" data-scroll-target="#large-language-model-prompt-optimisation-methods"><span class="header-section-number">3.3</span> Large language model prompt optimisation methods</a></li>
-  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis"><span class="header-section-number">3.4</span> Data analysis</a></li>
-  </ul></li>
-  <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">4</span> Results</a>
-  <ul class="collapse">
-  <li><a href="#sec-results-summary" id="toc-sec-results-summary" class="nav-link" data-scroll-target="#sec-results-summary"><span class="header-section-number">4.1</span> Key findings</a></li>
-  <li><a href="#sec-results-overview" id="toc-sec-results-overview" class="nav-link" data-scroll-target="#sec-results-overview"><span class="header-section-number">4.2</span> Comparative performance across tasks and prompting approaches</a></li>
-  <li><a href="#sec-sbar-optimized" id="toc-sec-sbar-optimized" class="nav-link" data-scroll-target="#sec-sbar-optimized"><span class="header-section-number">4.3</span> SBAR span extraction</a></li>
-  <li><a href="#sec-checklist" id="toc-sec-checklist" class="nav-link" data-scroll-target="#sec-checklist"><span class="header-section-number">4.4</span> Checklist task</a></li>
-  </ul></li>
-  <li><a href="#sec-discussion" id="toc-sec-discussion" class="nav-link" data-scroll-target="#sec-discussion"><span class="header-section-number">5</span> Discussion</a></li>
-  <li><a href="#sec-limitations" id="toc-sec-limitations" class="nav-link" data-scroll-target="#sec-limitations"><span class="header-section-number">6</span> Limitations</a></li>
-  <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion"><span class="header-section-number">7</span> Conclusion</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a></li>
+  <li><a href="#curated-model-comparison" id="toc-curated-model-comparison" class="nav-link" data-scroll-target="#curated-model-comparison"><span class="header-section-number">2</span> Curated Model Comparison</a></li>
+  <li><a href="#visual-comparison" id="toc-visual-comparison" class="nav-link" data-scroll-target="#visual-comparison"><span class="header-section-number">3</span> Visual Comparison</a></li>
+  <li><a href="#saved-run-inventory" id="toc-saved-run-inventory" class="nav-link" data-scroll-target="#saved-run-inventory"><span class="header-section-number">4</span> Saved Run Inventory</a></li>
+  <li><a href="#full-checklist-per-label-results" id="toc-full-checklist-per-label-results" class="nav-link" data-scroll-target="#full-checklist-per-label-results"><span class="header-section-number">5</span> Full Checklist Per-Label Results</a></li>
+  <li><a href="#reproducibility-appendix" id="toc-reproducibility-appendix" class="nav-link" data-scroll-target="#reproducibility-appendix"><span class="header-section-number">6</span> Reproducibility Appendix</a></li>
   </ul>
 </nav>
 </div>
@@ -3101,7 +3102,8 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Evaluation of DSPy-Optimized AI Assistance for Clinical Handover</h1>
+<h1 class="title">Supplementary Information</h1>
+<p class="subtitle lead">Evaluation of DSPy-Optimized AI Assistance for Clinical Handover</p>
 </div>
 
 
@@ -3118,7 +3120,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 27, 2026</p>
+      <p class="date">March 26, 2026</p>
     </div>
   </div>
   
@@ -3130,249 +3132,356 @@ vertical-align: -.125em;
 </header>
 
 
-<section id="sec-abstract" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="sec-abstract"><span class="header-section-number">1</span> Abstract</h2>
-<p>Accurate communication during clinical handover is critical for patient safety. We evaluated a DSPy-based pipeline for extracting structured handover information under two task settings: (1) SBAR span extraction and (2) checklist label prediction. Phase 1 methods used dual independent annotation by two clinically experienced annotators followed by consensus reconciliation. Prompt optimization was performed with DSPy, and evaluation was performed on held-out consensus test partitions. For SBAR span extraction, per-label analysis on 48 test examples showed higher macro-F1 for the optimized prompt pipeline than baseline (0.733 vs 0.494). The largest F1 gains were observed for BACKGROUND (+0.403) and SITUATION (+0.251), with improved precision across all SBAR labels. For checklist prediction (49 test examples), grouped per-label analysis showed strong pooled performance (micro-F1 0.854; support-weighted F1 0.849) with variation across label groups. These results support DSPy optimization as a practical method to improve clinically relevant information extraction while preserving transparent label-level evaluation.</p>
+<section id="overview" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1</span> Overview</h2>
+<p>This supplementary file provides additional evaluation detail derived directly from the saved evaluation outputs in <code>evals/</code>. To align with the manuscript, the summaries below are restricted to the three models discussed in the main paper: GPT-5.2, GPT-5-nano, and MedGemma 27B. The 2-example uncertainty LangExtract smoke-test file was excluded from the manuscript-scope summaries.</p>
 </section>
-<section id="sec-introduction" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="sec-introduction"><span class="header-section-number">2</span> Introduction</h2>
-<p>Clinical handover requires concise and accurate transfer of critical patient information. Errors or omissions in handover communication can lead to delays in treatment and patient harm. This manuscript reports model evaluation results from a study workflow focused on improving structured handover extraction using DSPy-guided prompt optimization and consensus-labeled data.</p>
-</section>
-<section id="sec-methods" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="sec-methods"><span class="header-section-number">3</span> Methods</h2>
-<p>Tasks related to clinical handover communication that were considered as potentially augmentable with AI assistance were evaluated in this study:</p>
-<ul>
-<li>Extracting spans of text from transcripts that aligned with the SBAR (Situation, Background, Assessment, Recommendation) framework for structuring clinical handover. In this study, SBAR span extraction was operationalised as a sequence-labeling task to identify contiguous spans of text in handover transcripts that corresponded to each SBAR category.</li>
-<li>Identifying key concepts and entities in handover transcripts. In this study, this task was operationalised as a checklist of items that are recommended to be addressed during nursing clinical handover, which were developed as part of quality-improvement processes. The checklist items are summarised in Table <a href="#tbl-checklist-items" class="quarto-xref">Table 1</a>.</li>
-<li>Identifying spans of text in transcripts that were communicated in uncertain terms. In this study, this task was operationalised as span annotation of utterances during handover that conveyed incomplete knowledge, vague or hedged wording, imprecise timing, second-hand sourcing, unclear procedures, or unclear responsibility for follow-up actions. These forms of uncertainty were treated as potentially clinically important because they may indicate information that requires clarification or verification by the receiving clinician. The uncertainty categories and example guidance provided to annotators are summarised in Table <a href="#tbl-uncertainty-items" class="quarto-xref">Table 2</a>.</li>
-</ul>
-<div id="tbl-checklist-items" class="quarto-float quarto-figure quarto-figure-center anchored">
+<section id="curated-model-comparison" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="curated-model-comparison"><span class="header-section-number">2</span> Curated Model Comparison</h2>
+<p>Table <a href="#tbl-supp-curated-overview" class="quarto-xref">Table 1</a> reports the best observed result for each task, approach, and model combination within manuscript scope. Where more than one saved run existed for the same task, approach, and model, the row with the highest observed micro-F1 is shown.</p>
+<div id="tbl-supp-curated-overview" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-checklist-items-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table 1: Checklist items used to operationalise identification of key concepts and entities in handover transcripts.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-supp-curated-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table 1: Curated summary of best observed results for each task, model, and prompting approach within manuscript scope.
 </figcaption>
-<div aria-describedby="tbl-checklist-items-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-supp-curated-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 8%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Category</th>
-<th>Checklist item</th>
+<th>Task</th>
+<th>Approach</th>
+<th>Model</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">Average score</th>
+<th style="text-align: right;">Micro precision</th>
+<th style="text-align: right;">Micro recall</th>
+<th style="text-align: right;">Micro F1</th>
+<th style="text-align: right;">Mean IoU</th>
+<th>Saved evaluation label</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Patient Involvement</td>
-<td>Clinician introductions</td>
+<td>Checklist item prediction</td>
+<td>Baseline</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">0.769</td>
+<td style="text-align: right;">0.682</td>
+<td style="text-align: right;">0.894</td>
+<td style="text-align: right;">0.774</td>
+<td style="text-align: right;">NA</td>
+<td>checklist baseline gpt-5.2</td>
 </tr>
 <tr class="even">
-<td>Patient Involvement</td>
-<td>Introduction of clinicians to the patient or carer</td>
+<td>Checklist item prediction</td>
+<td>Baseline</td>
+<td>GPT-5-nano</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">0.709</td>
+<td style="text-align: right;">0.645</td>
+<td style="text-align: right;">0.817</td>
+<td style="text-align: right;">0.721</td>
+<td style="text-align: right;">NA</td>
+<td>checklist baseline gpt-nano</td>
 </tr>
 <tr class="odd">
-<td>Patient Involvement</td>
-<td>Invitation for the patient or carer to participate in handover</td>
+<td>Checklist item prediction</td>
+<td>Baseline</td>
+<td>MedGemma 27B</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">0.647</td>
+<td style="text-align: right;">0.625</td>
+<td style="text-align: right;">0.676</td>
+<td style="text-align: right;">0.649</td>
+<td style="text-align: right;">NA</td>
+<td>checklist baseline medgemma</td>
 </tr>
 <tr class="even">
-<td>Identification</td>
-<td>Verification of three patient identifiers</td>
+<td>Checklist item prediction</td>
+<td>DSPy/GEPA</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">0.852</td>
+<td style="text-align: right;">0.819</td>
+<td style="text-align: right;">0.894</td>
+<td style="text-align: right;">0.854</td>
+<td style="text-align: right;">NA</td>
+<td>checklist gpt-5.2</td>
 </tr>
 <tr class="odd">
-<td>Situation</td>
-<td>Primary diagnosis or reason for admission</td>
+<td>Checklist item prediction</td>
+<td>DSPy/GEPA</td>
+<td>GPT-5-nano</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">0.811</td>
+<td style="text-align: right;">0.802</td>
+<td style="text-align: right;">0.824</td>
+<td style="text-align: right;">0.813</td>
+<td style="text-align: right;">NA</td>
+<td>checklist gpt-nano gepa</td>
 </tr>
 <tr class="even">
-<td>Situation</td>
-<td>Significant events or complications</td>
+<td>Checklist item prediction</td>
+<td>DSPy/GEPA</td>
+<td>MedGemma 27B</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">0.763</td>
+<td style="text-align: right;">0.751</td>
+<td style="text-align: right;">0.777</td>
+<td style="text-align: right;">0.764</td>
+<td style="text-align: right;">NA</td>
+<td>checklist medgemma</td>
 </tr>
 <tr class="odd">
-<td>Situation</td>
-<td>Current status, including pending tests/procedures and interim plans/orders</td>
+<td>SBAR span extraction</td>
+<td>Baseline</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0.354</td>
+<td style="text-align: right;">0.408</td>
+<td style="text-align: right;">0.686</td>
+<td style="text-align: right;">0.511</td>
+<td style="text-align: right;">0.708</td>
+<td>sbar baseline gpt-5.2</td>
 </tr>
 <tr class="even">
-<td>Background</td>
-<td>Relevant clinical and social history, including comorbidities</td>
+<td>SBAR span extraction</td>
+<td>Baseline</td>
+<td>GPT-5-nano</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0.349</td>
+<td style="text-align: right;">0.434</td>
+<td style="text-align: right;">0.569</td>
+<td style="text-align: right;">0.492</td>
+<td style="text-align: right;">0.715</td>
+<td>sbar baseline gpt-nano</td>
 </tr>
 <tr class="odd">
-<td>Background</td>
-<td>Falls risk</td>
+<td>SBAR span extraction</td>
+<td>Baseline</td>
+<td>MedGemma 27B</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0.361</td>
+<td style="text-align: right;">0.569</td>
+<td style="text-align: right;">0.454</td>
+<td style="text-align: right;">0.505</td>
+<td style="text-align: right;">0.712</td>
+<td>sbar baseline medgemma</td>
 </tr>
 <tr class="even">
-<td>Background</td>
-<td>Pressure injury risk</td>
+<td>SBAR span extraction</td>
+<td>DSPy/GEPA</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0.587</td>
+<td style="text-align: right;">0.763</td>
+<td style="text-align: right;">0.747</td>
+<td style="text-align: right;">0.755</td>
+<td style="text-align: right;">0.767</td>
+<td>sbar gpt-5.2</td>
 </tr>
 <tr class="odd">
-<td>Background</td>
-<td>Allergies</td>
+<td>SBAR span extraction</td>
+<td>DSPy/GEPA</td>
+<td>GPT-5-nano</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0.526</td>
+<td style="text-align: right;">0.673</td>
+<td style="text-align: right;">0.712</td>
+<td style="text-align: right;">0.692</td>
+<td style="text-align: right;">0.762</td>
+<td>sbar gpt-nano</td>
 </tr>
 <tr class="even">
-<td>Background</td>
-<td>Advance care planning</td>
+<td>SBAR span extraction</td>
+<td>LangExtract</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0.417</td>
+<td style="text-align: right;">0.481</td>
+<td style="text-align: right;">0.770</td>
+<td style="text-align: right;">0.592</td>
+<td style="text-align: right;">0.715</td>
+<td>sbar langextract gpt-5.2</td>
 </tr>
 <tr class="odd">
-<td>Assessment</td>
-<td>Observations, Q-ADDS score, and recent escalations</td>
+<td>SBAR span extraction</td>
+<td>LangExtract</td>
+<td>MedGemma 27B</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0.326</td>
+<td style="text-align: right;">0.547</td>
+<td style="text-align: right;">0.393</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: right;">0.710</td>
+<td>sbar langextract medgemma</td>
 </tr>
 <tr class="even">
-<td>Assessment</td>
-<td>Pain management</td>
+<td>Uncertainty span extraction</td>
+<td>Baseline</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.202</td>
+<td style="text-align: right;">0.237</td>
+<td style="text-align: right;">0.646</td>
+<td style="text-align: right;">0.346</td>
+<td style="text-align: right;">0.620</td>
+<td>uncertain baseline gpt-5.2</td>
 </tr>
 <tr class="odd">
-<td>Assessment</td>
-<td>Devices, lines, and vascular access</td>
+<td>Uncertainty span extraction</td>
+<td>Baseline</td>
+<td>MedGemma 27B</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.060</td>
+<td style="text-align: right;">0.119</td>
+<td style="text-align: right;">0.167</td>
+<td style="text-align: right;">0.139</td>
+<td style="text-align: right;">0.560</td>
+<td>uncertain baseline medgemma</td>
 </tr>
 <tr class="even">
-<td>Assessment</td>
-<td>Critical monitoring and alarms</td>
+<td>Uncertainty span extraction</td>
+<td>DSPy/GEPA</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.334</td>
+<td style="text-align: right;">0.323</td>
+<td style="text-align: right;">0.562</td>
+<td style="text-align: right;">0.411</td>
+<td style="text-align: right;">0.833</td>
+<td>uncertain gpt-5.2</td>
 </tr>
 <tr class="odd">
-<td>Assessment</td>
-<td>Nutrition and dietary restrictions</td>
+<td>Uncertainty span extraction</td>
+<td>DSPy/GEPA</td>
+<td>MedGemma 27B</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.171</td>
+<td style="text-align: right;">0.194</td>
+<td style="text-align: right;">0.198</td>
+<td style="text-align: right;">0.196</td>
+<td style="text-align: right;">0.720</td>
+<td>uncertain medgemma gepa</td>
 </tr>
 <tr class="even">
-<td>Assessment</td>
-<td>Fluid balance and fluid restrictions</td>
+<td>Uncertainty span extraction</td>
+<td>LangExtract</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.038</td>
+<td style="text-align: right;">0.350</td>
+<td style="text-align: right;">0.073</td>
+<td style="text-align: right;">0.121</td>
+<td style="text-align: right;">0.352</td>
+<td>uncertain langextract gpt-5.2</td>
 </tr>
 <tr class="odd">
-<td>Assessment</td>
-<td>Infusions</td>
+<td>Uncertainty span extraction</td>
+<td>LangExtract</td>
+<td>MedGemma 27B</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.167</td>
+<td style="text-align: right;">0.217</td>
+<td style="text-align: right;">0.260</td>
+<td style="text-align: right;">0.237</td>
+<td style="text-align: right;">0.690</td>
+<td>uncertain langextract medgemma</td>
 </tr>
 <tr class="even">
-<td>Assessment</td>
-<td>Medication chart review, including high-risk medicines</td>
+<td>Unknown-fact span extraction</td>
+<td>Baseline</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.942</td>
+<td style="text-align: right;">0.727</td>
+<td style="text-align: right;">0.800</td>
+<td style="text-align: right;">0.762</td>
+<td style="text-align: right;">0.860</td>
+<td>unknown-fact gpt-5.2</td>
 </tr>
 <tr class="odd">
-<td>Assessment</td>
-<td>Pathology results or pending investigations</td>
+<td>Unknown-fact span extraction</td>
+<td>Baseline</td>
+<td>GPT-5-nano</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.038</td>
+<td style="text-align: right;">0.077</td>
+<td style="text-align: right;">0.400</td>
+<td style="text-align: right;">0.129</td>
+<td style="text-align: right;">0.743</td>
+<td>unknown-fact gpt-nano</td>
 </tr>
 <tr class="even">
-<td>Assessment</td>
-<td>Mobility and use of aids</td>
+<td>Unknown-fact span extraction</td>
+<td>DSPy/GEPA</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.974</td>
+<td style="text-align: right;">0.889</td>
+<td style="text-align: right;">0.800</td>
+<td style="text-align: right;">0.842</td>
+<td style="text-align: right;">0.919</td>
+<td>unknown-fact gpt-5.2 gepa</td>
 </tr>
 <tr class="odd">
-<td>Assessment</td>
-<td>Skin integrity and related interventions</td>
+<td>Unknown-fact span extraction</td>
+<td>DSPy/GEPA</td>
+<td>GPT-5-nano</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.976</td>
+<td style="text-align: right;">0.889</td>
+<td style="text-align: right;">0.800</td>
+<td style="text-align: right;">0.842</td>
+<td style="text-align: right;">0.892</td>
+<td>unknown-fact gpt-nano</td>
 </tr>
 <tr class="even">
-<td>Recommendation</td>
-<td>Discharge plan</td>
+<td>Unknown-fact span extraction</td>
+<td>DSPy/GEPA</td>
+<td>MedGemma 27B</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.967</td>
+<td style="text-align: right;">0.800</td>
+<td style="text-align: right;">0.800</td>
+<td style="text-align: right;">0.800</td>
+<td style="text-align: right;">0.902</td>
+<td>unknown-fact medgemma gepa-light</td>
 </tr>
 <tr class="odd">
-<td>Recommendation</td>
-<td>Critical actions required</td>
-</tr>
-<tr class="even">
-<td>Recommendation</td>
-<td>Follow-up care plan or pathway actions</td>
-</tr>
-<tr class="odd">
-<td>Recommendation</td>
-<td>Patient or carer goals and preferences</td>
+<td>Unknown-fact span extraction</td>
+<td>LangExtract</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.753</td>
+<td style="text-align: right;">0.409</td>
+<td style="text-align: right;">0.900</td>
+<td style="text-align: right;">0.563</td>
+<td style="text-align: right;">0.679</td>
+<td>unknown-fact langextract gpt-5.2</td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<div id="tbl-uncertainty-items" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-uncertainty-items-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table 2: Uncertainty categories used to support annotator identification of uncertainty-related spans in handover transcripts.
-</figcaption>
-<div aria-describedby="tbl-uncertainty-items-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Category</th>
-<th>Definition / when to use</th>
-<th>Example from handover speech</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Hedge / Probability Language</td>
-<td>The speaker indicates partial confidence or doubt about information.</td>
-<td>“I think ENT reviewed him.”<br>“He should be going to theatre soon.”</td>
-</tr>
-<tr class="even">
-<td>Vague / Qualitative Expression</td>
-<td>Information is described using imprecise or subjective language.</td>
-<td>“He looks fine now.”<br>“Seems okay.”</td>
-</tr>
-<tr class="odd">
-<td>Unknown Fact / Explicit Lack of Knowledge</td>
-<td>The speaker openly states missing knowledge or incomplete data.</td>
-<td>“Not sure if consent’s been signed.”<br>“I don’t know his allergies.”</td>
-</tr>
-<tr class="even">
-<td>Indefinite Timing</td>
-<td>Timing or schedule for an event is vague or lacks precision.</td>
-<td>“Later today.”<br>“After the round.”</td>
-</tr>
-<tr class="odd">
-<td>Source Uncertainty</td>
-<td>Information relies on a second-hand or unverifiable source.</td>
-<td>“ENT said he’s on the list.”<br>“Night nurse told me.”</td>
-</tr>
-<tr class="even">
-<td>Procedural Uncertainty</td>
-<td>The next step in care is unclear or the plan is not explicitly stated.</td>
-<td>“You might want to check his IV.”</td>
-</tr>
-<tr class="odd">
-<td>Responsibility Uncertainty</td>
-<td>A required task or follow-up is mentioned, but it is unclear who is responsible for performing it.</td>
-<td>“Bloods to be checked later.”<br>“Needs review this afternoon.”</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<section id="data-sources" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="data-sources"><span class="header-section-number">3.1</span> Data sources</h3>
-<p>We used the publicly available NICTA Synthetic Nursing Handover Dataset, which contains realistic recordings of clinical handovers delivered by a registered nurse based on patient profiles with cardiovascular, neurological, renal, and respiratory conditions <span class="citation" data-cites="suominen2015benchmarking">(<a href="#ref-suominen2015benchmarking" role="doc-biblioref">Suominen et al. 2015</a>)</span>. In this dataset, handover monologues were generated from comprehensive patient profiles that included information such as the patient’s name, age, admission history, inpatient duration, and the familiarity between the nurses giving and receiving the handover. The nurse was instructed to simulate a bedside shift-to-shift handover within a medical ward setting <span class="citation" data-cites="suominen2015benchmarking">(<a href="#ref-suominen2015benchmarking" role="doc-biblioref">Suominen et al. 2015</a>)</span>.</p>
-<p>For our study, we used 100 handover samples from the training partition of the NICTA dataset. First, audio recordings from the NICTA dataset were transcribed using the OpenAI Whisper speech-to-text model. Second, three high-quality videos depicting conversational nursing shift-to-shift handovers, which were developed at the authors’ institution for educational purposes, were transcribed in a similar manner to provide examples of interactive handover dialogue. These transcripts were then used as few-shot examples within the DSPy framework using the <code>BootstrapFewShot</code> optimizer to guide the transformation of the 100 NICTA monologue transcripts into two-sided conversational handovers to better reflect real-world contemporary clinical handover interactions. To broaden the range of clinical contexts represented in the dataset, we further synthesised 103 additional handover examples using the GPT-5 model interactively in a chat interface. These scenarios included inter- and intra-hospital transfers, post-procedural handovers, emergency department transitions, and handovers that involved patients with complex mental health care needs. The final dataset comprised 203 synthetic handover transcripts used for subsequent annotation and model development. It is available at [URL to dataset repository].</p>
 </section>
-<section id="annotation" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="annotation"><span class="header-section-number">3.2</span> Annotation</h3>
-<p>Two experienced annotators, who are clinically active Registered Nurses, independently annotated transcripts using a structured rubric. Labelled annotations that met consensus between reviewers were used as the reference labels used for downstream model development and evaluation.</p>
-<p>Annotation was performed using Prodigy annotation software using a custom interface that presented each transcript in three components <span class="citation" data-cites="montani2018prodigy">(<a href="#ref-montani2018prodigy" role="doc-biblioref">Montani and Honnibal 2018</a>)</span>. First, annotators highlighted relevant spans of text and assigned labels corresponding to the SBAR framework together with markers of communicative uncertainty, including vagueness, hedging, unknown facts, indefinite timing, source uncertainty, procedural uncertainty, and uncertainty regarding responsibility. Overlapping span labels were permitted where a passage served more than one communicative function. Second, annotators completed a multiple-response checklist indicating whether predefined handover elements were present in the transcript. Third, annotators recorded up to three additional questions that a receiving clinician might reasonably ask before concluding the handover, together with a brief rationale for each question, in order to capture perceived information gaps.</p>
-<p>Both annotators reviewed all transcripts independently within the same annotation environment and were supported by written guidance and examples to promote consistent interpretation of the coding framework. For creation of the reference standard, a consensus dataset was derived by retaining only those span annotations and checklist items for which both annotators agreed. In practical terms, this meant that only text segments assigned the same label by both reviewers, and only checklist items selected by both reviewers, were carried forward for downstream model development and evaluation.</p>
-</section>
-<section id="large-language-model-prompt-optimisation-methods" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="large-language-model-prompt-optimisation-methods"><span class="header-section-number">3.3</span> Large language model prompt optimisation methods</h3>
-<p>Annotated handover transcripts were first partitioned deterministically into optimisation (75%) and evaluation (25%) subsets using a fixed random split. Prompt optimisation was performed within DSPy <span class="citation" data-cites="khattab2023dspy">(<a href="#ref-khattab2023dspy" role="doc-biblioref">Khattab et al. 2023</a>)</span>, which is a Python framework that can be used for prompt optimisation using feedback from model outputs to improve task performance. For each task, we defined a task-specific DSPy signature that specified the transcript as input and a constrained structured output. Checklist prediction was formulated as multilabel classification, whereas SBAR and uncertainty-related tasks were formulated as span extraction, requiring the model to return verbatim text segments from the transcript together with the appropriate label.</p>
-<p>Across the baseline DSPy evaluations, GEPA-based DSPy optimisation experiments, and LangExtract experiments, we evaluated three underlying language models: OpenAI GPT-5-nano, which served as a smaller lower-cost comparison model; OpenAI GPT-5.2, which served as the highest-capacity proprietary model evaluated in this study; and MedGemma 27B, a 27-billion-parameter open-weight model developed by Google for medical tasks. For DSPy baseline and GEPA runs, the same task model was used before and after compilation so that differences reflected prompt optimisation rather than a change in the underlying model.</p>
-<p>Baseline performance was obtained by evaluating the initial DSPy signatures. Optimised performance was obtained by compiling the same predictors on the optimisation partition. For checklist prediction, optimisation targeted example-level multilabel F1 against the labels. A prompt optimisation method called GEPA was used to optimise the prompts <span class="citation" data-cites="agrawal2025gepa">(<a href="#ref-agrawal2025gepa" role="doc-biblioref">Agrawal et al. 2025</a>)</span>. GEPA is a reflection-based evolutionary prompt optimiser within DSPy <span class="citation" data-cites="agrawal2025gepa">(<a href="#ref-agrawal2025gepa" role="doc-biblioref">Agrawal et al. 2025</a>)</span>. This approach involves iteratively proposing revised task instructions and retains variants that improve task-specific performance. The optimisation was conducted over 576 scoring calls of the full program, which is equivalent to about 3 complete scoring passes over the combined training and validation examples used during prompt search. GEPA was supplied with both a scalar score and natural-language error feedback. For checklist prediction, feedback identified which labels had been correctly included, incorrectly added, or omitted. For span-extraction tasks, feedback described the reference spans, predicted spans, matched and unmatched spans, and the extent of span-boundary overlap. This feedback was then used by a separate reflection model (GPT-5.2) to generate revised instructions for the predictor. GPT-5.2 was selected as the reflection model because it was the strongest performing model available within our evaluation framework at the time. For SBAR and other span-extraction tasks, GEPA optimisation was driven by the same span metric used at evaluation. Predicted quotes were mapped back to their location in the transcript and scored according to label agreement and span overlap with the reference annotations. This design encouraged the optimiser to improve not only label selection but also extraction boundaries. The final compiled programs were then fixed and evaluated on the held-out test partition.</p>
-<p>In addition to DSPy prompt optimisations, we conducted separate evaluations using the LangExtract framework, as a prompt-based few-shot extraction approach for the SBAR, uncertainty-span, and unknown-fact span tasks <span class="citation" data-cites="goel_2026_langextract">(<a href="#ref-goel_2026_langextract" role="doc-biblioref">Goel 2026</a>)</span>. Within this framework, extraction experiments were run with GPT-5.2 and MedGemma 27B; GPT-5-nano was evaluated within the DSPy baseline and GEPA workflows rather than the LangExtract experiments. These experiments used task-specific prompt descriptions together with annotated in-context examples derived from the reference data. We used 10 annotated examples from the training partition as few-shot exemplars, and inference was then performed on the full held-out test partition for each task. Few-shot examples were validated to ensure alignment between the quoted extraction and the source transcript before inference. LangExtract outputs were normalised to the same label-and-verbatim-quote representation used for the DSPy span tasks and were scored with the same overlap-based span metric, allowing direct comparison across methods. For the binary unknown-fact experiments, the few-shot example set was additionally constrained to include positive examples of the target label.</p>
-</section>
-<section id="data-analysis" class="level3" data-number="3.4">
-<h3 data-number="3.4" class="anchored" data-anchor-id="data-analysis"><span class="header-section-number">3.4</span> Data analysis</h3>
-<p>Performance was measured with standard classification metrics for the checklist task. At the level of individual labels, we calculated counts of true positives, false positives, false negatives, and true negatives, together with precision, recall, and F1. Aggregate performance was summarised using micro-averaged (pooled), macro-averaged (unweighted mean), and support-weighted precision, recall, and F1 across labels.</p>
-<p>For span-extraction tasks, each transcript was scored using a label-aware soft span F1 metric. Model outputs were represented as label-and-quote pairs, and each predicted quote was mapped back to a character span in the source transcript using exact string matching, with approximate matching used only when an exact match was unavailable. Predicted spans were then matched one-to-one with reference spans of the same label according to highest overlap. Match quality was quantified by intersection over union, and soft true-positive credit was defined as the summed intersection over union across matched pairs. In practical terms, intersection over union measures how much the predicted text span overlaps the annotated text span relative to the total text covered by either span, so higher values indicate closer agreement on the start and end boundaries of the extracted passage. Precision was calculated as this summed overlap divided by the number of predicted spans, recall as the summed overlap divided by the number of reference spans, and F1 as the harmonic mean of precision and recall. When neither reference nor predicted spans were present, the score was set to 1.0. This metric was used both as the objective function for GEPA optimisation of span tasks and as the primary evaluation metric for individual transcripts. We additionally calculated per-label descriptive metrics derived from matched gold and predicted spans, including the number of reference spans, the number of predicted spans, precision, recall, F1, and mean IoU.</p>
-</section>
-</section>
-<section id="sec-results" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="sec-results"><span class="header-section-number">4</span> Results</h2>
-<section id="sec-results-summary" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="sec-results-summary"><span class="header-section-number">4.1</span> Key findings</h3>
-<p>Within-model comparisons showed consistent gains with DSPy/GEPA over matched baselines wherever both were available. For GPT-5.2, DSPy/GEPA improved micro-F1 by +0.081 for checklist prediction, +0.244 for SBAR span extraction, +0.064 for uncertainty span extraction, and +0.080 for unknown-fact extraction. GPT-5-nano also improved over baseline for checklist prediction (+0.093), SBAR span extraction (+0.199), and unknown-fact extraction (+0.713). MedGemma 27B improved for checklist prediction (+0.115) and uncertainty span extraction (+0.057), although matched baseline comparisons were not available for every task-model combination. Across span tasks, LangExtract generally performed below the corresponding best DSPy/GEPA configuration.</p>
-</section>
-<section id="sec-results-overview" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="sec-results-overview"><span class="header-section-number">4.2</span> Comparative performance across tasks and prompting approaches</h3>
-<p>Figure <a href="#fig-results-overview" class="quarto-xref">Figure 1</a> summarizes matched within-model comparisons across tasks for the three models evaluated in the main study. Where more than one saved run existed for the same task, model, and approach, the highest observed micro-F1 for that combination is shown.</p>
-<div id="fig-results-overview" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-results-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<section id="visual-comparison" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="visual-comparison"><span class="header-section-number">3</span> Visual Comparison</h2>
+<p>A visual comparison of the curated micro-F1 values from Table <a href="#tbl-supp-curated-overview" class="quarto-xref">Table 1</a> is provided below.</p>
 <svg xmlns="http://www.w3.org/2000/svg" width="980" height="576" viewbox="0 0 972 571.3" role="img" aria-labelledby="comparison-title comparison-desc" style="max-width:100%;height:auto;">
 <title id="comparison-title">
 Within-model comparison of baseline, DSPy/GEPA, and LangExtract micro-F1 performance
@@ -3381,102 +3490,408 @@ Within-model comparison of baseline, DSPy/GEPA, and LangExtract micro-F1 perform
 <style>.plot-title{font:700 14px system-ui, sans-serif; fill:#192038;}.panel-title{font:700 12px system-ui, sans-serif; fill:#192038;}.axis-label{font:10px system-ui, sans-serif; fill:#4d5770;}.tick-label{font:10px system-ui, sans-serif; fill:#4d5770;}.model-label{font:11px system-ui, sans-serif; fill:#192038;}.legend-label{font:11px system-ui, sans-serif; fill:#192038;}.value-label{font:10px system-ui, sans-serif; fill:#2b3345;}</style>
 <text x="22" y="38" class="plot-title">Within-model micro-F1 comparisons across tasks</text><rect x="22" y="50" width="16" height="10" fill="#8b95a7" rx="2" ry="2" /><text x="46" y="59" class="legend-label">Baseline</text><rect x="154" y="50" width="16" height="10" fill="#1f6feb" rx="2" ry="2" /><text x="178" y="59" class="legend-label">DSPy/GEPA</text><rect x="286" y="50" width="16" height="10" fill="#d97706" rx="2" ry="2" /><text x="310" y="59" class="legend-label">LangExtract</text><rect x="22" y="82" width="450" height="220" rx="10" ry="10" fill="#ffffff" stroke="#d8dcef" stroke-width="1.2" /><text x="38" y="102" class="panel-title">Checklist item prediction</text><line x1="172.0" y1="118.0" x2="172.0" y2="278.0" stroke="#d8dcef" stroke-width="1"></line><text x="172.0" y="294.0" text-anchor="middle" class="tick-label">0.00</text><line x1="291.0" y1="118.0" x2="291.0" y2="278.0" stroke="#d8dcef" stroke-width="1"></line><text x="291.0" y="294.0" text-anchor="middle" class="tick-label">0.50</text><line x1="410.0" y1="118.0" x2="410.0" y2="278.0" stroke="#d8dcef" stroke-width="1"></line><text x="410.0" y="294.0" text-anchor="middle" class="tick-label">1.00</text><text x="291.0" y="284.0" text-anchor="middle" class="axis-label">Micro-F1</text><text x="160.0" y="144.0" text-anchor="end" class="model-label">GPT-5.2</text><rect x="172.0" y="126.0" width="184.2" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="362.2" y="135.0" class="value-label">0.77</text><rect x="172.0" y="140.0" width="203.4" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="381.4" y="149.0" class="value-label">0.85</text><text x="160.0" y="188.0" text-anchor="end" class="model-label">GPT-5-nano</text><rect x="172.0" y="170.0" width="171.5" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="349.5" y="179.0" class="value-label">0.72</text><rect x="172.0" y="184.0" width="193.5" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="371.5" y="193.0" class="value-label">0.81</text><text x="160.0" y="232.0" text-anchor="end" class="model-label">MedGemma 27B</text><rect x="172.0" y="214.0" width="154.5" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="332.5" y="223.0" class="value-label">0.65</text><rect x="172.0" y="228.0" width="181.8" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="359.8" y="237.0" class="value-label">0.76</text><rect x="500" y="82" width="450" height="220" rx="10" ry="10" fill="#ffffff" stroke="#d8dcef" stroke-width="1.2" /><text x="516" y="102" class="panel-title">SBAR span extraction</text><line x1="650.0" y1="118.0" x2="650.0" y2="278.0" stroke="#d8dcef" stroke-width="1"></line><text x="650.0" y="294.0" text-anchor="middle" class="tick-label">0.00</text><line x1="769.0" y1="118.0" x2="769.0" y2="278.0" stroke="#d8dcef" stroke-width="1"></line><text x="769.0" y="294.0" text-anchor="middle" class="tick-label">0.50</text><line x1="888.0" y1="118.0" x2="888.0" y2="278.0" stroke="#d8dcef" stroke-width="1"></line><text x="888.0" y="294.0" text-anchor="middle" class="tick-label">1.00</text><text x="769.0" y="284.0" text-anchor="middle" class="axis-label">Micro-F1</text><text x="638.0" y="144.0" text-anchor="end" class="model-label">GPT-5.2</text><rect x="650.0" y="126.0" width="121.7" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="777.7" y="135.0" class="value-label">0.51</text><rect x="650.0" y="140.0" width="179.7" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="835.7" y="149.0" class="value-label">0.76</text><rect x="650.0" y="154.0" width="141.0" height="10.0" fill="#d97706" rx="3" ry="3" /><text x="797.0" y="163.0" class="value-label">0.59</text><text x="638.0" y="188.0" text-anchor="end" class="model-label">GPT-5-nano</text><rect x="650.0" y="170.0" width="117.2" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="773.2" y="179.0" class="value-label">0.49</text><rect x="650.0" y="184.0" width="164.6" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="820.6" y="193.0" class="value-label">0.69</text><text x="638.0" y="232.0" text-anchor="end" class="model-label">MedGemma 27B</text><rect x="650.0" y="214.0" width="120.2" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="776.2" y="223.0" class="value-label">0.51</text><rect x="650.0" y="242.0" width="108.9" height="10.0" fill="#d97706" rx="3" ry="3" /><text x="764.9" y="251.0" class="value-label">0.46</text><rect x="22" y="330" width="450" height="220" rx="10" ry="10" fill="#ffffff" stroke="#d8dcef" stroke-width="1.2" /><text x="38" y="350" class="panel-title">Uncertainty span extraction</text><line x1="172.0" y1="366.0" x2="172.0" y2="526.0" stroke="#d8dcef" stroke-width="1"></line><text x="172.0" y="542.0" text-anchor="middle" class="tick-label">0.00</text><line x1="291.0" y1="366.0" x2="291.0" y2="526.0" stroke="#d8dcef" stroke-width="1"></line><text x="291.0" y="542.0" text-anchor="middle" class="tick-label">0.50</text><line x1="410.0" y1="366.0" x2="410.0" y2="526.0" stroke="#d8dcef" stroke-width="1"></line><text x="410.0" y="542.0" text-anchor="middle" class="tick-label">1.00</text><text x="291.0" y="532.0" text-anchor="middle" class="axis-label">Micro-F1</text><text x="160.0" y="392.0" text-anchor="end" class="model-label">GPT-5.2</text><rect x="172.0" y="374.0" width="82.4" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="260.4" y="383.0" class="value-label">0.35</text><rect x="172.0" y="388.0" width="97.7" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="275.7" y="397.0" class="value-label">0.41</text><rect x="172.0" y="402.0" width="28.7" height="10.0" fill="#d97706" rx="3" ry="3" /><text x="206.7" y="411.0" class="value-label">0.12</text><text x="160.0" y="480.0" text-anchor="end" class="model-label">MedGemma 27B</text><rect x="172.0" y="462.0" width="33.1" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="211.1" y="471.0" class="value-label">0.14</text><rect x="172.0" y="476.0" width="46.6" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="224.6" y="485.0" class="value-label">0.20</text><rect x="172.0" y="490.0" width="56.4" height="10.0" fill="#d97706" rx="3" ry="3" /><text x="234.4" y="499.0" class="value-label">0.24</text><rect x="500" y="330" width="450" height="220" rx="10" ry="10" fill="#ffffff" stroke="#d8dcef" stroke-width="1.2" /><text x="516" y="350" class="panel-title">Unknown-fact span extraction</text><line x1="650.0" y1="366.0" x2="650.0" y2="526.0" stroke="#d8dcef" stroke-width="1"></line><text x="650.0" y="542.0" text-anchor="middle" class="tick-label">0.00</text><line x1="769.0" y1="366.0" x2="769.0" y2="526.0" stroke="#d8dcef" stroke-width="1"></line><text x="769.0" y="542.0" text-anchor="middle" class="tick-label">0.50</text><line x1="888.0" y1="366.0" x2="888.0" y2="526.0" stroke="#d8dcef" stroke-width="1"></line><text x="888.0" y="542.0" text-anchor="middle" class="tick-label">1.00</text><text x="769.0" y="532.0" text-anchor="middle" class="axis-label">Micro-F1</text><text x="638.0" y="392.0" text-anchor="end" class="model-label">GPT-5.2</text><rect x="650.0" y="374.0" width="181.3" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="837.3" y="383.0" class="value-label">0.76</text><rect x="650.0" y="388.0" width="200.4" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="856.4" y="397.0" class="value-label">0.84</text><rect x="650.0" y="402.0" width="133.9" height="10.0" fill="#d97706" rx="3" ry="3" /><text x="789.9" y="411.0" class="value-label">0.56</text><text x="638.0" y="436.0" text-anchor="end" class="model-label">GPT-5-nano</text><rect x="650.0" y="418.0" width="30.7" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="686.7" y="427.0" class="value-label">0.13</text><rect x="650.0" y="432.0" width="200.4" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="856.4" y="441.0" class="value-label">0.84</text><text x="638.0" y="480.0" text-anchor="end" class="model-label">MedGemma 27B</text><rect x="650.0" y="476.0" width="190.4" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="846.4" y="485.0" class="value-label">0.80</text>
 </svg>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-results-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 1: Within-model comparison of saved evaluation runs within manuscript scope. Horizontal bars show micro-F1 for baseline, DSPy/GEPA, and LangExtract runs for each model within each task. Missing bars indicate that a given task-model-approach combination was not evaluated or was not available as a saved run; in particular, LangExtract was not evaluated for the checklist task.
-</figcaption>
-</figure>
-</div>
+<p>Within-model comparison of saved evaluation runs within manuscript scope. Horizontal bars show micro-F1 for baseline, DSPy/GEPA, and LangExtract runs for each model within each task. Missing bars indicate that a given task-model-approach combination was not evaluated or was not available as a saved run.</p>
 </section>
-<section id="sec-sbar-optimized" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="sec-sbar-optimized"><span class="header-section-number">4.3</span> SBAR span extraction</h3>
-<p>Among SBAR configurations, the highest overall score was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 0.755), followed by DSPy/GEPA-optimised GPT-5-nano (micro-F1 0.692) and LangExtract GPT-5.2 (micro-F1 0.592). Table <a href="#tbl-sbar-optimized" class="quarto-xref">Table 3</a> provides label-level results for the best-performing GPT-5.2 DSPy/GEPA SBAR configuration, compared with its corresponding GPT-5.2 baseline run.</p>
-<div id="tbl-sbar-optimized" class="quarto-float quarto-figure quarto-figure-center anchored">
+<section id="saved-run-inventory" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="saved-run-inventory"><span class="header-section-number">4</span> Saved Run Inventory</h2>
+<p>Table <a href="#tbl-supp-all-runs" class="quarto-xref">Table 2</a> lists all manuscript-scope saved evaluation runs underlying the dashboard summary. This includes repeated runs for the same task and model where different reasoning settings or prompting variants were evaluated.</p>
+<div id="tbl-supp-all-runs" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sbar-optimized-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table 3: Per-label SBAR metrics for the best-performing GPT-5.2 DSPy/GEPA model output on the consensus evaluation partition (n=48). <code>Delta F1</code> is the difference from the corresponding GPT-5.2 baseline run on the same partition.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-supp-all-runs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table 2: Inventory of manuscript-scope saved evaluation runs derived from the dashboard source files.
 </figcaption>
-<div aria-describedby="tbl-sbar-optimized-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-supp-all-runs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 9%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 8%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Label</th>
-<th style="text-align: right;">Gold</th>
-<th style="text-align: right;">Predicted spans</th>
-<th style="text-align: right;">Recall</th>
-<th style="text-align: right;">Precision</th>
+<th>Task</th>
+<th>Approach</th>
+<th>Model</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">Average score</th>
+<th style="text-align: right;">Micro precision</th>
+<th style="text-align: right;">Micro recall</th>
+<th style="text-align: right;">Micro F1</th>
 <th style="text-align: right;">Mean IoU</th>
-<th style="text-align: right;">F1</th>
-<th style="text-align: right;">Delta F1 (vs baseline)</th>
+<th>Saved evaluation label</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>ASSESSMENT</td>
-<td style="text-align: right;">194</td>
-<td style="text-align: right;">192</td>
-<td style="text-align: right;">0.768</td>
-<td style="text-align: right;">0.776</td>
-<td style="text-align: right;">0.765</td>
-<td style="text-align: right;">0.772</td>
-<td style="text-align: right;">+0.228</td>
+<td>Checklist item prediction</td>
+<td>Baseline</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">0.769</td>
+<td style="text-align: right;">0.682</td>
+<td style="text-align: right;">0.894</td>
+<td style="text-align: right;">0.774</td>
+<td style="text-align: right;">NA</td>
+<td>checklist baseline gpt-5.2</td>
 </tr>
 <tr class="even">
-<td>BACKGROUND</td>
-<td style="text-align: right;">47</td>
-<td style="text-align: right;">50</td>
-<td style="text-align: right;">0.723</td>
-<td style="text-align: right;">0.680</td>
-<td style="text-align: right;">0.660</td>
-<td style="text-align: right;">0.701</td>
-<td style="text-align: right;">+0.405</td>
+<td>Checklist item prediction</td>
+<td>Baseline</td>
+<td>GPT-5-nano</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">0.709</td>
+<td style="text-align: right;">0.645</td>
+<td style="text-align: right;">0.817</td>
+<td style="text-align: right;">0.721</td>
+<td style="text-align: right;">NA</td>
+<td>checklist baseline gpt-nano</td>
 </tr>
 <tr class="odd">
-<td>RECOMMENDATION</td>
-<td style="text-align: right;">113</td>
-<td style="text-align: right;">124</td>
-<td style="text-align: right;">0.761</td>
-<td style="text-align: right;">0.694</td>
-<td style="text-align: right;">0.781</td>
-<td style="text-align: right;">0.726</td>
-<td style="text-align: right;">+0.145</td>
+<td>Checklist item prediction</td>
+<td>Baseline</td>
+<td>MedGemma 27B</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">0.647</td>
+<td style="text-align: right;">0.625</td>
+<td style="text-align: right;">0.676</td>
+<td style="text-align: right;">0.649</td>
+<td style="text-align: right;">NA</td>
+<td>checklist baseline medgemma</td>
 </tr>
 <tr class="even">
-<td>SITUATION</td>
-<td style="text-align: right;">73</td>
-<td style="text-align: right;">52</td>
-<td style="text-align: right;">0.685</td>
-<td style="text-align: right;">0.962</td>
-<td style="text-align: right;">0.820</td>
+<td>Checklist item prediction</td>
+<td>DSPy/GEPA</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">0.852</td>
+<td style="text-align: right;">0.819</td>
+<td style="text-align: right;">0.894</td>
+<td style="text-align: right;">0.854</td>
+<td style="text-align: right;">NA</td>
+<td>checklist gpt-5.2</td>
+</tr>
+<tr class="odd">
+<td>Checklist item prediction</td>
+<td>DSPy/GEPA</td>
+<td>GPT-5-nano</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">0.811</td>
+<td style="text-align: right;">0.802</td>
+<td style="text-align: right;">0.824</td>
+<td style="text-align: right;">0.813</td>
+<td style="text-align: right;">NA</td>
+<td>checklist gpt-nano gepa</td>
+</tr>
+<tr class="even">
+<td>Checklist item prediction</td>
+<td>DSPy/GEPA</td>
+<td>MedGemma 27B</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">0.763</td>
+<td style="text-align: right;">0.751</td>
+<td style="text-align: right;">0.777</td>
+<td style="text-align: right;">0.764</td>
+<td style="text-align: right;">NA</td>
+<td>checklist medgemma</td>
+</tr>
+<tr class="odd">
+<td>Checklist item prediction</td>
+<td>DSPy/GEPA</td>
+<td>MedGemma 27B</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">0.763</td>
+<td style="text-align: right;">0.751</td>
+<td style="text-align: right;">0.777</td>
+<td style="text-align: right;">0.764</td>
+<td style="text-align: right;">NA</td>
+<td>checklist medgemma</td>
+</tr>
+<tr class="even">
+<td>SBAR span extraction</td>
+<td>Baseline</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0.354</td>
+<td style="text-align: right;">0.408</td>
+<td style="text-align: right;">0.686</td>
+<td style="text-align: right;">0.511</td>
+<td style="text-align: right;">0.708</td>
+<td>sbar baseline gpt-5.2</td>
+</tr>
+<tr class="odd">
+<td>SBAR span extraction</td>
+<td>Baseline</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0.362</td>
+<td style="text-align: right;">0.409</td>
+<td style="text-align: right;">0.672</td>
+<td style="text-align: right;">0.508</td>
+<td style="text-align: right;">0.719</td>
+<td>sbar baseline gpt-5.2</td>
+</tr>
+<tr class="even">
+<td>SBAR span extraction</td>
+<td>Baseline</td>
+<td>GPT-5-nano</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0.349</td>
+<td style="text-align: right;">0.434</td>
+<td style="text-align: right;">0.569</td>
+<td style="text-align: right;">0.492</td>
+<td style="text-align: right;">0.715</td>
+<td>sbar baseline gpt-nano</td>
+</tr>
+<tr class="odd">
+<td>SBAR span extraction</td>
+<td>Baseline</td>
+<td>MedGemma 27B</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0.361</td>
+<td style="text-align: right;">0.569</td>
+<td style="text-align: right;">0.454</td>
+<td style="text-align: right;">0.505</td>
+<td style="text-align: right;">0.712</td>
+<td>sbar baseline medgemma</td>
+</tr>
+<tr class="even">
+<td>SBAR span extraction</td>
+<td>DSPy/GEPA</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0.587</td>
+<td style="text-align: right;">0.763</td>
+<td style="text-align: right;">0.747</td>
+<td style="text-align: right;">0.755</td>
+<td style="text-align: right;">0.767</td>
+<td>sbar gpt-5.2</td>
+</tr>
+<tr class="odd">
+<td>SBAR span extraction</td>
+<td>DSPy/GEPA</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0.562</td>
+<td style="text-align: right;">0.744</td>
+<td style="text-align: right;">0.721</td>
+<td style="text-align: right;">0.732</td>
+<td style="text-align: right;">0.766</td>
+<td>sbar gpt-5.2</td>
+</tr>
+<tr class="even">
+<td>SBAR span extraction</td>
+<td>DSPy/GEPA</td>
+<td>GPT-5-nano</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0.526</td>
+<td style="text-align: right;">0.673</td>
+<td style="text-align: right;">0.712</td>
+<td style="text-align: right;">0.692</td>
+<td style="text-align: right;">0.762</td>
+<td>sbar gpt-nano</td>
+</tr>
+<tr class="odd">
+<td>SBAR span extraction</td>
+<td>DSPy/GEPA</td>
+<td>GPT-5-nano</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0.374</td>
+<td style="text-align: right;">0.535</td>
+<td style="text-align: right;">0.522</td>
+<td style="text-align: right;">0.528</td>
+<td style="text-align: right;">0.719</td>
+<td>sbar gpt-nano</td>
+</tr>
+<tr class="even">
+<td>SBAR span extraction</td>
+<td>LangExtract</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0.417</td>
+<td style="text-align: right;">0.481</td>
+<td style="text-align: right;">0.770</td>
+<td style="text-align: right;">0.592</td>
+<td style="text-align: right;">0.715</td>
+<td>sbar langextract gpt-5.2</td>
+</tr>
+<tr class="odd">
+<td>SBAR span extraction</td>
+<td>LangExtract</td>
+<td>MedGemma 27B</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0.326</td>
+<td style="text-align: right;">0.547</td>
+<td style="text-align: right;">0.393</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: right;">0.710</td>
+<td>sbar langextract medgemma</td>
+</tr>
+<tr class="even">
+<td>Uncertainty span extraction</td>
+<td>Baseline</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.202</td>
+<td style="text-align: right;">0.237</td>
+<td style="text-align: right;">0.646</td>
+<td style="text-align: right;">0.346</td>
+<td style="text-align: right;">0.620</td>
+<td>uncertain baseline gpt-5.2</td>
+</tr>
+<tr class="odd">
+<td>Uncertainty span extraction</td>
+<td>Baseline</td>
+<td>MedGemma 27B</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.060</td>
+<td style="text-align: right;">0.119</td>
+<td style="text-align: right;">0.167</td>
+<td style="text-align: right;">0.139</td>
+<td style="text-align: right;">0.560</td>
+<td>uncertain baseline medgemma</td>
+</tr>
+<tr class="even">
+<td>Uncertainty span extraction</td>
+<td>DSPy/GEPA</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.334</td>
+<td style="text-align: right;">0.323</td>
+<td style="text-align: right;">0.562</td>
+<td style="text-align: right;">0.411</td>
+<td style="text-align: right;">0.833</td>
+<td>uncertain gpt-5.2</td>
+</tr>
+<tr class="odd">
+<td>Uncertainty span extraction</td>
+<td>DSPy/GEPA</td>
+<td>MedGemma 27B</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.171</td>
+<td style="text-align: right;">0.194</td>
+<td style="text-align: right;">0.198</td>
+<td style="text-align: right;">0.196</td>
+<td style="text-align: right;">0.720</td>
+<td>uncertain medgemma gepa</td>
+</tr>
+<tr class="even">
+<td>Uncertainty span extraction</td>
+<td>LangExtract</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.038</td>
+<td style="text-align: right;">0.350</td>
+<td style="text-align: right;">0.073</td>
+<td style="text-align: right;">0.121</td>
+<td style="text-align: right;">0.352</td>
+<td>uncertain langextract gpt-5.2</td>
+</tr>
+<tr class="odd">
+<td>Uncertainty span extraction</td>
+<td>LangExtract</td>
+<td>MedGemma 27B</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.167</td>
+<td style="text-align: right;">0.217</td>
+<td style="text-align: right;">0.260</td>
+<td style="text-align: right;">0.237</td>
+<td style="text-align: right;">0.690</td>
+<td>uncertain langextract medgemma</td>
+</tr>
+<tr class="even">
+<td>Unknown-fact span extraction</td>
+<td>Baseline</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.942</td>
+<td style="text-align: right;">0.727</td>
 <td style="text-align: right;">0.800</td>
-<td style="text-align: right;">+0.245</td>
+<td style="text-align: right;">0.762</td>
+<td style="text-align: right;">0.860</td>
+<td>unknown-fact gpt-5.2</td>
+</tr>
+<tr class="odd">
+<td>Unknown-fact span extraction</td>
+<td>Baseline</td>
+<td>GPT-5-nano</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.038</td>
+<td style="text-align: right;">0.077</td>
+<td style="text-align: right;">0.400</td>
+<td style="text-align: right;">0.129</td>
+<td style="text-align: right;">0.743</td>
+<td>unknown-fact gpt-nano</td>
+</tr>
+<tr class="even">
+<td>Unknown-fact span extraction</td>
+<td>DSPy/GEPA</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.974</td>
+<td style="text-align: right;">0.889</td>
+<td style="text-align: right;">0.800</td>
+<td style="text-align: right;">0.842</td>
+<td style="text-align: right;">0.919</td>
+<td>unknown-fact gpt-5.2 gepa</td>
+</tr>
+<tr class="odd">
+<td>Unknown-fact span extraction</td>
+<td>DSPy/GEPA</td>
+<td>GPT-5-nano</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.976</td>
+<td style="text-align: right;">0.889</td>
+<td style="text-align: right;">0.800</td>
+<td style="text-align: right;">0.842</td>
+<td style="text-align: right;">0.892</td>
+<td>unknown-fact gpt-nano</td>
+</tr>
+<tr class="even">
+<td>Unknown-fact span extraction</td>
+<td>DSPy/GEPA</td>
+<td>MedGemma 27B</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.967</td>
+<td style="text-align: right;">0.800</td>
+<td style="text-align: right;">0.800</td>
+<td style="text-align: right;">0.800</td>
+<td style="text-align: right;">0.902</td>
+<td>unknown-fact medgemma gepa-light</td>
+</tr>
+<tr class="odd">
+<td>Unknown-fact span extraction</td>
+<td>LangExtract</td>
+<td>GPT-5.2</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">0.753</td>
+<td style="text-align: right;">0.409</td>
+<td style="text-align: right;">0.900</td>
+<td style="text-align: right;">0.563</td>
+<td style="text-align: right;">0.679</td>
+<td>unknown-fact langextract gpt-5.2</td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p>Within this GPT-5.2 SBAR comparison, macro-precision improved from 0.406 to 0.778, macro-recall from 0.686 to 0.734, and macro-F1 from 0.494 to 0.750. The largest per-label improvements in F1 were observed for BACKGROUND (+0.405), SITUATION (+0.245), and ASSESSMENT (+0.228), with a smaller improvement for RECOMMENDATION (+0.145). Span-boundary agreement among matched predictions remained high, with mean IoU values between 0.660 and 0.820 across SBAR labels.</p>
 </section>
-<section id="sec-checklist" class="level3" data-number="4.4">
-<h3 data-number="4.4" class="anchored" data-anchor-id="sec-checklist"><span class="header-section-number">4.4</span> Checklist task</h3>
-<p>For checklist prediction, the best overall result was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 0.854, macro-F1 0.762, support-weighted F1 0.849). This exceeded the matched GPT-5.2 baseline by +0.081 on micro-F1 and +0.073 on macro-F1. DSPy/GEPA-optimised GPT-5-nano also performed competitively (micro-F1 0.813), while MedGemma 27B reached micro-F1 0.764). Table <a href="#tbl-checklist-grouped" class="quarto-xref">Table 4</a> presents grouped per-label performance for the best-performing GPT-5.2 checklist model. The largest improvements over baseline were observed for patient involvement items and several recommendation-related labels, while 2 low-support labels still had F1 equal to zero.</p>
-<div id="tbl-checklist-grouped" class="quarto-float quarto-figure quarto-figure-center anchored">
+<section id="full-checklist-per-label-results" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="full-checklist-per-label-results"><span class="header-section-number">5</span> Full Checklist Per-Label Results</h2>
+<p>The full grouped checklist per-label results for the best-performing GPT-5.2 DSPy/GEPA model are reproduced in Table <a href="#tbl-supp-checklist-full" class="quarto-xref">Table 3</a>.</p>
+<div id="tbl-supp-checklist-full" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-checklist-grouped-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table 4: Grouped per-label checklist performance for the best-performing GPT-5.2 DSPy/GEPA model on the consensus evaluation partition (n=49). <code>Delta F1</code> is the difference from the corresponding GPT-5.2 baseline run.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-supp-checklist-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table 3: Full grouped per-label checklist results for the GPT-5.2 DSPy/GEPA model evaluated on the consensus checklist partition.
 </figcaption>
-<div aria-describedby="tbl-checklist-grouped-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-supp-checklist-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 6%">
@@ -4027,43 +4442,22 @@ Table 4: Grouped per-label checklist performance for the best-performing GPT-5.
 </figure>
 </div>
 </section>
-</section>
-<section id="sec-discussion" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="sec-discussion"><span class="header-section-number">5</span> Discussion</h2>
-<p>These results show meaningful performance gains after DSPy optimisation for structured handover extraction, with the largest absolute improvement observed for SBAR span extraction and strong aggregate performance for checklist prediction. In the SBAR task, gains were driven primarily by improved precision, particularly for BACKGROUND and SITUATION spans, while RECOMMENDATION extraction remained somewhat more difficult.</p>
-<p>Performance on uncertainty span extraction was lower across all approaches, suggesting that diffuse or context-dependent communicative uncertainty remains challenging to identify reliably from transcript text alone. By contrast, the narrower unknown-fact span task achieved substantially higher scores, indicating that task definition and label specificity were important determinants of extractive performance. Checklist results continued to show variability concentrated in lower-support labels and categories with sparse positives, which is expected in clinical label spaces where some safety-relevant signals are uncommon but high impact.</p>
-</section>
-<section id="sec-limitations" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="sec-limitations"><span class="header-section-number">6</span> Limitations</h2>
-<ol type="1">
-<li>Reported metrics are from a single deterministic split and should be supplemented with repeated split or external validation.</li>
-<li>Some labels have low support, which increases metric variance.</li>
-<li>This manuscript reports performance metrics only; impact on clinician workflow and patient outcomes requires prospective evaluation.</li>
-</ol>
-</section>
-<section id="sec-conclusion" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="sec-conclusion"><span class="header-section-number">7</span> Conclusion</h2>
-<p>Using consensus-labeled clinical handover data, we found that DSPy/GEPA prompt optimisation, particularly with GPT-5.2, consistently improved performance over baseline across the main evaluated tasks. The largest gains were observed for SBAR span extraction, checklist prediction remained strong at aggregate level, uncertainty extraction was the most difficult task, and unknown-fact extraction performed well when the target phenomenon was narrowly defined. Label-level and category-level reporting highlighted both gains and remaining gaps, supporting targeted next-step refinement.</p>
-
+<section id="reproducibility-appendix" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="reproducibility-appendix"><span class="header-section-number">6</span> Reproducibility Appendix</h2>
+<p>The main-paper and supplementary results tables were generated within Quarto from saved evaluation outputs in <code>evals/</code> using <a href="./Users/ac/handover-annotation/analysis/manuscript_results.py">analysis/manuscript_results.py</a>.</p>
+<p>The SBAR per-label values in the main paper were produced from:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> analysis/per_label_analysis.py evals/eval_sbar_baseline_gpt_5.2_consensus.jsonl</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> analysis/per_label_analysis.py evals/eval_sbar_span_gpt_5-2_consensus_reasoning_none.jsonl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The checklist grouped per-label table reproduced in this supplementary file was rendered with:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> analysis/render_checklist_md_table.py <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  evals/eval_checklist_consensus_gpt_5_2_test_analysis/per_label.csv <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--summary-json</span> evals/eval_checklist_consensus_gpt_5_2_test_analysis/summary.json <span class="dt">\</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--baseline-per-label-csv</span> evals/eval_baseline_checklist_consensus_gpt_5_2_test_analysis/per_label.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The dashboard summary inspected during manuscript preparation can be regenerated with:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> analysis/collate_eval_results_webpage.py <span class="at">--eval-dir</span> evals <span class="at">--out</span> evals/eval_results_dashboard.html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-agrawal2025gepa" class="csl-entry" role="listitem">
-Agrawal, Lakshya A, Shangyin Tan, Dilara Soylu, Noah Ziems, Rishi Khare, Krista Opsahl-Ong, Arnav Singhvi, et al. 2025. <span>“Gepa: Reflective Prompt Evolution Can Outperform Reinforcement Learning.”</span> <em>arXiv Preprint arXiv:2507.19457</em>.
-</div>
-<div id="ref-goel_2026_langextract" class="csl-entry" role="listitem">
-Goel, Akshay. 2026. <span>“LangExtract.”</span> Google LLC. <a href="https://doi.org/10.5281/zenodo.17015089">https://doi.org/10.5281/zenodo.17015089</a>.
-</div>
-<div id="ref-khattab2023dspy" class="csl-entry" role="listitem">
-Khattab, Omar, Arnav Singhvi, Paridhi Maheshwari, Zhiyuan Zhang, Keshav Santhanam, Sri Vardhamanan, Saiful Haq, et al. 2023. <span>“Dspy: Compiling Declarative Language Model Calls into Self-Improving Pipelines.”</span> <em>arXiv Preprint arXiv:2310.03714</em>.
-</div>
-<div id="ref-montani2018prodigy" class="csl-entry" role="listitem">
-Montani, Ines, and Matthew Honnibal. 2018. <span>“Prodigy: An Annotation Tool for AI, Machine Learning and NLP.”</span> Explosion. 2018. <a href="https://prodi.gy/">https://prodi.gy/</a>.
-</div>
-<div id="ref-suominen2015benchmarking" class="csl-entry" role="listitem">
-Suominen, Hanna, Liyuan Zhou, Leif Hanlen, and Gabriela Ferraro. 2015. <span>“Benchmarking Clinical Speech Recognition and Information Extraction: New Data, Methods, and Evaluations.”</span> <em>JMIR Medical Informatics</em> 3 (2): e4321.
-</div>
-</div></section></div></main>
+</main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

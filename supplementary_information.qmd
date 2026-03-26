@@ -1,0 +1,135 @@
+---
+title: "Supplementary Information"
+subtitle: "Evaluation of DSPy-Optimized AI Assistance for Clinical Handover"
+author:
+  - "Study Team"
+date: today
+bibliography: references.bib
+jupyter: python3
+format:
+  html:
+    toc: true
+    number-sections: true
+    embed-resources: true
+execute:
+  echo: false
+  warning: false
+  error: false
+---
+
+```{python}
+#| label: supp-results-setup
+#| include: false
+
+from pathlib import Path
+
+from analysis.manuscript_results import (
+    comparison_plot_svg,
+    curated_results,
+    full_overview_markdown_table,
+    full_overview_table,
+    load_all_results,
+    load_checklist_main_tables,
+    main_overview_table,
+    manuscript_scope_results,
+)
+
+
+ROOT = Path(".")
+
+all_results_df = load_all_results(ROOT)
+scoped_results_df = manuscript_scope_results(all_results_df)
+curated_results_df = curated_results(all_results_df)
+overview_df = main_overview_table(curated_results_df)
+
+curated_overview_md = full_overview_markdown_table(full_overview_table(curated_results_df))
+all_runs_overview_md = full_overview_markdown_table(full_overview_table(scoped_results_df))
+
+checklist_results = load_checklist_main_tables(ROOT)
+checklist_grouped_table_md = checklist_results["full_grouped_md"]
+comparison_plot = comparison_plot_svg(overview_df, width=980)
+```
+
+## Overview
+
+This supplementary file provides additional evaluation detail derived directly from the saved evaluation outputs in `evals/`. To align with the manuscript, the summaries below are restricted to the three models discussed in the main paper: GPT-5.2, GPT-5-nano, and MedGemma 27B. The 2-example uncertainty LangExtract smoke-test file was excluded from the manuscript-scope summaries.
+
+## Curated Model Comparison
+
+Table @tbl-supp-curated-overview reports the best observed result for each task, approach, and model combination within manuscript scope. Where more than one saved run existed for the same task, approach, and model, the row with the highest observed micro-F1 is shown.
+
+::: {#tbl-supp-curated-overview}
+```{python}
+#| output: asis
+
+print(curated_overview_md)
+```
+
+Curated summary of best observed results for each task, model, and prompting approach within manuscript scope.
+:::
+
+## Visual Comparison
+
+A visual comparison of the curated micro-F1 values from Table @tbl-supp-curated-overview is provided below.
+
+```{python}
+#| output: asis
+
+print(comparison_plot)
+```
+
+Within-model comparison of saved evaluation runs within manuscript scope. Horizontal bars show micro-F1 for baseline, DSPy/GEPA, and LangExtract runs for each model within each task. Missing bars indicate that a given task-model-approach combination was not evaluated or was not available as a saved run.
+
+## Saved Run Inventory
+
+Table @tbl-supp-all-runs lists all manuscript-scope saved evaluation runs underlying the dashboard summary. This includes repeated runs for the same task and model where different reasoning settings or prompting variants were evaluated.
+
+::: {#tbl-supp-all-runs}
+```{python}
+#| output: asis
+
+print(all_runs_overview_md)
+```
+
+Inventory of manuscript-scope saved evaluation runs derived from the dashboard source files.
+:::
+
+## Full Checklist Per-Label Results
+
+The full grouped checklist per-label results for the best-performing GPT-5.2 DSPy/GEPA model are reproduced in Table @tbl-supp-checklist-full.
+
+::: {#tbl-supp-checklist-full}
+```{python}
+#| output: asis
+
+print(checklist_grouped_table_md)
+```
+
+Full grouped per-label checklist results for the GPT-5.2 DSPy/GEPA model evaluated on the consensus checklist partition.
+:::
+
+## Reproducibility Appendix
+
+The main-paper and supplementary results tables were generated within Quarto from saved evaluation outputs in `evals/` using [analysis/manuscript_results.py](/Users/ac/handover-annotation/analysis/manuscript_results.py).
+
+The SBAR per-label values in the main paper were produced from:
+
+```bash
+python3 analysis/per_label_analysis.py evals/eval_sbar_baseline_gpt_5.2_consensus.jsonl
+python3 analysis/per_label_analysis.py evals/eval_sbar_span_gpt_5-2_consensus_reasoning_none.jsonl
+```
+
+The checklist grouped per-label table reproduced in this supplementary file was rendered with:
+
+```bash
+python3 analysis/render_checklist_md_table.py \
+  evals/eval_checklist_consensus_gpt_5_2_test_analysis/per_label.csv \
+  --summary-json evals/eval_checklist_consensus_gpt_5_2_test_analysis/summary.json \
+  --baseline-per-label-csv evals/eval_baseline_checklist_consensus_gpt_5_2_test_analysis/per_label.csv
+```
+
+The dashboard summary inspected during manuscript preparation can be regenerated with:
+
+```bash
+python3 analysis/collate_eval_results_webpage.py --eval-dir evals --out evals/eval_results_dashboard.html
+```
