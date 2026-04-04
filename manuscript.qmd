@@ -8,7 +8,8 @@ jupyter: python3
 format:
   html:
     toc: true
-    number-sections: true
+    toc-location: left
+    number-sections: false
     embed-resources: true
 execute:
   echo: false
@@ -30,8 +31,8 @@ Clinical handover requires concise and accurate transfer of critical patient inf
 Tasks related to clinical handover communication that were considered as potentially augmentable with AI assistance were identified in a co-design process with clinicians and consumers, which will be reported separately. The tasks evaluated in this study are:
 
 - Extracting spans of text from transcripts that aligned with the SBAR (Situation, Background, Assessment, Recommendation) framework for structuring clinical handover. In this study, SBAR span extraction was operationalised as a sequence-labeling task to identify contiguous spans of text in handover transcripts that corresponded to each SBAR category.
-- Identifying key concepts and entities in handover transcripts. In this study, this task was operationalised as a checklist of items that are recommended to be addressed during nursing clinical handover, which were developed as part of quality-improvement processes. The checklist items are summarised in Table @tbl-checklist-items.
-- Identifying spans of text in transcripts that were communicated in uncertain terms. In this study, this task was operationalised as span annotation of utterances during handover that conveyed incomplete knowledge, vague or hedged wording, imprecise timing, second-hand sourcing, unclear procedures, or unclear responsibility for follow-up actions. These forms of uncertainty were treated as potentially clinically important because they may indicate information that requires clarification or verification by the receiving clinician. The uncertainty categories and example guidance provided to annotators are summarised in Table @tbl-uncertainty-items.
+- Identifying key concepts and entities in handover transcripts. In this study, this task was operationalised as a checklist of items that are recommended to be addressed during nursing clinical handover, which were developed as part of quality-improvement processes. The checklist items are summarised in @tbl-checklist-items.
+- Identifying spans of text in transcripts that were communicated in uncertain terms. In this study, this task was operationalised as span annotation of utterances during handover that conveyed incomplete knowledge, vague or hedged wording, imprecise timing, second-hand sourcing, unclear procedures, or unclear responsibility for follow-up actions. These forms of uncertainty were treated as potentially clinically important because they may indicate information that requires clarification or verification by the receiving clinician. The uncertainty categories and example guidance provided to annotators are summarised in @tbl-uncertainty-items.
 
 ::: {#tbl-checklist-items}
 | Category | Checklist item |
@@ -48,7 +49,7 @@ Tasks related to clinical handover communication that were considered as potenti
 | Background | Pressure injury risk |
 | Background | Allergies |
 | Background | Advance care planning |
-| Assessment | Observations, Q-ADDS score, and recent escalations |
+| Assessment | Observations, deterioration score, and recent escalations |
 | Assessment | Pain management |
 | Assessment | Devices, lines, and vascular access |
 | Assessment | Critical monitoring and alarms |
@@ -236,7 +237,7 @@ Within-model comparisons showed consistent gains with DSPy/GEPA over matched bas
 
 ### Comparative performance across tasks and prompting approaches {#sec-results-overview}
 
-Figure @fig-results-overview summarizes matched within-model comparisons across tasks for the three models evaluated in the main study. Where more than one saved run existed for the same task, model, and approach, the highest observed micro-F1 for that combination is shown.
+@fig-results-overview summarizes matched within-model comparisons across tasks for the three models evaluated in the main study. Where more than one saved run existed for the same task, model, and approach, the highest observed micro-F1 for that combination is shown.
 
 ::: {#fig-results-overview}
 ```{python}
@@ -250,7 +251,7 @@ Within-model comparison of saved evaluation runs within manuscript scope. Horizo
 
 ### SBAR span extraction {#sec-sbar-optimized}
 
-Among SBAR configurations, the highest overall score was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 `{python} fmt3(sbar_best_dspy["micro_f1"])`), followed by DSPy/GEPA-optimised GPT-5-nano (micro-F1 `{python} fmt3(sbar_gpt_nano_dspy["micro_f1"])`) and LangExtract GPT-5.2 (micro-F1 `{python} fmt3(sbar_best_langextract["micro_f1"])`). Table @tbl-sbar-optimized provides label-level results for the best-performing GPT-5.2 DSPy/GEPA SBAR configuration, compared with its corresponding GPT-5.2 baseline run.
+Among SBAR configurations, the highest overall score was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 `{python} fmt3(sbar_best_dspy["micro_f1"])`), followed by DSPy/GEPA-optimised GPT-5-nano (micro-F1 `{python} fmt3(sbar_gpt_nano_dspy["micro_f1"])`) and LangExtract GPT-5.2 (micro-F1 `{python} fmt3(sbar_best_langextract["micro_f1"])`). @tbl-sbar-optimized provides label-level results for the best-performing GPT-5.2 DSPy/GEPA SBAR configuration, compared with its corresponding GPT-5.2 baseline run.
 
 ::: {#tbl-sbar-optimized}
 
@@ -267,7 +268,7 @@ Within this GPT-5.2 SBAR comparison, macro-precision improved from `{python} fmt
 
 ### Checklist task {#sec-checklist}
 
-For checklist prediction, the best overall result was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 `{python} fmt3(checklist_micro_f1)`, macro-F1 `{python} fmt3(checklist_macro_f1)`, support-weighted F1 `{python} fmt3(checklist_support_weighted_f1)`). This exceeded the matched GPT-5.2 baseline by `{python} fmt_signed3(checklist_micro_f1_delta)` on micro-F1 and `{python} fmt_signed3(checklist_macro_f1_delta)` on macro-F1. DSPy/GEPA-optimised GPT-5-nano also performed competitively (micro-F1 `{python} fmt3(checklist_gpt_nano_dspy["micro_f1"])`), while MedGemma 27B reached micro-F1 `{python} fmt3(checklist_medgemma_dspy["micro_f1"])`). Table @tbl-checklist-grouped presents grouped per-label performance for the best-performing GPT-5.2 checklist model. The largest improvements over baseline were observed for patient involvement items and several recommendation-related labels, while `{python} checklist_zero_f1_count` low-support labels still had F1 equal to zero.
+For checklist prediction, the best overall result was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 `{python} fmt3(checklist_micro_f1)`, macro-F1 `{python} fmt3(checklist_macro_f1)`, support-weighted F1 `{python} fmt3(checklist_support_weighted_f1)`). This exceeded the matched GPT-5.2 baseline by `{python} fmt_signed3(checklist_micro_f1_delta)` on micro-F1 and `{python} fmt_signed3(checklist_macro_f1_delta)` on macro-F1. DSPy/GEPA-optimised GPT-5-nano also performed competitively (micro-F1 `{python} fmt3(checklist_gpt_nano_dspy["micro_f1"])`), while MedGemma 27B reached micro-F1 `{python} fmt3(checklist_medgemma_dspy["micro_f1"])`). @tbl-checklist-grouped presents grouped per-label performance for the best-performing GPT-5.2 checklist model. The largest improvements over baseline were observed for patient involvement items and several recommendation-related labels, while `{python} checklist_zero_f1_count` low-support labels still had F1 equal to zero.
 
 ::: {#tbl-checklist-grouped}
 ```{python}
