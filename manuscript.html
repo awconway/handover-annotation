@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Study Team">
-<meta name="dcterms.date" content="2026-04-02">
+<meta name="dcterms.date" content="2026-04-20">
 
 <title>Evaluation of DSPy-Optimized AI Assistance for Clinical Handover</title>
 <style>
@@ -3120,7 +3120,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 2, 2026</p>
+      <p class="date">April 20, 2026</p>
     </div>
   </div>
   
@@ -3138,11 +3138,18 @@ vertical-align: -.125em;
 </section>
 <section id="sec-introduction" class="level2">
 <h2 class="anchored" data-anchor-id="sec-introduction">Introduction</h2>
-<p>Clinical handover requires concise and accurate transfer of critical patient information. Errors or omissions in handover communication can lead to delays in treatment and patient harm. This manuscript reports model evaluation results from a study workflow focused on improving structured handover extraction using DSPy-guided prompt optimization and consensus-labeled data.</p>
+<p>Clinical handover is a safety-critical transition in which responsibility and accountability for patient care are transferred between clinicians. Failures in communication that occur at handover through inaccurate, incomplete, or misinterpreted information transfer create opportunities for delays, duplicated work, and preventable harm <span class="citation" data-cites="ong2011handoff_failures manias2016handover_perspectives">(<a href="#ref-ong2011handoff_failures" role="doc-biblioref">Ong and Coiera 2011</a>; <a href="#ref-manias2016handover_perspectives" role="doc-biblioref">Manias et al. 2016</a>)</span>. In recognition of this risk, international and national bodies have prioritised structured handover practices and communication redesign as patient-safety interventions, particularly at transitions of care where information loss is more likely <span class="citation" data-cites="manser2011effective_handover bukoh2020structured_handover_review">(<a href="#ref-manser2011effective_handover" role="doc-biblioref">Manser and Foster 2011</a>; <a href="#ref-bukoh2020structured_handover_review" role="doc-biblioref">Bukoh and Siah 2020</a>)</span>.</p>
+<p>Structured handover processes aim to standardise both the minimum content and the format of exchange so that critical information is predictably conveyed, acted upon, and auditable. In Australia, the Communicating for Safety Standard emphasises structured clinical handover to reduce communication errors and improve patient safety, explicitly noting the heightened risk at shift changes, transfers, and discharge <span class="citation" data-cites="redley2018handover_audit_tool manias2016handover_perspectives">(<a href="#ref-redley2018handover_audit_tool" role="doc-biblioref">Redley and Waugh 2018</a>; <a href="#ref-manias2016handover_perspectives" role="doc-biblioref">Manias et al. 2016</a>)</span>. One widely adopted format is SBAR (Situation, Background, Assessment, Recommendation), framed as a shared mental model to support concise, organised clinician-to-clinician communication <span class="citation" data-cites="haig2006sbar_shared_mental_model">(<a href="#ref-haig2006sbar_shared_mental_model" role="doc-biblioref">Haig, Sutton, and Whittington 2006</a>)</span>. However, despite widespread uptake, the evidence base for SBAR’s direct impact on patient outcomes varies by context, and systematic review findings have been described as moderate with ongoing calls for higher-quality evaluation <span class="citation" data-cites="muller2018sbar_systematic_review">(<a href="#ref-muller2018sbar_systematic_review" role="doc-biblioref">Müller et al. 2018</a>)</span>.</p>
+<p>A persistent implementation gap lies in measurement and documentation. Even where structured tools are mandated or encouraged, handover content remains influenced by time pressure, local culture, clinician experience, and the pragmatic realities of ward work <span class="citation" data-cites="riesenberg2010nursing_handoffs watson2014time_handover manias2016handover_perspectives">(<a href="#ref-riesenberg2010nursing_handoffs" role="doc-biblioref">Riesenberg, Leitzsch, and Cunningham 2010</a>; <a href="#ref-watson2014time_handover" role="doc-biblioref">Watson, Jones, and Cretchley 2014</a>; <a href="#ref-manias2016handover_perspectives" role="doc-biblioref">Manias et al. 2016</a>)</span>. This variability is amplified in bedside nursing handover where patient/family involvement is increasingly emphasised, yet research highlights tensions between standardisation (predictability) and tailoring (patient-centredness), along with barriers related to confidentiality and clinician concerns <span class="citation" data-cites="tobiano2018patient_participation_bedside_handover">(<a href="#ref-tobiano2018patient_participation_bedside_handover" role="doc-biblioref">Tobiano et al. 2018</a>)</span>. As a result, health services seeking to improve clinical handover face a practical challenge: auditing whether key elements were actually communicated often requires labour-intensive manual review of notes or observations, and documentation quality can be inconsistent <span class="citation" data-cites="redley2018handover_audit_tool suominen2015benchmarking">(<a href="#ref-redley2018handover_audit_tool" role="doc-biblioref">Redley and Waugh 2018</a>; <a href="#ref-suominen2015benchmarking" role="doc-biblioref">Suominen et al. 2015</a>)</span>.</p>
+<p>Automated extraction from handover transcripts offers a potential bridge between structured handover requirements and real-world workflow constraints. If reliable, transcript-to-structure extraction could support (i) completion of structured handover forms for clinician review/sign-off, (ii) quality-improvement monitoring of minimum content (e.g., identifiers, risks, deterioration cues, follow-up actions), and (iii) detection of information gaps requiring clarification <span class="citation" data-cites="suominen2015benchmarking sivarajkumar2024prompting_strategies_clinical_nlp">(<a href="#ref-suominen2015benchmarking" role="doc-biblioref">Suominen et al. 2015</a>; <a href="#ref-sivarajkumar2024prompting_strategies_clinical_nlp" role="doc-biblioref">Sivarajkumar et al. 2024</a>)</span>.</p>
+<p>Recent advances in large language models (LLMs) create an opportunity to move beyond static documentation or retrospective auditing, toward real-time support of clinical communication and decision-making during handover itself. Rather than simply recording what was said, AI systems could assist clinicians by dynamically structuring information, identifying missing or unclear elements, and highlighting areas requiring clarification before care is transferred. In this context, the goal is not automation of decision-making, but augmentation of clinician cognition during a high-risk transition.</p>
+<p>To enable such real-time support, several core capabilities are required. First, systems must be able to reliably extract clinically meaningful structure from unstructured handover dialogue, including alignment with frameworks such as SBAR. Second, they must identify whether key elements of safe handover communication have been addressed. Third, they must detect signals of uncertainty or information gaps, such as vague statements, missing knowledge, or unclear responsibility, which may warrant clarification by the receiving clinician. Together, these capabilities underpin potential applications such as dynamic summarisation, checklist completion, task identification, and prompting of verification questions during handover.</p>
+<p>However, extracting structured information from clinical dialogue presents technical challenges. Handover language is variable, context-dependent, and often implicit, particularly for elements such as recommendations or responsibility assignment. In addition, uncertainty-related language is inherently diffuse and may not be explicitly marked. While LLMs offer flexible, prompt-based approaches to information extraction without task-specific model training, their performance is highly sensitive to prompt design and task formulation. As a result, developing reliable extraction pipelines requires systematic approaches to prompt optimisation and evaluation.</p>
+<p>The aim of this study was to evaluate the accuracy of LLM extraction of structured information from nursing handover transcripts across tasks aligned with real-time clinical handover support.</p>
 </section>
 <section id="sec-methods" class="level2">
 <h2 class="anchored" data-anchor-id="sec-methods">Methods</h2>
-<p>Tasks related to clinical handover communication that were considered as potentially augmentable with AI assistance were identified in a co-design process with clinicians and consumers, which will be reported separately. The tasks evaluated in this study are:</p>
+<p>Tasks related to clinical handover communication that were considered as potentially augmentable with AI assistance were identified in a co-design process with clinicians and consumers, which will be reported separately. The tasks evaluated in this study were:</p>
 <ul>
 <li>Extracting spans of text from transcripts that aligned with the SBAR (Situation, Background, Assessment, Recommendation) framework for structuring clinical handover. In this study, SBAR span extraction was operationalised as a sequence-labeling task to identify contiguous spans of text in handover transcripts that corresponded to each SBAR category.</li>
 <li>Identifying key concepts and entities in handover transcripts. In this study, this task was operationalised as a checklist of items that are recommended to be addressed during nursing clinical handover, which were developed as part of quality-improvement processes. The checklist items are summarised in <a href="#tbl-checklist-items" class="quarto-xref">Table 1</a>.</li>
@@ -4054,16 +4061,40 @@ Table 4: Grouped per-label checklist performance for the best-performing GPT-5.
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-agrawal2025gepa" class="csl-entry" role="listitem">
-Agrawal, Lakshya A, Shangyin Tan, Dilara Soylu, Noah Ziems, Rishi Khare, Krista Opsahl-Ong, Arnav Singhvi, et al. 2025. <span>“Gepa: Reflective Prompt Evolution Can Outperform Reinforcement Learning.”</span> <em>arXiv Preprint arXiv:2507.19457</em>.
+Agrawal, Lakshya A., Shangyin Tan, Dilara Soylu, Noah Ziems, Rishi Khare, Krista Opsahl-Ong, Arnav Singhvi, et al. 2025. <span>“<span>GEPA</span>: Reflective Prompt Evolution Can Outperform Reinforcement Learning.”</span> <a href="https://doi.org/10.48550/arXiv.2507.19457">https://doi.org/10.48550/arXiv.2507.19457</a>.
+</div>
+<div id="ref-bukoh2020structured_handover_review" class="csl-entry" role="listitem">
+Bukoh, Ming Xuan, and Chiew-Jiat Rosalind Siah. 2020. <span>“A Systematic Review on the Structured Handover Interventions Between Nurses in Improving Patient Safety Outcomes.”</span> <em>Journal of Nursing Management</em> 28 (3): 744–55. <a href="https://doi.org/10.1111/jonm.12936">https://doi.org/10.1111/jonm.12936</a>.
 </div>
 <div id="ref-goel_2026_langextract" class="csl-entry" role="listitem">
 Goel, Akshay. 2026. <span>“LangExtract.”</span> Google LLC. <a href="https://doi.org/10.5281/zenodo.17015089">https://doi.org/10.5281/zenodo.17015089</a>.
 </div>
+<div id="ref-haig2006sbar_shared_mental_model" class="csl-entry" role="listitem">
+Haig, Kathleen M., Staci Sutton, and John Whittington. 2006. <span>“<span>SBAR</span>: A Shared Mental Model for Improving Communication Between Clinicians.”</span> <em>Joint Commission Journal on Quality and Patient Safety</em> 32 (3): 167–75. <a href="https://doi.org/10.1016/S1553-7250(06)32022-3">https://doi.org/10.1016/S1553-7250(06)32022-3</a>.
+</div>
 <div id="ref-khattab2023dspy" class="csl-entry" role="listitem">
-Khattab, Omar, Arnav Singhvi, Paridhi Maheshwari, Zhiyuan Zhang, Keshav Santhanam, Sri Vardhamanan, Saiful Haq, et al. 2023. <span>“Dspy: Compiling Declarative Language Model Calls into Self-Improving Pipelines.”</span> <em>arXiv Preprint arXiv:2310.03714</em>.
+Khattab, Omar, Arnav Singhvi, Paridhi Maheshwari, Zhiyuan Zhang, Keshav Santhanam, Sri Vardhamanan, Saiful Haq, et al. 2023. <span>“<span>DSPy</span>: Compiling Declarative Language Model Calls into Self-Improving Pipelines.”</span> <a href="https://doi.org/10.48550/arXiv.2310.03714">https://doi.org/10.48550/arXiv.2310.03714</a>.
+</div>
+<div id="ref-manias2016handover_perspectives" class="csl-entry" role="listitem">
+Manias, Elizabeth, Fiona Geddes, Bernadette Watson, Dorothy Jones, and Phillip Della. 2016. <span>“Perspectives of Clinical Handover Processes: A Multi-Site Survey Across Different Health Professionals.”</span> <em>Journal of Clinical Nursing</em> 25 (1-2): 80–91. <a href="https://doi.org/10.1111/jocn.12986">https://doi.org/10.1111/jocn.12986</a>.
+</div>
+<div id="ref-manser2011effective_handover" class="csl-entry" role="listitem">
+Manser, Tanja, and Simon Foster. 2011. <span>“Effective Handover Communication: An Overview of Research and Improvement Efforts.”</span> <em>Best Practice &amp; Research Clinical Anaesthesiology</em> 25 (2): 181–91. <a href="https://doi.org/10.1016/j.bpa.2011.02.006">https://doi.org/10.1016/j.bpa.2011.02.006</a>.
 </div>
 <div id="ref-montani2018prodigy" class="csl-entry" role="listitem">
 Montani, Ines, and Matthew Honnibal. 2018. <span>“Prodigy: An Annotation Tool for AI, Machine Learning and NLP.”</span> Explosion. 2018. <a href="https://prodi.gy/">https://prodi.gy/</a>.
+</div>
+<div id="ref-muller2018sbar_systematic_review" class="csl-entry" role="listitem">
+Müller, M., J. Jürgens, M. Redaèlli, K. Klingberg, W. E. Hautz, and S. Stock. 2018. <span>“Impact of the Communication and Patient Hand-Off Tool <span>SBAR</span> on Patient Safety: A Systematic Review.”</span> <em>BMJ Open</em> 8 (8): e022202. <a href="https://doi.org/10.1136/bmjopen-2018-022202">https://doi.org/10.1136/bmjopen-2018-022202</a>.
+</div>
+<div id="ref-ong2011handoff_failures" class="csl-entry" role="listitem">
+Ong, Mei-Sing, and Enrico Coiera. 2011. <span>“A Systematic Review of Failures in Handoff Communication During Intrahospital Transfers.”</span> <em>Joint Commission Journal on Quality and Patient Safety</em> 37 (6): 274–84. <a href="https://doi.org/10.1016/S1553-7250(11)37035-3">https://doi.org/10.1016/S1553-7250(11)37035-3</a>.
+</div>
+<div id="ref-redley2018handover_audit_tool" class="csl-entry" role="listitem">
+Redley, Bernice, and Rachael Waugh. 2018. <span>“Mixed Methods Evaluation of a Quality Improvement and Audit Tool for Nurse-to-Nurse Bedside Clinical Handover in Ward Settings.”</span> <em>Applied Nursing Research</em> 40 (April): 80–89. <a href="https://doi.org/10.1016/j.apnr.2017.12.013">https://doi.org/10.1016/j.apnr.2017.12.013</a>.
+</div>
+<div id="ref-riesenberg2010nursing_handoffs" class="csl-entry" role="listitem">
+Riesenberg, Lee Ann, Jessica Leitzsch, and Janet M. Cunningham. 2010. <span>“Nursing Handoffs: A Systematic Review of the Literature.”</span> <em>American Journal of Nursing</em> 110 (4): 24–34. <a href="https://doi.org/10.1097/01.NAJ.0000370154.79857.09">https://doi.org/10.1097/01.NAJ.0000370154.79857.09</a>.
 </div>
 <div id="ref-sellergren2025medgemmatechnicalreport" class="csl-entry" role="listitem">
 Sellergren, Andrew, Sahar Kazemzadeh, Tiam Jaroensri, Atilla Kiraly, Madeleine Traverse, Timo Kohlberger, Shawn Xu, et al. 2025. <span>“MedGemma Technical Report.”</span> <a href="https://arxiv.org/abs/2507.05201">https://arxiv.org/abs/2507.05201</a>.
@@ -4071,8 +4102,17 @@ Sellergren, Andrew, Sahar Kazemzadeh, Tiam Jaroensri, Atilla Kiraly, Madeleine T
 <div id="ref-singh2025openaigpt5card" class="csl-entry" role="listitem">
 Singh, Aaditya, Adam Fry, Adam Perelman, Adam Tart, Adi Ganesh, Ahmed El-Kishky, Aidan McLaughlin, et al. 2025. <span>“OpenAI GPT-5 System Card.”</span> <a href="https://arxiv.org/abs/2601.03267">https://arxiv.org/abs/2601.03267</a>.
 </div>
+<div id="ref-sivarajkumar2024prompting_strategies_clinical_nlp" class="csl-entry" role="listitem">
+Sivarajkumar, Sonish, Mark Kelley, Alyssa Samolyk-Mazzanti, Shyam Visweswaran, and Yanshan Wang. 2024. <span>“An Empirical Evaluation of Prompting Strategies for Large Language Models in Zero-Shot Clinical Natural Language Processing: Algorithm Development and Validation Study.”</span> <em><span>JMIR</span> Medical Informatics</em> 12 (April): e55318. <a href="https://doi.org/10.2196/55318">https://doi.org/10.2196/55318</a>.
+</div>
 <div id="ref-suominen2015benchmarking" class="csl-entry" role="listitem">
 Suominen, Hanna, Liyuan Zhou, Leif Hanlen, and Gabriela Ferraro. 2015. <span>“Benchmarking Clinical Speech Recognition and Information Extraction: New Data, Methods, and Evaluations.”</span> <em>JMIR Medical Informatics</em> 3 (2): e4321.
+</div>
+<div id="ref-tobiano2018patient_participation_bedside_handover" class="csl-entry" role="listitem">
+Tobiano, Georgia, Tracey Bucknall, Ishtar Sladdin, Jennifer A. Whitty, and Wendy Chaboyer. 2018. <span>“Patient Participation in Nursing Bedside Handover: A Systematic Mixed-Methods Review.”</span> <em>International Journal of Nursing Studies</em> 77 (January): 243–58. <a href="https://doi.org/10.1016/j.ijnurstu.2017.10.014">https://doi.org/10.1016/j.ijnurstu.2017.10.014</a>.
+</div>
+<div id="ref-watson2014time_handover" class="csl-entry" role="listitem">
+Watson, Bernadette M., Liz Jones, and Julia Cretchley. 2014. <span>“Time as a Key Topic in Health Professionals’ Perceptions of Clinical Handovers.”</span> <em>Global Qualitative Nursing Research</em> 1 (October): 2333393614550162. <a href="https://doi.org/10.1177/2333393614550162">https://doi.org/10.1177/2333393614550162</a>.
 </div>
 </div></section></div></main>
 <!-- /main column -->

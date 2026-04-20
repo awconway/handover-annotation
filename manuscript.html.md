@@ -18,6 +18,8 @@ execute:
   keep-md: true
 ---
 
+
+
 ## Abstract {#sec-abstract}
 
 Accurate communication during clinical handover is critical for patient safety. We evaluated a DSPy-based pipeline for extracting structured handover information under two task settings: (1) SBAR span extraction and (2) checklist label prediction. Phase 1 methods used dual independent annotation by two clinically experienced annotators followed by consensus reconciliation. Prompt optimization was performed with DSPy, and evaluation was performed on held-out consensus test partitions. For SBAR span extraction, per-label analysis on 48 test examples showed higher macro-F1 for the optimized prompt pipeline than baseline (0.733 vs 0.494). The largest F1 gains were observed for BACKGROUND (+0.403) and SITUATION (+0.251), with improved precision across all SBAR labels. For checklist prediction (49 test examples), grouped per-label analysis showed strong pooled performance (micro-F1 0.854; support-weighted F1 0.849) with variation across label groups. These results support DSPy optimization as a practical method to improve clinically relevant information extraction while preserving transparent label-level evaluation.
@@ -127,172 +129,90 @@ Performance was measured with standard classification metrics for the checklist 
 
 For span-extraction tasks, model outputs were represented as label-and-quote pairs, and each predicted quote was mapped back to a character span in the source transcript using exact string matching, with approximate matching used only when an exact match was unavailable. Predicted spans were then matched one-to-one with reference spans of the same label according to highest overlap. Under this greedy matching procedure, a reported match was defined as a same-label pair with non-zero overlap. Precision, recall, and F1 were then calculated from these matched gold and predicted spans as binary detection measures, so that these statistics reflected the model's ability to identify the correct labelled spans. Span-boundary agreement was reported separately using the mean intersection over union (IoU) across matched pairs. We additionally calculated per-label descriptive metrics including the number of reference spans, the number of predicted spans, matched-span precision, recall, F1, and mean IoU.
 
-```{python}
-#| label: results-setup
-#| include: false
-
-from pathlib import Path
-from analysis.manuscript_results import (
-    TASK_LABELS,
-    checklist_category_markdown_table,
-    comparison_plot_svg,
-    curated_results,
-    fmt3,
-    fmt_signed3,
-    load_all_results,
-    load_checklist_main_tables,
-    load_sbar_main_tables,
-    main_overview_lookup,
-    main_overview_markdown_table,
-    main_overview_table,
-    manuscript_scope_results,
-    sbar_main_markdown_table,
-)
-
-
-ROOT = Path(".")
-
-all_results_df = load_all_results(ROOT)
-scoped_results_df = manuscript_scope_results(all_results_df)
-curated_results_df = curated_results(all_results_df)
-results_overview_df = main_overview_table(curated_results_df)
-results_overview_md = main_overview_markdown_table(results_overview_df)
-results_overview_svg = comparison_plot_svg(results_overview_df, width=980)
-results_overview_lookup = main_overview_lookup(results_overview_df)
-
-
-def best_row(task: str, approach: str | None = None):
-    subset = curated_results_df[curated_results_df["task"] == task]
-    if approach is not None:
-        subset = subset[subset["approach"] == approach]
-    if subset.empty:
-        return None
-    return subset.sort_values("micro_f1", ascending=False).iloc[0]
-
-
-sbar_best_baseline = best_row(TASK_LABELS["sbar"], "Baseline")
-sbar_best_dspy = best_row(TASK_LABELS["sbar"], "DSPy/GEPA")
-sbar_best_langextract = best_row(TASK_LABELS["sbar"], "LangExtract")
-sbar_gpt_nano_dspy = curated_results_df[
-    (curated_results_df["task"] == TASK_LABELS["sbar"])
-    & (curated_results_df["approach"] == "DSPy/GEPA")
-    & (curated_results_df["model"] == "GPT-5-nano")
-].iloc[0]
-uncertain_best_baseline = best_row(TASK_LABELS["uncertain"], "Baseline")
-uncertain_best_dspy = best_row(TASK_LABELS["uncertain"], "DSPy/GEPA")
-uncertain_best_langextract = best_row(TASK_LABELS["uncertain"], "LangExtract")
-unknown_best_baseline = best_row(TASK_LABELS["unknown-fact"], "Baseline")
-unknown_best_dspy = best_row(TASK_LABELS["unknown-fact"], "DSPy/GEPA")
-unknown_best_langextract = best_row(TASK_LABELS["unknown-fact"], "LangExtract")
-checklist_gpt_nano_dspy = curated_results_df[
-    (curated_results_df["task"] == TASK_LABELS["checklist"])
-    & (curated_results_df["approach"] == "DSPy/GEPA")
-    & (curated_results_df["model"] == "GPT-5-nano")
-].iloc[0]
-checklist_medgemma_dspy = curated_results_df[
-    (curated_results_df["task"] == TASK_LABELS["checklist"])
-    & (curated_results_df["approach"] == "DSPy/GEPA")
-    & (curated_results_df["model"] == "MedGemma 27B")
-].iloc[0]
-
-sbar_results = load_sbar_main_tables(ROOT)
-sbar_comp_df = sbar_results["comp_df"]
-sbar_table_md = sbar_main_markdown_table(sbar_comp_df)
-sbar_by_label = sbar_comp_df.set_index("label").to_dict("index")
-sbar_base_n = sbar_results["base_n"]
-sbar_opt_n = sbar_results["opt_n"]
-sbar_base_macro_precision = sbar_results["base_macro_precision"]
-sbar_base_macro_recall = sbar_results["base_macro_recall"]
-sbar_base_macro_f1 = sbar_results["base_macro_f1"]
-sbar_opt_macro_precision = sbar_results["opt_macro_precision"]
-sbar_opt_macro_recall = sbar_results["opt_macro_recall"]
-sbar_opt_macro_f1 = sbar_results["opt_macro_f1"]
-sbar_macro_precision_delta = sbar_opt_macro_precision - sbar_base_macro_precision
-sbar_macro_recall_delta = sbar_opt_macro_recall - sbar_base_macro_recall
-sbar_macro_f1_delta = sbar_opt_macro_f1 - sbar_base_macro_f1
-sbar_mean_iou_min = sbar_results["mean_iou_min"]
-sbar_mean_iou_max = sbar_results["mean_iou_max"]
-
-checklist_results = load_checklist_main_tables(ROOT)
-checklist_summary = checklist_results["summary"]
-checklist_baseline_summary = checklist_results["baseline_summary"]
-checklist_category_md = checklist_category_markdown_table(
-    checklist_results["per_bucket_df"],
-    checklist_results["overall_df"],
-)
-checklist_grouped_table_md = checklist_results["full_grouped_md"]
-checklist_n = int(checklist_summary["n_examples"])
-checklist_micro_f1 = float(checklist_summary["micro"]["f1"])
-checklist_macro_f1 = float(checklist_summary["macro"]["f1"])
-checklist_support_weighted_f1 = float(checklist_summary["macro"]["weighted_f1"])
-checklist_baseline_micro_f1 = float(checklist_baseline_summary["micro"]["f1"])
-checklist_baseline_macro_f1 = float(checklist_baseline_summary["macro"]["f1"])
-checklist_micro_f1_delta = checklist_micro_f1 - checklist_baseline_micro_f1
-checklist_macro_f1_delta = checklist_macro_f1 - checklist_baseline_macro_f1
-checklist_zero_f1_count = checklist_results["zero_f1_count"]
-
-comparison_checklist_gpt52 = results_overview_lookup[(TASK_LABELS["checklist"], "GPT-5.2")]
-comparison_checklist_gptnano = results_overview_lookup[(TASK_LABELS["checklist"], "GPT-5-nano")]
-comparison_checklist_medgemma = results_overview_lookup[(TASK_LABELS["checklist"], "MedGemma 27B")]
-comparison_sbar_gpt52 = results_overview_lookup[(TASK_LABELS["sbar"], "GPT-5.2")]
-comparison_sbar_gptnano = results_overview_lookup[(TASK_LABELS["sbar"], "GPT-5-nano")]
-comparison_sbar_medgemma = results_overview_lookup[(TASK_LABELS["sbar"], "MedGemma 27B")]
-comparison_uncertain_gpt52 = results_overview_lookup[(TASK_LABELS["uncertain"], "GPT-5.2")]
-comparison_uncertain_medgemma = results_overview_lookup[(TASK_LABELS["uncertain"], "MedGemma 27B")]
-comparison_unknown_gpt52 = results_overview_lookup[(TASK_LABELS["unknown-fact"], "GPT-5.2")]
-comparison_unknown_gptnano = results_overview_lookup[(TASK_LABELS["unknown-fact"], "GPT-5-nano")]
-comparison_unknown_medgemma = results_overview_lookup[(TASK_LABELS["unknown-fact"], "MedGemma 27B")]
-```
 
 ## Results {#sec-results}
 
 ### Key findings {#sec-results-summary}
 
-Within-model comparisons showed consistent gains with DSPy/GEPA over matched baselines wherever both were available. For GPT-5.2, DSPy/GEPA improved micro-F1 by `{python} fmt_signed3(comparison_checklist_gpt52["Delta DSPy/GEPA vs baseline"])` for checklist prediction, `{python} fmt_signed3(comparison_sbar_gpt52["Delta DSPy/GEPA vs baseline"])` for SBAR span extraction, `{python} fmt_signed3(comparison_uncertain_gpt52["Delta DSPy/GEPA vs baseline"])` for uncertainty span extraction, and `{python} fmt_signed3(comparison_unknown_gpt52["Delta DSPy/GEPA vs baseline"])` for unknown-fact extraction. GPT-5-nano also improved over baseline for checklist prediction (`{python} fmt_signed3(comparison_checklist_gptnano["Delta DSPy/GEPA vs baseline"])`), SBAR span extraction (`{python} fmt_signed3(comparison_sbar_gptnano["Delta DSPy/GEPA vs baseline"])`), and unknown-fact extraction (`{python} fmt_signed3(comparison_unknown_gptnano["Delta DSPy/GEPA vs baseline"])`). MedGemma 27B improved for checklist prediction (`{python} fmt_signed3(comparison_checklist_medgemma["Delta DSPy/GEPA vs baseline"])`) and uncertainty span extraction (`{python} fmt_signed3(comparison_uncertain_medgemma["Delta DSPy/GEPA vs baseline"])`), although matched baseline comparisons were not available for every task-model combination. Across span tasks, LangExtract generally performed below the corresponding best DSPy/GEPA configuration.
+Within-model comparisons showed consistent gains with DSPy/GEPA over matched baselines wherever both were available. For GPT-5.2, DSPy/GEPA improved micro-F1 by \+0\.081 for checklist prediction, \+0\.244 for SBAR span extraction, \+0\.064 for uncertainty span extraction, and \+0\.080 for unknown-fact extraction. GPT-5-nano also improved over baseline for checklist prediction (\+0\.093), SBAR span extraction (\+0\.199), and unknown-fact extraction (\+0\.713). MedGemma 27B improved for checklist prediction (\+0\.115) and uncertainty span extraction (\+0\.057), although matched baseline comparisons were not available for every task-model combination. Across span tasks, LangExtract generally performed below the corresponding best DSPy/GEPA configuration.
 
 ### Comparative performance across tasks and prompting approaches {#sec-results-overview}
 
 @fig-results-overview summarizes matched within-model comparisons across tasks for the three models evaluated in the main study. Where more than one saved run existed for the same task, model, and approach, the highest observed micro-F1 for that combination is shown.
 
 ::: {#fig-results-overview}
-```{python}
-#| output: asis
 
-print(results_overview_svg)
-```
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="576" viewBox="0 0 972 571.3" role="img" aria-labelledby="comparison-title comparison-desc" style="max-width:100%;height:auto;"><title id="comparison-title">Within-model comparison of baseline, DSPy/GEPA, and LangExtract micro-F1 performance</title><desc id="comparison-desc">Four-panel grouped horizontal bar chart across checklist, SBAR, uncertainty, and unknown-fact tasks.</desc><style>.plot-title{font:700 14px system-ui, sans-serif; fill:#192038;}.panel-title{font:700 12px system-ui, sans-serif; fill:#192038;}.axis-label{font:10px system-ui, sans-serif; fill:#4d5770;}.tick-label{font:10px system-ui, sans-serif; fill:#4d5770;}.model-label{font:11px system-ui, sans-serif; fill:#192038;}.legend-label{font:11px system-ui, sans-serif; fill:#192038;}.value-label{font:10px system-ui, sans-serif; fill:#2b3345;}</style><text x="22" y="38" class="plot-title">Within-model micro-F1 comparisons across tasks</text><rect x="22" y="50" width="16" height="10" fill="#8b95a7" rx="2" ry="2" /><text x="46" y="59" class="legend-label">Baseline</text><rect x="154" y="50" width="16" height="10" fill="#1f6feb" rx="2" ry="2" /><text x="178" y="59" class="legend-label">DSPy/GEPA</text><rect x="286" y="50" width="16" height="10" fill="#d97706" rx="2" ry="2" /><text x="310" y="59" class="legend-label">LangExtract</text><rect x="22" y="82" width="450" height="220" rx="10" ry="10" fill="#ffffff" stroke="#d8dcef" stroke-width="1.2" /><text x="38" y="102" class="panel-title">Checklist item prediction</text><line x1="172.0" y1="118.0" x2="172.0" y2="278.0" stroke="#d8dcef" stroke-width="1" /><text x="172.0" y="294.0" text-anchor="middle" class="tick-label">0.00</text><line x1="291.0" y1="118.0" x2="291.0" y2="278.0" stroke="#d8dcef" stroke-width="1" /><text x="291.0" y="294.0" text-anchor="middle" class="tick-label">0.50</text><line x1="410.0" y1="118.0" x2="410.0" y2="278.0" stroke="#d8dcef" stroke-width="1" /><text x="410.0" y="294.0" text-anchor="middle" class="tick-label">1.00</text><text x="291.0" y="284.0" text-anchor="middle" class="axis-label">Micro-F1</text><text x="160.0" y="144.0" text-anchor="end" class="model-label">GPT-5.2</text><rect x="172.0" y="126.0" width="184.2" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="362.2" y="135.0" class="value-label">0.77</text><rect x="172.0" y="140.0" width="203.4" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="381.4" y="149.0" class="value-label">0.85</text><text x="160.0" y="188.0" text-anchor="end" class="model-label">GPT-5-nano</text><rect x="172.0" y="170.0" width="171.5" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="349.5" y="179.0" class="value-label">0.72</text><rect x="172.0" y="184.0" width="193.5" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="371.5" y="193.0" class="value-label">0.81</text><text x="160.0" y="232.0" text-anchor="end" class="model-label">MedGemma 27B</text><rect x="172.0" y="214.0" width="154.5" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="332.5" y="223.0" class="value-label">0.65</text><rect x="172.0" y="228.0" width="181.8" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="359.8" y="237.0" class="value-label">0.76</text><rect x="500" y="82" width="450" height="220" rx="10" ry="10" fill="#ffffff" stroke="#d8dcef" stroke-width="1.2" /><text x="516" y="102" class="panel-title">SBAR span extraction</text><line x1="650.0" y1="118.0" x2="650.0" y2="278.0" stroke="#d8dcef" stroke-width="1" /><text x="650.0" y="294.0" text-anchor="middle" class="tick-label">0.00</text><line x1="769.0" y1="118.0" x2="769.0" y2="278.0" stroke="#d8dcef" stroke-width="1" /><text x="769.0" y="294.0" text-anchor="middle" class="tick-label">0.50</text><line x1="888.0" y1="118.0" x2="888.0" y2="278.0" stroke="#d8dcef" stroke-width="1" /><text x="888.0" y="294.0" text-anchor="middle" class="tick-label">1.00</text><text x="769.0" y="284.0" text-anchor="middle" class="axis-label">Micro-F1</text><text x="638.0" y="144.0" text-anchor="end" class="model-label">GPT-5.2</text><rect x="650.0" y="126.0" width="121.7" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="777.7" y="135.0" class="value-label">0.51</text><rect x="650.0" y="140.0" width="179.7" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="835.7" y="149.0" class="value-label">0.76</text><rect x="650.0" y="154.0" width="141.0" height="10.0" fill="#d97706" rx="3" ry="3" /><text x="797.0" y="163.0" class="value-label">0.59</text><text x="638.0" y="188.0" text-anchor="end" class="model-label">GPT-5-nano</text><rect x="650.0" y="170.0" width="117.2" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="773.2" y="179.0" class="value-label">0.49</text><rect x="650.0" y="184.0" width="164.6" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="820.6" y="193.0" class="value-label">0.69</text><text x="638.0" y="232.0" text-anchor="end" class="model-label">MedGemma 27B</text><rect x="650.0" y="214.0" width="120.2" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="776.2" y="223.0" class="value-label">0.51</text><rect x="650.0" y="228.0" width="158.1" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="814.1" y="237.0" class="value-label">0.66</text><rect x="650.0" y="242.0" width="108.9" height="10.0" fill="#d97706" rx="3" ry="3" /><text x="764.9" y="251.0" class="value-label">0.46</text><rect x="22" y="330" width="450" height="220" rx="10" ry="10" fill="#ffffff" stroke="#d8dcef" stroke-width="1.2" /><text x="38" y="350" class="panel-title">Uncertainty span extraction</text><line x1="172.0" y1="366.0" x2="172.0" y2="526.0" stroke="#d8dcef" stroke-width="1" /><text x="172.0" y="542.0" text-anchor="middle" class="tick-label">0.00</text><line x1="291.0" y1="366.0" x2="291.0" y2="526.0" stroke="#d8dcef" stroke-width="1" /><text x="291.0" y="542.0" text-anchor="middle" class="tick-label">0.50</text><line x1="410.0" y1="366.0" x2="410.0" y2="526.0" stroke="#d8dcef" stroke-width="1" /><text x="410.0" y="542.0" text-anchor="middle" class="tick-label">1.00</text><text x="291.0" y="532.0" text-anchor="middle" class="axis-label">Micro-F1</text><text x="160.0" y="392.0" text-anchor="end" class="model-label">GPT-5.2</text><rect x="172.0" y="374.0" width="82.4" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="260.4" y="383.0" class="value-label">0.35</text><rect x="172.0" y="388.0" width="97.7" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="275.7" y="397.0" class="value-label">0.41</text><rect x="172.0" y="402.0" width="28.7" height="10.0" fill="#d97706" rx="3" ry="3" /><text x="206.7" y="411.0" class="value-label">0.12</text><text x="160.0" y="480.0" text-anchor="end" class="model-label">MedGemma 27B</text><rect x="172.0" y="462.0" width="33.1" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="211.1" y="471.0" class="value-label">0.14</text><rect x="172.0" y="476.0" width="46.6" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="224.6" y="485.0" class="value-label">0.20</text><rect x="172.0" y="490.0" width="56.4" height="10.0" fill="#d97706" rx="3" ry="3" /><text x="234.4" y="499.0" class="value-label">0.24</text><rect x="500" y="330" width="450" height="220" rx="10" ry="10" fill="#ffffff" stroke="#d8dcef" stroke-width="1.2" /><text x="516" y="350" class="panel-title">Unknown-fact span extraction</text><line x1="650.0" y1="366.0" x2="650.0" y2="526.0" stroke="#d8dcef" stroke-width="1" /><text x="650.0" y="542.0" text-anchor="middle" class="tick-label">0.00</text><line x1="769.0" y1="366.0" x2="769.0" y2="526.0" stroke="#d8dcef" stroke-width="1" /><text x="769.0" y="542.0" text-anchor="middle" class="tick-label">0.50</text><line x1="888.0" y1="366.0" x2="888.0" y2="526.0" stroke="#d8dcef" stroke-width="1" /><text x="888.0" y="542.0" text-anchor="middle" class="tick-label">1.00</text><text x="769.0" y="532.0" text-anchor="middle" class="axis-label">Micro-F1</text><text x="638.0" y="392.0" text-anchor="end" class="model-label">GPT-5.2</text><rect x="650.0" y="374.0" width="181.3" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="837.3" y="383.0" class="value-label">0.76</text><rect x="650.0" y="388.0" width="200.4" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="856.4" y="397.0" class="value-label">0.84</text><rect x="650.0" y="402.0" width="133.9" height="10.0" fill="#d97706" rx="3" ry="3" /><text x="789.9" y="411.0" class="value-label">0.56</text><text x="638.0" y="436.0" text-anchor="end" class="model-label">GPT-5-nano</text><rect x="650.0" y="418.0" width="30.7" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="686.7" y="427.0" class="value-label">0.13</text><rect x="650.0" y="432.0" width="200.4" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="856.4" y="441.0" class="value-label">0.84</text><text x="638.0" y="480.0" text-anchor="end" class="model-label">MedGemma 27B</text><rect x="650.0" y="476.0" width="190.4" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="846.4" y="485.0" class="value-label">0.80</text></svg>
+
 
 Within-model comparison of saved evaluation runs within manuscript scope. Horizontal bars show micro-F1 for baseline, DSPy/GEPA, and LangExtract runs for each model within each task. Missing bars indicate that a given task-model-approach combination was not evaluated or was not available as a saved run; in particular, LangExtract was not evaluated for the checklist task.
 :::
 
 ### SBAR span extraction {#sec-sbar-optimized}
 
-Among SBAR configurations, the highest overall score was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 `{python} fmt3(sbar_best_dspy["micro_f1"])`), followed by DSPy/GEPA-optimised GPT-5-nano (micro-F1 `{python} fmt3(sbar_gpt_nano_dspy["micro_f1"])`) and LangExtract GPT-5.2 (micro-F1 `{python} fmt3(sbar_best_langextract["micro_f1"])`). @tbl-sbar-optimized provides label-level results for the best-performing GPT-5.2 DSPy/GEPA SBAR configuration, compared with its corresponding GPT-5.2 baseline run.
+Among SBAR configurations, the highest overall score was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 0\.755), followed by DSPy/GEPA-optimised GPT-5-nano (micro-F1 0\.692) and LangExtract GPT-5.2 (micro-F1 0\.592). @tbl-sbar-optimized provides label-level results for the best-performing GPT-5.2 DSPy/GEPA SBAR configuration, compared with its corresponding GPT-5.2 baseline run.
 
 ::: {#tbl-sbar-optimized}
 
-```{python}
-#| output: asis
+| Label | Gold | Predicted spans | Recall | Precision | Mean IoU | F1 | Delta F1 (vs baseline) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| ASSESSMENT | 194 | 192 | 0.768 | 0.776 | 0.765 | 0.772 | +0.228 |
+| BACKGROUND | 47 | 50 | 0.723 | 0.680 | 0.660 | 0.701 | +0.405 |
+| RECOMMENDATION | 113 | 124 | 0.761 | 0.694 | 0.781 | 0.726 | +0.145 |
+| SITUATION | 73 | 52 | 0.685 | 0.962 | 0.820 | 0.800 | +0.245 |
 
-print(sbar_table_md)
-```
 
-Per-label SBAR metrics for the best-performing GPT-5.2 DSPy/GEPA model output on the consensus evaluation partition (`{python} f"n={sbar_opt_n}"`). `Delta F1` is the difference from the corresponding GPT-5.2 baseline run on the same partition.
+Per-label SBAR metrics for the best-performing GPT-5.2 DSPy/GEPA model output on the consensus evaluation partition (n=48). `Delta F1` is the difference from the corresponding GPT-5.2 baseline run on the same partition.
 :::
 
-Within this GPT-5.2 SBAR comparison, macro-precision improved from `{python} fmt3(sbar_base_macro_precision)` to `{python} fmt3(sbar_opt_macro_precision)`, macro-recall from `{python} fmt3(sbar_base_macro_recall)` to `{python} fmt3(sbar_opt_macro_recall)`, and macro-F1 from `{python} fmt3(sbar_base_macro_f1)` to `{python} fmt3(sbar_opt_macro_f1)`. The largest per-label improvements in F1 were observed for BACKGROUND (`{python} fmt_signed3(sbar_by_label["BACKGROUND"]["delta_f1"])`), SITUATION (`{python} fmt_signed3(sbar_by_label["SITUATION"]["delta_f1"])`), and ASSESSMENT (`{python} fmt_signed3(sbar_by_label["ASSESSMENT"]["delta_f1"])`), with a smaller improvement for RECOMMENDATION (`{python} fmt_signed3(sbar_by_label["RECOMMENDATION"]["delta_f1"])`). Span-boundary agreement among matched predictions remained high, with mean IoU values between `{python} fmt3(sbar_mean_iou_min)` and `{python} fmt3(sbar_mean_iou_max)` across SBAR labels.
+Within this GPT-5.2 SBAR comparison, macro-precision improved from 0\.406 to 0\.778, macro-recall from 0\.686 to 0\.734, and macro-F1 from 0\.494 to 0\.750. The largest per-label improvements in F1 were observed for BACKGROUND (\+0\.405), SITUATION (\+0\.245), and ASSESSMENT (\+0\.228), with a smaller improvement for RECOMMENDATION (\+0\.145). Span-boundary agreement among matched predictions remained high, with mean IoU values between 0\.660 and 0\.820 across SBAR labels.
 
 ### Checklist task {#sec-checklist}
 
-For checklist prediction, the best overall result was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 `{python} fmt3(checklist_micro_f1)`, macro-F1 `{python} fmt3(checklist_macro_f1)`, support-weighted F1 `{python} fmt3(checklist_support_weighted_f1)`). This exceeded the matched GPT-5.2 baseline by `{python} fmt_signed3(checklist_micro_f1_delta)` on micro-F1 and `{python} fmt_signed3(checklist_macro_f1_delta)` on macro-F1. DSPy/GEPA-optimised GPT-5-nano also performed competitively (micro-F1 `{python} fmt3(checklist_gpt_nano_dspy["micro_f1"])`), while MedGemma 27B reached micro-F1 `{python} fmt3(checklist_medgemma_dspy["micro_f1"])`). @tbl-checklist-grouped presents grouped per-label performance for the best-performing GPT-5.2 checklist model. The largest improvements over baseline were observed for patient involvement items and several recommendation-related labels, while `{python} checklist_zero_f1_count` low-support labels still had F1 equal to zero.
+For checklist prediction, the best overall result was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 0\.854, macro-F1 0\.762, support-weighted F1 0\.849). This exceeded the matched GPT-5.2 baseline by \+0\.081 on micro-F1 and \+0\.073 on macro-F1. DSPy/GEPA-optimised GPT-5-nano also performed competitively (micro-F1 0\.813), while MedGemma 27B reached micro-F1 0\.764). @tbl-checklist-grouped presents grouped per-label performance for the best-performing GPT-5.2 checklist model. The largest improvements over baseline were observed for patient involvement items and several recommendation-related labels, while 2 low-support labels still had F1 equal to zero.
 
 ::: {#tbl-checklist-grouped}
-```{python}
-#| output: asis
 
-print(checklist_grouped_table_md)
-```
+| Category | Label | Support | TP | FP | FN | TN | Precision | ΔPrecision vs Baseline | Recall | ΔRecall vs Baseline | F1 | ΔF1 vs Baseline |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Identification | ID check of 3 patient identifiers | 1 | 1 | 0 | 0 | 48 | 1.000 | +0.944 | 1.000 | +0.000 | 1.000 | +0.895 |
+| Situation | Primary diagnosis \| reason for admission | 45 | 45 | 2 | 0 | 2 | 0.957 | +0.020 | 1.000 | +0.000 | 0.978 | +0.011 |
+| Situation | Current status (awaiting tests/procedures, on interim orders/plan) | 31 | 22 | 8 | 9 | 10 | 0.733 | +0.033 | 0.710 | -0.194 | 0.721 | -0.067 |
+| Situation | Significant events or complications | 10 | 5 | 3 | 5 | 36 | 0.625 | +0.292 | 0.500 | -0.100 | 0.556 | +0.127 |
+| Situation | **Subtotal (Situation)** | **86** | **72** | **13** | **14** | **48** | **0.847** | **+0.102** | **0.837** | **-0.081** | **0.842** | **+0.019** |
+| Background | Alerts - allergies | 18 | 16 | 2 | 2 | 29 | 0.889 | -0.011 | 0.889 | -0.111 | 0.889 | -0.058 |
+| Background | Relevant clinical and social history \| comorbidities | 17 | 17 | 1 | 0 | 31 | 0.944 | +0.135 | 1.000 | +0.000 | 0.971 | +0.077 |
+| Background | Alerts - falls risk | 3 | 2 | 0 | 1 | 46 | 1.000 | +0.250 | 0.667 | -0.333 | 0.800 | -0.057 |
+| Background | Alerts - pressure injury risk | 3 | 2 | 0 | 1 | 46 | 1.000 | +0.000 | 0.667 | -0.333 | 0.800 | -0.200 |
+| Background | Advanced care planning | 1 | 1 | 0 | 0 | 48 | 1.000 | +0.000 | 1.000 | +0.000 | 1.000 | +0.000 |
+| Background | **Subtotal (Background)** | **42** | **38** | **3** | **4** | **200** | **0.927** | **+0.070** | **0.905** | **-0.095** | **0.916** | **-0.007** |
+| Assessment | Observations \| Q-ADDS \| recent escalations | 40 | 38 | 2 | 2 | 7 | 0.950 | +0.023 | 0.950 | +0.000 | 0.950 | +0.012 |
+| Assessment | Medication chart \| flag high risk meds | 25 | 24 | 4 | 1 | 20 | 0.857 | +0.030 | 0.960 | +0.000 | 0.906 | +0.017 |
+| Assessment | Devices \| lines \| vascular access | 23 | 23 | 3 | 0 | 23 | 0.885 | +0.000 | 1.000 | +0.000 | 0.939 | +0.000 |
+| Assessment | Mobility \| aids | 17 | 16 | 4 | 1 | 28 | 0.800 | +0.027 | 0.941 | -0.059 | 0.865 | -0.007 |
+| Assessment | Pain management | 17 | 16 | 2 | 1 | 30 | 0.889 | +0.222 | 0.941 | +0.000 | 0.914 | +0.134 |
+| Assessment | Infusions | 15 | 8 | 1 | 7 | 33 | 0.889 | +0.089 | 0.533 | -0.267 | 0.667 | -0.133 |
+| Assessment | Pathology | 15 | 14 | 5 | 1 | 29 | 0.737 | -0.063 | 0.933 | +0.133 | 0.824 | +0.024 |
+| Assessment | Nutrition \| restrictions | 14 | 14 | 6 | 0 | 29 | 0.700 | +0.000 | 1.000 | +0.000 | 0.824 | +0.000 |
+| Assessment | Fluid balance \| restrictions | 9 | 7 | 3 | 2 | 37 | 0.700 | -0.050 | 0.778 | -0.222 | 0.737 | -0.120 |
+| Assessment | Skin integrity \| interventions | 6 | 6 | 5 | 0 | 38 | 0.545 | +0.045 | 1.000 | +0.000 | 0.706 | +0.039 |
+| Assessment | Critical monitoring \| alarms | 0 | 0 | 2 | 0 | 47 | 0.000 | +0.000 | 0.000 | +0.000 | 0.000 | +0.000 |
+| Assessment | **Subtotal (Assessment)** | **181** | **166** | **37** | **15** | **321** | **0.818** | **+0.044** | **0.917** | **-0.028** | **0.865** | **+0.014** |
+| Recommendation | Care plan/pathway actions to follow up | 44 | 44 | 5 | 0 | 0 | 0.898 | -0.035 | 1.000 | +0.045 | 0.946 | +0.002 |
+| Recommendation | Asked patient/carer about goals and preferences | 9 | 0 | 1 | 9 | 39 | 0.000 | -0.500 | 0.000 | -0.222 | 0.000 | -0.308 |
+| Recommendation | Discharge plan | 4 | 4 | 1 | 0 | 44 | 0.800 | +0.000 | 1.000 | +0.000 | 0.889 | +0.000 |
+| Recommendation | Critical actions required | 1 | 1 | 4 | 0 | 44 | 0.200 | +0.170 | 1.000 | +0.000 | 0.333 | +0.275 |
+| Recommendation | **Subtotal (Recommendation)** | **58** | **49** | **11** | **9** | **127** | **0.817** | **+0.253** | **0.845** | **+0.000** | **0.831** | **+0.155** |
+| Patient Involvement | Introduction of clinicians involved in handover to patient/carer | 20 | 20 | 8 | 0 | 21 | 0.714 | -0.036 | 1.000 | +0.850 | 0.833 | +0.583 |
+| Patient Involvement | Invitation for patient/carer to participate in handover | 16 | 15 | 8 | 1 | 25 | 0.652 | -0.014 | 0.938 | -0.062 | 0.769 | -0.031 |
+| Patient Involvement | **Subtotal (Patient Involvement)** | **36** | **35** | **16** | **1** | **46** | **0.686** | **+0.290** | **0.972** | **+0.444** | **0.805** | **+0.352** |
+| **Overall (Micro)** | **All labels pooled** | **404** | **361** | **80** | **43** | **790** | **0.819** | **+0.136** | **0.894** | **+0.000** | **0.854** | **+0.081** |
+| **Overall (Macro)** | **Unweighted label mean** | **-** | **-** | **-** | **-** | **-** | **0.745** | **+0.086** | **0.823** | **-0.002** | **0.762** | **+0.073** |
+| **Overall (Support-Weighted)** | **Weighted by label support** | **404** | **-** | **-** | **-** | **-** | **0.822** | **+0.020** | **0.894** | **+0.000** | **0.849** | **+0.023** |
 
-Grouped per-label checklist performance for the best-performing GPT-5.2 DSPy/GEPA model on the consensus evaluation partition (`{python} f"n={checklist_n}"`). `Delta F1` is the difference from the corresponding GPT-5.2 baseline run.
+
+
+Grouped per-label checklist performance for the best-performing GPT-5.2 DSPy/GEPA model on the consensus evaluation partition (n=49). `Delta F1` is the difference from the corresponding GPT-5.2 baseline run.
 :::
 
 
@@ -313,3 +233,4 @@ Performance on uncertainty span extraction was lower across all approaches, sugg
 ## Conclusion {#sec-conclusion}
 
 Using consensus-labeled clinical handover data, we found that DSPy/GEPA prompt optimisation, particularly with GPT-5.2, consistently improved performance over baseline across the main evaluated tasks. The largest gains were observed for SBAR span extraction, checklist prediction remained strong at aggregate level, uncertainty extraction was the most difficult task, and unknown-fact extraction performed well when the target phenomenon was narrowly defined. Label-level and category-level reporting highlighted both gains and remaining gaps, supporting targeted next-step refinement.
+
