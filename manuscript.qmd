@@ -20,7 +20,59 @@ execute:
 
 ## Abstract {#sec-abstract}
 
-Accurate communication during clinical handover is critical for patient safety. We evaluated a DSPy-based pipeline for extracting structured handover information under two task settings: (1) SBAR span extraction and (2) checklist label prediction. Phase 1 methods used dual independent annotation by two clinically experienced annotators followed by consensus reconciliation. Prompt optimization was performed with DSPy, and evaluation was performed on held-out consensus test partitions. For SBAR span extraction, per-label analysis on 48 test examples showed higher macro-F1 for the optimized prompt pipeline than baseline (0.733 vs 0.494). The largest F1 gains were observed for BACKGROUND (+0.403) and SITUATION (+0.251), with improved precision across all SBAR labels. For checklist prediction (49 test examples), grouped per-label analysis showed strong pooled performance (micro-F1 0.854; support-weighted F1 0.849) with variation across label groups. These results support DSPy optimization as a practical method to improve clinically relevant information extraction while preserving transparent label-level evaluation.
+```{python}
+#| label: abstract-results-setup
+#| include: false
+
+from pathlib import Path
+from analysis.manuscript_results import (
+    TASK_LABELS,
+    curated_results,
+    fmt3,
+    fmt_signed3,
+    load_all_results,
+    load_checklist_main_tables,
+    load_sbar_main_tables,
+    main_overview_lookup,
+    main_overview_table,
+)
+
+ROOT = Path(".")
+
+abstract_curated_results_df = curated_results(load_all_results(ROOT))
+abstract_results_overview_lookup = main_overview_lookup(
+    main_overview_table(abstract_curated_results_df)
+)
+abstract_sbar_results = load_sbar_main_tables(ROOT)
+abstract_checklist_results = load_checklist_main_tables(ROOT)
+abstract_checklist_summary = abstract_checklist_results["summary"]
+
+def abstract_row(task, model, approach):
+    subset = abstract_curated_results_df[
+        (abstract_curated_results_df["task"] == task)
+        & (abstract_curated_results_df["model"] == model)
+        & (abstract_curated_results_df["approach"] == approach)
+    ]
+    return subset.sort_values("micro_f1", ascending=False).iloc[0]
+
+abstract_sbar_gpt52_dspy = abstract_row(TASK_LABELS["sbar"], "GPT-5.2", "DSPy/GEPA")
+abstract_uncertain_gpt52_dspy = abstract_row(TASK_LABELS["uncertain"], "GPT-5.2", "DSPy/GEPA")
+abstract_unknown_gpt52_dspy = abstract_row(TASK_LABELS["unknown-fact"], "GPT-5.2", "DSPy/GEPA")
+
+abstract_checklist_n = int(abstract_checklist_summary["n_examples"])
+abstract_sbar_n = int(abstract_sbar_results["opt_n"])
+abstract_checklist_micro_f1 = float(abstract_checklist_summary["micro"]["f1"])
+abstract_checklist_support_weighted_f1 = float(abstract_checklist_summary["macro"]["weighted_f1"])
+abstract_sbar_macro_f1 = abstract_sbar_results["opt_macro_f1"]
+abstract_sbar_baseline_macro_f1 = abstract_sbar_results["base_macro_f1"]
+
+abstract_comparison_checklist_gpt52 = abstract_results_overview_lookup[(TASK_LABELS["checklist"], "GPT-5.2")]
+abstract_comparison_sbar_gpt52 = abstract_results_overview_lookup[(TASK_LABELS["sbar"], "GPT-5.2")]
+abstract_comparison_uncertain_gpt52 = abstract_results_overview_lookup[(TASK_LABELS["uncertain"], "GPT-5.2")]
+abstract_comparison_unknown_gpt52 = abstract_results_overview_lookup[(TASK_LABELS["unknown-fact"], "GPT-5.2")]
+```
+
+Clinical handover is a safety-critical communication process, but auditing whether key content was communicated remains labour-intensive. We evaluated large language model prompt optimisation for AI-assisted clinical handover using synthetic nursing handover transcripts annotated by two clinically active registered nurses. Consensus labels were used to assess SBAR span extraction, checklist-item prediction, uncertainty-span extraction, and explicit unknown-fact extraction. Baseline DSPy prompts were compared with DSPy/GEPA-optimised prompts across GPT-5.2, GPT-5-nano, and MedGemma 27B, with LangExtract evaluated for span-extraction tasks. In matched GPT-5.2 comparisons, DSPy/GEPA improved micro-F1 by `{python} fmt_signed3(abstract_comparison_checklist_gpt52["Delta DSPy/GEPA vs baseline"])` for checklist prediction, `{python} fmt_signed3(abstract_comparison_sbar_gpt52["Delta DSPy/GEPA vs baseline"])` for SBAR span extraction, `{python} fmt_signed3(abstract_comparison_uncertain_gpt52["Delta DSPy/GEPA vs baseline"])` for uncertainty-span extraction, and `{python} fmt_signed3(abstract_comparison_unknown_gpt52["Delta DSPy/GEPA vs baseline"])` for unknown-fact extraction. The GPT-5.2 DSPy/GEPA checklist model achieved micro-F1 `{python} fmt3(abstract_checklist_micro_f1)` and support-weighted F1 `{python} fmt3(abstract_checklist_support_weighted_f1)` on `{python} abstract_checklist_n` held-out examples. For SBAR span extraction, GPT-5.2 DSPy/GEPA achieved micro-F1 `{python} fmt3(abstract_sbar_gpt52_dspy["micro_f1"])` and macro-F1 `{python} fmt3(abstract_sbar_macro_f1)` on `{python} abstract_sbar_n` held-out examples, compared with baseline macro-F1 `{python} fmt3(abstract_sbar_baseline_macro_f1)`. Broad uncertainty-span extraction remained comparatively weak (micro-F1 `{python} fmt3(abstract_uncertain_gpt52_dspy["micro_f1"])`), whereas explicit unknown-fact extraction was stronger (micro-F1 `{python} fmt3(abstract_unknown_gpt52_dspy["micro_f1"])`). These findings support prompt optimisation as a practical approach for clinician-reviewed, source-linked draft checklist and SBAR support, but not as evidence for autonomous handover documentation, audit, or safety assessment.
 
 ## Introduction {#sec-introduction}
 
@@ -30,15 +82,7 @@ Structured handover processes aim to standardise both the minimum content and th
 
 A persistent implementation gap lies in measurement and documentation. Even where structured tools are mandated or encouraged, handover content remains influenced by time pressure, local culture, clinician experience, and the pragmatic realities of ward work [@riesenberg2010nursing_handoffs; @watson2014time_handover; @manias2016handover_perspectives]. This variability is amplified in bedside nursing handover where patient/family involvement is increasingly emphasised, yet research highlights tensions between standardisation (predictability) and tailoring (patient-centredness), along with barriers related to confidentiality and clinician concerns [@tobiano2018patient_participation_bedside_handover]. As a result, health services seeking to improve clinical handover face a practical challenge: auditing whether key elements were actually communicated often requires labour-intensive manual review of notes or observations, and documentation quality can be inconsistent [@redley2018handover_audit_tool; @suominen2015benchmarking].
 
-Automated extraction from handover transcripts offers a potential bridge between structured handover requirements and real-world workflow constraints. If reliable, transcript-to-structure extraction could support (i) completion of structured handover forms for clinician review/sign-off, (ii) quality-improvement monitoring of minimum content (e.g., identifiers, risks, deterioration cues, follow-up actions), and (iii) detection of information gaps requiring clarification [@suominen2015benchmarking; @sivarajkumar2024prompting_strategies_clinical_nlp].
-
-Recent advances in large language models (LLMs) create an opportunity to move beyond static documentation or retrospective auditing, toward real-time support of clinical communication and decision-making during handover itself. Rather than simply recording what was said, AI systems could assist clinicians by dynamically structuring information, identifying missing or unclear elements, and highlighting areas requiring clarification before care is transferred. In this context, the goal is not automation of decision-making, but augmentation of clinician cognition during a high-risk transition.
-
-To enable such real-time support, several core capabilities are required. First, systems must be able to reliably extract clinically meaningful structure from unstructured handover dialogue, including alignment with frameworks such as SBAR. Second, they must identify whether key elements of safe handover communication have been addressed. Third, they must detect signals of uncertainty or information gaps, such as vague statements, missing knowledge, or unclear responsibility, which may warrant clarification by the receiving clinician. Together, these capabilities underpin potential applications such as dynamic summarisation, checklist completion, task identification, and prompting of verification questions during handover.
-
-However, extracting structured information from clinical dialogue presents technical challenges. Handover language is variable, context-dependent, and often implicit, particularly for elements such as recommendations or responsibility assignment. In addition, uncertainty-related language is inherently diffuse and may not be explicitly marked. While LLMs offer flexible, prompt-based approaches to information extraction without task-specific model training, their performance is highly sensitive to prompt design and task formulation. As a result, developing reliable extraction pipelines requires systematic approaches to prompt optimisation and evaluation. 
-
-The aim of this study was to evaluate the accuracy of LLM extraction of structured information from nursing handover transcripts across tasks aligned with real-time clinical handover support.
+Recent advances in large language models (LLMs) create an opportunity to move beyond static documentation or retrospective auditing, toward real-time support of clinical communication and decision-making during handover itself. Rather than simply recording what was said, AI systems could be used to augment clinician cognition during transitions of care. To enable such real-time support, several core capabilities are required. First, systems must be able to reliably extract clinically meaningful structure from unstructured handover dialogue, including alignment with frameworks such as SBAR (Situation, Background, Assessment, Recommendation). Second, they must identify whether key elements of safe handover communication have been addressed. Third, they must detect signals of uncertainty or information gaps, such as vague statements, missing knowledge, or unclear responsibility, which may warrant clarification by the receiving clinician. The aim of this study was to evaluate the accuracy of LLM extraction of structured information from nursing handover transcripts across tasks aligned with real-time clinical handover support.
 
 ## Methods {#sec-methods}
 
@@ -319,4 +363,4 @@ The synthetic conversational handovers used in this study may not fully represen
 
 ## Conclusion {#sec-conclusion}
 
-Using consensus-labeled clinical handover data, we found that DSPy/GEPA prompt optimisation, particularly with GPT-5.2, consistently improved performance over baseline across the main evaluated tasks. The largest gains were observed for SBAR span extraction, checklist prediction remained strong at aggregate level, uncertainty extraction was the most difficult task, and unknown-fact extraction performed well when the target phenomenon was narrowly defined. Label-level and category-level reporting highlighted both gains and remaining gaps, supporting targeted next-step refinement.
+In this evaluation of AI-assisted clinical handover tasks, DSPy/GEPA prompt optimisation consistently improved matched model performance and was most promising for bounded checklist prediction and SBAR span extraction. The results support an implementation pathway in which AI outputs are presented as clinician-reviewed, source-linked draft structures or gap prompts rather than as autonomous handover summaries or audit judgements. Broad uncertainty detection remained insufficiently reliable, while explicit unknown-fact extraction suggests a narrower role for prompting clarification when missing knowledge is directly expressed. Before clinical deployment, these approaches require external validation on real handover audio and transcripts, end-to-end testing of transcription and diarisation effects, local calibration of checklist definitions, and human-factors evaluation of trust, reliance, workflow burden, and downstream safety outcomes.
