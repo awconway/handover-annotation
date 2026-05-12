@@ -1,0 +1,2 @@
+label,gold,total_pred_spans,matched_gold,matched_pred,recall,precision,f1,mean_iou
+Unknown fact,10,27,8,8,0.800000,0.296296,0.432432,0.902445

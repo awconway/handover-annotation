@@ -20,3 +20,8 @@ wheels/
 scratch/
 
 /.quarto/
+
+.agents
+skills-lock.json
+
+output/

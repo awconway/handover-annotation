@@ -1,0 +1,192 @@
+#!/bin/bash -l
+#PBS -N medgemma27b_unknown_u2_base
+#PBS -l select=1:ncpus=8:mem=64GB:ngpus=1:gpu_model=A100:gpu_sliced=False
+#PBS -l walltime=04:00:00
+#PBS -m abe
+#PBS -j oe
+
+set -euo pipefail
+
+cd "$PBS_O_WORKDIR" || exit 1
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+
+# Persistent model cache on HOME (Lustre-backed on cluster)
+export OLLAMA_MODELS="${OLLAMA_MODELS:-$HOME/.ollama/models}"
+
+MODEL_IMAGE="${MODEL_IMAGE:-alibayram/medgemma:27b}"
+MODEL_NAME="${MODEL_NAME:-ollama_medgemma_27b}"
+TEMPERATURE="${TEMPERATURE:-0.8}"
+DATA_FILE="${DATA_FILE:-./annotated_data/db_20260129_tokenised.jsonl}"
+ANNOTATOR_ID="${ANNOTATOR_ID:-handover_db-user2}"
+USE_ALL="${USE_ALL:-0}"  # 1 => evaluate on all matching user-2 examples
+NUM_THREADS="${NUM_THREADS:-1}"
+NO_RESUME="${NO_RESUME:-0}"  # 1 => overwrite existing eval file
+
+STAMP="$(date +%Y%m%d_%H%M%S)"
+OUT_DIR="${OUT_DIR:-./cluster_runs/medgemma27b_baseline_unknown_fact_user2_${STAMP}}"
+mkdir -p "$OUT_DIR"/evals "$OUT_DIR"/logs
+exec > >(tee -a "$OUT_DIR/logs/job.log") 2>&1
+
+OLLAMA_PID=""
+cleanup() {
+  if [ -n "${OLLAMA_PID:-}" ]; then
+    kill "$OLLAMA_PID" 2>/dev/null || true
+  fi
+}
+trap cleanup EXIT
+
+echo "Node: $(hostname)"
+echo "Working directory: $PWD"
+echo "Output directory: $OUT_DIR"
+echo "GPU info:"
+nvidia-smi
+echo "Initial CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-<unset>}"
+
+VENV_DIR="${VENV_DIR:-$PBS_O_WORKDIR/.venv_cluster_gpu}"
+PYTHON_MIN_MAJOR="${PYTHON_MIN_MAJOR:-3}"
+PYTHON_MIN_MINOR="${PYTHON_MIN_MINOR:-11}"
+PYTHON_BIN="$VENV_DIR/bin/python3"
+if [ ! -x "$PYTHON_BIN" ]; then
+  PYTHON_BIN="$VENV_DIR/bin/python"
+fi
+
+if [ ! -x "$PYTHON_BIN" ]; then
+  echo "Expected virtual environment was not found at: $VENV_DIR"
+  echo "Create it first with uv (example):"
+  echo "  uv python install 3.11"
+  echo "  uv venv --python 3.11 $VENV_DIR"
+  exit 1
+fi
+
+if ! "$PYTHON_BIN" -c "import sys; raise SystemExit(0 if sys.version_info >= (${PYTHON_MIN_MAJOR}, ${PYTHON_MIN_MINOR}) else 1)" >/dev/null 2>&1; then
+  echo "Venv interpreter is not runnable at >=${PYTHON_MIN_MAJOR}.${PYTHON_MIN_MINOR}: $PYTHON_BIN"
+  "$PYTHON_BIN" -V || true
+  exit 1
+fi
+
+echo "Using venv interpreter: $PYTHON_BIN"
+
+DEPS_STAMP="$VENV_DIR/.handover_deps_v4"
+if [ ! -f "$DEPS_STAMP" ]; then
+  "$PYTHON_BIN" -m pip install --upgrade pip setuptools wheel
+  "$PYTHON_BIN" -m pip install \
+    "dspy-ai>=3.0.4" \
+    "numpy>=2.3.5" \
+    "rapidfuzz>=3.14.3" \
+    "spacy>=3.8.11" \
+    "thinc>=8.3.10" \
+    "srsly>=2.5.1"
+  touch "$DEPS_STAMP"
+fi
+
+export PYTHONPATH="$PWD/src${PYTHONPATH:+:$PYTHONPATH}"
+PY_RUNNER=("$PYTHON_BIN")
+
+if ! command -v ollama >/dev/null 2>&1; then
+  echo "ollama is not available on PATH."
+  exit 1
+fi
+
+# Pick a random free local port for this job's Ollama daemon.
+while :; do
+  PORT=$((11434 + RANDOM % 5000))
+  if ! nc -z 127.0.0.1 "$PORT" 2>/dev/null; then
+    break
+  fi
+done
+
+export OLLAMA_HOST="127.0.0.1:${PORT}"
+export OLLAMA_API_BASE="http://${OLLAMA_HOST}"
+# Some PBS GPU environments expose CUDA_VISIBLE_DEVICES as a GPU UUID. Ollama
+# 0.16 can time out during GPU discovery with UUID values; inside the assigned
+# job cgroup, device index 0 is the allocated GPU.
+export CUDA_VISIBLE_DEVICES="${OLLAMA_CUDA_VISIBLE_DEVICES:-0}"
+export NVIDIA_VISIBLE_DEVICES="${NVIDIA_VISIBLE_DEVICES:-$CUDA_VISIBLE_DEVICES}"
+export OLLAMA_LOAD_TIMEOUT="${OLLAMA_LOAD_TIMEOUT:-10m}"
+echo "Using OLLAMA_HOST=${OLLAMA_HOST}"
+echo "Using OLLAMA_API_BASE=${OLLAMA_API_BASE}"
+echo "Using CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES}"
+
+OLLAMA_LOG="$OUT_DIR/logs/ollama.log"
+echo "Ollama binary: $(command -v ollama)"
+ollama --version || true
+echo "Ollama daemon log: $OLLAMA_LOG"
+
+ollama serve >"$OLLAMA_LOG" 2>&1 &
+OLLAMA_PID=$!
+
+for i in {1..300}; do
+  if curl -fs "http://${OLLAMA_HOST}/api/tags" >/dev/null; then
+    echo "Ollama started successfully."
+    break
+  fi
+  if ! kill -0 "$OLLAMA_PID" 2>/dev/null; then
+    echo "Ollama exited before becoming ready. Last daemon log lines:"
+    tail -n 80 "$OLLAMA_LOG" || true
+    exit 1
+  fi
+  sleep 1
+  if [ "$i" -eq 300 ]; then
+    echo "Ollama did not start within 300 seconds. Last daemon log lines:"
+    tail -n 80 "$OLLAMA_LOG" || true
+    exit 1
+  fi
+done
+
+if ! ollama show "$MODEL_IMAGE" >/dev/null 2>&1; then
+  echo "Pulling ${MODEL_IMAGE}..."
+  ollama pull "$MODEL_IMAGE"
+else
+  echo "Model ${MODEL_IMAGE} already available in local cache."
+fi
+
+echo "Available models:"
+ollama list
+
+if ! timeout 120 ollama run "$MODEL_IMAGE" "Reply with OK only." >/dev/null 2>&1; then
+  echo "Ollama smoke test failed. Last daemon log lines:"
+  tail -n 120 "$OLLAMA_LOG" || true
+  exit 1
+fi
+
+if grep -Eq 'inference compute.*id=cpu|offloaded 0/63 layers to GPU|total_vram="0 B"' "$OLLAMA_LOG"; then
+  echo "Ollama is using CPU only; refusing to run MedGemma baseline without GPU."
+  echo "Last daemon log lines:"
+  tail -n 120 "$OLLAMA_LOG" || true
+  exit 1
+fi
+
+EVAL_FILE="$OUT_DIR/evals/eval_unknown_fact_binary_baseline_${MODEL_NAME}_user2_test.jsonl"
+COMMON_ARGS=(
+  --data-file "$DATA_FILE"
+  --model-name "$MODEL_NAME"
+  --annotator-id "$ANNOTATOR_ID"
+  --baseline
+  --eval-results-file "$EVAL_FILE"
+  --num-threads "$NUM_THREADS"
+)
+if [ "$USE_ALL" = "1" ]; then
+  COMMON_ARGS+=(--use-all)
+fi
+if [ "$NO_RESUME" = "1" ]; then
+  COMMON_ARGS+=(--no-resume)
+fi
+
+echo "Run configuration:"
+echo "  DATA_FILE=$DATA_FILE"
+echo "  MODEL_IMAGE=$MODEL_IMAGE"
+echo "  MODEL_NAME=$MODEL_NAME"
+echo "  TEMPERATURE=$TEMPERATURE"
+echo "  ANNOTATOR_ID=$ANNOTATOR_ID"
+echo "  USE_ALL=$USE_ALL"
+echo "  NUM_THREADS=$NUM_THREADS"
+echo "  NO_RESUME=$NO_RESUME"
+echo "  EVAL_FILE=$EVAL_FILE"
+echo "  Mode=baseline-eval-only"
+
+OLLAMA_MEDGEMMA_27B_TEMPERATURE="$TEMPERATURE" "${PY_RUNNER[@]}" run_eval_unknown_fact_binary_span.py "${COMMON_ARGS[@]}"
+
+echo "Unknown-fact baseline evaluation completed."
+echo "Artifacts:"
+echo "  Evals: $OUT_DIR/evals"
+echo "  Logs:  $OUT_DIR/logs/job.log"
