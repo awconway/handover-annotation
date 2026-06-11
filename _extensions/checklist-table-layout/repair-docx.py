@@ -16,15 +16,40 @@ REL = f"{{{REL_NS}}}"
 CT = f"{{{CONTENT_TYPES_NS}}}"
 NS = {"w": W_NS}
 
-TARGET_HEADERS = [
-    "Checklist item",
-    "TP",
-    "FP",
-    "FN",
-    "TN",
-    "Precision",
-    "Recall",
-    "F1",
+TABLE_LAYOUTS = [
+    {
+        "headers": ["Category", "Checklist item"],
+        "alignments": ["left", "left"],
+        "widths": [30, 70],
+    },
+    {
+        "headers": ["Category", "Definition / when to use", "Example from handover speech"],
+        "alignments": ["left", "left", "left"],
+        "widths": [22, 43, 35],
+    },
+    {
+        "headers": [
+            "Label",
+            "Gold",
+            "Predicted spans",
+            "Recall",
+            "Precision",
+            "Mean IoU",
+            "F1",
+        ],
+        "alignments": ["left", "right", "right", "right", "right", "right", "right"],
+        "widths": [18, 8, 13, 14, 14, 15, 18],
+    },
+    {
+        "headers": ["Checklist item", "Accuracy", "Precision", "Recall", "F1"],
+        "alignments": ["left", "right", "right", "right", "right"],
+        "widths": [44, 14, 14, 14, 14],
+    },
+    {
+        "headers": ["Task", "Model", "Approach", "Precision", "Recall", "F1", "Mean IoU"],
+        "alignments": ["left", "left", "left", "right", "right", "right", "right"],
+        "widths": [16, 15, 15, 13, 13, 13, 15],
+    },
 ]
 
 DEFAULT_PAGE_SIZE = {
@@ -147,6 +172,40 @@ def set_paragraph_alignment(paragraph: ET.Element, alignment: str) -> None:
     ppr.append(jc)
 
 
+def set_paragraph_single_spacing(paragraph: ET.Element) -> None:
+    ppr = paragraph_properties(paragraph)
+    for spacing in direct_children(ppr, W + "spacing"):
+        ppr.remove(spacing)
+
+    spacing = ET.Element(W + "spacing")
+    spacing.set(W + "before", "0")
+    spacing.set(W + "after", "0")
+    spacing.set(W + "line", "240")
+    spacing.set(W + "lineRule", "auto")
+    ppr.append(spacing)
+
+
+def cell_properties(cell: ET.Element) -> ET.Element:
+    tcprs = direct_children(cell, W + "tcPr")
+    if tcprs:
+        return tcprs[0]
+
+    tcpr = ET.Element(W + "tcPr")
+    cell.insert(0, tcpr)
+    return tcpr
+
+
+def set_cell_width(cell: ET.Element, width: int) -> None:
+    tcpr = cell_properties(cell)
+    for tcw in direct_children(tcpr, W + "tcW"):
+        tcpr.remove(tcw)
+
+    tcw = ET.Element(W + "tcW")
+    tcw.set(W + "w", str(width))
+    tcw.set(W + "type", "dxa")
+    tcpr.insert(0, tcw)
+
+
 def normalize_duplicate_alignments(root: ET.Element) -> int:
     fixed = 0
     for ppr in root.findall(".//w:pPr", NS):
@@ -263,22 +322,100 @@ def row_cells(row: ET.Element) -> list[ET.Element]:
     return row.findall("./w:tc", NS)
 
 
-def is_checklist_table(table: ET.Element) -> bool:
+def table_header(table: ET.Element) -> list[str]:
     rows = table_rows(table)
     if not rows:
-        return False
-
-    header = [text_content(cell) for cell in row_cells(rows[0])]
-    return header == TARGET_HEADERS
+        return []
+    return [text_content(cell) for cell in row_cells(rows[0])]
 
 
-def normalize_checklist_table(table: ET.Element) -> int:
+def table_layout_for(table: ET.Element) -> dict[str, list] | None:
+    header = table_header(table)
+    for layout in TABLE_LAYOUTS:
+        if header == layout["headers"]:
+            return layout
+    return None
+
+
+def ensure_table_grid(table: ET.Element) -> ET.Element:
+    grids = direct_children(table, W + "tblGrid")
+    if grids:
+        return grids[0]
+
+    grid = ET.Element(W + "tblGrid")
+    tbl_prs = direct_children(table, W + "tblPr")
+    insert_index = 1 if tbl_prs else 0
+    table.insert(insert_index, grid)
+    return grid
+
+
+def normalize_table_grid(table: ET.Element, widths: list[int]) -> int:
+    grid = ensure_table_grid(table)
+    existing_cols = direct_children(grid, W + "gridCol")
+    current_total = 0
+    for col in existing_cols:
+        try:
+            current_total += int(col.get(W + "w") or "0")
+        except ValueError:
+            pass
+    if current_total <= 0:
+        current_total = 7920
+
+    width_total = sum(widths)
+    target_widths = [
+        max(120, round(current_total * width / width_total))
+        for width in widths
+    ]
+
+    changed = 0
+    while len(existing_cols) < len(target_widths):
+        col = ET.Element(W + "gridCol")
+        grid.append(col)
+        existing_cols.append(col)
+        changed += 1
+    while len(existing_cols) > len(target_widths):
+        grid.remove(existing_cols.pop())
+        changed += 1
+
+    for col, target_width in zip(existing_cols, target_widths):
+        target = str(target_width)
+        if col.get(W + "w") != target:
+            col.set(W + "w", target)
+            changed += 1
+
+    return changed
+
+
+def target_grid_widths(table: ET.Element, widths: list[int]) -> list[int]:
+    grid = ensure_table_grid(table)
+    existing_cols = direct_children(grid, W + "gridCol")
+    current_total = 0
+    for col in existing_cols:
+        try:
+            current_total += int(col.get(W + "w") or "0")
+        except ValueError:
+            pass
+    if current_total <= 0:
+        current_total = 7920
+
+    width_total = sum(widths)
+    return [max(120, round(current_total * width / width_total)) for width in widths]
+
+
+def normalize_table_layout(table: ET.Element, layout: dict[str, list]) -> int:
     fixed = 0
+    fixed += normalize_table_grid(table, layout["widths"])
+    target_widths = target_grid_widths(table, layout["widths"])
+
     for row in table_rows(table):
         for column_index, cell in enumerate(row_cells(row)):
-            alignment = "left" if column_index == 0 else "right"
+            if column_index >= len(layout["alignments"]):
+                continue
+            alignment = layout["alignments"][column_index]
+            set_cell_width(cell, target_widths[column_index])
             for paragraph in cell.findall("./w:p", NS):
                 set_paragraph_alignment(paragraph, alignment)
+                set_paragraph_single_spacing(paragraph)
                 fixed += 1
     return fixed
 
@@ -295,8 +432,11 @@ def repair_document_xml(xml_path: Path) -> tuple[int, int, int]:
     fixed_table = 0
 
     for table in root.findall(".//w:tbl", NS):
-        if is_checklist_table(table):
-            fixed_table += normalize_checklist_table(table)
+        layout = table_layout_for(table)
+        if layout is not None:
+            fixed_table += normalize_table_layout(table, layout)
+
+    fixed_ppr_order += normalize_paragraph_property_order(root)
 
     tree.write(xml_path, encoding="UTF-8", xml_declaration=True)
     return (

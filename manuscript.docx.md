@@ -1,5 +1,5 @@
 ---
-title: "Towards AI-assisted clinical handover: Evaluating large language models for structured information extraction"
+title: "Large language models for structured information extraction in artificial intelligence-assisted clinical handover"
 
 authors:
   - name: Aaron Conway
@@ -47,15 +47,15 @@ Artificial intelligence could be used to support clinical handover by producing 
 
 ### Methods
 
-Two registered nurses independently annotated a dataset of 203 synthetic handover transcripts to produce consensus labels for each information extraction task. Tasks included: 1) labelling spans of text into SBAR (Situation, Background, Assessment, Recommendation) categories; 2)  judging if specific pieces of information were communicated as a form of content detection; and 3) labelling spans of text that communicated information using uncertain terms, including a sub-task for identifying unknown facts. Baseline and Genetic-Pareto (GEPA) optimised prompts were compared for GPT-5.2, GPT-5-nano, and MedGemma 27B large langage models. Additionally, the LangExtract framework was evaluated for span-extraction tasks. Content detection was scored using micro-, macro-, and support-weighted precision, recall, and F1; span tasks were scored using same-label quote matching, matched-span precision/recall/F1, and mean intersection-over-union for boundary agreement.
+Two registered nurses independently annotated a dataset of 203 synthetic handover transcripts to produce consensus labels for each information extraction task. Tasks included: 1) labelling spans of text into SBAR (Situation, Background, Assessment, Recommendation) categories; 2)  content detectionjudging if specific pieces of information were communicated; and 3) labelling spans of text that communicated information using uncertain terms that included a sub-task for identifying unknown facts. Baseline and Genetic-Pareto (GEPA) optimised prompts were compared for GPT-5.2, GPT-5-nano, and MedGemma 27B large langage models. Additionally, the LangExtract framework was evaluated for span-extraction tasks. Content detection was scored using micro-, macro-, and support-weighted precision, recall, and F1; span tasks were scored using same-label quote matching, matched-span precision/recall/F1, and mean intersection-over-union for boundary agreement.
 
 ### Results
 
-In matched GPT-5.2 comparisons, prompt optimisation increased micro-F1 by \+0\.08 for content detection, \+0\.24 for SBAR span extraction, \+0\.06 for uncertainty-span extraction, and \+0\.08 for unknown-fact extraction. The GPT-5.2 optimised model achieved micro-F1 0\.85 and support-weighted F1 0\.85 for content detetection. For SBAR span extraction, GPT-5.2 with GEPA prompt optimisation achieved micro-F1 0\.76 and macro-F1 0\.75, compared with baseline macro-F1 0\.49. Broad uncertainty-span extraction remained comparatively weak (micro-F1 0\.41), whereas explicit unknown-fact extraction was stronger (micro-F1 0\.84). Prompt optimisation outperformed the LangExtract approach across each task.
+In matched GPT-5.2 comparisons, prompt optimisation increased point-estimate micro-F1 for content detection, SBAR span extraction, uncertainty-span extraction, and unknown-fact extraction. The GPT-5.2 optimised model achieved micro-F1 0\.85 \(95% CI 0\.83\-0\.88\) for content detection. For SBAR span extraction, GPT-5.2 with GEPA prompt optimisation achieved micro-F1 0\.76 \(95% CI 0\.72\-0\.79\). Broad uncertainty-span extraction remained comparatively weak (micro-F1 0\.41 \(95% CI 0\.33\-0\.48\)), whereas explicit unknown-fact extraction was stronger (micro-F1 0\.84 \(95% CI 0\.63\-1\.00\)). Prompt optimisation outperformed the LangExtract approach across each task.
 
 ### Conclusion
 
-Prompt-optimisation enhanced the performance of large language models for tasks that can be used in real-time clinical handover support. Broad uncertainty detection was not sufficiently reliable for deployment. For most tasks, the smaller GPT-5-nano model performed competitively with the larger GPT-5.2, suggesting that cost-effective models may be viable for certain applications. Future work should explore integration of these capabilities into clinical workflows and evaluate their impact on communication quality and patient outcomes.
+Prompt-optimisation enhanced the performance of large language models for tasks that can be used in real-time clinical handover support. Broad uncertainty detection was not sufficiently accurate to be used in clinical practice. For most tasks, the smaller GPT-5-nano model performed competitively with the larger GPT-5.2, suggesting that cost-effective models may be viable for certain applications. Future work should explore integration of these capabilities into clinical workflows and evaluate their impact on communication quality and patient outcomes.
 
 ## Introduction {#sec-introduction}
 
@@ -105,12 +105,14 @@ Performance was measured with standard classification metrics for the checklist 
 
 For span-extraction tasks, model outputs were represented as label-and-quote pairs, and each predicted quote was mapped back to a character span in the source transcript using exact string matching, with approximate matching used only when an exact match was unavailable. Predicted spans were then matched one-to-one with reference spans of the same label according to highest overlap. Under this greedy matching procedure, a reported match was defined as a same-label pair with non-zero overlap. Precision, recall, and F1 were then calculated from these matched gold and predicted spans as binary detection measures, so that these statistics reflected the model's ability to identify the correct labelled spans. Span-boundary agreement was reported separately using the mean intersection over union (IoU) across matched pairs. We additionally calculated per-label descriptive metrics including the number of reference spans, the number of predicted spans, matched-span precision, recall, F1, and mean IoU.
 
+Sampling uncertainty was summarised with 95% confidence intervals calculated using non-parametric bootstrap resampling of evaluation transcripts. For each result, we resampled transcripts with replacement 2,000 times using a fixed random seed and recalculated the relevant metric from the pooled counts in each resample. Confidence limits are reported as the 2.5th and 97.5th percentiles of the bootstrap distribution. For checklist items, accuracy was calculated as (true positives + true negatives) divided by all evaluated transcripts for that item. Confidence intervals for precision, recall, F1, macro-F1, support-weighted F1, and mean IoU were calculated by applying the same transcript-level bootstrap procedure and recomputing each statistic within each resample.
+
 
 ## Results {#sec-results}
 
 ### Key findings {#sec-results-summary}
 
-Within-model comparisons showed consistent gains with DSPy/GEPA over matched baselines wherever both were available. For GPT-5.2, DSPy/GEPA improved micro-F1 by \+0\.08 for checklist prediction, \+0\.24 for SBAR span extraction, \+0\.06 for uncertainty span extraction, and \+0\.08 for unknown-fact extraction. GPT-5-nano also improved over baseline for checklist prediction (\+0\.09), SBAR span extraction (\+0\.20), and unknown-fact extraction (\+0\.71). MedGemma 27B improved in each matched DSPy/GEPA comparison: checklist prediction (\+0\.11), SBAR span extraction (\+0\.16), uncertainty span extraction (\+0\.06), and unknown-fact extraction (\+0\.37). Across span tasks, LangExtract generally performed below the corresponding best DSPy/GEPA configuration.
+Within-model comparisons showed consistent point-estimate gains with DSPy/GEPA over matched baselines wherever both were available. For GPT-5.2, micro-F1 increased from 0\.77 \(95% CI 0\.74\-0\.80\) to 0\.85 \(95% CI 0\.83\-0\.88\) for checklist prediction, from 0\.51 \(95% CI 0\.47\-0\.55\) to 0\.76 \(95% CI 0\.72\-0\.79\) for SBAR span extraction, from 0\.35 \(95% CI 0\.28\-0\.41\) to 0\.41 \(95% CI 0\.33\-0\.48\) for uncertainty span extraction, and from 0\.76 \(95% CI 0\.50\-1\.00\) to 0\.84 \(95% CI 0\.63\-1\.00\) for unknown-fact extraction. Across span tasks, LangExtract generally performed below the corresponding best DSPy/GEPA configuration.
 
 ### Comparative performance across tasks and prompting approaches {#sec-results-overview}
 
@@ -119,14 +121,20 @@ Within-model comparisons showed consistent gains with DSPy/GEPA over matched bas
 
 ### SBAR span extraction {#sec-sbar-optimized}
 
-Among SBAR configurations, the highest overall score was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 0\.76), followed by DSPy/GEPA-optimised GPT-5-nano (micro-F1 0\.69) and LangExtract GPT-5.2 (micro-F1 0\.59). @tbl-sbar-optimized provides label-level results for the best-performing GPT-5.2 DSPy/GEPA SBAR configuration, compared with its corresponding GPT-5.2 baseline run.
+Among SBAR configurations, the highest overall score was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 0\.76 \(95% CI 0\.72\-0\.79\)), followed by DSPy/GEPA-optimised GPT-5-nano (micro-F1 0\.69 \(95% CI 0\.66\-0\.72\)) and LangExtract GPT-5.2 (micro-F1 0\.59 \(95% CI 0\.56\-0\.62\)). @tbl-sbar-optimized provides label-level results for the best-performing GPT-5.2 DSPy/GEPA SBAR configuration.
 
 
-Within this GPT-5.2 SBAR comparison, macro-precision improved from 0\.41 to 0\.78, macro-recall from 0\.69 to 0\.73, and macro-F1 from 0\.49 to 0\.75. The largest per-label improvements in F1 were observed for BACKGROUND (\+0\.40), SITUATION (\+0\.25), and ASSESSMENT (\+0\.23), with a smaller improvement for RECOMMENDATION (\+0\.15). Span-boundary agreement among matched predictions remained high, with mean IoU values between 0\.66 and 0\.82 across SBAR labels.
+Within this GPT-5.2 SBAR comparison, macro-precision increased from 0\.41 \(95% CI 0\.37\-0\.44\) to 0\.78 \(95% CI 0\.73\-0\.82\), macro-recall from 0\.69 \(95% CI 0\.63\-0\.75\) to 0\.73 \(95% CI 0\.69\-0\.78\), and macro-F1 from 0\.49 \(95% CI 0\.46\-0\.53\) to 0\.75 \(95% CI 0\.71\-0\.79\). Span-boundary agreement among matched predictions was strongest for SITUATION and RECOMMENDATION, as shown by the label-level mean IoU estimates in @tbl-sbar-optimized.
 
 ### Checklist task {#sec-checklist}
 
-For checklist prediction, the best overall result was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 0\.85, macro-F1 0\.76, support-weighted F1 0\.85). This exceeded the matched GPT-5.2 baseline by \+0\.08 on micro-F1 and \+0\.07 on macro-F1. DSPy/GEPA-optimised GPT-5-nano also performed competitively (micro-F1 0\.81), while MedGemma 27B reached micro-F1 0\.76). @tbl-checklist-grouped presents grouped per-label performance for the best-performing GPT-5.2 checklist model. The largest improvements over baseline were observed for patient involvement items and several recommendation-related labels, while 2 low-support labels still had F1 equal to zero.
+For checklist prediction, the best overall result was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 0\.85 \(95% CI 0\.83\-0\.88\), macro-F1 0\.73 \(95% CI 0\.63\-0\.76\), support-weighted F1 0\.85 \(95% CI 0\.82\-0\.88\)). DSPy/GEPA-optimised GPT-5-nano also performed competitively (micro-F1 0\.81 \(95% CI 0\.78\-0\.84\)), while MedGemma 27B reached micro-F1 0\.76 \(95% CI 0\.74\-0\.79\)). @tbl-checklist-grouped presents grouped per-label estimates for accuracy, precision, recall, and F1 for the best-performing GPT-5.2 checklist model. Confidence intervals are not provided for labels with few positive examples in the test set. 2 low-support labels still had F1 equal to zero.
+
+### Uncertainty and unknown-fact span extraction {#sec-uncertainty-results}
+
+Broad uncertainty-span extraction remained the weakest task. The best DSPy/GEPA run used GPT\-5\.2 and achieved precision 0\.32 \(95% CI 0\.26\-0\.39\), recall 0\.56 \(95% CI 0\.44\-0\.67\), micro-F1 0\.41 \(95% CI 0\.33\-0\.48\), and mean IoU 0\.83 \(95% CI 0\.77\-0\.90\). This was only a modest improvement over the best baseline run (micro-F1 0\.35 \(95% CI 0\.28\-0\.41\)), and the best LangExtract uncertainty run remained low (micro-F1 0\.24 \(95% CI 0\.17\-0\.31\)).
+
+The narrower unknown-fact sub-task performed substantially better. DSPy/GEPA reached micro-F1 0\.84 \(95% CI 0\.63\-1\.00\) with GPT\-5\.2, compared with the best baseline micro-F1 of 0\.76 \(95% CI 0\.50\-1\.00\) and the LangExtract GPT-5.2 micro-F1 of 0\.56 \(95% CI 0\.29\-0\.72\). These results suggest that explicitly stated information gaps were more tractable than the broader set of hedged, vague, source-dependent, procedural, and responsibility-related uncertainty spans. @tbl-uncertainty-task-results summarises the uncertainty and unknown-fact span results used for these comparisons.
 
 
 ## Discussion {#sec-discussion}
@@ -163,56 +171,50 @@ In this evaluation of AI-assisted clinical handover tasks, DSPy/GEPA prompt opti
 
 {{< pagebreak >}}
 
-::: {#fig-results-overview}
-
-<svg xmlns="http://www.w3.org/2000/svg" width="980" height="576" viewBox="0 0 972 571.3" role="img" aria-labelledby="comparison-title comparison-desc" style="max-width:100%;height:auto;"><title id="comparison-title">Within-model comparison of baseline, DSPy/GEPA, and LangExtract micro-F1 performance</title><desc id="comparison-desc">Four-panel grouped horizontal bar chart across checklist, SBAR, uncertainty, and unknown-fact tasks.</desc><style>.plot-title{font:700 14px system-ui, sans-serif; fill:#192038;}.panel-title{font:700 12px system-ui, sans-serif; fill:#192038;}.axis-label{font:10px system-ui, sans-serif; fill:#4d5770;}.tick-label{font:10px system-ui, sans-serif; fill:#4d5770;}.model-label{font:11px system-ui, sans-serif; fill:#192038;}.legend-label{font:11px system-ui, sans-serif; fill:#192038;}.value-label{font:10px system-ui, sans-serif; fill:#2b3345;}</style><text x="22" y="38" class="plot-title">Within-model micro-F1 comparisons across tasks</text><rect x="22" y="50" width="16" height="10" fill="#8b95a7" rx="2" ry="2" /><text x="46" y="59" class="legend-label">Baseline</text><rect x="154" y="50" width="16" height="10" fill="#1f6feb" rx="2" ry="2" /><text x="178" y="59" class="legend-label">DSPy/GEPA</text><rect x="286" y="50" width="16" height="10" fill="#d97706" rx="2" ry="2" /><text x="310" y="59" class="legend-label">LangExtract</text><rect x="22" y="82" width="450" height="220" rx="10" ry="10" fill="#ffffff" stroke="#d8dcef" stroke-width="1.2" /><text x="38" y="102" class="panel-title">Checklist item prediction</text><line x1="172.0" y1="118.0" x2="172.0" y2="278.0" stroke="#d8dcef" stroke-width="1" /><text x="172.0" y="294.0" text-anchor="middle" class="tick-label">0.00</text><line x1="291.0" y1="118.0" x2="291.0" y2="278.0" stroke="#d8dcef" stroke-width="1" /><text x="291.0" y="294.0" text-anchor="middle" class="tick-label">0.50</text><line x1="410.0" y1="118.0" x2="410.0" y2="278.0" stroke="#d8dcef" stroke-width="1" /><text x="410.0" y="294.0" text-anchor="middle" class="tick-label">1.00</text><text x="291.0" y="284.0" text-anchor="middle" class="axis-label">Micro-F1</text><text x="160.0" y="144.0" text-anchor="end" class="model-label">GPT-5.2</text><rect x="172.0" y="126.0" width="184.2" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="362.2" y="135.0" class="value-label">0.77</text><rect x="172.0" y="140.0" width="203.4" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="381.4" y="149.0" class="value-label">0.85</text><text x="160.0" y="188.0" text-anchor="end" class="model-label">GPT-5-nano</text><rect x="172.0" y="170.0" width="171.5" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="349.5" y="179.0" class="value-label">0.72</text><rect x="172.0" y="184.0" width="193.5" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="371.5" y="193.0" class="value-label">0.81</text><text x="160.0" y="232.0" text-anchor="end" class="model-label">MedGemma 27B</text><rect x="172.0" y="214.0" width="154.5" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="332.5" y="223.0" class="value-label">0.65</text><rect x="172.0" y="228.0" width="181.8" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="359.8" y="237.0" class="value-label">0.76</text><rect x="500" y="82" width="450" height="220" rx="10" ry="10" fill="#ffffff" stroke="#d8dcef" stroke-width="1.2" /><text x="516" y="102" class="panel-title">SBAR span extraction</text><line x1="650.0" y1="118.0" x2="650.0" y2="278.0" stroke="#d8dcef" stroke-width="1" /><text x="650.0" y="294.0" text-anchor="middle" class="tick-label">0.00</text><line x1="769.0" y1="118.0" x2="769.0" y2="278.0" stroke="#d8dcef" stroke-width="1" /><text x="769.0" y="294.0" text-anchor="middle" class="tick-label">0.50</text><line x1="888.0" y1="118.0" x2="888.0" y2="278.0" stroke="#d8dcef" stroke-width="1" /><text x="888.0" y="294.0" text-anchor="middle" class="tick-label">1.00</text><text x="769.0" y="284.0" text-anchor="middle" class="axis-label">Micro-F1</text><text x="638.0" y="144.0" text-anchor="end" class="model-label">GPT-5.2</text><rect x="650.0" y="126.0" width="121.7" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="777.7" y="135.0" class="value-label">0.51</text><rect x="650.0" y="140.0" width="179.7" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="835.7" y="149.0" class="value-label">0.76</text><rect x="650.0" y="154.0" width="141.0" height="10.0" fill="#d97706" rx="3" ry="3" /><text x="797.0" y="163.0" class="value-label">0.59</text><text x="638.0" y="188.0" text-anchor="end" class="model-label">GPT-5-nano</text><rect x="650.0" y="170.0" width="117.2" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="773.2" y="179.0" class="value-label">0.49</text><rect x="650.0" y="184.0" width="164.6" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="820.6" y="193.0" class="value-label">0.69</text><text x="638.0" y="232.0" text-anchor="end" class="model-label">MedGemma 27B</text><rect x="650.0" y="214.0" width="120.2" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="776.2" y="223.0" class="value-label">0.51</text><rect x="650.0" y="228.0" width="158.1" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="814.1" y="237.0" class="value-label">0.66</text><rect x="650.0" y="242.0" width="108.9" height="10.0" fill="#d97706" rx="3" ry="3" /><text x="764.9" y="251.0" class="value-label">0.46</text><rect x="22" y="330" width="450" height="220" rx="10" ry="10" fill="#ffffff" stroke="#d8dcef" stroke-width="1.2" /><text x="38" y="350" class="panel-title">Uncertainty span extraction</text><line x1="172.0" y1="366.0" x2="172.0" y2="526.0" stroke="#d8dcef" stroke-width="1" /><text x="172.0" y="542.0" text-anchor="middle" class="tick-label">0.00</text><line x1="291.0" y1="366.0" x2="291.0" y2="526.0" stroke="#d8dcef" stroke-width="1" /><text x="291.0" y="542.0" text-anchor="middle" class="tick-label">0.50</text><line x1="410.0" y1="366.0" x2="410.0" y2="526.0" stroke="#d8dcef" stroke-width="1" /><text x="410.0" y="542.0" text-anchor="middle" class="tick-label">1.00</text><text x="291.0" y="532.0" text-anchor="middle" class="axis-label">Micro-F1</text><text x="160.0" y="392.0" text-anchor="end" class="model-label">GPT-5.2</text><rect x="172.0" y="374.0" width="82.4" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="260.4" y="383.0" class="value-label">0.35</text><rect x="172.0" y="388.0" width="97.7" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="275.7" y="397.0" class="value-label">0.41</text><rect x="172.0" y="402.0" width="28.7" height="10.0" fill="#d97706" rx="3" ry="3" /><text x="206.7" y="411.0" class="value-label">0.12</text><text x="160.0" y="480.0" text-anchor="end" class="model-label">MedGemma 27B</text><rect x="172.0" y="462.0" width="33.1" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="211.1" y="471.0" class="value-label">0.14</text><rect x="172.0" y="476.0" width="46.6" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="224.6" y="485.0" class="value-label">0.20</text><rect x="172.0" y="490.0" width="56.4" height="10.0" fill="#d97706" rx="3" ry="3" /><text x="234.4" y="499.0" class="value-label">0.24</text><rect x="500" y="330" width="450" height="220" rx="10" ry="10" fill="#ffffff" stroke="#d8dcef" stroke-width="1.2" /><text x="516" y="350" class="panel-title">Unknown-fact span extraction</text><line x1="650.0" y1="366.0" x2="650.0" y2="526.0" stroke="#d8dcef" stroke-width="1" /><text x="650.0" y="542.0" text-anchor="middle" class="tick-label">0.00</text><line x1="769.0" y1="366.0" x2="769.0" y2="526.0" stroke="#d8dcef" stroke-width="1" /><text x="769.0" y="542.0" text-anchor="middle" class="tick-label">0.50</text><line x1="888.0" y1="366.0" x2="888.0" y2="526.0" stroke="#d8dcef" stroke-width="1" /><text x="888.0" y="542.0" text-anchor="middle" class="tick-label">1.00</text><text x="769.0" y="532.0" text-anchor="middle" class="axis-label">Micro-F1</text><text x="638.0" y="392.0" text-anchor="end" class="model-label">GPT-5.2</text><rect x="650.0" y="374.0" width="181.3" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="837.3" y="383.0" class="value-label">0.76</text><rect x="650.0" y="388.0" width="200.4" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="856.4" y="397.0" class="value-label">0.84</text><rect x="650.0" y="402.0" width="133.9" height="10.0" fill="#d97706" rx="3" ry="3" /><text x="789.9" y="411.0" class="value-label">0.56</text><text x="638.0" y="436.0" text-anchor="end" class="model-label">GPT-5-nano</text><rect x="650.0" y="418.0" width="30.7" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="686.7" y="427.0" class="value-label">0.13</text><rect x="650.0" y="432.0" width="200.4" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="856.4" y="441.0" class="value-label">0.84</text><text x="638.0" y="480.0" text-anchor="end" class="model-label">MedGemma 27B</text><rect x="650.0" y="462.0" width="102.9" height="10.0" fill="#8b95a7" rx="3" ry="3" /><text x="758.9" y="471.0" class="value-label">0.43</text><rect x="650.0" y="476.0" width="190.4" height="10.0" fill="#1f6feb" rx="3" ry="3" /><text x="846.4" y="485.0" class="value-label">0.80</text></svg>
-
-
-Within-model comparison of saved evaluation runs within manuscript scope. Horizontal bars show micro-F1 for baseline, DSPy/GEPA, and LangExtract runs for each model within each task. Missing bars indicate that a given task-model-approach combination was not evaluated or was not available as a saved run; in particular, LangExtract was not evaluated for the checklist task.
-:::
+![Within-model comparison of saved evaluation runs within manuscript scope. Horizontal bars show micro-F1 for baseline, DSPy/GEPA, and LangExtract runs for each model within each task. Missing bars indicate that a given task-model-approach combination was not evaluated or was not available as a saved run; in particular, LangExtract was not evaluated for the checklist task.](manuscript-assets/fig-results-overview.png){#fig-results-overview width=6.8in fig-alt="Four-panel grouped horizontal bar chart showing micro-F1 for checklist, SBAR, uncertainty, and unknown-fact tasks by model and prompting approach."}
 
 {{< pagebreak >}}
 
-::: {#tbl-checklist-items}
+::: {#tbl-checklist-items tbl-colwidths="[30,70]"}
 | Category | Checklist item |
-| --- | --- |
-| Patient Involvement | Clinician introductions |
-| Patient Involvement | Introduction of clinicians to the patient or carer |
-| Patient Involvement | Invitation for the patient or carer to participate in handover |
+| :--- | :--- |
+| Patient involvement | Clinician introductions |
+|  | Introduction of clinicians to the patient or carer |
+|  | Invitation for the patient or carer to participate in handover |
 | Identification | Verification of three patient identifiers |
 | Situation | Primary diagnosis or reason for admission |
-| Situation | Significant events or complications |
-| Situation | Current status, including pending tests/procedures and interim plans/orders |
+|  | Significant events or complications |
+|  | Current status, including pending tests/procedures and interim plans/orders |
 | Background | Relevant clinical and social history, including comorbidities |
-| Background | Falls risk |
-| Background | Pressure injury risk |
-| Background | Allergies |
-| Background | Advance care planning |
+|  | Falls risk |
+|  | Pressure injury risk |
+|  | Allergies |
+|  | Advance care planning |
 | Assessment | Observations, deterioration score, and recent escalations |
-| Assessment | Pain management |
-| Assessment | Devices, lines, and vascular access |
-| Assessment | Critical monitoring and alarms |
-| Assessment | Nutrition and dietary restrictions |
-| Assessment | Fluid balance and fluid restrictions |
-| Assessment | Infusions |
-| Assessment | Medication chart review, including high-risk medicines |
-| Assessment | Pathology results or pending investigations |
-| Assessment | Mobility and use of aids |
-| Assessment | Skin integrity and related interventions |
+|  | Pain management |
+|  | Devices, lines, and vascular access |
+|  | Critical monitoring and alarms |
+|  | Nutrition and dietary restrictions |
+|  | Fluid balance and fluid restrictions |
+|  | Infusions |
+|  | Medication chart review, including high-risk medicines |
+|  | Pathology results or pending investigations |
+|  | Mobility and use of aids |
+|  | Skin integrity and related interventions |
 | Recommendation | Discharge plan |
-| Recommendation | Critical actions required |
-| Recommendation | Follow-up care plan or pathway actions |
-| Recommendation | Patient or carer goals and preferences |
+|  | Critical actions required |
+|  | Follow-up care plan or pathway actions |
+|  | Patient or carer goals and preferences |
 
-Checklist items used to operationalise identification of key concepts and entities in handover transcripts.
+Checklist items used to operationalise identification of key concepts and entities in handover transcripts. Blank category cells indicate continuation of the preceding category.
 :::
 
 {{< pagebreak >}}
 
 
-::: {#tbl-uncertainty-items}
+::: {#tbl-uncertainty-items tbl-colwidths="[22,43,35]"}
 | Category | Definition / when to use | Example from handover speech |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | Hedge / Probability Language | The speaker indicates partial confidence or doubt about information. | “I think ENT reviewed him.”<br>“He should be going to theatre soon.” |
 | Vague / Qualitative Expression | Information is described using imprecise or subjective language. | “He looks fine now.”<br>“Seems okay.” |
 | Unknown Fact / Explicit Lack of Knowledge | The speaker openly states missing knowledge or incomplete data. | “Not sure if consent’s been signed.”<br>“I don’t know his allergies.” |
@@ -227,62 +229,90 @@ Uncertainty categories used to support annotator identification of uncertainty-r
 ::::: landscape
 
 
-:::: {#tbl-sbar-optimized}
+:::: {#tbl-sbar-optimized tbl-colwidths="[18,8,13,14,14,15,18]"}
 
-| Label | Gold | Predicted spans | Recall | Precision | Mean IoU | F1 | Delta F1 (vs baseline) |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| ASSESSMENT | 194 | 192 | 0.77 | 0.78 | 0.77 | 0.77 | +0.23 |
-| BACKGROUND | 47 | 50 | 0.72 | 0.68 | 0.66 | 0.70 | +0.40 |
-| RECOMMENDATION | 113 | 124 | 0.76 | 0.69 | 0.78 | 0.73 | +0.15 |
-| SITUATION | 73 | 52 | 0.68 | 0.96 | 0.82 | 0.80 | +0.25 |
+| Label | Gold | Predicted spans | Recall | Precision | Mean IoU | F1 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| ASSESSMENT | 194 | 192 | 0.77 (0.72-0.82) | 0.78 (0.72-0.83) | 0.77 (0.72-0.81) | 0.77 (0.73-0.81) |
+| BACKGROUND | 47 | 50 | 0.72 (0.61-0.84) | 0.68 (0.57-0.79) | 0.66 (0.56-0.75) | 0.70 (0.60-0.80) |
+| RECOMMENDATION | 113 | 124 | 0.76 (0.69-0.84) | 0.69 (0.62-0.78) | 0.78 (0.73-0.83) | 0.73 (0.67-0.78) |
+| SITUATION | 73 | 52 | 0.68 (0.57-0.81) | 0.96 (0.88-1.00) | 0.82 (0.75-0.88) | 0.80 (0.72-0.89) |
 
 
-Per-label SBAR metrics for the best-performing GPT-5.2 DSPy/GEPA model output on the consensus evaluation partition (n=48). `Delta F1` is the difference from the corresponding GPT-5.2 baseline run on the same partition.
+Per-label SBAR metrics for the best-performing GPT-5.2 DSPy/GEPA model output on the consensus evaluation partition (n=48). Metric cells show point estimate (95% CI).
 ::::
+
+*Legend:* Gold = reference spans; predicted spans = model-generated spans mapped back to the transcript; IoU = intersection over union for matched span boundaries; F1 = harmonic mean of precision and recall.
 
 
 
 {{< pagebreak >}}
 
-| Checklist item | TP | FP | FN | TN | Precision | Recall | F1 |
-| ------------------------------------------------ | ----: | ----: | ----: | ----: | ---------: | -------: | -----: |
-| **Identification** |  |  |  |  |  |  |  |
-| ID check of 3 patient identifiers | 1 | 0 | 0 | 48 | 1.00 | 1.00 | 1.00 |
-| **Situation** |  |  |  |  |  |  |  |
-| Primary diagnosis \| reason for admission | 45 | 2 | 0 | 2 | 0.96 | 1.00 | 0.98 |
-| Current status (awaiting tests/procedures, on interim orders/plan) | 22 | 8 | 9 | 10 | 0.73 | 0.71 | 0.72 |
-| Significant events or complications | 5 | 3 | 5 | 36 | 0.62 | 0.50 | 0.56 |
-| **Background** |  |  |  |  |  |  |  |
-| Alerts - allergies | 16 | 2 | 2 | 29 | 0.89 | 0.89 | 0.89 |
-| Relevant clinical and social history \| comorbidities | 17 | 1 | 0 | 31 | 0.94 | 1.00 | 0.97 |
-| Alerts - falls risk | 2 | 0 | 1 | 46 | 1.00 | 0.67 | 0.80 |
-| Alerts - pressure injury risk | 2 | 0 | 1 | 46 | 1.00 | 0.67 | 0.80 |
-| Advanced care planning | 1 | 0 | 0 | 48 | 1.00 | 1.00 | 1.00 |
-| **Assessment** |  |  |  |  |  |  |  |
-| Observations \| Q-ADDS \| recent escalations | 38 | 2 | 2 | 7 | 0.95 | 0.95 | 0.95 |
-| Medication chart \| flag high risk meds | 24 | 4 | 1 | 20 | 0.86 | 0.96 | 0.91 |
-| Devices \| lines \| vascular access | 23 | 3 | 0 | 23 | 0.88 | 1.00 | 0.94 |
-| Mobility \| aids | 16 | 4 | 1 | 28 | 0.80 | 0.94 | 0.86 |
-| Pain management | 16 | 2 | 1 | 30 | 0.89 | 0.94 | 0.91 |
-| Infusions | 8 | 1 | 7 | 33 | 0.89 | 0.53 | 0.67 |
-| Pathology | 14 | 5 | 1 | 29 | 0.74 | 0.93 | 0.82 |
-| Nutrition \| restrictions | 14 | 6 | 0 | 29 | 0.70 | 1.00 | 0.82 |
-| Fluid balance \| restrictions | 7 | 3 | 2 | 37 | 0.70 | 0.78 | 0.74 |
-| Skin integrity \| interventions | 6 | 5 | 0 | 38 | 0.55 | 1.00 | 0.71 |
-| Critical monitoring \| alarms | 0 | 2 | 0 | 47 | 0.00 | 0.00 | 0.00 |
-| **Recommendation** |  |  |  |  |  |  |  |
-| Care plan/pathway actions to follow up | 44 | 5 | 0 | 0 | 0.90 | 1.00 | 0.95 |
-| Asked patient/carer about goals and preferences | 0 | 1 | 9 | 39 | 0.00 | 0.00 | 0.00 |
-| Discharge plan | 4 | 1 | 0 | 44 | 0.80 | 1.00 | 0.89 |
-| Critical actions required | 1 | 4 | 0 | 44 | 0.20 | 1.00 | 0.33 |
-| **Patient Involvement** |  |  |  |  |  |  |  |
-| Introduction of clinicians involved in handover to patient/carer | 20 | 8 | 0 | 21 | 0.71 | 1.00 | 0.83 |
-| Invitation for patient/carer to participate in handover | 15 | 8 | 1 | 25 | 0.65 | 0.94 | 0.77 |
+| Checklist item | Accuracy | Precision | Recall | F1 |
+| -------------------------------------------- | -------------: | -------------: | -------------: | -------------: |
+| **Identification** |  |  |  |  |
+| ID check of 3 patient identifiers | 1.00 | 1.00 | 1.00 | 1.00 |
+| **Situation** |  |  |  |  |
+| Primary diagnosis \| reason for admission | 0.96 (0.90-1.00) | 0.96 (0.89-1.00) | 1.00 | 0.98 (0.94-1.00) |
+| Current status (awaiting tests/procedures, on interim orders/plan) | 0.65 (0.51-0.78) | 0.73 (0.57-0.88) | 0.71 (0.55-0.87) | 0.72 (0.58-0.84) |
+| Significant events or complications | 0.84 (0.73-0.94) | 0.62 (0.25-1.00) | 0.50 (0.17-0.83) | 0.56 (0.20-0.80) |
+| **Background** |  |  |  |  |
+| Alerts - allergies | 0.92 (0.84-0.98) | 0.89 (0.73-1.00) | 0.89 (0.71-1.00) | 0.89 (0.76-0.98) |
+| Relevant clinical and social history \| comorbidities | 0.98 (0.94-1.00) | 0.94 (0.81-1.00) | 1.00 | 0.97 (0.90-1.00) |
+| Alerts - falls risk | 0.98 (0.94-1.00) | 1.00 | 0.67 | 0.80 |
+| Alerts - pressure injury risk | 0.98 (0.94-1.00) | 1.00 | 0.67 | 0.80 |
+| Advanced care planning | 1.00 | 1.00 | 1.00 | 1.00 |
+| **Assessment** |  |  |  |  |
+| Observations \| Q-ADDS \| recent escalations | 0.92 (0.84-0.98) | 0.95 (0.87-1.00) | 0.95 (0.87-1.00) | 0.95 (0.89-0.99) |
+| Medication chart \| flag high risk meds | 0.90 (0.82-0.98) | 0.86 (0.71-0.97) | 0.96 (0.87-1.00) | 0.91 (0.81-0.98) |
+| Devices \| lines \| vascular access | 0.94 (0.88-1.00) | 0.88 (0.75-1.00) | 1.00 | 0.94 (0.86-1.00) |
+| Mobility \| aids | 0.90 (0.80-0.98) | 0.80 (0.61-0.95) | 0.94 (0.80-1.00) | 0.86 (0.72-0.97) |
+| Pain management | 0.94 (0.86-1.00) | 0.89 (0.71-1.00) | 0.94 (0.81-1.00) | 0.91 (0.80-1.00) |
+| Infusions | 0.84 (0.73-0.94) | 0.89 (0.67-1.00) | 0.53 (0.27-0.79) | 0.67 (0.40-0.86) |
+| Pathology | 0.88 (0.78-0.96) | 0.74 (0.53-0.93) | 0.93 (0.79-1.00) | 0.82 (0.67-0.94) |
+| Nutrition \| restrictions | 0.88 (0.78-0.96) | 0.70 (0.50-0.89) | 1.00 | 0.82 (0.67-0.94) |
+| Fluid balance \| restrictions | 0.90 (0.80-0.98) | 0.70 (0.38-1.00) | 0.78 (0.44-1.00) | 0.74 (0.44-0.94) |
+| Skin integrity \| interventions | 0.90 (0.80-0.98) | 0.55 (0.22-0.83) | 1.00 | 0.71 (0.36-0.91) |
+| Critical monitoring \| alarms | 0.96 (0.90-1.00) | 0.00 (0.00-0.00) | 0.00 (0.00-0.00) | 0.00 (0.00-0.00) |
+| **Recommendation** |  |  |  |  |
+| Care plan/pathway actions to follow up | 0.90 (0.80-0.98) | 0.90 (0.80-0.98) | 1.00 | 0.95 (0.89-0.99) |
+| Asked patient/carer about goals and preferences | 0.80 (0.67-0.90) | 0.00 (0.00-0.00) | 0.00 (0.00-0.00) | 0.00 (0.00-0.00) |
+| Discharge plan | 0.98 (0.94-1.00) | 0.80 (0.33-1.00) | 1.00 | 0.89 (0.50-1.00) |
+| Critical actions required | 0.92 (0.84-0.98) | 0.20 (0.00-0.67) | 1.00 | 0.33 (0.00-0.80) |
+| **Patient Involvement** |  |  |  |  |
+| Introduction of clinicians involved in handover to patient/carer | 0.84 (0.73-0.94) | 0.71 (0.55-0.87) | 1.00 | 0.83 (0.71-0.93) |
+| Invitation for patient/carer to participate in handover | 0.82 (0.69-0.92) | 0.65 (0.44-0.83) | 0.94 (0.78-1.00) | 0.77 (0.59-0.89) |
 
-: Grouped per-label checklist performance for the best-performing GPT-5.2 DSPy/GEPA model on the consensus evaluation partition (`n=49`). {#tbl-checklist-grouped tbl-colwidths="[55,6,6,6,6,8,8,8]"}
+: Grouped per-label checklist performance for the best-performing GPT-5.2 DSPy/GEPA model on the consensus evaluation partition (`n=49`). Metric cells show point estimate (95% CI) unless otherwise noted. {#tbl-checklist-grouped tbl-colwidths="[44,14,14,14,14]"}
 
-*Legend:* TP = true positives; FP = false positives; FN = false negatives; TN = true negatives; F1 = harmonic mean of precision and recall; ID = identification; Q-ADDS = Queensland Adult Deterioration Detection System.
+*Legend:* Accuracy = (true positives + true negatives) / all evaluated transcripts for that checklist item; F1 = harmonic mean of precision and recall. Confidence intervals are not provided for labels with few positive examples in the test set; ID = identification; Q-ADDS = Queensland Adult Deterioration Detection System.
 
+
+{{< pagebreak >}}
+
+::: {#tbl-uncertainty-task-results tbl-colwidths="[16,15,15,13,13,13,15]"}
+
+| Task | Model | Approach | Precision | Recall | F1 | Mean IoU |
+| --- | --- | --- | ---: | ---: | ---: | ---: |
+| Uncertainty | GPT-5.2 | Baseline | 0.24 (0.19-0.29) | 0.65 (0.53-0.75) | 0.35 (0.28-0.41) | 0.62 (0.53-0.70) |
+|  |  | DSPy/GEPA | 0.32 (0.26-0.39) | 0.56 (0.44-0.67) | 0.41 (0.33-0.48) | 0.83 (0.77-0.90) |
+|  |  | LangExtract | 0.35 (0.21-0.55) | 0.07 (0.03-0.13) | 0.12 (0.05-0.20) | 0.35 (0.28-0.43) |
+|  | MedGemma 27B | Baseline | 0.12 (0.07-0.18) | 0.17 (0.10-0.23) | 0.14 (0.08-0.20) | 0.56 (0.39-0.70) |
+|  |  | DSPy/GEPA | 0.19 (0.12-0.31) | 0.20 (0.13-0.28) | 0.20 (0.13-0.27) | 0.72 (0.55-0.88) |
+|  |  | LangExtract | 0.22 (0.15-0.29) | 0.26 (0.18-0.36) | 0.24 (0.17-0.31) | 0.69 (0.57-0.80) |
+| Unknown fact | GPT-5.2 | Baseline | 0.73 (0.44-1.00) | 0.80 (0.56-1.00) | 0.76 (0.50-1.00) | 0.86 (0.66-0.99) |
+|  |  | DSPy/GEPA | 0.89 (0.71-1.00) | 0.80 (0.56-1.00) | 0.84 (0.63-1.00) | 0.92 (0.74-0.99) |
+|  |  | LangExtract | 0.41 (0.17-0.59) | 0.90 (0.79-1.00) | 0.56 (0.29-0.72) | 0.68 (0.45-0.84) |
+|  | GPT-5-nano | Baseline | 0.08 (0.00-0.17) | 0.40 (0.00-1.00) | 0.13 (0.00-0.27) | 0.74 (0.00-0.97) |
+|  |  | DSPy/GEPA | 0.89 (0.71-1.00) | 0.80 (0.56-1.00) | 0.84 (0.63-1.00) | 0.89 (0.79-0.97) |
+|  | MedGemma 27B | Baseline | 0.30 (0.09-0.48) | 0.80 (0.56-1.00) | 0.43 (0.16-0.61) | 0.90 (0.72-0.98) |
+|  |  | DSPy/GEPA | 0.80 (0.67-1.00) | 0.80 (0.56-1.00) | 0.80 (0.63-1.00) | 0.90 (0.72-0.98) |
+
+
+Uncertainty and unknown-fact span extraction results on the consensus evaluation partition (`n=37`). Metric cells show point estimate (95% CI). Blank task or model cells indicate continuation of the preceding group.
+:::
+
+*Legend:* IoU = intersection over union for matched span boundaries; F1 = harmonic mean of precision and recall.
 
 :::::
 

@@ -49,6 +49,7 @@ from analysis.manuscript_results import (
     TASK_LABELS,
     curated_results,
     fmt3,
+    fmt_metric_ci_text,
     fmt_signed3,
     load_all_results,
     load_checklist_main_tables,
@@ -83,6 +84,7 @@ def abstract_row(task, model, approach):
     return subset.sort_values("micro_f1", ascending=False).iloc[0]
 
 abstract_sbar_gpt52_dspy = abstract_row(TASK_LABELS["sbar"], "GPT-5.2", "DSPy/GEPA")
+abstract_checklist_gpt52_dspy = abstract_row(TASK_LABELS["checklist"], "GPT-5.2", "DSPy/GEPA")
 abstract_uncertain_gpt52_dspy = abstract_row(TASK_LABELS["uncertain"], "GPT-5.2", "DSPy/GEPA")
 abstract_unknown_gpt52_dspy = abstract_row(TASK_LABELS["unknown-fact"], "GPT-5.2", "DSPy/GEPA")
 
@@ -109,7 +111,7 @@ Two registered nurses independently annotated a dataset of `{python} abstract_da
 
 ### Results
 
-In matched GPT-5.2 comparisons, prompt optimisation increased micro-F1 by `{python} fmt_signed3(abstract_comparison_checklist_gpt52["Delta DSPy/GEPA vs baseline"])` for content detection, `{python} fmt_signed3(abstract_comparison_sbar_gpt52["Delta DSPy/GEPA vs baseline"])` for SBAR span extraction, `{python} fmt_signed3(abstract_comparison_uncertain_gpt52["Delta DSPy/GEPA vs baseline"])` for uncertainty-span extraction, and `{python} fmt_signed3(abstract_comparison_unknown_gpt52["Delta DSPy/GEPA vs baseline"])` for unknown-fact extraction. The GPT-5.2 optimised model achieved micro-F1 `{python} fmt3(abstract_checklist_micro_f1)` and support-weighted F1 `{python} fmt3(abstract_checklist_support_weighted_f1)` for content detetection. For SBAR span extraction, GPT-5.2 with GEPA prompt optimisation achieved micro-F1 `{python} fmt3(abstract_sbar_gpt52_dspy["micro_f1"])` and macro-F1 `{python} fmt3(abstract_sbar_macro_f1)`, compared with baseline macro-F1 `{python} fmt3(abstract_sbar_baseline_macro_f1)`. Broad uncertainty-span extraction remained comparatively weak (micro-F1 `{python} fmt3(abstract_uncertain_gpt52_dspy["micro_f1"])`), whereas explicit unknown-fact extraction was stronger (micro-F1 `{python} fmt3(abstract_unknown_gpt52_dspy["micro_f1"])`). Prompt optimisation outperformed the LangExtract approach across each task.
+In matched GPT-5.2 comparisons, prompt optimisation increased point-estimate micro-F1 for content detection, SBAR span extraction, uncertainty-span extraction, and unknown-fact extraction. The GPT-5.2 optimised model achieved micro-F1 `{python} fmt_metric_ci_text(abstract_checklist_gpt52_dspy, "micro_f1")` for content detection. For SBAR span extraction, GPT-5.2 with GEPA prompt optimisation achieved micro-F1 `{python} fmt_metric_ci_text(abstract_sbar_gpt52_dspy, "micro_f1")`. Broad uncertainty-span extraction remained comparatively weak (micro-F1 `{python} fmt_metric_ci_text(abstract_uncertain_gpt52_dspy, "micro_f1")`), whereas explicit unknown-fact extraction was stronger (micro-F1 `{python} fmt_metric_ci_text(abstract_unknown_gpt52_dspy, "micro_f1")`). Prompt optimisation outperformed the LangExtract approach across each task.
 
 ### Conclusion
 
@@ -163,6 +165,8 @@ Performance was measured with standard classification metrics for the checklist 
 
 For span-extraction tasks, model outputs were represented as label-and-quote pairs, and each predicted quote was mapped back to a character span in the source transcript using exact string matching, with approximate matching used only when an exact match was unavailable. Predicted spans were then matched one-to-one with reference spans of the same label according to highest overlap. Under this greedy matching procedure, a reported match was defined as a same-label pair with non-zero overlap. Precision, recall, and F1 were then calculated from these matched gold and predicted spans as binary detection measures, so that these statistics reflected the model's ability to identify the correct labelled spans. Span-boundary agreement was reported separately using the mean intersection over union (IoU) across matched pairs. We additionally calculated per-label descriptive metrics including the number of reference spans, the number of predicted spans, matched-span precision, recall, F1, and mean IoU.
 
+Sampling uncertainty was summarised with 95% confidence intervals calculated using non-parametric bootstrap resampling of evaluation transcripts. For each result, we resampled transcripts with replacement 2,000 times using a fixed random seed and recalculated the relevant metric from the pooled counts in each resample. Confidence limits are reported as the 2.5th and 97.5th percentiles of the bootstrap distribution. For checklist items, accuracy was calculated as (true positives + true negatives) divided by all evaluated transcripts for that item. Confidence intervals for precision, recall, F1, macro-F1, support-weighted F1, and mean IoU were calculated by applying the same transcript-level bootstrap procedure and recomputing each statistic within each resample.
+
 ```{python}
 #| label: results-setup
 #| include: false
@@ -171,9 +175,11 @@ from pathlib import Path
 from analysis.manuscript_results import (
     TASK_LABELS,
     checklist_category_markdown_table,
-    comparison_plot_svg,
+    comparison_plot_png,
     curated_results,
+    fmt_estimate_ci_text,
     fmt3,
+    fmt_metric_ci_text,
     fmt_signed3,
     load_all_results,
     load_checklist_main_tables,
@@ -183,6 +189,7 @@ from analysis.manuscript_results import (
     main_overview_table,
     manuscript_scope_results,
     sbar_main_markdown_table,
+    uncertainty_results_markdown_table,
 )
 
 
@@ -193,8 +200,12 @@ scoped_results_df = manuscript_scope_results(all_results_df)
 curated_results_df = curated_results(all_results_df)
 results_overview_df = main_overview_table(curated_results_df)
 results_overview_md = main_overview_markdown_table(results_overview_df)
-results_overview_svg = comparison_plot_svg(results_overview_df, width=980)
+results_overview_figure_path = comparison_plot_png(
+    results_overview_df,
+    ROOT / "manuscript-assets" / "fig-results-overview.png",
+)
 results_overview_lookup = main_overview_lookup(results_overview_df)
+uncertainty_results_md = uncertainty_results_markdown_table(curated_results_df)
 
 
 def best_row(task: str, approach: str | None = None):
@@ -206,9 +217,29 @@ def best_row(task: str, approach: str | None = None):
     return subset.sort_values("micro_f1", ascending=False).iloc[0]
 
 
+def model_row(task: str, model: str, approach: str):
+    subset = curated_results_df[
+        (curated_results_df["task"] == task)
+        & (curated_results_df["model"] == model)
+        & (curated_results_df["approach"] == approach)
+    ]
+    if subset.empty:
+        return None
+    return subset.sort_values("micro_f1", ascending=False).iloc[0]
+
+
 sbar_best_baseline = best_row(TASK_LABELS["sbar"], "Baseline")
 sbar_best_dspy = best_row(TASK_LABELS["sbar"], "DSPy/GEPA")
 sbar_best_langextract = best_row(TASK_LABELS["sbar"], "LangExtract")
+checklist_best_dspy = best_row(TASK_LABELS["checklist"], "DSPy/GEPA")
+checklist_gpt52_baseline = model_row(TASK_LABELS["checklist"], "GPT-5.2", "Baseline")
+checklist_gpt52_dspy = model_row(TASK_LABELS["checklist"], "GPT-5.2", "DSPy/GEPA")
+sbar_gpt52_baseline = model_row(TASK_LABELS["sbar"], "GPT-5.2", "Baseline")
+sbar_gpt52_dspy = model_row(TASK_LABELS["sbar"], "GPT-5.2", "DSPy/GEPA")
+uncertain_gpt52_baseline = model_row(TASK_LABELS["uncertain"], "GPT-5.2", "Baseline")
+uncertain_gpt52_dspy = model_row(TASK_LABELS["uncertain"], "GPT-5.2", "DSPy/GEPA")
+unknown_gpt52_baseline = model_row(TASK_LABELS["unknown-fact"], "GPT-5.2", "Baseline")
+unknown_gpt52_dspy = model_row(TASK_LABELS["unknown-fact"], "GPT-5.2", "DSPy/GEPA")
 sbar_gpt_nano_dspy = curated_results_df[
     (curated_results_df["task"] == TASK_LABELS["sbar"])
     & (curated_results_df["approach"] == "DSPy/GEPA")
@@ -243,6 +274,12 @@ sbar_base_macro_f1 = sbar_results["base_macro_f1"]
 sbar_opt_macro_precision = sbar_results["opt_macro_precision"]
 sbar_opt_macro_recall = sbar_results["opt_macro_recall"]
 sbar_opt_macro_f1 = sbar_results["opt_macro_f1"]
+sbar_base_macro_precision_ci = sbar_results["base_macro_precision_ci"]
+sbar_base_macro_recall_ci = sbar_results["base_macro_recall_ci"]
+sbar_base_macro_f1_ci = sbar_results["base_macro_f1_ci"]
+sbar_opt_macro_precision_ci = sbar_results["opt_macro_precision_ci"]
+sbar_opt_macro_recall_ci = sbar_results["opt_macro_recall_ci"]
+sbar_opt_macro_f1_ci = sbar_results["opt_macro_f1_ci"]
 sbar_macro_precision_delta = sbar_opt_macro_precision - sbar_base_macro_precision
 sbar_macro_recall_delta = sbar_opt_macro_recall - sbar_base_macro_recall
 sbar_macro_f1_delta = sbar_opt_macro_f1 - sbar_base_macro_f1
@@ -284,7 +321,7 @@ comparison_unknown_medgemma = results_overview_lookup[(TASK_LABELS["unknown-fact
 
 ### Key findings {#sec-results-summary}
 
-Within-model comparisons showed consistent gains with DSPy/GEPA over matched baselines wherever both were available. For GPT-5.2, DSPy/GEPA improved micro-F1 by `{python} fmt_signed3(comparison_checklist_gpt52["Delta DSPy/GEPA vs baseline"])` for checklist prediction, `{python} fmt_signed3(comparison_sbar_gpt52["Delta DSPy/GEPA vs baseline"])` for SBAR span extraction, `{python} fmt_signed3(comparison_uncertain_gpt52["Delta DSPy/GEPA vs baseline"])` for uncertainty span extraction, and `{python} fmt_signed3(comparison_unknown_gpt52["Delta DSPy/GEPA vs baseline"])` for unknown-fact extraction. GPT-5-nano also improved over baseline for checklist prediction (`{python} fmt_signed3(comparison_checklist_gptnano["Delta DSPy/GEPA vs baseline"])`), SBAR span extraction (`{python} fmt_signed3(comparison_sbar_gptnano["Delta DSPy/GEPA vs baseline"])`), and unknown-fact extraction (`{python} fmt_signed3(comparison_unknown_gptnano["Delta DSPy/GEPA vs baseline"])`). MedGemma 27B improved in each matched DSPy/GEPA comparison: checklist prediction (`{python} fmt_signed3(comparison_checklist_medgemma["Delta DSPy/GEPA vs baseline"])`), SBAR span extraction (`{python} fmt_signed3(comparison_sbar_medgemma["Delta DSPy/GEPA vs baseline"])`), uncertainty span extraction (`{python} fmt_signed3(comparison_uncertain_medgemma["Delta DSPy/GEPA vs baseline"])`), and unknown-fact extraction (`{python} fmt_signed3(comparison_unknown_medgemma["Delta DSPy/GEPA vs baseline"])`). Across span tasks, LangExtract generally performed below the corresponding best DSPy/GEPA configuration.
+Within-model comparisons showed consistent point-estimate gains with DSPy/GEPA over matched baselines wherever both were available. For GPT-5.2, micro-F1 increased from `{python} fmt_metric_ci_text(checklist_gpt52_baseline, "micro_f1")` to `{python} fmt_metric_ci_text(checklist_gpt52_dspy, "micro_f1")` for checklist prediction, from `{python} fmt_metric_ci_text(sbar_gpt52_baseline, "micro_f1")` to `{python} fmt_metric_ci_text(sbar_gpt52_dspy, "micro_f1")` for SBAR span extraction, from `{python} fmt_metric_ci_text(uncertain_gpt52_baseline, "micro_f1")` to `{python} fmt_metric_ci_text(uncertain_gpt52_dspy, "micro_f1")` for uncertainty span extraction, and from `{python} fmt_metric_ci_text(unknown_gpt52_baseline, "micro_f1")` to `{python} fmt_metric_ci_text(unknown_gpt52_dspy, "micro_f1")` for unknown-fact extraction. Across span tasks, LangExtract generally performed below the corresponding best DSPy/GEPA configuration.
 
 ### Comparative performance across tasks and prompting approaches {#sec-results-overview}
 
@@ -293,14 +330,20 @@ Within-model comparisons showed consistent gains with DSPy/GEPA over matched bas
 
 ### SBAR span extraction {#sec-sbar-optimized}
 
-Among SBAR configurations, the highest overall score was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 `{python} fmt3(sbar_best_dspy["micro_f1"])`), followed by DSPy/GEPA-optimised GPT-5-nano (micro-F1 `{python} fmt3(sbar_gpt_nano_dspy["micro_f1"])`) and LangExtract GPT-5.2 (micro-F1 `{python} fmt3(sbar_best_langextract["micro_f1"])`). @tbl-sbar-optimized provides label-level results for the best-performing GPT-5.2 DSPy/GEPA SBAR configuration, compared with its corresponding GPT-5.2 baseline run.
+Among SBAR configurations, the highest overall score was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 `{python} fmt_metric_ci_text(sbar_best_dspy, "micro_f1")`), followed by DSPy/GEPA-optimised GPT-5-nano (micro-F1 `{python} fmt_metric_ci_text(sbar_gpt_nano_dspy, "micro_f1")`) and LangExtract GPT-5.2 (micro-F1 `{python} fmt_metric_ci_text(sbar_best_langextract, "micro_f1")`). @tbl-sbar-optimized provides label-level results for the best-performing GPT-5.2 DSPy/GEPA SBAR configuration.
 
 
-Within this GPT-5.2 SBAR comparison, macro-precision improved from `{python} fmt3(sbar_base_macro_precision)` to `{python} fmt3(sbar_opt_macro_precision)`, macro-recall from `{python} fmt3(sbar_base_macro_recall)` to `{python} fmt3(sbar_opt_macro_recall)`, and macro-F1 from `{python} fmt3(sbar_base_macro_f1)` to `{python} fmt3(sbar_opt_macro_f1)`. The largest per-label improvements in F1 were observed for BACKGROUND (`{python} fmt_signed3(sbar_by_label["BACKGROUND"]["delta_f1"])`), SITUATION (`{python} fmt_signed3(sbar_by_label["SITUATION"]["delta_f1"])`), and ASSESSMENT (`{python} fmt_signed3(sbar_by_label["ASSESSMENT"]["delta_f1"])`), with a smaller improvement for RECOMMENDATION (`{python} fmt_signed3(sbar_by_label["RECOMMENDATION"]["delta_f1"])`). Span-boundary agreement among matched predictions remained high, with mean IoU values between `{python} fmt3(sbar_mean_iou_min)` and `{python} fmt3(sbar_mean_iou_max)` across SBAR labels.
+Within this GPT-5.2 SBAR comparison, macro-precision increased from `{python} fmt_estimate_ci_text(sbar_base_macro_precision, sbar_base_macro_precision_ci[0], sbar_base_macro_precision_ci[1])` to `{python} fmt_estimate_ci_text(sbar_opt_macro_precision, sbar_opt_macro_precision_ci[0], sbar_opt_macro_precision_ci[1])`, macro-recall from `{python} fmt_estimate_ci_text(sbar_base_macro_recall, sbar_base_macro_recall_ci[0], sbar_base_macro_recall_ci[1])` to `{python} fmt_estimate_ci_text(sbar_opt_macro_recall, sbar_opt_macro_recall_ci[0], sbar_opt_macro_recall_ci[1])`, and macro-F1 from `{python} fmt_estimate_ci_text(sbar_base_macro_f1, sbar_base_macro_f1_ci[0], sbar_base_macro_f1_ci[1])` to `{python} fmt_estimate_ci_text(sbar_opt_macro_f1, sbar_opt_macro_f1_ci[0], sbar_opt_macro_f1_ci[1])`. Span-boundary agreement among matched predictions was strongest for SITUATION and RECOMMENDATION, as shown by the label-level mean IoU estimates in @tbl-sbar-optimized.
 
 ### Checklist task {#sec-checklist}
 
-For checklist prediction, the best overall result was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 `{python} fmt3(checklist_micro_f1)`, macro-F1 `{python} fmt3(checklist_macro_f1)`, support-weighted F1 `{python} fmt3(checklist_support_weighted_f1)`). This exceeded the matched GPT-5.2 baseline by `{python} fmt_signed3(checklist_micro_f1_delta)` on micro-F1 and `{python} fmt_signed3(checklist_macro_f1_delta)` on macro-F1. DSPy/GEPA-optimised GPT-5-nano also performed competitively (micro-F1 `{python} fmt3(checklist_gpt_nano_dspy["micro_f1"])`), while MedGemma 27B reached micro-F1 `{python} fmt3(checklist_medgemma_dspy["micro_f1"])`). @tbl-checklist-grouped presents grouped per-label performance for the best-performing GPT-5.2 checklist model. The largest improvements over baseline were observed for patient involvement items and several recommendation-related labels, while `{python} checklist_zero_f1_count` low-support labels still had F1 equal to zero.
+For checklist prediction, the best overall result was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 `{python} fmt_metric_ci_text(checklist_best_dspy, "micro_f1")`, macro-F1 `{python} fmt_metric_ci_text(checklist_best_dspy, "macro_f1")`, support-weighted F1 `{python} fmt_metric_ci_text(checklist_best_dspy, "support_weighted_f1")`). DSPy/GEPA-optimised GPT-5-nano also performed competitively (micro-F1 `{python} fmt_metric_ci_text(checklist_gpt_nano_dspy, "micro_f1")`), while MedGemma 27B reached micro-F1 `{python} fmt_metric_ci_text(checklist_medgemma_dspy, "micro_f1")`). @tbl-checklist-grouped presents grouped per-label estimates for accuracy, precision, recall, and F1 for the best-performing GPT-5.2 checklist model. Confidence intervals are not provided for labels with few positive examples in the test set. `{python} checklist_zero_f1_count` low-support labels still had F1 equal to zero.
+
+### Uncertainty and unknown-fact span extraction {#sec-uncertainty-results}
+
+Broad uncertainty-span extraction remained the weakest task. The best DSPy/GEPA run used `{python} uncertain_best_dspy["model"]` and achieved precision `{python} fmt_metric_ci_text(uncertain_best_dspy, "micro_precision")`, recall `{python} fmt_metric_ci_text(uncertain_best_dspy, "micro_recall")`, micro-F1 `{python} fmt_metric_ci_text(uncertain_best_dspy, "micro_f1")`, and mean IoU `{python} fmt_metric_ci_text(uncertain_best_dspy, "mean_iou")`. This was only a modest improvement over the best baseline run (micro-F1 `{python} fmt_metric_ci_text(uncertain_best_baseline, "micro_f1")`), and the best LangExtract uncertainty run remained low (micro-F1 `{python} fmt_metric_ci_text(uncertain_best_langextract, "micro_f1")`).
+
+The narrower unknown-fact sub-task performed substantially better. DSPy/GEPA reached micro-F1 `{python} fmt_metric_ci_text(unknown_best_dspy, "micro_f1")` with `{python} unknown_best_dspy["model"]`, compared with the best baseline micro-F1 of `{python} fmt_metric_ci_text(unknown_best_baseline, "micro_f1")` and the LangExtract GPT-5.2 micro-F1 of `{python} fmt_metric_ci_text(unknown_best_langextract, "micro_f1")`. These results suggest that explicitly stated information gaps were more tractable than the broader set of hedged, vague, source-dependent, procedural, and responsibility-related uncertainty spans. @tbl-uncertainty-task-results summarises the uncertainty and unknown-fact span results used for these comparisons.
 
 
 ## Discussion {#sec-discussion}
@@ -337,58 +380,50 @@ In this evaluation of AI-assisted clinical handover tasks, DSPy/GEPA prompt opti
 
 {{< pagebreak >}}
 
-::: {#fig-results-overview}
-```{python}
-#| output: asis
-
-print(results_overview_svg)
-```
-
-Within-model comparison of saved evaluation runs within manuscript scope. Horizontal bars show micro-F1 for baseline, DSPy/GEPA, and LangExtract runs for each model within each task. Missing bars indicate that a given task-model-approach combination was not evaluated or was not available as a saved run; in particular, LangExtract was not evaluated for the checklist task.
-:::
+![Within-model comparison of saved evaluation runs within manuscript scope. Horizontal bars show micro-F1 for baseline, DSPy/GEPA, and LangExtract runs for each model within each task. Missing bars indicate that a given task-model-approach combination was not evaluated or was not available as a saved run; in particular, LangExtract was not evaluated for the checklist task.](manuscript-assets/fig-results-overview.png){#fig-results-overview width=6.8in fig-alt="Four-panel grouped horizontal bar chart showing micro-F1 for checklist, SBAR, uncertainty, and unknown-fact tasks by model and prompting approach."}
 
 {{< pagebreak >}}
 
-::: {#tbl-checklist-items}
+::: {#tbl-checklist-items tbl-colwidths="[30,70]"}
 | Category | Checklist item |
-| --- | --- |
-| Patient Involvement | Clinician introductions |
-| Patient Involvement | Introduction of clinicians to the patient or carer |
-| Patient Involvement | Invitation for the patient or carer to participate in handover |
+| :--- | :--- |
+| Patient involvement | Clinician introductions |
+|  | Introduction of clinicians to the patient or carer |
+|  | Invitation for the patient or carer to participate in handover |
 | Identification | Verification of three patient identifiers |
 | Situation | Primary diagnosis or reason for admission |
-| Situation | Significant events or complications |
-| Situation | Current status, including pending tests/procedures and interim plans/orders |
+|  | Significant events or complications |
+|  | Current status, including pending tests/procedures and interim plans/orders |
 | Background | Relevant clinical and social history, including comorbidities |
-| Background | Falls risk |
-| Background | Pressure injury risk |
-| Background | Allergies |
-| Background | Advance care planning |
+|  | Falls risk |
+|  | Pressure injury risk |
+|  | Allergies |
+|  | Advance care planning |
 | Assessment | Observations, deterioration score, and recent escalations |
-| Assessment | Pain management |
-| Assessment | Devices, lines, and vascular access |
-| Assessment | Critical monitoring and alarms |
-| Assessment | Nutrition and dietary restrictions |
-| Assessment | Fluid balance and fluid restrictions |
-| Assessment | Infusions |
-| Assessment | Medication chart review, including high-risk medicines |
-| Assessment | Pathology results or pending investigations |
-| Assessment | Mobility and use of aids |
-| Assessment | Skin integrity and related interventions |
+|  | Pain management |
+|  | Devices, lines, and vascular access |
+|  | Critical monitoring and alarms |
+|  | Nutrition and dietary restrictions |
+|  | Fluid balance and fluid restrictions |
+|  | Infusions |
+|  | Medication chart review, including high-risk medicines |
+|  | Pathology results or pending investigations |
+|  | Mobility and use of aids |
+|  | Skin integrity and related interventions |
 | Recommendation | Discharge plan |
-| Recommendation | Critical actions required |
-| Recommendation | Follow-up care plan or pathway actions |
-| Recommendation | Patient or carer goals and preferences |
+|  | Critical actions required |
+|  | Follow-up care plan or pathway actions |
+|  | Patient or carer goals and preferences |
 
-Checklist items used to operationalise identification of key concepts and entities in handover transcripts.
+Checklist items used to operationalise identification of key concepts and entities in handover transcripts. Blank category cells indicate continuation of the preceding category.
 :::
 
 {{< pagebreak >}}
 
 
-::: {#tbl-uncertainty-items}
+::: {#tbl-uncertainty-items tbl-colwidths="[22,43,35]"}
 | Category | Definition / when to use | Example from handover speech |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | Hedge / Probability Language | The speaker indicates partial confidence or doubt about information. | “I think ENT reviewed him.”<br>“He should be going to theatre soon.” |
 | Vague / Qualitative Expression | Information is described using imprecise or subjective language. | “He looks fine now.”<br>“Seems okay.” |
 | Unknown Fact / Explicit Lack of Knowledge | The speaker openly states missing knowledge or incomplete data. | “Not sure if consent’s been signed.”<br>“I don’t know his allergies.” |
@@ -403,7 +438,7 @@ Uncertainty categories used to support annotator identification of uncertainty-r
 ::::: landscape
 
 
-:::: {#tbl-sbar-optimized}
+:::: {#tbl-sbar-optimized tbl-colwidths="[18,8,13,14,14,15,18]"}
 
 ```{python}
 #| output: asis
@@ -411,8 +446,10 @@ Uncertainty categories used to support annotator identification of uncertainty-r
 print(sbar_table_md)
 ```
 
-Per-label SBAR metrics for the best-performing GPT-5.2 DSPy/GEPA model output on the consensus evaluation partition (`{python} f"n={sbar_opt_n}"`). `Delta F1` is the difference from the corresponding GPT-5.2 baseline run on the same partition.
+Per-label SBAR metrics for the best-performing GPT-5.2 DSPy/GEPA model output on the consensus evaluation partition (`{python} f"n={sbar_opt_n}"`). Metric cells show point estimate (95% CI).
 ::::
+
+*Legend:* Gold = reference spans; predicted spans = model-generated spans mapped back to the transcript; IoU = intersection over union for matched span boundaries; F1 = harmonic mean of precision and recall.
 
 
 
@@ -427,15 +464,32 @@ print()
 print(
     f": Grouped per-label checklist performance for the best-performing GPT-5.2 "
     f"DSPy/GEPA model on the consensus evaluation partition (`n={checklist_n}`). "
-    "{#tbl-checklist-grouped tbl-colwidths=\"[55,6,6,6,6,8,8,8]\"}"
+    "Metric cells show point estimate (95% CI) unless otherwise noted. "
+    "{#tbl-checklist-grouped tbl-colwidths=\"[44,14,14,14,14]\"}"
 )
 print()
 print(
-    "*Legend:* TP = true positives; FP = false positives; "
-    "FN = false negatives; TN = true negatives; "
-    "F1 = harmonic mean of precision and recall; ID = identification; "
+    "*Legend:* Accuracy = (true positives + true negatives) / all evaluated "
+    "transcripts for that checklist item; F1 = harmonic mean of precision "
+    "and recall. Confidence intervals are not provided for labels with few "
+    "positive examples in the test set; ID = identification; "
     "Q-ADDS = Queensland Adult Deterioration Detection System."
 )
 ```
+
+{{< pagebreak >}}
+
+::: {#tbl-uncertainty-task-results tbl-colwidths="[16,15,15,13,13,13,15]"}
+
+```{python}
+#| output: asis
+
+print(uncertainty_results_md)
+```
+
+Uncertainty and unknown-fact span extraction results on the consensus evaluation partition (`n=37`). Metric cells show point estimate (95% CI). Blank task or model cells indicate continuation of the preceding group.
+:::
+
+*Legend:* IoU = intersection over union for matched span boundaries; F1 = harmonic mean of precision and recall.
 
 :::::
