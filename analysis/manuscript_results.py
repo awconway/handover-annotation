@@ -8,6 +8,13 @@ from typing import Any
 
 import pandas as pd
 
+from analysis.render_checklist_md_table import (
+    BUCKET_DISPLAY,
+    BUCKET_ORDER,
+    LABEL_TEXT,
+    LABEL_TO_BUCKET,
+)
+
 
 TASK_LABELS = {
     "checklist": "Checklist item prediction",
@@ -37,13 +44,13 @@ MODEL_LABELS = {
 def fmt3(value: float | int | None) -> str:
     if value is None or pd.isna(value):
         return "NA"
-    return f"{float(value):.3f}"
+    return f"{float(value):.2f}"
 
 
 def fmt_signed3(value: float | int | None) -> str:
     if value is None or pd.isna(value):
         return "NA"
-    return f"{float(value):+.3f}"
+    return f"{float(value):+.2f}"
 
 
 def markdown_table(headers: list[str], aligns: list[str], rows: list[list[object]]) -> str:
@@ -67,7 +74,7 @@ def bar_chart_html(title: str, rows: list[tuple[str, float]]) -> str:
             f'<div class="bar-row">'
             f'<div class="bar-label">{safe_label}</div>'
             f'<div class="bar-track"><div class="bar-fill" style="width: {width:.1f}%;"></div></div>'
-            f'<div class="bar-value">{float(value):.3f}</div>'
+            f'<div class="bar-value">{float(value):.2f}</div>'
             f'</div>'
         )
     return f'<section class="chart-card"><h4>{html.escape(title)}</h4>{"".join(bars)}</section>'
@@ -590,6 +597,97 @@ def sbar_main_markdown_table(comp_df: pd.DataFrame) -> str:
     )
 
 
+def _checklist_grouped_display_df(
+    per_label_df: pd.DataFrame, n_examples: int
+) -> pd.DataFrame:
+    table_df = per_label_df.copy()
+    bucket_rank = {bucket: idx for idx, bucket in enumerate(BUCKET_ORDER)}
+    table_df["category_key"] = table_df["label"].map(LABEL_TO_BUCKET).fillna("other")
+    table_df["bucket_order"] = table_df["category_key"].map(bucket_rank).fillna(
+        len(BUCKET_ORDER)
+    )
+    table_df["Category"] = table_df["category_key"].map(BUCKET_DISPLAY).fillna(
+        table_df["category_key"]
+    )
+    table_df["Label"] = table_df["label"].map(LABEL_TEXT).fillna(table_df["label"])
+    table_df["TN"] = n_examples - table_df["tp"] - table_df["fp"] - table_df["fn"]
+    table_df = table_df.rename(
+        columns={
+            "support": "Support",
+            "tp": "TP",
+            "fp": "FP",
+            "fn": "FN",
+            "precision": "Precision",
+            "recall": "Recall",
+            "f1": "F1",
+        }
+    ).sort_values(
+        ["bucket_order", "Support", "label"],
+        ascending=[True, False, True],
+    )
+    display_df = table_df[
+        [
+            "category_key",
+            "Category",
+            "Label",
+            "Support",
+            "TP",
+            "FP",
+            "FN",
+            "TN",
+            "Precision",
+            "Recall",
+            "F1",
+        ]
+    ]
+    return display_df
+
+
+def checklist_grouped_markdown_table(
+    per_label_df: pd.DataFrame,
+    n_examples: int,
+) -> str:
+    display_df = _checklist_grouped_display_df(per_label_df, n_examples)
+    rows: list[list[object]] = []
+
+    for bucket in BUCKET_ORDER:
+        bucket_rows = display_df[display_df["category_key"] == bucket]
+        if bucket_rows.empty:
+            continue
+
+        category = BUCKET_DISPLAY.get(bucket, bucket.title())
+        rows.append([f"**{category}**", "", "", "", "", "", "", ""])
+
+        for row in bucket_rows.itertuples(index=False):
+            rows.append(
+                [
+                    row.Label,
+                    int(row.TP),
+                    int(row.FP),
+                    int(row.FN),
+                    int(row.TN),
+                    fmt3(row.Precision),
+                    fmt3(row.Recall),
+                    fmt3(row.F1),
+                ]
+            )
+
+    return markdown_table(
+        headers=["Checklist item", "TP", "FP", "FN", "TN", "Precision", "Recall", "F1"],
+        aligns=[
+            "------------------------------------------------",
+            "----:",
+            "----:",
+            "----:",
+            "----:",
+            "---------:",
+            "-------:",
+            "-----:",
+        ],
+        rows=rows,
+    )
+
+
 def load_checklist_main_tables(root: str | Path = ".") -> dict[str, Any]:
     root = Path(root)
     cur_summary = _read_json(root / "evals" / "eval_checklist_consensus_gpt_5_2_test_analysis" / "summary.json")["summary"]
@@ -598,7 +696,10 @@ def load_checklist_main_tables(root: str | Path = ".") -> dict[str, Any]:
     base_bucket = pd.read_csv(root / "evals" / "eval_baseline_checklist_consensus_gpt_5_2_test_analysis" / "per_bucket.csv")
     per_label = pd.read_csv(root / "evals" / "eval_checklist_consensus_gpt_5_2_test_analysis" / "per_label.csv")
     baseline_per_label = pd.read_csv(root / "evals" / "eval_baseline_checklist_consensus_gpt_5_2_test_analysis" / "per_label.csv")
-    full_grouped_md = (root / "evals" / "eval_checklist_consensus_gpt_5_2_test_analysis" / "table_per_label_grouped_with_baseline_delta.md").read_text(encoding="utf-8")
+    full_grouped_md = checklist_grouped_markdown_table(
+        per_label,
+        int(cur_summary["n_examples"]),
+    )
 
     merged = cur_bucket.merge(
         base_bucket[["bucket", "f1"]].rename(columns={"f1": "baseline_f1"}),

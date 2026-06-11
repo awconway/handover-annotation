@@ -184,13 +184,13 @@ def load_rows(per_label_csv: Path, n_examples: int | None) -> list[LabelRow]:
 
 
 def fmt_f(x: float) -> str:
-    return f"{x:.3f}"
+    return f"{x:.2f}"
 
 
 def fmt_delta(x: float | None) -> str:
     if x is None:
         return "-"
-    return f"{x:+.3f}"
+    return f"{x:+.2f}"
 
 
 def md_row(cols: Iterable[str]) -> str:

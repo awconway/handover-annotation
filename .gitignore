@@ -25,3 +25,4 @@ scratch/
 skills-lock.json
 
 output/
+**/*.quarto_ipynb

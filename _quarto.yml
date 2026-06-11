@@ -1,0 +1,6 @@
+project:
+  type: default
+  render:
+    - manuscript.qmd
+  post-render:
+    - .venv/bin/python _extensions/checklist-table-layout/repair-docx.py
