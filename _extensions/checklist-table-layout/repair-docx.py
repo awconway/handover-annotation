@@ -256,6 +256,25 @@ def normalize_section_properties(root: ET.Element) -> int:
     return fixed
 
 
+def normalize_list_paragraph_style(root: ET.Element) -> int:
+    fixed = 0
+    for ppr in root.findall(".//w:pPr", NS):
+        num_pr = direct_children(ppr, W + "numPr")
+        if not num_pr:
+            continue
+
+        p_style = direct_children(ppr, W + "pStyle")
+        if not p_style:
+            continue
+
+        style = p_style[0]
+        if style.get(W + "val") == "Compact":
+            style.set(W + "val", "ListBullet")
+            fixed += 1
+
+    return fixed
+
+
 def first_paragraph(block: ET.Element) -> ET.Element | None:
     if block.tag == W + "p":
         return block
@@ -420,7 +439,7 @@ def normalize_table_layout(table: ET.Element, layout: dict[str, list]) -> int:
     return fixed
 
 
-def repair_document_xml(xml_path: Path) -> tuple[int, int, int]:
+def repair_document_xml(xml_path: Path) -> tuple[int, int, int, int, int, int, int]:
     tree = ET.parse(xml_path)
     root = tree.getroot()
 
@@ -428,6 +447,7 @@ def repair_document_xml(xml_path: Path) -> tuple[int, int, int]:
     fixed_jc = normalize_duplicate_alignments(root)
     fixed_sections = normalize_section_properties(root)
     fixed_bookmarks = normalize_body_bookmarks(root)
+    fixed_lists = normalize_list_paragraph_style(root)
     fixed_ppr_order = normalize_paragraph_property_order(root)
     fixed_table = 0
 
@@ -444,6 +464,7 @@ def repair_document_xml(xml_path: Path) -> tuple[int, int, int]:
         fixed_jc,
         fixed_sections,
         fixed_bookmarks,
+        fixed_lists,
         fixed_ppr_order,
         fixed_table,
     )
@@ -527,7 +548,7 @@ def strip_unused_notes_and_comments(docx_root: Path) -> int:
     return removed
 
 
-def repair_docx(docx_path: Path) -> tuple[int, int, int, int, int, int, int]:
+def repair_docx(docx_path: Path) -> tuple[int, int, int, int, int, int, int, int]:
     with tempfile.TemporaryDirectory() as temp_dir:
         temp_path = Path(temp_dir)
         with ZipFile(docx_path, "r") as zin:
@@ -563,6 +584,7 @@ def main() -> None:
             fixed_jc,
             fixed_sections,
             fixed_bookmarks,
+            fixed_lists,
             fixed_ppr_order,
             fixed_table,
             stripped,
@@ -573,6 +595,7 @@ def main() -> None:
             f"removed {fixed_jc} duplicate alignment block(s), "
             f"completed {fixed_sections} section property item(s), "
             f"moved {fixed_bookmarks} body-level bookmark(s), "
+            f"updated {fixed_lists} list paragraph style(s), "
             f"reordered {fixed_ppr_order} paragraph property block(s), "
             f"aligned {fixed_table} checklist-table paragraph(s), "
             f"removed {stripped} unused notes/comment package item(s)."
