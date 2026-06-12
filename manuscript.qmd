@@ -4,18 +4,57 @@ title: "Large language models for structured information extraction in artificia
 authors:
   - name: Aaron Conway
     affiliations:
-      - ref: qut
+      - ref: qutcht
+      - ref: qutnursing
       - ref: tpch
     corresponding: true
     email: aaron.conway@utoronto.ca
     orcid: 0000-0002-9583-8636
-
+  - name: Adriana Hada
+    affiliations:
+      - ref: tpch
+  - name: Jessica Schluter
+    affiliations:
+      - ref: tpch
+  - name: Grace Xu
+    affiliations:
+      - ref: qutnursing
+      - ref: rbwh
+  - name: Dan Lowden
+    affiliations:
+      - ref: caboolture
+  - name: Tim Miller
+    affiliations:
+      - ref: uqcomp
+  - name: Ken Donald
+    affiliations:
+      - ref: griffith
+  - name: Andrew Teodorczuk
+    affiliations:
+      - ref: uqmed
+      - ref: griffith
+      - ref: ranzcp
+      - ref: tpch
 
 affiliations:
-  - id: qut
+  - id: qutcht
     name: Centre for Healthcare Transformation, Queensland University of Technology, Brisbane, Australia
+  - id: qutnursing
+    name: School of Nursing, Midwifery and Social Work, Queensland University of Technology, Brisbane, Australia
   - id: tpch
     name: The Prince Charles Hospital, Brisbane, Australia
+  - id: rbwh
+    name: Royal Brisbane and Women's Hospital, Brisbane, Australia
+  - id: caboolture
+    name: Caboolture Hospital, Brisbane, Australia
+  - id: uqcomp
+    name: School of Electrical Engineering and Computer Science, The University of Queensland, Brisbane, Australia
+  - id: uqmed
+    name: The University of Queensland Northside Clinical Unit, The University of Queensland, Brisbane, Australia
+  - id: ranzcp
+    name: Royal Australian and New Zealand College of Psychiatrists, Melbourne, Australia
+  - id: griffith
+    name: School of Medicine & Dentistry, Griffith University, Gold Coast, Queensland, Australia
 
 
 filters:
@@ -103,19 +142,19 @@ abstract_comparison_unknown_gpt52 = abstract_results_overview_lookup[(TASK_LABEL
 
 ### Introduction
 
-Artificial intelligence could be used to support clinical handover by producing summaries in structured formats, verifying that key information has been communicated and signaling information that may require verification. We evaluated the performance of several different large language models and prompt optimisation strategies for structured information extraction across tasks that could be integrated into AI-assisted clinical handover.
+Artificial intelligence has the potential to improve the reliability and completeness of clinical handover by automatically generating structured summaries, verifying that key information has been communicated, and signaling information that may require verification. We evaluated the performance of several different large language models and prompt optimisation strategies for structured information extraction across tasks that could be integrated into AI-assisted clinical handover.
 
 ### Methods
 
-Two registered nurses independently annotated a dataset of `{python} abstract_dataset_n` synthetic handover transcripts to produce consensus labels for each information extraction task. Tasks included: 1) labelling spans of text into SBAR (Situation, Background, Assessment, Recommendation) categories; 2)  content detectionjudging if specific pieces of information were communicated; and 3) labelling spans of text that communicated information using uncertain terms that included a sub-task for identifying unknown facts. Baseline and Genetic-Pareto (GEPA) optimised prompts were compared for GPT-5.2, GPT-5-nano, and MedGemma 27B large langage models. Additionally, the LangExtract framework was evaluated for span-extraction tasks. Content detection was scored using micro-, macro-, and support-weighted precision, recall, and F1; span tasks were scored using same-label quote matching, matched-span precision/recall/F1, and mean intersection-over-union for boundary agreement.
+Two registered nurses independently annotated a dataset of `{python} abstract_dataset_n` synthetic handover transcripts to produce consensus labels for information extraction tasks. Tasks included: 1) labelling spans of text into SBAR (Situation, Background, Assessment, Recommendation) categories; 2)  content detectionjudging if specific pieces of information were communicated; and 3) labelling spans of text that communicated information using uncertain terms that included a sub-task for identifying unknown facts. Baseline and Genetic-Pareto (GEPA) optimised prompts were compared for GPT-5.2, GPT-5-nano, and MedGemma 27B large langage models. Additionally, the LangExtract framework was evaluated for span-extraction tasks. Content detection was scored using micro-, macro-, and support-weighted precision, recall, and F1; span tasks were scored using same-label quote matching, matched-span precision/recall/F1, and mean intersection-over-union for boundary agreement.
 
 ### Results
 
-In matched GPT-5.2 comparisons, prompt optimisation increased point-estimate micro-F1 for content detection, SBAR span extraction, uncertainty-span extraction, and unknown-fact extraction. The GPT-5.2 optimised model achieved micro-F1 `{python} fmt_metric_ci_text(abstract_checklist_gpt52_dspy, "micro_f1")` for content detection. For SBAR span extraction, GPT-5.2 with GEPA prompt optimisation achieved micro-F1 `{python} fmt_metric_ci_text(abstract_sbar_gpt52_dspy, "micro_f1")`. Broad uncertainty-span extraction remained comparatively weak (micro-F1 `{python} fmt_metric_ci_text(abstract_uncertain_gpt52_dspy, "micro_f1")`), whereas explicit unknown-fact extraction was stronger (micro-F1 `{python} fmt_metric_ci_text(abstract_unknown_gpt52_dspy, "micro_f1")`). Prompt optimisation outperformed the LangExtract approach across each task.
+The GPT-5.2 optimised model achieved micro-F1 `{python} fmt_metric_ci_text(abstract_checklist_gpt52_dspy, "micro_f1")` for content detection. For SBAR span extraction, GPT-5.2 with prompt optimisation achieved micro-F1 `{python} fmt_metric_ci_text(abstract_sbar_gpt52_dspy, "micro_f1")`. Broad uncertainty-span extraction remained comparatively weak (micro-F1 `{python} fmt_metric_ci_text(abstract_uncertain_gpt52_dspy, "micro_f1")`), whereas explicit unknown-fact extraction was stronger (micro-F1 `{python} fmt_metric_ci_text(abstract_unknown_gpt52_dspy, "micro_f1")`). Genetic-Pareto optimised prompts  outperformed the LangExtract approach across each task.
 
 ### Conclusion
 
-Prompt-optimisation enhanced the performance of large language models for tasks that can be used in real-time clinical handover support. Broad uncertainty detection was not sufficiently accurate to be used in clinical practice. For most tasks, the smaller GPT-5-nano model performed competitively with the larger GPT-5.2, suggesting that cost-effective models may be viable for certain applications. Future work should explore integration of these capabilities into clinical workflows and evaluate their impact on communication quality and patient outcomes.
+Large language models demonstrated sufficient performance to support selected clinical handover tasks, particularly verification of key information and extraction of structured SBAR content. These capabilities could help reduce information omissions and improve the consistency of handover communication. Rather than attempting to identify all forms of uncertainty, AI-assisted handover systems may be more effectively deployed to identify explicit gaps in knowledge and prompt targeted clarification during clinician-to-clinician communication.
 
 ## Introduction {#sec-introduction}
 
@@ -143,9 +182,9 @@ For our study, we used 100 handover samples from the training partition of the N
 
 ### Annotation
 
-Two annotators, who are experienced clinically active Registered Nurses, independently annotated transcripts using a structured rubric. Labelled annotations that met consensus between reviewers were used as the reference labels for downstream model development and evaluation.
+Two annotators, who are experienced clinically active Registered Nurses, independently annotated transcripts using a structured rubric. Labelled annotations that met consensus between reviewers were used as the reference labels for downstream model development and evaluation. Inter-rater reliability was not calculated because the objective of the annotation process was to develop a consensus reference standard for prompt optimisation and model comparison.
 
-Annotation was performed using Prodigy annotation software using a custom interface that presented each transcript in three components [@montani2018prodigy]. First, annotators highlighted relevant spans of text and assigned labels corresponding to the SBAR framework together with markers of communicative uncertainty, including vagueness, hedging, unknown facts, indefinite timing, source uncertainty, procedural uncertainty, and uncertainty regarding responsibility. Overlapping span labels were permitted where a passage served more than one communicative function. Second, annotators completed a multiple-response checklist indicating whether predefined handover elements were present in the transcript. Third, annotators recorded up to three additional questions that a receiving clinician might reasonably ask before concluding the handover, together with a brief rationale for each question, in order to capture perceived information gaps.
+Annotation was performed using Prodigy annotation software using a custom interface that presented each transcript in three components [@montani2018prodigy]. First, annotators highlighted relevant spans of text and assigned labels corresponding to the SBAR framework together with markers of communicative uncertainty, including vagueness, hedging, unknown facts, indefinite timing, source uncertainty, procedural uncertainty, and uncertainty regarding responsibility. Overlapping span labels were permitted where a passage served more than one communicative function. Second, annotators completed a multiple-response checklist indicating whether predefined handover elements were present in the transcript.
 
 Both annotators reviewed all transcripts independently within the same annotation environment and were supported by written guidance and examples to promote consistent interpretation of the coding framework. For creation of the reference standard, a consensus dataset was derived by retaining only those span annotations and checklist items for which both annotators agreed. In practical terms, this meant that only text segments assigned the same label by both reviewers, and only checklist items selected by both reviewers, were carried forward for downstream model development and evaluation.
 
@@ -321,29 +360,24 @@ comparison_unknown_medgemma = results_overview_lookup[(TASK_LABELS["unknown-fact
 
 ### Key findings {#sec-results-summary}
 
-Within-model comparisons showed consistent point-estimate gains with DSPy/GEPA over matched baselines wherever both were available. For GPT-5.2, micro-F1 increased from `{python} fmt_metric_ci_text(checklist_gpt52_baseline, "micro_f1")` to `{python} fmt_metric_ci_text(checklist_gpt52_dspy, "micro_f1")` for checklist prediction, from `{python} fmt_metric_ci_text(sbar_gpt52_baseline, "micro_f1")` to `{python} fmt_metric_ci_text(sbar_gpt52_dspy, "micro_f1")` for SBAR span extraction, from `{python} fmt_metric_ci_text(uncertain_gpt52_baseline, "micro_f1")` to `{python} fmt_metric_ci_text(uncertain_gpt52_dspy, "micro_f1")` for uncertainty span extraction, and from `{python} fmt_metric_ci_text(unknown_gpt52_baseline, "micro_f1")` to `{python} fmt_metric_ci_text(unknown_gpt52_dspy, "micro_f1")` for unknown-fact extraction. Across span tasks, LangExtract generally performed below the corresponding best DSPy/GEPA configuration.
-
-### Comparative performance across tasks and prompting approaches {#sec-results-overview}
-
-@fig-results-overview summarizes matched within-model comparisons across tasks for the three models evaluated in the main study. 
+Within-model comparisons showed consistent point-estimate gains with DSPy/GEPA over matched baselines. For GPT-5.2, micro-F1 increased from `{python} fmt_metric_ci_text(checklist_gpt52_baseline, "micro_f1")` to `{python} fmt_metric_ci_text(checklist_gpt52_dspy, "micro_f1")` for checklist prediction, from `{python} fmt_metric_ci_text(sbar_gpt52_baseline, "micro_f1")` to `{python} fmt_metric_ci_text(sbar_gpt52_dspy, "micro_f1")` for SBAR span extraction, from `{python} fmt_metric_ci_text(uncertain_gpt52_baseline, "micro_f1")` to `{python} fmt_metric_ci_text(uncertain_gpt52_dspy, "micro_f1")` for uncertainty span extraction, and from `{python} fmt_metric_ci_text(unknown_gpt52_baseline, "micro_f1")` to `{python} fmt_metric_ci_text(unknown_gpt52_dspy, "micro_f1")` for unknown-fact extraction. Across span tasks, LangExtract generally performed below the corresponding best DSPy/GEPA configuration. Among matched span predictions, boundary agreement was high, with mean intersection-over-union values exceeding 0.8 for the best-performing GPT-5.2 span-extraction models. @fig-results-overview summarizes matched within-model comparisons across tasks for the three models evaluated. 
 
 
 ### SBAR span extraction {#sec-sbar-optimized}
 
 Among SBAR configurations, the highest overall score was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 `{python} fmt_metric_ci_text(sbar_best_dspy, "micro_f1")`), followed by DSPy/GEPA-optimised GPT-5-nano (micro-F1 `{python} fmt_metric_ci_text(sbar_gpt_nano_dspy, "micro_f1")`) and LangExtract GPT-5.2 (micro-F1 `{python} fmt_metric_ci_text(sbar_best_langextract, "micro_f1")`). @tbl-sbar-optimized provides label-level results for the best-performing GPT-5.2 DSPy/GEPA SBAR configuration.
 
-
 Within this GPT-5.2 SBAR comparison, macro-precision increased from `{python} fmt_estimate_ci_text(sbar_base_macro_precision, sbar_base_macro_precision_ci[0], sbar_base_macro_precision_ci[1])` to `{python} fmt_estimate_ci_text(sbar_opt_macro_precision, sbar_opt_macro_precision_ci[0], sbar_opt_macro_precision_ci[1])`, macro-recall from `{python} fmt_estimate_ci_text(sbar_base_macro_recall, sbar_base_macro_recall_ci[0], sbar_base_macro_recall_ci[1])` to `{python} fmt_estimate_ci_text(sbar_opt_macro_recall, sbar_opt_macro_recall_ci[0], sbar_opt_macro_recall_ci[1])`, and macro-F1 from `{python} fmt_estimate_ci_text(sbar_base_macro_f1, sbar_base_macro_f1_ci[0], sbar_base_macro_f1_ci[1])` to `{python} fmt_estimate_ci_text(sbar_opt_macro_f1, sbar_opt_macro_f1_ci[0], sbar_opt_macro_f1_ci[1])`. Span-boundary agreement among matched predictions was strongest for SITUATION and RECOMMENDATION, as shown by the label-level mean IoU estimates in @tbl-sbar-optimized.
 
 ### Checklist task {#sec-checklist}
 
-For checklist prediction, the best overall result was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 `{python} fmt_metric_ci_text(checklist_best_dspy, "micro_f1")`, macro-F1 `{python} fmt_metric_ci_text(checklist_best_dspy, "macro_f1")`, support-weighted F1 `{python} fmt_metric_ci_text(checklist_best_dspy, "support_weighted_f1")`). DSPy/GEPA-optimised GPT-5-nano also performed competitively (micro-F1 `{python} fmt_metric_ci_text(checklist_gpt_nano_dspy, "micro_f1")`), while MedGemma 27B reached micro-F1 `{python} fmt_metric_ci_text(checklist_medgemma_dspy, "micro_f1")`). @tbl-checklist-grouped presents grouped per-label estimates for accuracy, precision, recall, and F1 for the best-performing GPT-5.2 checklist model. Confidence intervals are not provided for labels with few positive examples in the test set. `{python} checklist_zero_f1_count` low-support labels still had F1 equal to zero.
+For checklist prediction, the best overall result was achieved by DSPy/GEPA-optimised GPT-5.2 (micro-F1 `{python} fmt_metric_ci_text(checklist_best_dspy, "micro_f1")`, macro-F1 `{python} fmt_metric_ci_text(checklist_best_dspy, "macro_f1")`, support-weighted F1 `{python} fmt_metric_ci_text(checklist_best_dspy, "support_weighted_f1")`). DSPy/GEPA-optimised GPT-5-nano also performed competitively (micro-F1 `{python} fmt_metric_ci_text(checklist_gpt_nano_dspy, "micro_f1")`), while MedGemma 27B reached micro-F1 `{python} fmt_metric_ci_text(checklist_medgemma_dspy, "micro_f1")`). @tbl-checklist-grouped presents grouped per-label estimates for accuracy, precision, recall, and F1 for the best-performing GPT-5.2 checklist model. 
 
 ### Uncertainty and unknown-fact span extraction {#sec-uncertainty-results}
 
-Broad uncertainty-span extraction remained the weakest task. The best DSPy/GEPA run used `{python} uncertain_best_dspy["model"]` and achieved precision `{python} fmt_metric_ci_text(uncertain_best_dspy, "micro_precision")`, recall `{python} fmt_metric_ci_text(uncertain_best_dspy, "micro_recall")`, micro-F1 `{python} fmt_metric_ci_text(uncertain_best_dspy, "micro_f1")`, and mean IoU `{python} fmt_metric_ci_text(uncertain_best_dspy, "mean_iou")`. This was only a modest improvement over the best baseline run (micro-F1 `{python} fmt_metric_ci_text(uncertain_best_baseline, "micro_f1")`), and the best LangExtract uncertainty run remained low (micro-F1 `{python} fmt_metric_ci_text(uncertain_best_langextract, "micro_f1")`).
+Broad uncertainty-span extraction included all annotated uncertainty categories (hedging, vagueness, unknown facts, indefinite timing, source uncertainty, procedural uncertainty, and responsibility uncertainty) and had the weakest accuracy of all tasks. The best DSPy/GEPA run used `{python} uncertain_best_dspy["model"]` and achieved precision `{python} fmt_metric_ci_text(uncertain_best_dspy, "micro_precision")`, recall `{python} fmt_metric_ci_text(uncertain_best_dspy, "micro_recall")`, micro-F1 `{python} fmt_metric_ci_text(uncertain_best_dspy, "micro_f1")`, and mean IoU `{python} fmt_metric_ci_text(uncertain_best_dspy, "mean_iou")`. This was only a modest improvement over the best baseline run (micro-F1 `{python} fmt_metric_ci_text(uncertain_best_baseline, "micro_f1")`), and the best LangExtract uncertainty run remained low (micro-F1 `{python} fmt_metric_ci_text(uncertain_best_langextract, "micro_f1")`).
 
-The narrower unknown-fact sub-task performed substantially better. DSPy/GEPA reached micro-F1 `{python} fmt_metric_ci_text(unknown_best_dspy, "micro_f1")` with `{python} unknown_best_dspy["model"]`, compared with the best baseline micro-F1 of `{python} fmt_metric_ci_text(unknown_best_baseline, "micro_f1")` and the LangExtract GPT-5.2 micro-F1 of `{python} fmt_metric_ci_text(unknown_best_langextract, "micro_f1")`. These results suggest that explicitly stated information gaps were more tractable than the broader set of hedged, vague, source-dependent, procedural, and responsibility-related uncertainty spans. @tbl-uncertainty-task-results summarises the uncertainty and unknown-fact span results used for these comparisons.
+The narrower unknown-fact sub-task performed substantially better. DSPy/GEPA reached micro-F1 `{python} fmt_metric_ci_text(unknown_best_dspy, "micro_f1")` with `{python} unknown_best_dspy["model"]`, compared with the best baseline micro-F1 of `{python} fmt_metric_ci_text(unknown_best_baseline, "micro_f1")` and the LangExtract GPT-5.2 micro-F1 of `{python} fmt_metric_ci_text(unknown_best_langextract, "micro_f1")`. These results suggest that explicitly stated information gaps were more tractable than the broader set of uncertainty spans. @tbl-uncertainty-task-results summarises the uncertainty and unknown-fact span results used for these comparisons.
 
 
 ## Discussion {#sec-discussion}
@@ -369,7 +403,7 @@ The synthetic conversational handovers used in this study may not fully represen
 
 ## Conclusion {#sec-conclusion}
 
-In this evaluation of AI-assisted clinical handover tasks, DSPy/GEPA prompt optimisation consistently improved matched model performance and was most promising for bounded checklist prediction and SBAR span extraction. The results support an implementation pathway in which AI outputs are presented as clinician-reviewed, source-linked draft structures or gap prompts. Broad uncertainty detection remained insufficiently reliable, while explicit unknown-fact extraction suggests a narrower role for prompting clarification when missing knowledge is directly expressed. Before clinical deployment, these approaches require external validation on real handover audio and transcripts, end-to-end testing of transcription and diarisation effects, local calibration of checklist definitions, and human-factors evaluation of trust, reliance, workflow burden, and downstream safety outcomes.
+In this evaluation of AI-assisted clinical handover tasks, prompt optimisation consistently improved matched model performance and was most promising for bounded checklist prediction and SBAR span extraction. The results support an implementation pathway in which AI outputs are presented as clinician-reviewed, source-linked draft structures or gap prompts. Broad uncertainty detection remained insufficiently reliable, while explicit unknown-fact extraction suggests a narrower role for prompting clarification when missing knowledge is directly expressed. Before clinical deployment, these approaches require external validation on real handover audio and transcripts, end-to-end testing of transcription and diarisation effects, local calibration of checklist definitions, and human-factors evaluation of trust, reliance, workflow burden, and downstream safety outcomes.
 
 {{< pagebreak >}}
 
