@@ -1,5 +1,5 @@
 ---
-title: "Large language models for structured information extraction in artificial intelligence-assisted clinical handover"
+title: "Large Language Models for Structured Information Extraction in Artificial Intelligence-Assisted Clinical Handover: Evaluation Study"
 
 authors:
   - name: Aaron Conway
@@ -8,11 +8,12 @@ authors:
       - ref: qutnursing
       - ref: tpch
     corresponding: true
-    email: aaron.conway@utoronto.ca
+    email: aaron.conway@qut.edu.au
     orcid: 0000-0002-9583-8636
   - name: Adriana Hada
     affiliations:
       - ref: tpch
+    orcid: 0000-0001-9794-6502
   - name: Jessica Schluter
     affiliations:
       - ref: tpch
@@ -20,27 +21,29 @@ authors:
     affiliations:
       - ref: qutnursing
       - ref: rbwh
+    orcid: 0000-0002-3421-4176
   - name: Dan Lowden
     affiliations:
       - ref: caboolture
   - name: Tim Miller
     affiliations:
       - ref: uqcomp
+    orcid: 0000-0003-4908-6063
   - name: Ken Donald
     affiliations:
       - ref: griffith
   - name: Andrew Teodorczuk
     affiliations:
       - ref: uqmed
-      - ref: griffith
       - ref: ranzcp
       - ref: tpch
+    orcid: 0000-0003-0802-718X
 
 affiliations:
   - id: qutcht
     name: Centre for Healthcare Transformation, Queensland University of Technology, Brisbane, Australia
   - id: qutnursing
-    name: School of Nursing, Midwifery and Social Work, Queensland University of Technology, Brisbane, Australia
+    name: School of Nursing, Queensland University of Technology, Brisbane, Australia
   - id: tpch
     name: The Prince Charles Hospital, Brisbane, Australia
   - id: rbwh
@@ -49,12 +52,12 @@ affiliations:
     name: Caboolture Hospital, Brisbane, Australia
   - id: uqcomp
     name: School of Electrical Engineering and Computer Science, The University of Queensland, Brisbane, Australia
+  - id: griffith
+    name: School of Medicine & Dentistry, Griffith University, Gold Coast, Queensland, Australia
   - id: uqmed
     name: The University of Queensland Northside Clinical Unit, The University of Queensland, Brisbane, Australia
   - id: ranzcp
     name: Royal Australian and New Zealand College of Psychiatrists, Melbourne, Australia
-  - id: griffith
-    name: School of Medicine & Dentistry, Griffith University, Gold Coast, Queensland, Australia
 
 
 filters:
@@ -126,6 +129,10 @@ abstract_sbar_gpt52_dspy = abstract_row(TASK_LABELS["sbar"], "GPT-5.2", "DSPy/GE
 abstract_checklist_gpt52_dspy = abstract_row(TASK_LABELS["checklist"], "GPT-5.2", "DSPy/GEPA")
 abstract_uncertain_gpt52_dspy = abstract_row(TASK_LABELS["uncertain"], "GPT-5.2", "DSPy/GEPA")
 abstract_unknown_gpt52_dspy = abstract_row(TASK_LABELS["unknown-fact"], "GPT-5.2", "DSPy/GEPA")
+abstract_checklist_gpt_nano_dspy = abstract_row(TASK_LABELS["checklist"], "GPT-5-nano", "DSPy/GEPA")
+abstract_sbar_gpt_nano_dspy = abstract_row(TASK_LABELS["sbar"], "GPT-5-nano", "DSPy/GEPA")
+abstract_unknown_gpt_nano_dspy = abstract_row(TASK_LABELS["unknown-fact"], "GPT-5-nano", "DSPy/GEPA")
+abstract_unknown_medgemma_dspy = abstract_row(TASK_LABELS["unknown-fact"], "MedGemma 27B", "DSPy/GEPA")
 
 abstract_checklist_n = int(abstract_checklist_summary["n_examples"])
 abstract_sbar_n = int(abstract_sbar_results["opt_n"])
@@ -140,21 +147,30 @@ abstract_comparison_uncertain_gpt52 = abstract_results_overview_lookup[(TASK_LAB
 abstract_comparison_unknown_gpt52 = abstract_results_overview_lookup[(TASK_LABELS["unknown-fact"], "GPT-5.2")]
 ```
 
-### Introduction
+### Background
 
-Artificial intelligence has the potential to improve the reliability and completeness of clinical handover by automatically generating structured summaries, verifying that key information has been communicated, and signaling information that may require verification. We evaluated the performance of several different large language models and prompt optimisation strategies for structured information extraction across tasks that could be integrated into AI-assisted clinical handover.
+Artificial intelligence has the potential to improve the reliability and completeness of clinical handover by automatically generating structured summaries, verifying that key information has been communicated, and signaling information that may require verification.
+
+### Objective
+
+This study evaluated the performance of several large language models and prompt optimisation strategies for structured information extraction across tasks that could be integrated into AI-assisted clinical handover.
 
 ### Methods
 
-Two registered nurses independently annotated a dataset of `{python} abstract_dataset_n` synthetic handover transcripts to produce consensus labels for information extraction tasks. Tasks included: 1) labelling spans of text into SBAR (Situation, Background, Assessment, Recommendation) categories; 2)  content detection to determine if specific pieces of information were communicated; and 3) labelling spans of text that communicated information using uncertain terms that included a sub-task for identifying unknown facts. Baseline and Genetic-Pareto (GEPA) optimised prompts were compared for GPT-5.2, GPT-5-nano, and MedGemma 27B large language models. Additionally, the LangExtract framework was evaluated for span-extraction tasks. Content detection was scored using micro-, macro-, and support-weighted precision, recall, and F1; span tasks were scored using same-label quote matching, matched-span precision/recall/F1, and mean intersection-over-union for boundary agreement.
+Two registered nurses independently annotated a dataset of `{python} abstract_dataset_n` synthetic handover transcripts to produce consensus labels for information extraction tasks. Tasks included: 1) labelling spans of text into SBAR (Situation, Background, Assessment, Recommendation) categories; 2) content detection to determine if specific pieces of information were communicated; and 3) labelling spans of text that communicated information using uncertain terms that included a sub-task for identifying unknown facts. Baseline and Genetic-Pareto (GEPA) optimised prompts were compared for GPT-5.2, GPT-5-nano, and MedGemma 27B large language models. Additionally, the LangExtract framework was evaluated for span-extraction tasks.
 
 ### Results
 
-The GPT-5.2 optimised model achieved micro-F1 `{python} fmt_metric_ci_text(abstract_checklist_gpt52_dspy, "micro_f1")` for content detection. For SBAR span extraction, GPT-5.2 with prompt optimisation achieved micro-F1 `{python} fmt_metric_ci_text(abstract_sbar_gpt52_dspy, "micro_f1")`. Broad uncertainty-span extraction remained comparatively weak (micro-F1 `{python} fmt_metric_ci_text(abstract_uncertain_gpt52_dspy, "micro_f1")`), whereas explicit unknown-fact extraction was stronger (micro-F1 `{python} fmt_metric_ci_text(abstract_unknown_gpt52_dspy, "micro_f1")`). Genetic-Pareto optimised prompts outperformed the LangExtract approach across each task.
+The GPT-5.2 optimised model achieved micro-F1 `{python} fmt_metric_ci_text(abstract_checklist_gpt52_dspy, "micro_f1")` for content detection, an absolute improvement of `{python} fmt_signed3(abstract_comparison_checklist_gpt52["Delta DSPy/GEPA vs baseline"])` compared with the matched baseline. GPT-5-nano also performed strongly after optimisation for content detection (micro-F1 `{python} fmt_metric_ci_text(abstract_checklist_gpt_nano_dspy, "micro_f1")`), suggesting that this structured task was not limited to the highest-capacity model. For SBAR span extraction, GPT-5.2 with prompt optimisation achieved micro-F1 `{python} fmt_metric_ci_text(abstract_sbar_gpt52_dspy, "micro_f1")`, improving by `{python} fmt_signed3(abstract_comparison_sbar_gpt52["Delta DSPy/GEPA vs baseline"])` compared with baseline and exceeding LangExtract; GPT-5-nano also improved to micro-F1 `{python} fmt_metric_ci_text(abstract_sbar_gpt_nano_dspy, "micro_f1")`. Broad uncertainty-span extraction remained comparatively weak despite prompt optimisation (micro-F1 `{python} fmt_metric_ci_text(abstract_uncertain_gpt52_dspy, "micro_f1")`; absolute improvement `{python} fmt_signed3(abstract_comparison_uncertain_gpt52["Delta DSPy/GEPA vs baseline"])`). In contrast, explicit unknown-fact extraction was stronger with GPT-5.2 (micro-F1 `{python} fmt_metric_ci_text(abstract_unknown_gpt52_dspy, "micro_f1")`), GPT-5-nano (micro-F1 `{python} fmt_metric_ci_text(abstract_unknown_gpt_nano_dspy, "micro_f1")`), and MedGemma 27B (micro-F1 `{python} fmt_metric_ci_text(abstract_unknown_medgemma_dspy, "micro_f1")`). Genetic-Pareto optimised prompts outperformed the LangExtract approach across each span-extraction task.
 
-### Conclusion
+### Conclusions
 
-Large language models demonstrated sufficient performance to support selected clinical handover tasks, particularly verification of key information and extraction of structured SBAR content. These capabilities could help reduce information omissions and improve the consistency of handover communication. Rather than attempting to identify all forms of uncertainty, AI-assisted handover systems may be more effectively deployed to identify explicit gaps in knowledge and prompt targeted clarification during clinician-to-clinician communication.
+Large language models demonstrated sufficient performance to support selected clinical handover tasks, particularly verification of key information and extraction of structured SBAR content. These capabilities could help reduce information omissions and improve the consistency of handover communication. Although broad uncertainty detection remained insufficiently reliable, models performed substantially better at identifying explicit gaps in knowledge, suggesting that near-term AI handover tools may be most effective when used to prompt clarification of missing information before communication failures contribute to patient harm.
+
+
+## Keywords {#sec-keywords}
+
+artificial intelligence; clinical handover; nursing; patient handoff; natural language processing; large language models; prompt engineering; information extraction; patient safety; machine learning
 
 ## Introduction {#sec-introduction}
 
@@ -168,6 +184,8 @@ Recent advances in large language models (LLMs) create an opportunity to facilit
 
 ## Methods {#sec-methods}
 
+### Study Design and Tasks
+
 Tasks related to clinical handover communication that were considered as potentially augmentable with AI assistance were identified by the researchers using a co-design process with clinicians and consumers, which will be reported separately. The tasks were:
 
 - Extracting spans of text from transcripts that aligned with the SBAR (Situation, Background, Assessment, Recommendation) framework for structuring clinical handover. In this study, SBAR span extraction was operationalised as a sequence-labeling task to identify contiguous spans of text in handover transcripts that corresponded to each SBAR category.
@@ -178,7 +196,11 @@ Tasks related to clinical handover communication that were considered as potenti
 
 We used the publicly available NICTA Synthetic Nursing Handover Dataset, which contains realistic recordings of clinical handovers delivered by a registered nurse based on patient profiles with cardiovascular, neurological, renal, and respiratory conditions [@suominen2015benchmarking]. In this dataset, handover monologues were generated from comprehensive patient profiles that included information such as the patient’s name, age, admission history, inpatient duration, and the familiarity between the nurses giving and receiving the handover. The nurse was instructed to simulate a bedside shift-to-shift handover within a medical ward setting [@suominen2015benchmarking].
 
-For our study, we used 100 handover samples from the training partition of the NICTA dataset. First, audio recordings from the NICTA dataset were transcribed using the OpenAI Whisper speech-to-text model. Second, three videos depicting conversational nursing shift-to-shift handovers were transcribed in a similar manner to provide examples of interactive handover dialogue. These videos were developed at the authors’ institution for educational purposes to demonstrate best practices for clinical handovers that are used in the undergraduate nursing program. Transcripts from the educational videos were then used as few-shot examples within the DSPy framework[@khattab2023dspy] using the `BootstrapFewShot` optimizer to guide the transformation of the 100 NICTA monologue transcripts into two-sided conversational handovers so that the dataset would better reflect real-world contemporary clinical handover interactions. To broaden the range of clinical contexts represented in the dataset, we further synthesised 103 additional handover examples using the GPT-5 model interactively in a chat interface. These scenarios included inter- and intra-hospital transfers, post-procedural handovers, emergency department transitions, and handovers that involved patients with complex mental health care needs. The final dataset comprised 203 synthetic handover transcripts used for subsequent annotation and model development. It is available at [URL to dataset repository]. 
+For our study, we used 100 handover samples from the training partition of the NICTA dataset. First, audio recordings from the NICTA dataset were transcribed using the OpenAI Whisper speech-to-text model. Second, three videos depicting conversational nursing shift-to-shift handovers were transcribed in a similar manner to provide examples of interactive handover dialogue. These videos were developed at the authors’ institution for educational purposes to demonstrate best practices for clinical handovers that are used in the undergraduate nursing program. Transcripts from the educational videos were then used as few-shot examples within the DSPy framework[@khattab2023dspy] using the `BootstrapFewShot` optimizer to guide the transformation of the 100 NICTA monologue transcripts into two-sided conversational handovers so that the dataset would better reflect real-world contemporary clinical handover interactions. To broaden the range of clinical contexts represented in the dataset, we further synthesised 103 additional handover examples using the GPT-5 model interactively in a chat interface. These scenarios included inter- and intra-hospital transfers, post-procedural handovers, emergency department transitions, and handovers that involved patients with complex mental health care needs. The final dataset comprised 203 synthetic handover transcripts used for subsequent annotation and model development. 
+
+### Ethical Considerations
+
+Ethics approval was not sought because this model-evaluation study used only synthetic and simulated handover transcripts. The study did not involve human participants, identifiable patient data, access to clinical records, or delivery of an intervention to patients or clinicians.
 
 ### Annotation
 
@@ -193,6 +215,8 @@ Both annotators reviewed all transcripts independently within the same annotatio
 Annotated handover transcripts were first partitioned deterministically into optimisation (75%) and evaluation (25%) subsets using a fixed random split. Prompt optimisation was performed within DSPy [@khattab2023dspy], which is a Python framework that can be used for prompt optimisation using feedback from model outputs to improve task performance. For each task, we defined a task-specific DSPy signature that specified the transcript as input and a constrained structured output. Checklist prediction was formulated as multilabel classification, whereas SBAR and uncertainty-related tasks were formulated as span extraction, requiring the model to return verbatim text segments from the transcript together with the appropriate label. The uncertainty-related tasks were further subdivided into a broad uncertainty-span extraction task (which included all uncertainty categories) and a more specific unknown-fact extraction task (which included only spans labelled as unknown facts).
 
 Across the baseline DSPy evaluations, GEPA-based DSPy optimisation experiments, and LangExtract experiments, we evaluated three underlying language models: OpenAI GPT-5-nano [@singh2025openaigpt5card], which served as a smaller lower-cost comparison model; OpenAI GPT-5.2 [@singh2025openaigpt5card], which served as the highest-capacity proprietary model evaluated in this study; and MedGemma 27B, a 27-billion-parameter open-weight model developed by Google for medical tasks [@sellergren2025medgemmatechnicalreport]. For DSPy baseline and GEPA runs, the same task model was used before and after compilation so that differences reflected prompt optimisation rather than a change in the underlying model.
+
+The OpenAI GPT-5-nano and GPT-5.2 experiments were run using the OpenAI API as cloud-hosted model endpoints. MedGemma 27B experiments were run locally on institutional high-performance computing infrastructure.
 
 Baseline performance was obtained by evaluating the initial DSPy signatures. Optimised performance was obtained by compiling the same predictors on the optimisation partition. For checklist prediction, optimisation targeted example-level multilabel F1 against the labels. A prompt optimisation method called GEPA was used to optimise the prompts [@agrawal2025gepa]. GEPA is a reflection-based evolutionary prompt optimiser within DSPy [@agrawal2025gepa]. This approach involves iteratively proposing revised task instructions and retains variants that improve task-specific performance. The optimisation was conducted over 576 scoring calls of the full program, which is equivalent to about 3 complete scoring passes over the combined training and validation examples used during prompt search. GEPA was supplied with both a scalar score and natural-language error feedback. For checklist prediction, feedback identified which labels had been correctly included, incorrectly added, or omitted. For span-extraction tasks, feedback described the reference spans, predicted spans, matched and unmatched spans, and the extent of span-boundary overlap. This feedback was then used by a separate reflection model (GPT-5.2) to generate revised instructions for the predictor. GPT-5.2 was selected as the reflection model because it was the strongest performing model available within our evaluation framework at the time. For SBAR and other span-extraction tasks, GEPA optimisation was driven by a metric based on intersection-over-union. In practical terms, intersection-over-union measured how much the predicted text span overlapped the annotated text span relative to the total text covered by either span. Higher values of intersection-over-union indicate closer agreement on the start and end boundaries of the labelled span. To calculate intersection-over-union, predicted quotes were mapped back to their location in the transcript and matched to reference spans of the same label according to overlap, with higher-overlap matches receiving greater reward during prompt search. In this way, prompt search favoured not only correct matching but also closer boundary alignment. When neither reference nor predicted spans were present for a transcript, the transcript-level optimisation score was set to 1.0. For reporting, we then separated detection performance from boundary quality by presenting matched-span precision, recall, and F1 together with mean IoU for matched spans. The final compiled programs were then fixed and evaluated on the held-out test partition.
 
@@ -382,11 +406,15 @@ The narrower unknown-fact sub-task performed substantially better. DSPy/GEPA rea
 
 ## Discussion {#sec-discussion}
 
+### Principal Results
+
 This study identified that prompt optimisation with GEPA outperformed baseline evaluations across all of the comparisons, with higher aggregate performance for checklist prediction than for SBAR span extraction. This pattern is expected because using generative AI to perform clinical natural language processing tasks is sensitive to framing, label definitions, and example selection. GEPA was explicitly supplied with task-specific scores and error feedback that could align instructions more closely with the annotation scheme [@sivarajkumar2024prompting_strategies_clinical_nlp; @agrawal2025gepa]. Optimisation was particularly useful for improving targeted span extraction across the SBAR task.
 
 The difference in accuracy that we identified between checklist prediction and SBAR span extraction provides an important insight to consider for designing AI applications to support clinical handover. Checklist prediction is a simpler structured-output task where each item is a bounded present/absent judgement. By contrast, SBAR extraction requires the model to locate clinically relevant text, assign a communicative category, and reproduce appropriate span boundaries. Structured handover tools aim to make minimum content predictable and reduce omissions, while still requiring adaptation to local clinical workflow [@haig2006sbar_shared_mental_model; @riesenberg2010nursing_handoffs; @bukoh2020structured_handover_review]. As such, simpler structured outputs may therefore be preferable for an AI handover tool when the intended function is to prompt review of missing elements or support audit and quality monitoring. However, this type of structured data may be overly rigid structure, reducing narrative expressivity and the overall fit with clinical work [@rosenbloom2011structured_flexible_documentation]. In addition, although checklist prediction achieved strong pooled performance, the model still produced both false positives and false negatives. A false positive could create false reassurance that a safety-critical element was communicated during handover, whereas a false negative could generate unnecessary clarification work or distract from higher-priority issues. A safer near-term design could therefore present AI outputs as draft, source-linked prompts for clinician review, with clear distinctions between detected in transcript, not detected, and requires verification. Evidence indicated that effective clinical decision support is most useful when integrated into a workflow as actionable and readily available support at the time and place of decision-making, while also recognising the risk of automation bias when clinicians over-rely on system outputs [@kawamoto2005clinical_decision_support; @goddard2012automation_bias; @challen2019ai_bias_safety].
 
 In the same way, SBAR span extraction may be most useful as a traceability mechanism rather than as a fully automated handover summary. The optimised model achieved useful SBAR performance and high span-boundary overlap among matched spans in our study. For implementation, this suggests that extracted spans could be displayed with a link to their source transcript context and should support clinician review of what was said, rather than automatically transforming the handover into a definitive structured note. This preserves the benefits of structured communication while avoiding over-compression of clinically meaningful narrative context [@haig2006sbar_shared_mental_model; @rosenbloom2011structured_flexible_documentation; @cohen2010handoffs_literature_review].
+
+### Implementation Considerations
 
 The appropriate balance between recall and precision may differ by use case when considering implementation of the tasks we evaluated in this study into an AI tool to support clinical handover. For real-time clinician support, higher recall may be acceptable if prompts are phrased as optional checks and do not imply that an item is definitely missing. For retrospective audit or compliance monitoring, precision becomes more important because false positives could overestimate handover quality and obscure residual safety risks. The present checklist results, with strong recall but non-trivial false positives in several categories, therefore support cautious separation of two implementation pathways: real-time clinician-facing gap prompts, and separately validated audit/reporting workflows [@redley2018handover_audit_tool; @manser2011effective_handover; @kawamoto2005clinical_decision_support]
 
@@ -396,14 +424,55 @@ Relatedly, it is highly likely that further gains could be realised after implem
 
 Finally, it should be noted that this study measured extraction and classification performance against annotated labels, but did not evaluate whether AI outputs changed clinician questioning, closed-loop communication, task completion, escalation, near-miss detection, or patient outcomes. Technical metrics are necessary but insufficient for determining whether a clinical AI tool improves safety in practice [@kelly2019clinical_ai_impact; @challen2019ai_bias_safety; @starmer2014handoff_program]. Recent commentary and discursive work on nursing automation similarly argue that evaluation should move beyond time saved to examine how AI redistributes nursing work toward review and verification, whether tools meet end-user-defined utility thresholds, whether performance is equitable across linguistic and workforce groups, and how automation can be integrated without undermining professional values or relational care [@ronquillo2026beyond_time_saved; @pepito2025automation_nursing]. Even accurate prompts may create new risks if clinicians over-trust them, ignore non-highlighted issues, experience alert fatigue, or redirect attention away from direct patient/carer engagement. Human factors testing should therefore assess reliance, trust calibration, interruption burden, and the usability of source-linked evidence before deployment [@goddard2012automation_bias; @leonard2004human_factor; @sittig2010sociotechnical_model].
 
-## Limitations {#sec-limitations}
+### Limitations {#sec-limitations}
 
 
-The synthetic conversational handovers used in this study may not fully represent those performed in actual clinical practice where interruptions, time pressure, environmental noise, non-verbal cues and local team dynamics can affect what is communicated and how it is interpreted. External validation on real handover audio/transcripts from intended deployment settings is therefore required [@cohen2010handoffs_literature_review; @patterson2004handoff_strategies; @sittig2010sociotechnical_model]. It should be noted that several checklist items had low prevalence in the evaluation partition, including the three-patient-identifier verification, advance care planning, critical monitoring/alarms, and critical actions required. Reliable implementation decisions cannot be made from aggregate micro-F1 when rare but high-consequence labels are underrepresented. Future evaluation should oversample or otherwise specifically test these items [@challen2019ai_bias_safety; @riesenberg2010nursing_handoffs]. The reference standard retained only annotations agreed by both reviewers. This creates a conservative and reproducible benchmark, but may exclude ambiguous or contested communication—precisely the type of handover content that can be clinically important. As a result, model performance may be overestimated for clear-cut cases and less informative for the ambiguous, implicit, or disputed information that often drives clarification needs during real handover [@cohen2010handoffs_literature_review; @manser2011effective_handover]. Our evaluation focused on downstream extraction from transcripts and did not separately quantify transcription accuracy, speaker attribution, or the effect of noisy audio. In a real-time handover system, errors introduced before the LLM stage could alter checklist detection, SBAR span extraction, and uncertainty identification. End-to-end evaluation should therefore include audio capture, transcription, diarisation, and transcript-to-output performance under realistic clinical conditions [@sittig2010sociotechnical_model; @ong2011handoff_failures]. We used a checklist that was developed at a local institution based on local priorities for communication during clinical nursing handover. Other wards, specialties, transfer types, or jurisdictions may prioritise different minimum datasets or use different terminology. Implementation would therefore require local mapping of labels to existing handover policy, audit tools, escalation pathways, and documentation workflows, followed by local validation rather than direct transfer of the reported performance estimates [@redley2018handover_audit_tool; @riesenberg2010nursing_handoffs; @sittig2010sociotechnical_model].
+The synthetic conversational handovers used in this study may not fully represent those performed in actual clinical practice where interruptions, time pressure, environmental noise, non-verbal cues and local team dynamics can affect what is communicated and how it is interpreted. External validation on real handover audio/transcripts from intended deployment settings is therefore required [@cohen2010handoffs_literature_review; @patterson2004handoff_strategies; @sittig2010sociotechnical_model]. It should be noted that several checklist items had low prevalence in the evaluation partition, including the three-patient-identifier verification, advance care planning, critical monitoring/alarms, and critical actions required. Reliable implementation decisions cannot be made from aggregate micro-F1 when rare but high-consequence labels are underrepresented. Future evaluation should oversample or otherwise specifically test these items [@challen2019ai_bias_safety; @riesenberg2010nursing_handoffs]. The reference standard retained only annotations agreed by both reviewers. This creates a conservative and reproducible benchmark, but may exclude ambiguous or contested communication—precisely the type of handover content that can be clinically important. As a result, model performance may be overestimated for clear-cut cases and less informative for the ambiguous, implicit, or disputed information that often drives clarification needs during real handover [@cohen2010handoffs_literature_review; @manser2011effective_handover]. The evaluation corpus included synthetic transcripts generated in part with the GPT-5. Although the uses were distinct, information extraction tasks were performed on synthetised language from a model from the same LLM provider, which is potentially susceptible to model familiarity. Our evaluation focused on downstream extraction from transcripts and did not separately quantify transcription accuracy, speaker attribution, or the effect of noisy audio. In a real-time handover system, errors introduced before the LLM stage could alter checklist detection, SBAR span extraction, and uncertainty identification. End-to-end evaluation should therefore include audio capture, transcription, diarisation, and transcript-to-output performance under realistic clinical conditions [@sittig2010sociotechnical_model; @ong2011handoff_failures]. We used a checklist that was developed at a local institution based on local priorities for communication during clinical nursing handover. Other wards, specialties, transfer types, or jurisdictions may prioritise different minimum datasets or use different terminology. Implementation would therefore require local mapping of labels to existing handover policy, audit tools, escalation pathways, and documentation workflows, followed by local validation rather than direct transfer of the reported performance estimates [@redley2018handover_audit_tool; @riesenberg2010nursing_handoffs; @sittig2010sociotechnical_model]. 
 
-## Conclusion {#sec-conclusion}
+### Conclusions {#sec-conclusion}
 
 In this evaluation of AI-assisted clinical handover tasks, prompt optimisation consistently improved matched model performance and was most promising for bounded checklist prediction and SBAR span extraction. The results support an implementation pathway in which AI outputs are presented as clinician-reviewed, source-linked draft structures or gap prompts. Broad uncertainty detection remained insufficiently reliable, while explicit unknown-fact extraction suggests a narrower role for prompting clarification when missing knowledge is directly expressed. Before clinical deployment, these approaches require external validation on real handover audio and transcripts, end-to-end testing of transcription and diarisation effects, local calibration of checklist definitions, human-factors evaluation of trust, reliance, workflow burden, and downstream safety outcomes, and structured assessment of organisational readiness for AI implementation in nursing care [@seibert2026aincra].
+
+## Acknowledgments {#sec-acknowledgments}
+
+The authors used OpenAI ChatGPT/Codex during manuscript preparation to assist with editing, formatting, and generation of tables and figures to present results. The authors reviewed, verified, and approved all analytic decisions, references, and final manuscript text. 
+
+## Funding {#sec-funding}
+
+This work was supported by The Prince Charles Hospital Foundation Collaboration Grant. The funder had no role in study design, data collection, analysis, interpretation, manuscript preparation, and the decision to submit.
+
+## Conflicts of Interest {#sec-conflicts}
+
+The authors declare no conflicts of interest.
+
+## Data Availability {#sec-data-availability}
+
+The synthetic handover transcripts, annotation schema, evaluation outputs, and analysis code are available in a public repository at [doi://10.6084/m9.figshare.32658084] before publication. The NICTA Synthetic Nursing Handover Dataset is publicly available from its original source.
+
+## Authors' Contributions {#sec-author-contributions}
+
+Conceptualization: AC, AT. Data curation: AC. Formal analysis: AC. Investigation: AC, AH, JS. Methodology: AC, AH, AT, DL, KD. Project administration: AC. Software: AC. Visualization: AC. Writing - original draft: AC. Writing - review and editing: AC, AH, JS, GX, DL, TM, KD, AT.
+
+## Abbreviations {#sec-abbreviations}
+
+| Abbreviation | Definition |
+| :--- | :--- |
+| AI | artificial intelligence |
+| CI | confidence interval |
+| COI | conflict of interest |
+| DSPy | framework for declarative language model programming |
+| F1 | harmonic mean of precision and recall |
+| FN | false negative |
+| FP | false positive |
+| GEPA | Genetic-Pareto prompt optimisation |
+| GPT | generative pretrained transformer |
+| IoU | intersection over union |
+| LLM | large language model |
+| NICTA | National Information and Communications Technology Australia |
+| ORCID | Open Researcher and Contributor ID |
+| SBAR | Situation, Background, Assessment, Recommendation |
+| TN | true negative |
+| TP | true positive |
 
 {{< pagebreak >}}
 

@@ -26,3 +26,9 @@ skills-lock.json
 
 output/
 **/*.quarto_ipynb
+
+reporting_guidelines/
+
+*.pdf
+
+cover_letter_jmir/

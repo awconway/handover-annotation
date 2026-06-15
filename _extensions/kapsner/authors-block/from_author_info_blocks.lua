@@ -126,6 +126,23 @@ M.create_correspondence_blocks = create_correspondence_blocks
 
 -- taken from https://github.com/pandoc/lua-filters/blob/1660794b991c3553968beb993f5aabb99b317584/author-info-blocks/author-info-blocks.lua
 --- Create inlines for a single author (includes all author notes)
+local function orcid_link(author)
+  if not has_key(author, "orcid") then
+    return nil
+  end
+  local orcid = stringify(author.orcid)
+  if orcid == "" then
+    return nil
+  end
+  local icon = pandoc.Image(
+    {pandoc.Str("ORCID iD")},
+    "manuscript-assets/ORCID-iD_icon-24x24.png",
+    "ORCID iD",
+    pandoc.Attr("", {}, {width = "0.13in", height = "0.13in"})
+  )
+  return pandoc.Link({icon}, "https://orcid.org/" .. orcid)
+end
+
 local function author_inline_generator (get_mark)
   return function (author)
     local author_marks = List:new{}
@@ -150,6 +167,11 @@ local function author_inline_generator (get_mark)
     -- modified by @kapsner
     local res = List.clone(author.name.literal)
     res[#res + 1] = pandoc.Superscript(intercalate(author_marks, {pandoc.Str ','}))
+    local orcid = orcid_link(author)
+    if orcid then
+      res[#res + 1] = pandoc.Space()
+      res[#res + 1] = orcid
+    end
     return res
   end
 end
