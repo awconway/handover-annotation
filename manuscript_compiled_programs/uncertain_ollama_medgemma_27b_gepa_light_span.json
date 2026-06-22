@@ -1,0 +1,26 @@
+{
+  "traces": [],
+  "train": [],
+  "demos": [],
+  "signature": {
+    "instructions": "You are given a single field `text`: a clinical handover-style transcript with speaker tags (e.g., [NURSE], [OUTGOING_NURSE], [DOCTOR], [PATIENT]).\n\nGoal\nExtract ONLY verbatim contiguous spans (exact quotes) that express uncertainty. Return them as a JSON-like list under key `pred_spans`, where each item is:\n  {\"label\": \"<one of the labels below>\", \"quote\": \"<exact substring from text>\"}\n\nUncertainty labels (use EXACT spelling/case)\n1) Hedge / Probability Language: partial confidence, possibility, prediction\n   Triggers: likely, may, might, could, probably, I think, should (when not an instruction), question mark used to signal uncertainty.\n2) Vague / Qualitative Expression: subjective/imprecise descriptors\n   Triggers: seems, looks fine, seems okay, a bit, sort of, around (when qualitative, not a numeric range).\n3) Unknown fact / Explicit Lack of Knowledge: explicit not knowing / missing info\n   Triggers: not sure, don’t know, unknown, can’t recall, unsure.\n4) Indefinite Timing: vague/unspecific timing\n   Triggers: shortly, soon, later today, sometime, after the round, in a bit, when they’re back (if no definite time).\n5) Source Uncertainty: attributed/unverified info\n   Triggers: apparently, as per, X said…, per ENT, night nurse told me…\n6) Procedural Uncertainty: unclear/conditional plan, monitoring/“we’ll see”\n   Triggers: we’ll see how it goes, keep an eye on, monitor and reassess, depends on…, if X then…, review if…\n7) Responsibility Uncertainty: task mentioned but WHO will do it is unclear/unspecified\n   Only use if the owner is genuinely ambiguous (e.g., “bloods to be checked later”, “needs review this afternoon”).\n   Do NOT use if an owner is explicit (“I’ll…”, “Dr X will…”, “please…”).\n\nCritical extraction rules (strict)\n- Extract ONLY uncertain information; do not extract definite/factual statements.\n  Example: “Bloods were taken this morning; the results are still pending.” is NOT automatically uncertainty; “pending” alone is a status, and should not be labeled unless it is framed as unknown/uncertain timing (e.g., “not sure when results will be back”).\n- Quotes MUST be contiguous and verbatim from `text`: preserve exact spelling, punctuation, capitalization, and contractions.\n- Do NOT stitch together separated fragments or paraphrase.\n- Boundary selection is optimized for IoU-style span matching:\n  - Prefer the smallest self-contained clause that contains the uncertainty cue.\n  - Do NOT add trailing purpose/explanatory text if the uncertainty is already fully expressed earlier.\n    Example: extract exactly “I’ll be back shortly” (NOT “I’ll be back shortly to check in again.”).\n  - However, if the cue only makes sense with its object/complement, include that complement.\n    Example: “He may need fluids.” should include “may need fluids”.\n  - When a sentence contains multiple clauses, extract only the uncertain clause, unless the uncertainty clearly scopes over the whole sentence.\n- Multi-labeling is allowed ONLY if the same exact quote genuinely fits multiple categories; avoid redundant duplicates.\n\nLabeling guidance from prior evaluation\n- Phrases like “we’ll keep an eye on you” / “keep an eye on” / “monitor for now” are Procedural Uncertainty (they indicate an uncertain course requiring observation).\n- “may need …”, “likely …” are Hedge / Probability Language (not Procedural uncertainty).\n- Indefinite Timing: focus on the time-vague fragment; keep it tight (e.g., “I’ll be back shortly”).\n- Do not force Indefinite Timing onto “pending results” unless the speaker expresses uncertainty about *when* they will return.\n\nOutput format\nReturn:\npred_spans: [\n  {\"label\": \"...\", \"quote\": \"...\"},\n  ...\n]\nIf there is no uncertainty, output:\npred_spans: []",
+    "fields": [
+      {
+        "prefix": "Text:",
+        "description": "${text}"
+      },
+      {
+        "prefix": "Pred Spans:",
+        "description": "${pred_spans}"
+      }
+    ]
+  },
+  "lm": null,
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.11",
+      "dspy": "3.1.3",
+      "cloudpickle": "3.1"
+    }
+  }
+}

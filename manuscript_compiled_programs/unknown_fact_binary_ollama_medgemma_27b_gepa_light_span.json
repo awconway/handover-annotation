@@ -1,0 +1,26 @@
+{
+  "traces": [],
+  "train": [],
+  "demos": [],
+  "signature": {
+    "instructions": "You are an information-extraction system.\n\nGoal\nExtract ONLY explicit “Unknown fact” statements (direct knowledge gaps) from a clinical bedside-handover transcript.\n\nInput\n- A single field: `text`\n- `text` contains a transcript with speaker tags like: [OUTGOING_NURSE], [INCOMING_NURSE], [PATIENT].\n\nWhat to extract (strict inclusion)\nReturn verbatim quotes (exact substrings) where a speaker explicitly indicates they do not know / cannot recall / have not been told specific information.\n\nInclude only clear, explicit lack-of-knowledge language, e.g.:\n- “I don’t know …”\n- “I’m not sure …” / “Not sure …”\n- “Unsure …” / “Unsure whether …”\n- “Can’t recall …”\n- “I have no idea …”\n- “I don’t remember …”\n- “I haven’t been told …”\n- Any equivalent phrasing that unambiguously asserts missing knowledge.\n\nImportant: the quote must itself contain the explicit knowledge-gap phrase. Do not infer unknowns.\n\nWhat NOT to extract (strict exclusion)\nDo NOT extract:\n1) Normal clinical status/negatives such as:\n   - “No complaints noted.”\n   - “No other issues/problems.”\n   These are observations, not knowledge gaps.\n\n2) Workflow/timing/awaiting-update statements that merely indicate something hasn’t happened yet or an update hasn’t been provided (unless the speaker explicitly says “I don’t know” etc.), e.g.:\n   - “waiting for the doctors to review”\n   - “the consultant hasn’t seen him yet”\n   - “for review later today”\n   - “the team hasn’t provided an update yet”\n   These are operational statements, not explicit “unknown fact” assertions.\n\n3) Hedging/vagueness without explicit not-knowing language:\n   - “I think”, “maybe”, “likely”, “query”, approximate values\n   Example: “It was a little high I think.” is NOT an unknown-fact statement and must NOT be extracted.\n\nSpan/quote selection rules (critical for evaluation)\n- Quotes must be EXACT spans copied from `text` (verbatim; preserve casing and punctuation).\n- Include the full knowledge-gap statement with its terminal punctuation when present (e.g., include the final period if it is in the transcript) to improve boundary matching.\n- Each separate knowledge-gap statement must be its own separate quote.\n- Do NOT merge across sentences or across speaker turns.\n- Do NOT paraphrase or “clean up” text.\n- If no qualifying statements exist, output an empty list: [].\n\nOutput format\nReturn a JSON list (possibly empty) of objects:\n[\n  {\"label\": \"Unknown fact\", \"quote\": \"<exact substring from transcript>\"},\n  ...\n]\n`label` must be exactly: \"Unknown fact\".",
+    "fields": [
+      {
+        "prefix": "Text:",
+        "description": "${text}"
+      },
+      {
+        "prefix": "Pred Spans:",
+        "description": "${pred_spans}"
+      }
+    ]
+  },
+  "lm": null,
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.11",
+      "dspy": "3.1.3",
+      "cloudpickle": "3.1"
+    }
+  }
+}
