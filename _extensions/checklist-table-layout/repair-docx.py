@@ -256,6 +256,40 @@ def normalize_section_properties(root: ET.Element) -> int:
     return fixed
 
 
+def collapse_trailing_landscape_section(root: ET.Element) -> int:
+    """Avoid a blank portrait page after a landscape section at document end."""
+    body = root.find("./w:body", NS)
+    if body is None:
+        return 0
+
+    children = list(body)
+    if len(children) < 2 or children[-1].tag != W + "sectPr":
+        return 0
+
+    trailing_paragraph = children[-2]
+    if trailing_paragraph.tag != W + "p" or text_content(trailing_paragraph):
+        return 0
+
+    paragraph_sections = trailing_paragraph.findall("./w:pPr/w:sectPr", NS)
+    if len(paragraph_sections) != 1:
+        return 0
+
+    section = paragraph_sections[0]
+    page_size = section.find("./w:pgSz", NS)
+    if page_size is None or page_size.get(W + "orient") != "landscape":
+        return 0
+
+    paragraph_properties_node = trailing_paragraph.find("./w:pPr", NS)
+    if paragraph_properties_node is None:
+        return 0
+
+    paragraph_properties_node.remove(section)
+    body.remove(trailing_paragraph)
+    body.remove(children[-1])
+    body.append(section)
+    return 1
+
+
 def normalize_list_paragraph_style(root: ET.Element) -> int:
     fixed = 0
     for ppr in root.findall(".//w:pPr", NS):
@@ -447,6 +481,7 @@ def repair_document_xml(xml_path: Path) -> tuple[int, int, int, int, int, int, i
     fixed_jc = normalize_duplicate_alignments(root)
     fixed_sections = normalize_section_properties(root)
     fixed_bookmarks = normalize_body_bookmarks(root)
+    fixed_sections += collapse_trailing_landscape_section(root)
     fixed_lists = normalize_list_paragraph_style(root)
     fixed_ppr_order = normalize_paragraph_property_order(root)
     fixed_table = 0

@@ -1,0 +1,320 @@
+---
+title: "Response to the Editor and Peer Reviewers"
+subtitle: "Manuscript 106133"
+format:
+  docx:
+    reference-doc: custom-reference-doc.docx
+    toc: false
+lang: en-AU
+---
+
+Thank you for your suggestions to improve the manuscript. Point-by-point responses outlining the changes made to the manuscript are below.
+
+## Editor and Transfer Recommendation
+
+### Comment
+
+Some reviewers recommended transfer to another journal. Please confirm whether the authors wish to transfer the manuscript to a more suitable JMIR Publications journal based on the Editor's recommendations.
+
+### Response
+
+We decline transfer and request that the revised manuscript remain under consideration at JMIR Nursing given this study used nursing handover transcripts, was designed to address nursing handover tasks, was informed by registered nurse annotations and the project is led by a nursing researcher. Clinical handover is a core nursing responsibility, and the study was designed to evaluate LLMs for nursing handover information extraction.
+
+## Reviewer F
+
+### Comment 1
+
+The research motivation needs to be stated more clearly. The manuscript does not sufficiently explain why large language models are necessary for structured information extraction in AI-assisted clinical handover, what limitations of traditional approaches they may address, or why they should be used when they do not always achieve state-of-the-art performance.
+
+### Response
+
+The revised Introduction now states the specific motivation for evaluating instruction-driven LLMs:
+
+"Traditional supervised information-extraction methods can be highly effective for stable tasks with sufficiently large, task-specific labelled datasets. However, there are several potential advantages of using LLMs in this context. For example, the same instruction-driven model can be configured for heterogeneous, context-dependent tasks. This may be useful where annotated nursing handover data are limited and communication is conversational and non-linear. Prior work has demonstrated that few-shot clinical information extraction with LLMs can be accurate, while also showing that performance depends materially on prompt design and task framing (Agrawal et al. 2022; Sivarajkumar et al. 2024)."
+
+### Comment 2
+
+How difficult was the annotation task? Did the two annotators undertake a sampling-based inter-annotator agreement test? If not, the authors should add a quantitative assessment of annotation difficulty.
+
+### Response
+
+Pre-consensus inter-annotator agreement has been calculated. The methods section now states:
+
+"Inter-rater agreement was assessed with Cohen's kappa and mean intersection over union (IoU) among matched spans. Agreement confidence intervals were calculated with 2,000 bootstrap resamples of transcript pairs using a fixed random seed."
+
+Annotation agreement is reported in the results as:
+
+"Cohen's kappa was 0.75 (95% CI 0.73-0.76) for checklist decisions, 0.70 (95% CI 0.68-0.72) for pooled SBAR token-by-label decisions, 0.12 (95% CI 0.08-0.15) for broad uncertainty, and 0.40 (95% CI 0.18-0.64) for unknown facts. Among overlapping same-label spans, mean IoU was 0.86 (95% CI 0.85-0.87) for SBAR, 0.71 (95% CI 0.61-0.81) for broad uncertainty, and 0.78 (95% CI 0.56-0.98) for unknown facts. The relatively high matched-span IoU indicates similar boundaries when both nurses identified the same span type, with disagreement in uncertainty annotations arising mainly over whether and how to label an expression."
+
+The result was interpreted in the Discussion, which now states:
+
+"Registered nurse annotation agreement was comparatively high for checklist and SBAR annotations but very low for the broad uncertainty taxonomy. The latter finding indicates that vague, hedged, or context-dependent communication was difficult to operationalise consistently even with written guidance. However, the combination of low kappa and relatively high matched IoU scores for broad uncertainty indicates that the principal difficulty was deciding whether uncertainty was present, rather than locating its boundaries once identified. As all model optimisation and evaluation used the final consensus ratings between annotators, the results should therefore be interpreted as being conservative."
+
+### Comment 3
+
+Only GPT-5-nano, GPT-5.2, and MedGemma 27B were evaluated. Other mainstream and more recent models should be added.
+
+### Response
+
+No additional model experiments were added because the study was designed to compare prompt optimisation within a purposively selected panel, not to rank all available LLMs. The revised Methods section now states:
+
+"This panel was intended to examine matched prompt effects across contrasting model profiles, not to provide an exhaustive leaderboard of all contemporary LLMs."
+
+The panel comprised a higher-capacity proprietary model, a smaller lower-cost proprietary model, and a medical open-weight model.
+
+### Comment 4.1
+
+The Results analysis lacks comparison with other mainstream large language models.
+
+### Response
+
+No additional model experiments were added. The Results now frame the principal comparison as:
+
+"Within-model comparisons showed consistent point-estimate gains with DSPy/GEPA over matched unoptimised-prompt baselines."
+
+The Methods section limits this inference to matched prompt effects across the 3 evaluated model profiles and explicitly states that the panel was not an exhaustive LLM leaderboard.
+
+### Comment 4.2
+
+The proposed approach is not compared with traditional information-extraction methods, particularly current state-of-the-art extraction models.
+
+### Response
+
+No additional non-LLM analysis was added because the original NICTA evaluation and the present study used different tasks and labels, precluding a valid head-to-head comparison. The revised Discussion now states:
+
+"This study did not compare LLMs with non-LLM-based methods of structured information extraction. It therefore provides evidence about relative prompt optimisation approaches and model configurations, not the superiority of LLMs over conventional information extraction. Nevertheless, evaluating LLM-based approaches is a logical next step in this handover-specific research programme. In the original NICTA benchmark, a feature-engineered conditional random field classified 6349 of 8487 words correctly and achieved macro-F1 0.702 across 35 handover-form categories, but performance was markedly uneven. F1 was 0.217 for the more abstract “other observations” category and 0.496 for future-care goals, tasks, and expected outcomes, and the error analysis identified clinically relevant missed and misclassified information (Suominen et al. 2015). These limitations were concentrated in categories requiring greater contextual differentiation. Instruction-tuned LLMs therefore warranted evaluation as a potentially more flexible approach to context-dependent handover information, particularly where prompt optimisation can adapt extraction behaviour using a modest labelled set."
+
+## Reviewer G
+
+### General Comment
+
+The topic is important and timely, and the technical evaluation is detailed. Substantial revision is needed to align the purpose, methods, findings, and conclusions; separate the proof-of-concept evaluation from proposed real-time clinical applications; address the synthetic and partly LLM-generated or transformed data more directly; and update the literature on handover, decision support, automation bias, and human-AI interaction.
+
+### Response
+
+Thank you for the review, we have outlined responses to each point below.
+
+### Major Comment 1
+
+The study purpose and intended use case require clarification. The manuscript moves among model comparison, transcript-based extraction, and development of a future real-time support system.
+
+### Response
+
+The revised aim clarified that the real-time support system is not part of the study. It now states:
+
+"The aim of this study was to evaluate the accuracy of LLM structured information extraction from synthetic clinical handover transcripts."
+
+Development or evaluation of a real-time support system is not included in the study aim.
+
+### Major Comment 2
+
+The Abstract should define clinical handover accurately, avoid saying that models “verified” information, and clearly identify all 203 transcripts as synthetic.
+
+### Response
+
+The Abstract now defines clinical handover and removes the term “verified”:
+
+"Clinical handover is the process during which responsibility and accountability for care are transferred between clinicians. Artificial intelligence has the potential to improve the reliability and completeness of clinical handover by helping clinicians detect the key information that has been communicated, identify explicit information gaps, and prompt clarification before responsibility is transferred."
+
+
+The abstract objective now states:
+
+"This study evaluated the performance of several large language models and prompt optimisation strategies for structured information extraction of synthetic nursing handover transcripts."
+
+### Major Comment 3
+
+The Abstract conclusion extends beyond the findings by implying clinical support readiness, reduced omissions, or an ability to identify what was not said.
+
+### Response
+
+The Abstract conclusion has been narrowed to the technical findings:
+
+"Prompt optimisation improved matched-model point estimates, with the highest performance observed for predefined content detection and SBAR span extraction. Broad uncertainty extraction remained less accurate than the narrower unknown-fact task. These technical results do not establish clinical effectiveness, safety, or readiness for real-time use. Validation using authentic nursing handover communication and prospective evaluation in clinical workflows are required before clinical application."
+
+### Major Comment 4
+
+The final Introduction paragraph blurs the future vision with the actual aim and implies testing of a real-time system.
+
+### Response
+
+The final aim sentence in the Introduction paragraph now states:
+
+"The aim of this study was to evaluate the accuracy of LLM structured information extraction from synthetic clinical handover transcripts."
+
+### Major Comment 5
+
+The Introduction relies heavily on older references. More recent evidence is needed on handover, nursing communication, patient safety, AI-supported handover, clinical decision support, and automation bias. The opening definition also needs a citation.
+
+### Response
+
+Recent evidence was added throughout the Introduction. For example:
+
+"Recent systematic review evidence suggests that structured handoff protocols may improve some safety outcomes, but the certainty and implementation fidelity vary by protocol and setting; evidence specific to SBAR remains low certainty (McCarthy et al. 2025)."
+
+The revised discussion of nursing handover also cites Moyo et al (2024), Chien et al (2024), Anshasi et al (2024), and Yung et al (2023), while Chen et al (2026) is cited for recent LLM-supported nursing handover research.
+
+### Major Comment 6
+
+The study design should be described more precisely than “model-evaluation design.”
+
+### Response
+
+“Model-evaluation design” was retained because it corresponds to the TRIPOD-LLM research-design terminology. The Study Design section now states:
+
+"This study used a model-evaluation design, corresponding to the “LLM evaluation” research-design category in TRIPOD-LLM (Gallifant et al. 2025). This category covers studies that assess existing LLMs for their accuracy or suitability for a specific healthcare task. We compared selected LLMs and prompt configurations on predefined multilabel classification and span-extraction tasks using completed synthetic nursing handover transcripts and registered nurse annotations. The study was not an evaluation in a healthcare setting because it did not test workflow integration or clinical, administrative, or workforce outcomes."
+
+
+### Major Comment 7
+
+The synthetic nature of the dataset should be explicit throughout the Methods.
+
+### Response
+
+The Data Sources section now states:
+
+"We used the publicly available NICTA Synthetic Nursing Handover Dataset, which contains synthetic recordings of clinical handovers delivered by a registered nurse based on patient profiles with cardiovascular, neurological, renal, and respiratory conditions (Suominen et al. 2015)."
+
+
+### Major Comment 8
+
+The manuscript should critically address evaluation of LLMs on LLM-generated or LLM-transformed language, which may be more structured or predictable than authentic handover.
+
+### Response
+
+We have included the following in the limitations section:
+
+"The evaluation corpus included synthetic transcripts generated in part with GPT-5. Although the uses were distinct, information extraction tasks were performed on synthesised language from a model from the same LLM provider, which is potentially susceptible to model familiarity. Synthetic transcripts may also be more predictable than authentic handover communication."
+
+### Major Comment 9
+
+Inter-rater agreement before consensus should be reported, and retaining only agreed annotations may exclude clinically important ambiguity.
+
+### Response
+
+Pre-consensus agreement was calculated and is reported as described in the response to Reviewer F, Comment 2.
+
+The interpretation was discussed in the Discussion:
+
+"Registered nurse annotation agreement was comparatively high for checklist and SBAR annotations but very low for the broad uncertainty taxonomy. The latter finding indicates that vague, hedged, or context-dependent communication was difficult to operationalise consistently even with written guidance. However, the combination of low kappa and relatively high matched IoU scores for broad uncertainty indicates that the principal difficulty was deciding whether uncertainty was present, rather than locating its boundaries once identified. As all model optimisation and evaluation used the final consensus ratings between annotators, the results should therefore be interpreted as being conservative."
+
+The limitation of retaining only agreed annotations is now stated explicitly:
+
+"Furthermore, the reference standard retained only annotations agreed by both reviewers. This creates a conservative and reproducible benchmark, but may exclude ambiguous or contested communication."
+
+### Major Comment 10
+
+The manuscript should consistently state that the metrics represent technical performance on synthetic transcripts rather than evidence of clinical effectiveness, safety, or real-time readiness.
+
+### Response
+
+This has been revised in multiple places. For example, the Abstract conclusion now states:
+
+"These technical results do not establish clinical effectiveness, safety, or readiness for real-time use."
+
+The Study Design also states:
+
+"The study was not an evaluation in a healthcare setting because it did not test workflow integration or clinical, administrative, or workforce outcomes."
+
+### Major Comment 11
+
+The statement that the clinical value lies in shaping handover dialogue before transfer is unsupported by the study.
+
+### Response
+
+That statement has been removed from the Discussion.
+
+The discussion also clearly states that the study “did not evaluate whether AI outputs changed clinician questioning, closed-loop communication, task completion, escalation, near-miss detection, or patient outcomes.”
+
+### Major Comment 12
+
+The Implementation Considerations section should define terms such as “prompts” and “optional checks” and explain what the clinician would see.
+
+### Response
+
+Changed to:
+
+"Higher recall may be appropriate where the system displays non-detected checklist items under an “Items to check” heading and allows the receiving clinician to mark each item as addressed, not relevant, or requiring clarification. This presentation would avoid implying that the information was definitely omitted while supporting clarification before responsibility transfers."
+
+
+### Major Comment 13
+
+Words such as “useful,” “strong,” or “sufficient” should be used cautiously because no clinical acceptability or safety threshold was established.
+
+### Response
+
+The Results section now uses numerical or comparative language. For example:
+
+"The narrower unknown-fact sub-task had higher point estimates."
+
+The Abstract states the interpretive boundary directly:
+
+"These technical results do not establish clinical effectiveness, safety, or readiness for real-time use."
+
+### Major Comment 14
+
+A checklist item not being detected is not equivalent to clinically necessary information being omitted.
+
+### Response
+
+The Discussion now states:
+
+"Although checklist prediction achieved high accuracy, the consequences of both false positives and false negatives should be considered. A false negative would usually create review burden by prompting clarification of an item that was already communicated, but a false positive could create more serious false reassurance that a safety-critical element was conveyed when it was not. In addition, a checklist item not detected in the captured transcript is not equivalent to clinically necessary information having been omitted. A safer near-term design could therefore present AI outputs as source-linked prompts for clinician review, with clear distinctions between detected in transcript, not detected, and requires verification. Evidence has indicated that effective clinical decision support is most useful when integrated into a workflow as actionable and readily available support at the time and place of decision-making, while also recognising the risk of automation bias when clinicians over-rely on system outputs (Kawamoto et al. 2005; Goddard et al. 2012; Challen et al. 2019)."
+
+
+### Major Comment 15
+
+The implementation discussion relies on older foundational references and should include recent evidence on verification, situational awareness, decision support, automation bias, and contemporary handover.
+
+### Response
+
+The Discussion now makes the relevant human-AI risks explicit:
+
+"Even accurate prompts may create new risks if clinicians over-trust them, ignore non-highlighted issues, experience alert fatigue, or redirect attention away from direct patient/carer engagement."
+
+It then specifies that “human factors testing should therefore assess reliance, trust calibration, interruption burden, and the usability of source-linked evidence before deployment.”
+
+### Major Comment 16
+
+The Conclusion should be narrowed to technical findings, make the synthetic dataset explicit, and require authentic and real-world validation.
+
+### Response
+
+The technical boundary is stated directly in the Abstract conclusion:
+
+"These technical results do not establish clinical effectiveness, safety, or readiness for real-time use. Validation using authentic nursing handover communication and prospective evaluation in clinical workflows are required before clinical application."
+
+The final Conclusion also requires external validation on authentic handover audio and transcripts, end-to-end testing, local calibration, human-factors evaluation, and assessment of downstream safety outcomes before deployment.
+
+### Minor Comment 17
+
+Add a citation to support the opening definition of clinical handover.
+
+### Response
+
+The opening definition now reads:
+
+"Clinical handover is the process during which responsibility and accountability for some or all aspects of a patient’s care are transferred to another clinician or clinical team (Australian Commission on Safety and Quality in Health Care 2026)."
+
+### Minor Comment 18
+
+Consider simplifying technical details for a clinical readership or moving lower-level details to supplementary material.
+
+### Response
+
+The technical description was simplified in place. For example:
+
+"It iteratively evaluated candidate task instructions, combined numeric task scores with natural-language error feedback, and used GPT-5.2 as a separate reflection model to propose revisions."
+
+Details required to interpret and reproduce the comparisons were retained in the Methods.
+
+### Minor Comment 19
+
+Review the manuscript for hypothetical implementation features described as though they were evaluated.
+
+### Response
+
+The Study Design now states:
+
+"The study was not an evaluation in a healthcare setting because it did not test workflow integration or clinical, administrative, or workforce outcomes."
+
+The Discussion separately states that the study did not evaluate changes in clinician communication, task completion, escalation, near-miss detection, or patient outcomes.
